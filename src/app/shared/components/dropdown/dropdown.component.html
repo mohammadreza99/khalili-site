@@ -1,0 +1,15 @@
+<li
+  class="nav-item dropdown"
+  [class.active]="isDropdownOpen"
+  (click)="toggleDropDown()"
+  (clickOutside)="onClickOutside()"
+>
+  <a class="nav-link dropdown-toggle"> {{ title }}</a>
+  <div
+    class="dropdown-menu border-0 pad-y-24 ag-rounded-lg ag-shadow-xsm"
+    [ngClass]="{ show: isDropdownOpen }"
+  >
+    content
+    <ng-content></ng-content>
+  </div>
+</li>

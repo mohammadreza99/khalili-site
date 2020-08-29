@@ -1,0 +1,13 @@
+@import "mixins";
+
+.navbar {
+  transition: all 0.4s;
+  user-select: none;
+
+  .nav-item {
+    cursor: pointer;
+    .nav-link {
+      @include text-style($title-color3, $font-size-md);
+    }
+  }
+}

@@ -1,11 +1,11 @@
-// @import "abstracts/mixins";
+@import "mixins";
 swiper {
   width: 100%;
   height: auto;
 }
 
-// [class*="swiper-button"] {
-//   @include extraSmall() {
-//     display: none;
-//   }
-// }
+[class*="swiper-button"] {
+  @include extraSmall() {
+    display: none;
+  }
+}

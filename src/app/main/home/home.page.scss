@@ -1,7 +1,9 @@
 @import "mixins.scss";
+
 :host {
   position: relative;
 }
+
 .nav-bar {
   position: fixed;
   z-index: 99;
@@ -112,7 +114,6 @@
       }
       margin-left: 30px;
       position: static;
-
     }
     .mega-menu {
       display: none !important;
@@ -124,10 +125,9 @@
       width: calc(100% - 30px);
       top: 35px;
       left: 15px;
-
     }
     .main-category {
-      padding-right:0 ;
+      padding-right: 0;
       ul {
         border-left: 1px solid #eaeaea;
         padding: 0;
@@ -135,12 +135,12 @@
         li {
           padding: 10px 0;
           padding-right: 15px;
-          border-top:1px solid transparent;
-          border-bottom:1px solid transparent;
-          &:hover{
-            color:red;
-            border-top:1px solid #eaeaea;
-            border-bottom:1px solid #eaeaea;
+          border-top: 1px solid transparent;
+          border-bottom: 1px solid transparent;
+          &:hover {
+            color: red;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
           }
         }
       }
@@ -149,13 +149,12 @@
       ul {
         li {
           padding: 7px 0;
-          &:hover{
-            color:red;
+          &:hover {
+            color: red;
           }
         }
       }
     }
-
   }
 }
 
@@ -178,7 +177,6 @@
     }
   }
 }
-
 
 
 .footer {
@@ -245,13 +243,14 @@
     color: #4b4b4b;
     padding: 0 5px;
   }
-  .shared-app-wrapper , .namad-wrapper{
-    img{
+  .shared-app-wrapper,
+  .namad-wrapper {
+    img {
       width: 110px;
     }
   }
-  .about{
-    border-top:1px solid rgb(206, 206, 206) ;
+  .about {
+    border-top: 1px solid rgb(206, 206, 206);
     padding-top: 30px;
     background-color: #e4edf0;
   }

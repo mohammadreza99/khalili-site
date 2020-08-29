@@ -20,3 +20,52 @@
   font-weight: 700;
   color: #fff !important;
 }
+
+@mixin text-style(
+  $color: $body-color /*#414141*/,
+  $size: null,
+  $line-height: $line-height-lg /*2*/,
+  $font-weight: normal
+) {
+  color: $color;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  @if ($size) {
+    font-size: $size;
+  } @else {
+    font-size: $font-size-sm;
+    @include medium() {
+      font-size: $font-size-md;
+    }
+  }
+}
+
+@mixin extraSmall {
+  @media (max-width: #{$extraSmall-width}) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media (min-width: #{$small-min-width}) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media (min-width: #{$medium-min-width}) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (min-width: #{$large-min-width}) {
+    @content;
+  }
+}
+
+@mixin extraLarge {
+  @media (min-width: #{$extraLarge-min-width}) {
+    @content;
+  }
+}

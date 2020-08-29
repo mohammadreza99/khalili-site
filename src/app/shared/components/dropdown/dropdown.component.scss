@@ -1,0 +1,22 @@
+@import "mixins";
+
+.nav-item {
+  .nav-link {
+    @include text-style($title-color3, $font-size-md);
+    &:after {
+      content: none;
+    }
+  }
+  .dropdown-menu {
+    left: 0;
+    right: auto;
+
+    .dropdown-item {
+      @include text-style($body-color, $font-size-md);
+    }
+    @include extraSmall() {
+      left: 0 !important;
+      right: auto !important;
+    }
+  }
+}

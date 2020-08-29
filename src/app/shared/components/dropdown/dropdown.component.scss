@@ -14,6 +14,7 @@
 
     .dropdown-item {
       @include text-style($body-color, $font-size-md);
+      @include text-style($body-color, $font-size-md);
     }
     @include extraSmall() {
       left: 0 !important;

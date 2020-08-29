@@ -8,7 +8,7 @@
     </a>
     <div *ngIf="product.price" class="card-price">
       <div *ngIf="product.discount" class="d-flex align-items-center">
-        <div class="discount">{{ product.discount }}%</div>
+        <div class="discount rounded-pill mr-2">{{ product.discount }}%</div>
         <del class="first-price">{{ product.price | number }} </del>
       </div>
       <div class="final-price d-flex">

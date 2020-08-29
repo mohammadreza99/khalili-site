@@ -8,6 +8,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductsSliderComponent } from './components/products-slider/products-slider.component';
+import { CategoriesPromoComponent } from './components/categories-promo/categories-promo.component';
 
 export const COMPONENTS: Type<any>[] = [
   CarouselComponent,
@@ -19,4 +20,5 @@ export const COMPONENTS: Type<any>[] = [
   DropdownComponent,
   ClickOutsideDirective,
   FooterComponent,
+  CategoriesPromoComponent,
 ];

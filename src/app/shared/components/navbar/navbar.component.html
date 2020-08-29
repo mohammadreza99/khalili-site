@@ -1,130 +1,3 @@
-<!-- <nav
-  class="navbar navbar-expand-xl navbar-light fixed-top"
-  [class.shadow-sm]="isScrolled"
-  [ngClass]="{
-    opened: isOpen,
-    'bg-white shadow-sm': isScrolled || isOpen
-  }"
->
-  <div class="container">
-    <div class="d-flex align-items-center justify-content-between logo">
-      <div class="flex-grow-1 toggler-wrapper">
-        <button
-          class="navbar-toggler border-0"
-          type="button"
-          (click)="toggleNavbar()"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand mar-r-32" (click)="navigate('/')">
-          <ag-logo></ag-logo>
-        </a>
-      </div>
-      <ag-dropdown
-        class="d-block d-xl-none list-unstyled"
-        [title]="selectedLang"
-        icon="fas fa-globe-americas"
-        iconPos="start"
-        [list]="[
-          { text: 'فارسی', routerLink: null },
-          { text: 'English', routerLink: null }
-        ]"
-      >
-      </ag-dropdown>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav w-100 p-0">
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="navigate('/')"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            {{ "NAVIGATIONS.HOME" }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="navigate('/products')"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            {{ "NAVIGATIONS.PRODUCTS" }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="navigate('/academy')"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >{{ "NAVIGATIONS.ACADEMY" }}</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="navigate('/job-oppurtinities')"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >{{ "NAVIGATIONS.JOB_OPPURTINITY" }}</a
-          >
-        </li>
-        <ag-dropdown
-          (listItemClick)="closeNavbar()"
-          class="mar-l-32"
-          title="{{ 'NAVIGATIONS.ABOUT_US' }}"
-          [list]="[
-            {
-              text: 'NAVIGATIONS.ABOUT_US',
-              routerLink: '/about',
-              exact: true
-            },
-            {
-              text: 'NAVIGATIONS.HISTORY',
-              routerLink: '/about/history'
-            },
-            {
-              text: 'NAVIGATIONS.DIRECTORS',
-              routerLink: '/about/directors'
-            },
-            {
-              text: 'NAVIGATIONS.STOCKHOLDERS',
-              routerLink: '/about/stockholders'
-            },
-            {
-              text: 'NAVIGATIONS.CONSULERS',
-              routerLink: '/about/consulers'
-            },
-            {
-              text: 'NAVIGATIONS.EMPLOYEES',
-              routerLink: '/about/employees'
-            },
-            {
-              text: 'NAVIGATIONS.CONTACT_US',
-              routerLink: '/about/contact-us'
-            }
-          ]"
-        >
-        </ag-dropdown>
-        <li class="nav-item flex-grow-1"></li>
-        <ag-dropdown
-          class="d-none d-xl-block"
-          [title]="selectedLang"
-          icon="fas fa-globe-americas"
-          iconPos="start"
-          [list]="[
-            { text: 'فارسی', routerLink: null },
-            { text: 'English', routerLink: null }
-          ]"
-        >
-        </ag-dropdown>
-      </ul>
-    </div>
-  </div>
-</nav> -->
 <div class="container-fluid bg-light">
   <div class="row">
     <div class="container">
@@ -148,8 +21,57 @@
         <div class="collapse navbar-collapse justify-content-end">
           <div class="navbar-nav">
             <a class="nav-item nav-link">Home</a>
-            <a class="nav-item nav-link">Features</a>
-            <a class="nav-item nav-link">Pricing</a>
+            <a class="nav-item nav-link">News</a>
+            <div class="dropdown">
+              <a class="dropbtn nav-item nav-link">Dropdown</a>
+              <div class="dropdown-content">
+                <div class="header">
+                  <h2>Mega Menu</h2>
+                </div>
+                <div class="row mega-menu">
+                  <div
+                    (mouseleave)="onMouseLeaveMenuItem('menu')"
+                    id="menu"
+                  >
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="sub-category col-9">
+                          <ul>
+                            <li *ngFor="let item of megaMenuList">
+                              {{ item }}
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="main-category col-3">
+                          <ul>
+                            <li (mouseenter)="onMouseEnter('1')">
+                              <span
+                                >ایتم1<i class="fal fa-user fa-1x"></i
+                              ></span>
+                            </li>
+                            <li (mouseenter)="onMouseEnter('2')">
+                              <span
+                                >ایتم2<i class="fal fa-user fa-1x"></i
+                              ></span>
+                            </li>
+                            <li (mouseenter)="onMouseEnter('3')">
+                              <span
+                                >ایتم3<i class="fal fa-user fa-1x"></i
+                              ></span>
+                            </li>
+                            <li (mouseenter)="onMouseEnter('4')">
+                              <span
+                                >ایتم4<i class="fal fa-user fa-1x"></i
+                              ></span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>

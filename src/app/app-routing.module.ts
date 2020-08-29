@@ -1,19 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomePage } from './main/home/home.page';
+import { MainPage } from './main/main/main.page';
 
 const routes: Routes = [
+  // {
+  // path: 'login',
+  // component:LoginPage
+  // data: { breadcrumb: '' },
+  // },
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
+    component: MainPage,
     data: { breadcrumb: '' },
-  },
-  {
-    path: 'dashboard',
-    component: HomePage,
-    data: { breadcrumb: '' },
-    children: [],
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('@modules/home/home.module').then((m) => m.HomeModule),
+      },
+    ],
   },
 ];
 

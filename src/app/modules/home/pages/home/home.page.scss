@@ -4,93 +4,93 @@
   position: relative;
 }
 
-.nav-bar {
-  position: fixed;
-  z-index: 99;
-  width: 100%;
-  background-color: #fff;
-  .header {
-    height: 100px;
-    flex-direction: row-reverse;
-    .right-section {
-      margin-top: 10px;
-      height: 70px;
-      display: flex;
-      box-sizing: border-box;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      flex-direction: row-reverse;
-      .logo {
-        height: 100%;
-        width: auto;
-        margin: 0 10px;
-        img {
-          height: 100%;
-        }
-      }
-    }
+// .nav-bar {
+//   position: fixed;
+//   z-index: 99;
+//   width: 100%;
+//   background-color: #fff;
+//   .header {
+//     height: 100px;
+//     flex-direction: row-reverse;
+//     .right-section {
+//       margin-top: 10px;
+//       height: 70px;
+//       display: flex;
+//       box-sizing: border-box;
+//       padding-top: 10px;
+//       padding-bottom: 10px;
+//       flex-direction: row-reverse;
+//       .logo {
+//         height: 100%;
+//         width: auto;
+//         margin: 0 10px;
+//         img {
+//           height: 100%;
+//         }
+//       }
+//     }
 
-    .left-section {
-      background-color: #fff;
-      margin-top: 10px;
-      height: 70px;
-      display: flex;
-      flex-grow: 1;
-      justify-content: space-between;
-      box-sizing: border-box;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      align-items: center;
-      > div {
-        display: flex;
-        align-items: center;
-        height: 100%;
-        .cart-button {
-          height: 60%;
-          display: flex;
-          align-items: center;
-          padding-right: 20px;
-          border-right: 1px solid #e0e0e2;
-        }
-        .login-button {
-          border: 1px solid #e0e0e2;
-          height: 100%;
-          margin-left: 20px;
-          border-radius: 8px;
-          display: flex;
-          align-items: center;
-          padding: 0 20px;
-          .user-icon {
-            padding-left: 10px;
-          }
-        }
-      }
-      .search-bar {
-        width: 60%;
-        position: relative;
-        .search-icon {
-          position: absolute;
-          display: flex;
-          right: 0;
-          padding: 0 20px;
-          height: 100%;
-          align-items: center;
-          color: #a1a3a8;
-        }
-        input {
-          width: 100%;
-          height: 100%;
-          border-radius: 8px;
-          background-color: #f0f0f1;
-          border: none;
-          text-align: right;
-          padding-right: 40px;
-          font-family: inherit;
-        }
-      }
-    }
-  }
-}
+//     .left-section {
+//       background-color: #fff;
+//       margin-top: 10px;
+//       height: 70px;
+//       display: flex;
+//       flex-grow: 1;
+//       justify-content: space-between;
+//       box-sizing: border-box;
+//       padding-top: 10px;
+//       padding-bottom: 10px;
+//       align-items: center;
+//       > div {
+//         display: flex;
+//         align-items: center;
+//         height: 100%;
+//         .cart-button {
+//           height: 60%;
+//           display: flex;
+//           align-items: center;
+//           padding-right: 20px;
+//           border-right: 1px solid #e0e0e2;
+//         }
+//         .login-button {
+//           border: 1px solid #e0e0e2;
+//           height: 100%;
+//           margin-left: 20px;
+//           border-radius: 8px;
+//           display: flex;
+//           align-items: center;
+//           padding: 0 20px;
+//           .user-icon {
+//             padding-left: 10px;
+//           }
+//         }
+//       }
+//       .search-bar {
+//         width: 60%;
+//         position: relative;
+//         .search-icon {
+//           position: absolute;
+//           display: flex;
+//           right: 0;
+//           padding: 0 20px;
+//           height: 100%;
+//           align-items: center;
+//           color: #a1a3a8;
+//         }
+//         input {
+//           width: 100%;
+//           height: 100%;
+//           border-radius: 8px;
+//           background-color: #f0f0f1;
+//           border: none;
+//           text-align: right;
+//           padding-right: 40px;
+//           font-family: inherit;
+//         }
+//       }
+//     }
+//   }
+// }
 .menu {
   > div {
     position: absolute;

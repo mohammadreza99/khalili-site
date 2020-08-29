@@ -1,21 +1,23 @@
 <div class="card">
-    <img
-      class="card-img-top"
-      [src]="product.img"
-      alt="Card image cap"
-    />
-    <div class="card-body" *ngIf="product.title">
-      <h6 *ngIf="product.title" class="card-title text-right">{{product.title}}</h6>
-      <div *ngIf="product.price" class="card-price">
-        <div *ngIf="product.discount" class="card-discount d-flex">
-          <div class="discount d-flex">{{product.discount}}%</div>
-          <del class="first-price">{{product.price | number }} </del>
-        </div>
-        <div class="final-price d-flex"><span class="symbol">تومان</span>{{finalPrice | number}} </div>
+  <a class="py-4" href="http://">
+    <img class="card-img-top" [src]="product.img" alt="Card image cap" />
+  </a>
+  <div class="card-body" *ngIf="product.title">
+    <a href="http://" class="card-title text-right">
+      {{ product.title }}
+    </a>
+    <div *ngIf="product.price" class="card-price">
+      <div *ngIf="product.discount" class="d-flex align-items-center">
+        <div class="discount">{{ product.discount }}%</div>
+        <del class="first-price">{{ product.price | number }} </del>
       </div>
-      <div *ngIf="product.timer" class="d-flex">
-        <i class="fas fa-clock fa-1x"></i>
-        <div class="timer d-flex">1:1:1</div>
+      <div class="final-price d-flex">
+        <span class="symbol font-regular">تومان</span>{{ finalPrice | number }}
       </div>
     </div>
+    <div *ngIf="product.timer" class="d-flex">
+      <i class="fas fa-clock fa-1x"></i>
+      <div class="timer d-flex">1:1:1</div>
+    </div>
   </div>
+</div>

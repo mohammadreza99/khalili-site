@@ -1,12 +1,16 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  NgModule,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomePage } from './home/home.page';
 import { SharedModule } from '@app/shared/shared.module';
+import { MainPage } from './main/main.page';
 
 @NgModule({
-  declarations: [HomePage],
-  exports: [HomePage],
+  declarations: [MainPage],
+  exports: [MainPage],
   imports: [CommonModule, SharedModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
 export class MainModule {}

@@ -1,5 +1,6 @@
 @import "./fonts/fonts.scss";
 @import "./vendor/bootstrap.scss";
+@import "./mixins.scss";
 @import "theme.scss";
 
 html,
@@ -12,8 +13,19 @@ body {
       font-family: inherit;
     }
   }
+  line-height: $line-height-lg;
+  color: $body-color;
+  font-size: $font-size-sm;
+
+  @include medium() {
+    font-size: $font-size-md;
+  }
 
   *:focus {
     outline: none;
+  }
+
+  a:hover {
+    text-decoration: none;
   }
 }

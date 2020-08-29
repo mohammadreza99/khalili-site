@@ -1,14 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'product-wrapper',
-  templateUrl: './product-wrapper.component.html',
-  styleUrls: ['./product-wrapper.component.scss'],
+  selector: 'products-slider',
+  templateUrl: './products-slider.component.html',
+  styleUrls: ['./products-slider.component.scss'],
 })
-export class ProductWrapperComponent implements OnInit {
+export class ProductsSliderComponent implements OnInit {
   constructor() {}
   config = {
-    slidesPerView: 5,
+    slidesPerView: 4,
     slidesPerGroup: 4,
     spaceBetween: 20,
   };

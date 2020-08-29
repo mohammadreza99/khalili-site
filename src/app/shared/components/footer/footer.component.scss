@@ -1,0 +1,74 @@
+.footer {
+  display: flex;
+  border-top: 1px solid #cfd8dc;
+  flex-direction: row-reverse;
+  text-align: right;
+  margin-top: 50px;
+  padding-top: 40px;
+  background: #eceff1;
+  position: relative;
+  p {
+    color: #4a5f73;
+    font-weight: bold;
+  }
+  .input-box {
+    display: flex;
+    height: 44px;
+    margin-bottom: 30px;
+
+    button {
+      background-color: #00bfd6;
+      border-radius: 8px 0 0 8px;
+      text-align: center;
+      width: 87px;
+      border: none;
+      padding: 14px 24px;
+      height: 100%;
+      // width: 50px;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      display: flex;
+      justify-content: center;
+    }
+    input {
+      flex-grow: 1;
+      height: 100%;
+      border-left: none;
+      border-radius: 0 8px 8px 0;
+      background: #fff;
+      border: 1px solid #c8c8c8;
+      color: #717171;
+      font-size: 14px;
+      padding: 11px 12px;
+      // width: calc(100%-50px);
+      letter-spacing: -0.8px;
+      text-align: right;
+    }
+  }
+  ul {
+    margin-top: 0;
+    list-style: none;
+    color: #4a5f73;
+    font-weight: bold;
+    li {
+      color: #4b4b4b;
+      font-weight: 300;
+    }
+  }
+  .social-media i {
+    color: #4b4b4b;
+    padding: 0 5px;
+  }
+  .shared-app-wrapper,
+  .namad-wrapper {
+    img {
+      width: 110px;
+    }
+  }
+  .about {
+    border-top: 1px solid rgb(206, 206, 206);
+    padding-top: 30px;
+    background-color: #e4edf0;
+  }
+}

@@ -16,6 +16,7 @@ body {
   line-height: $line-height-lg;
   color: $body-color;
   font-size: $font-size-sm;
+  text-align: right;
 
   @include medium() {
     font-size: $font-size-md;

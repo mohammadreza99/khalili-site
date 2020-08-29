@@ -12,7 +12,9 @@ export class ProductsSliderComponent implements OnInit {
     slidesPerGroup: 4,
     spaceBetween: 20,
   };
+  
   @Input() products = [];
   @Input() title: string;
+
   ngOnInit(): void {}
 }

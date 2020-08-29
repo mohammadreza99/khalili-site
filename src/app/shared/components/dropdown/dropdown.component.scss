@@ -1,6 +1,7 @@
 @import "mixins";
 
 .nav-item {
+  cursor: pointer;
   .nav-link {
     @include text-style($title-color3, $font-size-md);
     &:after {

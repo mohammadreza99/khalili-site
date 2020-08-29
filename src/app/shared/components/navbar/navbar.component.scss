@@ -3,11 +3,65 @@
 .navbar {
   transition: all 0.4s;
   user-select: none;
-
-  .nav-item {
-    cursor: pointer;
-    .nav-link {
+  padding-bottom: 0;
+  .navbar-collapse {
+    position: relative;
+    a {
+      cursor: pointer;
       @include text-style($title-color3, $font-size-md);
+      font-size: 16px;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      border: 2px solid transparent;
+      &:hover {
+        border-bottom-color: red;
+      }
+    }
+    .dropdown {
+      float: left;
+      position: static;
+      border: 2px solid transparent;
+      &:hover {
+        border-bottom-color: red;
+        .dropdown-content {
+          display: block;
+        }
+      }
+      .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        padding: 14px 16px;
+        background-color: inherit;
+        font: inherit;
+        margin: 0;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        width: 100%;
+        left: 0;
+        top: 100%;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        .header {
+          padding: 16px;
+        }
+        .mega-menu {
+          ul {
+            list-style: none;
+          }
+        }
+      }
     }
   }
+
+  // .nav-item {
+  //   cursor: pointer;
+  //   .nav-link {
+  //     @include text-style($title-color3, $font-size-md);
+  //   }
+  // }
 }

@@ -14,7 +14,8 @@ import {
 })
 export class HomePage {
   constructor(private cd: ChangeDetectorRef) {}
-
+  zoomedImageSrc="../../../assets/images/logo.png"
+  zoomedImageSrc1="../../../assets/images/1.jpg"
   menuItems = [
     {
       id: '1',

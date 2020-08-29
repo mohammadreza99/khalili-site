@@ -21,8 +21,57 @@
         <div class="collapse navbar-collapse justify-content-end">
           <div class="navbar-nav">
             <a class="nav-item nav-link">Home</a>
-            <a class="nav-item nav-link">Features</a>
-            <a class="nav-item nav-link">Pricing</a>
+            <a class="nav-item nav-link">News</a>
+            <div class="dropdown">
+              <a class="dropbtn nav-item nav-link">Dropdown</a>
+              <div class="dropdown-content">
+                <div class="header">
+                  <h2>Mega Menu</h2>
+                </div>
+                <div class="row mega-menu">
+                  <div
+                    (mouseleave)="onMouseLeaveMenuItem('menu')"
+                    id="menu"
+                  >
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="sub-category col-9">
+                          <ul>
+                            <li *ngFor="let item of megaMenuList">
+                              {{ item }}
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="main-category col-3">
+                          <ul>
+                            <li (mouseenter)="onMouseEnter('1')">
+                              <span
+                                >ایتم1<i class="fal fa-user fa-1x"></i
+                              ></span>
+                            </li>
+                            <li (mouseenter)="onMouseEnter('2')">
+                              <span
+                                >ایتم2<i class="fal fa-user fa-1x"></i
+                              ></span>
+                            </li>
+                            <li (mouseenter)="onMouseEnter('3')">
+                              <span
+                                >ایتم3<i class="fal fa-user fa-1x"></i
+                              ></span>
+                            </li>
+                            <li (mouseenter)="onMouseEnter('4')">
+                              <span
+                                >ایتم4<i class="fal fa-user fa-1x"></i
+                              ></span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>

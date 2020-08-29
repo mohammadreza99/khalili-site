@@ -38,7 +38,7 @@ export class HomePage {
       list: ['41'],
     },
   ];
-  
+
   megaMenuList = this.menuItems[0].list;
 
   banerSlider = [
@@ -78,9 +78,8 @@ export class HomePage {
   ];
 
   offerConfig = {
-    slidesPerView: 4,
-    slidesPerGroup: 3,
-    spaceBetween: 20,
+    slidesPerView: 3,
+    spaceBetween: 10,
   };
 
   products = [

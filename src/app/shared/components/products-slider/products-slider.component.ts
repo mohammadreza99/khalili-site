@@ -6,15 +6,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./products-slider.component.scss'],
 })
 export class ProductsSliderComponent implements OnInit {
-  constructor() {}
+  @Input() products = [];
+  @Input() title: string;
+
   config = {
     slidesPerView: 4,
     slidesPerGroup: 4,
     spaceBetween: 20,
   };
-  
-  @Input() products = [];
-  @Input() title: string;
+
+  constructor() {}
 
   ngOnInit(): void {}
 }

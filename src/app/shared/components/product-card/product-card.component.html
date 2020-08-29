@@ -9,9 +9,9 @@
       <div *ngIf="product.price" class="card-price">
         <div *ngIf="product.discount" class="card-discount d-flex">
           <div class="discount d-flex">{{product.discount}}%</div>
-          <del class="first-price">{{product.price}} </del>
+          <del class="first-price">{{product.price | number }} </del>
         </div>
-        <div class="final-price d-flex"><span>تومان</span>{{finalPrice}} </div>
+        <div class="final-price d-flex"><span class="symbol">تومان</span>{{finalPrice | number}} </div>
       </div>
       <div *ngIf="product.timer" class="d-flex">
         <i class="fas fa-clock fa-1x"></i>

@@ -53,18 +53,7 @@ export class HomePage {
       url: '',
     },
   ];
-  baner1 = [
-    {
-      img: './../../../assets/images/adv-1.jpg',
-      url: '',
-    },
-  ];
-  baner2 = [
-    {
-      img: './../../../assets/images/adv-2.jpg',
-      url: '',
-    },
-  ];
+
   baner3 = [
     {
       img: './../../../assets/images/adv-6.jpg',

@@ -91,6 +91,7 @@
 }
 .menu {
   > div {
+    position: absolute;
     font-weight: 700;
     color: #616161;
     display: flex;
@@ -157,9 +158,11 @@
 
   }
 }
+
 .section1 {
   padding-top: 150px;
 }
+
 .section2 {
   background-color: red;
   margin-top: 50px;
@@ -175,13 +178,18 @@
     }
   }
 }
+
+.section5{
+  height: 200px;
+}
+
 .footer {
   display: flex;
   border-top: 1px solid #cfd8dc;
   flex-direction: row-reverse;
   text-align: right;
   margin-top: 50px;
-  padding: 40px 20px 20px;
+  padding-top: 40px;
   background: #eceff1;
   position: relative;
   p {
@@ -238,5 +246,15 @@
   .social-media i {
     color: #4b4b4b;
     padding: 0 5px;
+  }
+  .shared-app-wrapper , .namad-wrapper{
+    img{
+      width: 110px;
+    }
+  }
+  .about{
+    border-top:1px solid rgb(206, 206, 206) ;
+    padding-top: 30px;
+    background-color: #e4edf0;
   }
 }

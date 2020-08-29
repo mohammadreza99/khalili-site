@@ -1,4 +1,4 @@
-<div class="container-fluid h-100 w-100">
+<!-- <div class="container-fluid h-100 w-100">
   <div class="row nav-bar">
     <div class="container">
       <div class="row header">
@@ -28,8 +28,14 @@
           <div class="row menu">
             <div class="col-12">
               <div>
-                <span  (mouseenter)="onMouseEnterMenuItem('menu')">دسته بندی کالا<i class="fal fa-user fa-1x"></i></span>
-                <div (mouseleave)="onMouseLeaveMenuItem('menu')" class="mega-menu" id="menu">
+                <span (mouseenter)="onMouseEnterMenuItem('menu')"
+                  >دسته بندی کالا<i class="fal fa-user fa-1x"></i
+                ></span>
+                <div
+                  (mouseleave)="onMouseLeaveMenuItem('menu')"
+                  class="mega-menu"
+                  id="menu"
+                >
                   <div class="container-fluid">
                     <div class="row">
                       <div class="sub-category col-9">
@@ -39,10 +45,18 @@
                       </div>
                       <div class="main-category col-3">
                         <ul>
-                          <li (mouseenter)="onMouseEnter('1')"> <span>ایتم1<i class="fal fa-user fa-1x"></i></span></li>
-                          <li (mouseenter)="onMouseEnter('2')"> <span>ایتم2<i class="fal fa-user fa-1x"></i></span></li>
-                          <li (mouseenter)="onMouseEnter('3')"> <span>ایتم3<i class="fal fa-user fa-1x"></i></span></li>
-                          <li (mouseenter)="onMouseEnter('4')"> <span>ایتم4<i class="fal fa-user fa-1x"></i></span></li>
+                          <li (mouseenter)="onMouseEnter('1')">
+                            <span>ایتم1<i class="fal fa-user fa-1x"></i></span>
+                          </li>
+                          <li (mouseenter)="onMouseEnter('2')">
+                            <span>ایتم2<i class="fal fa-user fa-1x"></i></span>
+                          </li>
+                          <li (mouseenter)="onMouseEnter('3')">
+                            <span>ایتم3<i class="fal fa-user fa-1x"></i></span>
+                          </li>
+                          <li (mouseenter)="onMouseEnter('4')">
+                            <span>ایتم4<i class="fal fa-user fa-1x"></i></span>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -65,11 +79,7 @@
   <div class="row section1">
     <div class="container">
       <div class="row">
-        <div class="col-4">
-          <adv-card [items]="baner2"></adv-card>
-          <adv-card [items]="baner1"></adv-card>
-        </div>
-        <div class="col-8">
+        <div class="col-12">
           <adv-card [items]="banerSlider"></adv-card>
         </div>
       </div>
@@ -121,7 +131,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="row section5">
     <div class="container">
@@ -136,7 +146,7 @@
     </div>
   </div>
 
-  <div class="row section6">
+  <!-- <div class="row section6">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -175,6 +185,7 @@
   <div class="row footer">
     <div class="container">
       <div class="row">
+        <div class="col-12 pb-5"></div>
         <div class="col-12 pb-5">
           <div class="row">
             <div class="col-4">
@@ -203,23 +214,23 @@
             </div>
           </div>
         </div>
-        <div class="col-12 py-5  border-top">
+        <div class="col-12 py-5 border-top">
           <div class="row">
             <div class="col-4">
-              <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center shared-app-wrapper">
                 <img
                   class="mr-3"
-                  src="https://via.placeholder.com/110x45"
+                  [src]="'../../../assets/images/footer-imgs/sib-app.png'"
                   alt=""
                 />
                 <img
                   class="mr-3"
-                  src="https://via.placeholder.com/110x45"
+                  [src]="'../../../assets/images/footer-imgs/google-play.png'"
                   alt=""
                 />
                 <img
                   class="mr-3"
-                  src="https://via.placeholder.com/110x45"
+                  [src]="'../../../assets/images/footer-imgs/bazar.png'"
                   alt=""
                 />
               </div>
@@ -232,51 +243,59 @@
             </div>
           </div>
         </div>
-        <div class="col-12 pb-5">
+      </div>
+    </div>
+    <div class="container-fluid about">
+      <div class="row">
+        <div class="container">
           <div class="row">
-            <div class="col-4">
-              <div class="d-flex align-items-center">
-                <img
-                  class="mr-3"
-                  src="https://via.placeholder.com/110x110"
-                  alt=""
-                />
-                <img
-                  class="mr-3"
-                  src="https://via.placeholder.com/110x110"
-                  alt=""
-                />
-                <img
-                  class="mr-3"
-                  src="https://via.placeholder.com/110x110"
-                  alt=""
-                />
+            <div class="col-12 pb-5">
+              <div class="row">
+                <div class="col-4">
+                  <div class="d-flex align-items-center namad-wrapper">
+                    <img
+                      class="mr-3"
+                      [src]="'../../../assets/images/footer-imgs/namad1.png'"
+                      alt=""
+                    />
+                    <img
+                      class="mr-3"
+                      [src]="'../../../assets/images/footer-imgs/namad2.png'"
+                      alt=""
+                    />
+                    <img
+                      class="mr-3"
+                      [src]="'../../../assets/images/footer-imgs/namad3.png'"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div>
+                    <h5>فروشگاه دیجی کالا</h5>
+                    فروشگاه اینترنتی دیجی‌کالا، بررسی، انتخاب و خرید آنلاین
+                    دیجی‌کالا به عنوان یکی از قدیمی‌ترین فروشگاه های اینترنتی با
+                    بیش از یک دهه تجربه، با پایبندی به سه اصل، پرداخت در محل، 7
+                    روز ضمانت بازگشت کالا و تضمین اصل‌بودن کالا موفق شده تا
+                    همگام با فروشگاه‌های معتبر جهان، به بزرگ‌ترین فروشگاه
+                    اینترنتی ایران تبدیل شود. به محض ورود به سایت دیجی‌کالا با
+                    دنیایی از کالا رو به رو می‌شوید! هر آنچه که نیاز دارید و به
+                    ذهن شما خطور می‌کند در اینجا پیدا خواهید کرد.مشاهده بیشتر
+                    اسباب بازیعطر و ادوکلنتلویزیونرنگ مو و ابرومانتو
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-8">
+            <div class="col-12 text-center pt-2 pb-0 border-top">
               <div>
-                <h5>فروشگاه دیجی کالا</h5>
-                فروشگاه اینترنتی دیجی‌کالا، بررسی، انتخاب و خرید آنلاین
-                دیجی‌کالا به عنوان یکی از قدیمی‌ترین فروشگاه های اینترنتی با بیش
-                از یک دهه تجربه، با پایبندی به سه اصل، پرداخت در محل، 7 روز
-                ضمانت بازگشت کالا و تضمین اصل‌بودن کالا موفق شده تا همگام با
-                فروشگاه‌های معتبر جهان، به بزرگ‌ترین فروشگاه اینترنتی ایران
-                تبدیل شود. به محض ورود به سایت دیجی‌کالا با دنیایی از کالا رو به
-                رو می‌شوید! هر آنچه که نیاز دارید و به ذهن شما خطور می‌کند در
-                اینجا پیدا خواهید کرد.مشاهده بیشتر اسباب بازیعطر و
-                ادوکلنتلویزیونرنگ مو و ابرومانتو
+                استفاده از مطالب فروشگاه اینترنتی دیجی‌کالا فقط برای مقاصد
+                غیرتجاری و با ذکر منبع بلامانع است. کلیه حقوق این سایت متعلق به
+                شرکت نوآوران فن آوازه (فروشگاه آنلاین دیجی‌کالا) می‌باشد.
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-12 text-center pt-2 pb-0 border-top">
-          <div>
-            استفاده از مطالب فروشگاه اینترنتی دیجی‌کالا فقط برای مقاصد غیرتجاری
-            و با ذکر منبع بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران
-            فن آوازه (فروشگاه آنلاین دیجی‌کالا) می‌باشد.
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->

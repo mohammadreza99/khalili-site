@@ -24,9 +24,9 @@
         color: #000;
         letter-spacing: 0;
         font-weight: 700;
-        span {
-          font-weight: 400;
+        .symbol {
           font-size: 14px;
+          padding-right: 5px;
         }
       }
     }

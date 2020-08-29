@@ -1,0 +1,13 @@
+<div class="wrapper d-flex">
+    <div class="wrapper-title d-flex">
+      <h4>{{title}}</h4>
+      <div>مشاهده همه</div>
+    </div>
+    <div class="wrapper-content">
+      <carousel  [showArrows]="true" [config]="config">
+        <div *ngFor="let product of products" class="swiper-slide" dir="ltr">
+          <product-card [product]="product"></product-card>
+        </div>
+      </carousel>
+    </div>
+  </div>

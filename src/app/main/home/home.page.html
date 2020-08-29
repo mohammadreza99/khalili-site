@@ -1,0 +1,282 @@
+<div class="container-fluid h-100 w-100">
+  <div class="row nav-bar">
+    <div class="container">
+      <div class="row header">
+        <div class="right-section">
+          <div class="logo">
+            <img src="../../../assets/images/logo.png" />
+          </div>
+        </div>
+        <div class="left-section">
+          <div class="col">
+            <div class="cart-button">
+              <i class="fal fa-shopping-cart fa-1x"></i>
+            </div>
+            <div class="login-button">
+              <span>ورود به حساب کاربری</span>
+              <span class="user-icon"><i class="fal fa-user fa-1x"></i></span>
+            </div>
+          </div>
+          <div class="search-bar">
+            <span class="search-icon"><i class="fal fa-search fa-1x"></i></span>
+            <input placeholder="... جستجو در سایت" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="container">
+          <div class="row menu">
+            <div class="col-12">
+              <div>
+                <span  (mouseenter)="onMouseEnterMenuItem('menu')">دسته بندی کالا<i class="fal fa-user fa-1x"></i></span>
+                <div (mouseleave)="onMouseLeaveMenuItem('menu')" class="mega-menu" id="menu">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="sub-category col-9">
+                        <ul>
+                          <li *ngFor="let item of megaMenuList">{{item}}</li>
+                        </ul>
+                      </div>
+                      <div class="main-category col-3">
+                        <ul>
+                          <li (mouseenter)="onMouseEnter('1')"> <span>ایتم1<i class="fal fa-user fa-1x"></i></span></li>
+                          <li (mouseenter)="onMouseEnter('2')"> <span>ایتم2<i class="fal fa-user fa-1x"></i></span></li>
+                          <li (mouseenter)="onMouseEnter('3')"> <span>ایتم3<i class="fal fa-user fa-1x"></i></span></li>
+                          <li (mouseenter)="onMouseEnter('4')"> <span>ایتم4<i class="fal fa-user fa-1x"></i></span></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <span>سوالی دارید؟<i class="fal fa-user fa-1x"></i></span>
+              </div>
+              <div>
+                <span>فروشنده شوید<i class="fal fa-user fa-1x"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row section1">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <adv-card [items]="baner2"></adv-card>
+          <adv-card [items]="baner1"></adv-card>
+        </div>
+        <div class="col-8">
+          <adv-card [items]="banerSlider"></adv-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row section2">
+    <div class="container">
+      <div class="row offer-box d-flex">
+        <div class="offer-products col-9">
+          <carousel [showArrows]="true" [config]="offerConfig">
+            <div
+              *ngFor="let product of products"
+              class="swiper-slide"
+              dir="ltr"
+            >
+              <product-card [product]="product"></product-card>
+            </div>
+          </carousel>
+        </div>
+        <div class="offer-img col-3">
+          <img src="../../../assets/images/offer.png" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row section3">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <adv-card [items]="baner3"></adv-card>
+        </div>
+        <div class="col-6">
+          <adv-card [items]="baner4"></adv-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row section4">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <product-wrapper
+            [products]="products"
+            [title]="'محصولات پربازدید اخیر'"
+          ></product-wrapper>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row section5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <product-wrapper
+            [products]="brands"
+            [title]="'برند های ویژه'"
+          ></product-wrapper>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row section6">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <product-wrapper
+            [products]="products"
+            [title]="'محصولات پرفروش اخیر'"
+          ></product-wrapper>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row section7">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <adv-card [items]="baner5"></adv-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row section6">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <product-wrapper
+            [products]="products"
+            [title]="'جدید ترین کالا'"
+          ></product-wrapper>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 pb-5">
+          <div class="row">
+            <div class="col-4">
+              <p>:از تخفیف‌ها و جدیدترین‌های دیجی‌کالا باخبر شوید</p>
+              <div class="input-box">
+                <button>ارسال</button>
+                <input placeholder="آدرس ایمیل خود را وارد کنید" />
+              </div>
+              <p>:دیجی‌کالا را در شبکه‌های اجتماعی دنبال کنید</p>
+              <div class="social-media">
+                <span><i class="fas fa-shopping-cart fa-1x"></i></span>
+                <span><i class="fas fa-shopping-cart fa-1x"></i></span>
+                <span><i class="fas fa-shopping-cart fa-1x"></i></span>
+                <span><i class="fas fa-shopping-cart fa-1x"></i></span>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="row">
+                <div class="col-4" *ngFor="let col of footerItems">
+                  <ul>
+                    {{col.title}}
+                    <li *ngFor="let item of col.items">{{item}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 py-5  border-top">
+          <div class="row">
+            <div class="col-4">
+              <div class="d-flex align-items-center">
+                <img
+                  class="mr-3"
+                  src="https://via.placeholder.com/110x45"
+                  alt=""
+                />
+                <img
+                  class="mr-3"
+                  src="https://via.placeholder.com/110x45"
+                  alt=""
+                />
+                <img
+                  class="mr-3"
+                  src="https://via.placeholder.com/110x45"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="col-8">
+              <div>
+                <span>هفت روز هفته ، ۲۴ ساعت شبانه‌روز پاسخگوی شما هستیم</span>
+                <span>شماره تماس : ۶۱۹۳۰۰۰۰ - ۰۲۱</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 pb-5">
+          <div class="row">
+            <div class="col-4">
+              <div class="d-flex align-items-center">
+                <img
+                  class="mr-3"
+                  src="https://via.placeholder.com/110x110"
+                  alt=""
+                />
+                <img
+                  class="mr-3"
+                  src="https://via.placeholder.com/110x110"
+                  alt=""
+                />
+                <img
+                  class="mr-3"
+                  src="https://via.placeholder.com/110x110"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="col-8">
+              <div>
+                <h5>فروشگاه دیجی کالا</h5>
+                فروشگاه اینترنتی دیجی‌کالا، بررسی، انتخاب و خرید آنلاین
+                دیجی‌کالا به عنوان یکی از قدیمی‌ترین فروشگاه های اینترنتی با بیش
+                از یک دهه تجربه، با پایبندی به سه اصل، پرداخت در محل، 7 روز
+                ضمانت بازگشت کالا و تضمین اصل‌بودن کالا موفق شده تا همگام با
+                فروشگاه‌های معتبر جهان، به بزرگ‌ترین فروشگاه اینترنتی ایران
+                تبدیل شود. به محض ورود به سایت دیجی‌کالا با دنیایی از کالا رو به
+                رو می‌شوید! هر آنچه که نیاز دارید و به ذهن شما خطور می‌کند در
+                اینجا پیدا خواهید کرد.مشاهده بیشتر اسباب بازیعطر و
+                ادوکلنتلویزیونرنگ مو و ابرومانتو
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 text-center pt-2 pb-0 border-top">
+          <div>
+            استفاده از مطالب فروشگاه اینترنتی دیجی‌کالا فقط برای مقاصد غیرتجاری
+            و با ذکر منبع بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران
+            فن آوازه (فروشگاه آنلاین دیجی‌کالا) می‌باشد.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+@import "mixins.scss";
+.wrapper {
+    width: 100%;
+    background-color: #fff;
+    flex-direction: column;
+    padding: 20px 30px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    .wrapper-title {
+      flex-direction: row-reverse;
+      h4 {
+        border-bottom: 1px solid red;
+        margin-bottom: 0;
+        padding: 10px 10px 10px 30px;
+        text-align: right;
+      }
+      div {
+        padding: 10px;
+        border-bottom: 1px solid $dark-100;
+        flex-grow: 1;
+        margin-right: 20px;
+        color:$dark-500;
+      }
+    }
+    carousel{
+      margin-top: 20px;
+      display: block;
+    }
+  }

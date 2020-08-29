@@ -1,0 +1,19 @@
+<swiper [config]="config" dir="rtl" #carousel>
+  <div class="swiper-wrapper ag-rtl">
+      <ng-content select=".swiper-slide"></ng-content>
+  </div>
+  <div
+    class="swiper-pagination ag-rtl"
+    [ngClass]="{ 'd-none': !showBullets }"
+  ></div>
+  <div
+    [ngClass]="{ 'd-none': !showArrows }"
+    class="swiper-button-next"
+    (click)="_onSlideNext()"
+  ></div>
+  <div
+    [ngClass]="{ 'd-none': !showArrows }"
+    class="swiper-button-prev"
+    (click)="_onSlidePrev()"
+  ></div>
+</swiper>

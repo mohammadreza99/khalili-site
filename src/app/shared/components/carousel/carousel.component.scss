@@ -1,0 +1,11 @@
+// @import "abstracts/mixins";
+swiper {
+  width: 100%;
+  height: auto;
+}
+
+// [class*="swiper-button"] {
+//   @include extraSmall() {
+//     display: none;
+//   }
+// }

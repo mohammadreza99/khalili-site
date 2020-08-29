@@ -1,0 +1,33 @@
+.card {
+    .card-title {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .card-price {
+      flex-direction: column;
+      .discount {
+        background-color: #fb3449;
+        font-weight: 700;
+        color: #fff;
+        border-radius: 20px;
+        margin-right: 8px;
+        min-width: 43px;
+        height: 23px;
+        justify-content: center;
+      }
+      .first-price {
+        color: #acacac;
+      }
+      .final-price {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: #000;
+        letter-spacing: 0;
+        font-weight: 700;
+        span {
+          font-weight: 400;
+          font-size: 14px;
+        }
+      }
+    }
+  }

@@ -1,0 +1,18 @@
+<div class="adv-card w-100">
+    <div *ngIf="items.length==1">
+      <img
+        class="card-img-top"
+        [src]="items[0].img"
+        alt="Card image cap"
+      />
+    </div>
+    <carousel *ngIf="items.length>1" [showArrows]="true" [showBullets]="true" [config]="config">
+      <div *ngFor="let item of items" class="swiper-slide">
+        <img
+          class="card-img-top"
+          [src]="item.img"
+          alt="Card image cap"
+        />
+      </div>
+    </carousel>
+  </div>

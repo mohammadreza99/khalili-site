@@ -1,5 +1,11 @@
+@import "mixins";
 .footer {
   background: #eceff1;
+  .banners{
+    p{
+      @include text-style($size: $font-size-sm);
+    }
+  }
   p {
     color: #4a5f73;
     font-weight: bold;
@@ -11,17 +17,16 @@
 
     button {
       background-color: #00bfd6;
+      color: #fff;
       border-radius: 8px 0 0 8px;
-      text-align: center;
       width: 87px;
       border: none;
-      padding: 14px 24px;
       height: 100%;
-      color: #fff;
       font-weight: 700;
       letter-spacing: 0.3px;
       display: flex;
       justify-content: center;
+      align-items: center;
     }
     input {
       flex-grow: 1;

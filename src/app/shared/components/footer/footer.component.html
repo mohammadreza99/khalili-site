@@ -1,7 +1,11 @@
 <div class="container-fluid border-top mt-5">
   <div class="row">
     <div class="col-12 text-center py-3">
-      <span class="text-bold"> برگشت به بالا <i class="far fa-shopping-cart rounded-circle bg-white text-muted p-3 text-center border"></i></span>
+      <span class="text-bold go-up">
+        <i class="far fa-shopping-cart d-inline-flex justify-content-center align-items-center rounded-circle bg-white text-muted  border"
+        ></i>
+        برگشت به بالا
+      </span>
     </div>
   </div>
 </div>
@@ -9,28 +13,54 @@
   <div class="row">
     <div class="container">
       <div class="row">
-        <div class="col-12 py-5 d-flex justify-content-between banners border-bottom">
-            <div class="d-flex flex-grow-1 flex-column justify-content-between align-items-center">
-              <img class=" w-50" src="../../../../assets/images/footer-imgs/1.png">
-              <p class="m-0">ضمانت اصل‌بودن کالا</p>
-            </div>
-            <div class="d-flex flex-grow-1 flex-column justify-content-between align-items-center">
-              <img class=" w-50" src="../../../../assets/images/footer-imgs/2.png">
-              <p class="m-0">ضمانت اصل‌بودن کالا</p>
-            </div>
-            <div class="d-flex flex-grow-1 flex-column justify-content-between align-items-center">
-              <img class=" w-50" src="../../../../assets/images/footer-imgs/3.png">
-              <p class="m-0">ضمانت اصل‌بودن کالا</p>
-            </div>
-            <div class="d-flex flex-grow-1 flex-column justify-content-between align-items-center">
-              <img class=" w-50" src="../../../../assets/images/footer-imgs/4.png">
-              <p class="m-0">ضمانت اصل‌بودن کالا</p>
-            </div>
-            <div class="d-flex flex-grow-1 flex-column justify-content-between align-items-center">
-              <img class=" w-50" src="../../../../assets/images/footer-imgs/5.png">
-              <p class="m-0">ضمانت اصل‌بودن کالا</p>
-            </div>
-
+        <div
+          class="col-12 py-5 d-flex justify-content-between banners border-bottom"
+        >
+          <div
+            class="d-flex flex-grow-1 flex-column justify-content-between align-items-center"
+          >
+            <img
+              class="w-50"
+              src="../../../../assets/images/footer-imgs/5.png"
+            />
+            <p class="m-0">ضمانت اصل‌بودن کالا</p>
+          </div>
+          <div
+            class="d-flex flex-grow-1 flex-column justify-content-between align-items-center"
+          >
+            <img
+              class="w-50"
+              src="../../../../assets/images/footer-imgs/4.png"
+            />
+            <p class="m-0">ضمانت اصل‌بودن کالا</p>
+          </div>
+          <div
+            class="d-flex flex-grow-1 flex-column justify-content-between align-items-center"
+          >
+            <img
+              class="w-50"
+              src="../../../../assets/images/footer-imgs/3.png"
+            />
+            <p class="m-0">ضمانت اصل‌بودن کالا</p>
+          </div>
+          <div
+            class="d-flex flex-grow-1 flex-column justify-content-between align-items-center"
+          >
+            <img
+              class="w-50"
+              src="../../../../assets/images/footer-imgs/2.png"
+            />
+            <p class="m-0">ضمانت اصل‌بودن کالا</p>
+          </div>
+          <div
+            class="d-flex flex-grow-1 flex-column justify-content-between align-items-center"
+          >
+            <img
+              class="w-50"
+              src="../../../../assets/images/footer-imgs/1.png"
+            />
+            <p class="m-0">ضمانت اصل‌بودن کالا</p>
+          </div>
         </div>
       </div>
     </div>
@@ -38,20 +68,6 @@
       <div class="row">
         <div class="col-12 py-5">
           <div class="row">
-            <div class="col-4">
-              <p>:از تخفیف‌ها و جدیدترین‌های دیجی‌کالا باخبر شوید</p>
-              <div class="input-box">
-                <button>ارسال</button>
-                <input placeholder="آدرس ایمیل خود را وارد کنید" />
-              </div>
-              <p>:دیجی‌کالا را در شبکه‌های اجتماعی دنبال کنید</p>
-              <div class="social-media">
-                <span><i class="fas fa-shopping-cart "></i></span>
-                <span><i class="fas fa-shopping-cart "></i></span>
-                <span><i class="fas fa-shopping-cart "></i></span>
-                <span><i class="fas fa-shopping-cart "></i></span>
-              </div>
-            </div>
             <div class="col-8">
               <div class="row">
                 <div class="col-4" *ngFor="let col of footerItems">
@@ -64,10 +80,30 @@
                 </div>
               </div>
             </div>
+            <div class="col-4">
+              <p>:از تخفیف‌ها و جدیدترین‌های دیجی‌کالا باخبر شوید</p>
+              <div class="input-box">
+                <input placeholder="آدرس ایمیل خود را وارد کنید" />
+                <button>ارسال</button>
+              </div>
+              <p>:دیجی‌کالا را در شبکه‌های اجتماعی دنبال کنید</p>
+              <div class="social-media">
+                <span><i class="fas fa-shopping-cart"></i></span>
+                <span><i class="fas fa-shopping-cart"></i></span>
+                <span><i class="fas fa-shopping-cart"></i></span>
+                <span><i class="fas fa-shopping-cart"></i></span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-12 pt-5 border-top">
           <div class="row">
+            <div class="col-8">
+              <div>
+                <span>هفت روز هفته ، ۲۴ ساعت شبانه‌روز پاسخگوی شما هستیم</span>
+                <span>شماره تماس : ۶۱۹۳۰۰۰۰ - ۰۲۱</span>
+              </div>
+            </div>
             <div class="col-4">
               <div class="d-flex align-items-center shared-app-wrapper">
                 <img
@@ -87,12 +123,6 @@
                 />
               </div>
             </div>
-            <div class="col-8">
-              <div>
-                <span>هفت روز هفته ، ۲۴ ساعت شبانه‌روز پاسخگوی شما هستیم</span>
-                <span>شماره تماس : ۶۱۹۳۰۰۰۰ - ۰۲۱</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -101,6 +131,21 @@
       <div class="row">
         <div class="col-12 py-5">
           <div class="row">
+
+            <div class="col-8">
+              <div>
+                <h5>فروشگاه دیجی کالا</h5>
+                فروشگاه اینترنتی دیجی‌کالا، بررسی، انتخاب و خرید آنلاین
+                دیجی‌کالا به عنوان یکی از قدیمی‌ترین فروشگاه های اینترنتی با بیش
+                از یک دهه تجربه، با پایبندی به سه اصل، پرداخت در محل، 7 روز
+                ضمانت بازگشت کالا و تضمین اصل‌بودن کالا موفق شده تا همگام با
+                فروشگاه‌های معتبر جهان، به بزرگ‌ترین فروشگاه اینترنتی ایران
+                تبدیل شود. به محض ورود به سایت دیجی‌کالا با دنیایی از کالا رو به
+                رو می‌شوید! هر آنچه که نیاز دارید و به ذهن شما خطور می‌کند در
+                اینجا پیدا خواهید کرد.مشاهده بیشتر اسباب بازیعطر و
+                ادوکلنتلویزیونرنگ مو و ابرومانتو
+              </div>
+            </div>
             <div class="col-4">
               <div class="d-flex align-items-center namad-wrapper">
                 <img
@@ -118,20 +163,6 @@
                   [src]="'../../../assets/images/footer-imgs/namad3.png'"
                   alt=""
                 />
-              </div>
-            </div>
-            <div class="col-8">
-              <div>
-                <h5>فروشگاه دیجی کالا</h5>
-                فروشگاه اینترنتی دیجی‌کالا، بررسی، انتخاب و خرید آنلاین
-                دیجی‌کالا به عنوان یکی از قدیمی‌ترین فروشگاه های اینترنتی با بیش
-                از یک دهه تجربه، با پایبندی به سه اصل، پرداخت در محل، 7 روز
-                ضمانت بازگشت کالا و تضمین اصل‌بودن کالا موفق شده تا همگام با
-                فروشگاه‌های معتبر جهان، به بزرگ‌ترین فروشگاه اینترنتی ایران
-                تبدیل شود. به محض ورود به سایت دیجی‌کالا با دنیایی از کالا رو به
-                رو می‌شوید! هر آنچه که نیاز دارید و به ذهن شما خطور می‌کند در
-                اینجا پیدا خواهید کرد.مشاهده بیشتر اسباب بازیعطر و
-                ادوکلنتلویزیونرنگ مو و ابرومانتو
               </div>
             </div>
           </div>

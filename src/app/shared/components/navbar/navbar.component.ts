@@ -1,4 +1,11 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -11,12 +18,15 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router) {}
 
   @Input() isHomePage: boolean;
+  // @ViewChild('menu') menu: ElementRef;
   @HostListener('window:scroll', ['$event'])
   onScroll(event) {
     const scrollTop = event.target.scrollingElement.scrollTop;
-    if (scrollTop > 2) {
+    if (scrollTop > 100) {
+      console.log(this.isScrolled);
       this.isScrolled = true;
     } else {
+      console.log(this.isScrolled);
       this.isScrolled = false;
     }
   }

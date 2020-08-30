@@ -1,53 +1,85 @@
-<div class="container-fluid shadow-sm bg-white">
+<div class="container-fluid shadow-sm bg-white fixed-top">
   <div class="row">
     <div class="container px-0 position-relative">
-      <nav class="navbar navbar-light justify-content-between bg-white pb-2 px-3">
-        <div class="btns d-flex align-items-center">
-          <span><i class="far fa-search pr-3 py-2 text-muted border-right font-bold"></i></span>
-          <button class="bg-white text-muted border rounded-lg font-light px-3 py-2 ml-3">ورود به حساب کاربری <i class="far fa-search text-muted"></i></button>
-          <ag-dropdown class="list-unstyled"></ag-dropdown>
+      <nav
+        class="row navbar navbar-light justify-content-between bg-white pb-2 px-3 flex-row-reverse"
+      >
+        <div
+          class="col-12 col-lg-4 btns d-flex align-items-center justify-content-between"
+        >
+          <a class="d-block d-md-none navbar-brand h-100 mr-0"
+            ><img class="h-100" src="../../../../assets/images/logo.png"
+          /></a>
+          <div class="d-flex align-items-center w-100 justify-content-end">
+            <ag-dropdown class="list-unstyled"></ag-dropdown>
+            <button
+              class="bg-white text-muted border rounded-lg font-light px-3 py-2 ml-3"
+            >
+              ورود به حساب کاربری <i class="far fa-search text-muted"></i>
+            </button>
+            <span
+              ><i
+                class="far fa-search pr-3 py-2 text-muted border-right font-bold"
+              ></i
+            ></span>
+          </div>
         </div>
-        <div class="d-flex h-100 align-items-center flex-grow-1 justify-content-end">
-          <form class="form-inline bg-light rounded-lg mr-4 w-50 justify-content-end  py-1">
+        <div
+          class="col-12 col-lg-8 d-flex h-100 align-items-center justify-content-end"
+        >
+          <a class="d-none d-md-block navbar-brand h-100 mr-0"
+            ><img class="h-100" src="../../../../assets/images/logo.png"
+          /></a>
+          <button class="navbar-toggler d-block d-md-none" type="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <form
+            class="d-flex bg-light rounded-lg mr-4 w-100 justify-content-end align-items-center py-1"
+          >
+            <i class="fal fa-search mx-3 text-muted"></i>
             <input
-              class="form-control p-0 text-right bg-light border-0 flex-grow-1"
+              class="form-control p-0 text-right bg-light border-0"
               type="search"
-              placeholder="... جستجو در سایت"
+              placeholder="جستجو در سایت ..."
             />
-            <i class="fal fa-search mr-sm-3 text-muted"></i>
           </form>
-          <a class="navbar-brand h-100 mr-0"><img class="h-100" src="../../../../assets/images/logo.png"></a>
         </div>
       </nav>
-      <nav class="navbar navbar-expand-lg navbar-light mt-5">
-        <button class="navbar-toggler" type="button">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end ">
-          <div class="navbar-nav flex-row-reverse ">
+      <nav
+        [class]="isScrolled ? 'hide' : 'show'"
+        class="navbar navbar-expand-lg navbar-light"
+      >
+        <div class="collapse navbar-collapse justify-content-start">
+          <div class="navbar-nav flex-row">
             <div class="mega-menu">
-              <a class="nav-item nav-link">دسته بندی کالا ها <i class="fal fa-user "></i></a>
-              <div class="mega-menu-content shadow-sm ">
+              <a class="nav-item nav-link"
+                ><i class="fal fa-user pl-1"></i>دسته بندی کالا ها
+              </a>
+              <div class="mega-menu-content shadow-sm">
                 <div
                   class="container-fluid d-block"
                   (mouseleave)="onMouseLeaveMenuItem('menu')"
                   id="menu"
                 >
                   <div class="row">
+                    <div class="main-category col-3 p-0 border-left">
+                      <ul class="list-unstyled m-0 p-0">
+                        <li
+                          class="bg-hover-light pr-3"
+                          *ngFor="let item of menuItems; let i = index"
+                          (mouseenter)="showSubMenuById(i + 1)"
+                        >
+                          <span>
+                            <i class="fal fa-user"></i>
+                            {{ item.title }}
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
                     <div class="sub-category col-9">
                       <ul class="list-unstyled">
                         <li *ngFor="let item of megaMenuList">
                           {{ item }}
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="main-category col-3 p-0 border-left">
-                      <ul class="list-unstyled m-0">
-                        <li class="bg-hover-light pr-3" *ngFor="let item of menuItems;let i = index" (mouseenter)="showSubMenuById(i+1)">
-                          <span>
-                            {{item.title}}
-                            <i class="fal fa-user "></i>
-                          </span>
                         </li>
                       </ul>
                     </div>
@@ -56,10 +88,14 @@
               </div>
             </div>
             <div>
-              <a class="nav-item nav-link">تخفیف ها <i class="fal fa-user "></i></a>
+              <a class="nav-item nav-link"
+                ><i class="fal fa-user pl-1"></i>تخفیف ها
+              </a>
             </div>
             <div>
-              <a class="nav-item nav-link">سوالی دارید؟ <i class="fal fa-user "></i></a>
+              <a class="nav-item nav-link"
+                ><i class="fal fa-user pl-1"></i>سوالی دارید؟
+              </a>
             </div>
           </div>
         </div>

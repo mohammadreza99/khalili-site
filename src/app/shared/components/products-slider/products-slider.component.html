@@ -1,9 +1,9 @@
 <div class="wrapper d-flex rounded-lg">
   <div class="wrapper-title d-flex mb-4" *ngIf="title">
+    <h4 class="p-3">{{ title }}</h4>
     <div class="p-3 border-bottom text-left mr-4">
       <a href="http://"> مشاهده همه </a>
     </div>
-    <h4 class="p-3">{{ title }}</h4>
   </div>
   <div class="wrapper-content">
     <carousel [showArrows]="true" [config]="config">

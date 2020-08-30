@@ -163,54 +163,59 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mb-5">
         <div class="col-12">
-          <h6 class="font-regular">لیست فروشنده / گارانتی‌های این محصول</h6>
+          <h6 class="font-regular mb-4">
+            لیست فروشنده / گارانتی‌های این محصول
+          </h6>
         </div>
-        <div class="container-fluid">
-          <div class="row align-items-center">
-            <div class="col">
-              <div class="seller d-flex align-items-center">
-                <i class="fas fa-home text-muted"></i>
-                <div class="seller-info flex-grow-1">
-                  <div>
-                    <span>فروشنده : </span> <span class="font-bold">ماکو</span>
-                  </div>
-                  <div class="function">
-                    <small> <span>عملکرد : </span><span>4.5</span>از 5 </small>
-                    <span class="text-muted mx-2">|</span>
-                    <small> <span>83.6</span>% رضایت از کالا </small>
+        <div class="col-12">
+          <div class="bg-white rounded-lg">
+            <div class="container-fluid">
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="seller d-flex align-items-center mx-2 py-2">
+                    <i class="fas fa-home text-muted ml-3"></i>
+                    <div class="seller-info flex-grow-1">
+                      <div>
+                        <span>فروشنده : </span>
+                        <span class="font-bold">ماکو</span>
+                      </div>
+                      <div class="function">
+                        <small>
+                          <span>عملکرد : </span><span> 4.5 </span>از 5
+                        </small>
+                        <span class="text-muted mx-3">|</span>
+                        <small> <span>83.6</span>% رضایت از کالا </small>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-2">
-              <div class="inventory d-flex align-items-center">
-                <i class="fas fa-home text-muted"></i>
-                <div class="flex-grow-1">
-                  <div>موجود در انبار</div>
-                  <small class="text-muted"> ارسال توسط فروشگاه</small>
+                <div class="col">
+                  <div class="inventory d-flex align-items-center mx-2 py-2">
+                    <i class="fas fa-home text-muted ml-3"></i>
+                    <div class="flex-grow-1">
+                      <div>موجود در انبار</div>
+                      <small class="text-muted"> ارسال توسط فروشگاه</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="final-price d-flex justify-content-center">
+                    <span class="h3"> {{ 10000 | number }} </span>
+                    <span class="symbol pr-2 font-regular">تومان</span>
+                  </div>
+                </div>
+                <div class="col-2">
+                  <button class="btn btn-primary">افزودن به سبدخرید</button>
                 </div>
               </div>
-            </div>
-            <div class="col">
-              <div class="warranty d-flex align-items-center">
-                <i class="fas fa-home text-muted"></i>
-                <span>گارانتی اصالت و سلامت فیزیکی کالا</span>
-              </div>
-            </div>
-            <div class="col-2">
-              <span class="h3"> {{ 10000 | number }} </span>
-              <span class="pr-2 font-regular">تومان</span>
-            </div>
-            <div class="col-2">
-              <button class="btn btn-primary">افزودن به سبدخرید</button>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mb-5">
         <div class="container">
           <div class="row">
             <div class="col-12">
@@ -238,8 +243,66 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane fade">1</div>
-            <div class="tab-pane fade show active">2</div>
-            <div class="tab-pane fade">3</div>
+            <div class="tab-pane fade">2</div>
+            <div class="tab-pane fade show active">
+              <div class="bars-row">
+                <div class="side">
+                  <div>5 star</div>
+                </div>
+                <div class="middle">
+                  <div class="bar-container">
+                    <div class="bar-5"></div>
+                  </div>
+                </div>
+                <div class="side right">
+                  <div>150</div>
+                </div>
+                <div class="side">
+                  <div>4 star</div>
+                </div>
+                <div class="middle">
+                  <div class="bar-container">
+                    <div class="bar-4"></div>
+                  </div>
+                </div>
+                <div class="side right">
+                  <div>63</div>
+                </div>
+                <div class="side">
+                  <div>3 star</div>
+                </div>
+                <div class="middle">
+                  <div class="bar-container">
+                    <div class="bar-3"></div>
+                  </div>
+                </div>
+                <div class="side right">
+                  <div>15</div>
+                </div>
+                <div class="side">
+                  <div>2 star</div>
+                </div>
+                <div class="middle">
+                  <div class="bar-container">
+                    <div class="bar-2"></div>
+                  </div>
+                </div>
+                <div class="side right">
+                  <div>6</div>
+                </div>
+                <div class="side">
+                  <div>1 star</div>
+                </div>
+                <div class="middle">
+                  <div class="bar-container">
+                    <div class="bar-1"></div>
+                  </div>
+                </div>
+                <div class="side right">
+                  <div>20</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

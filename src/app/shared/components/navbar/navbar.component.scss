@@ -4,14 +4,17 @@
   transition: all 0.4s;
   user-select: none;
   padding-bottom: 0;
-  &:first-child{
+  &:first-child {
     z-index: 1000;
   }
 
-  i,a,.navbar-brand{
+  i,
+  a,
+  .navbar-brand {
     cursor: pointer;
   }
-  input ,.btns{
+  input,
+  .btns {
     @include text-style($size: $font-size-sm);
   }
   .navbar-collapse {
@@ -62,12 +65,11 @@
   }
 }
 
-
-.hide{
+.hide {
   transform: translateY(-65px);
   height: 0;
 }
-.show{
+.show {
   transform: translateY(0);
   height: 65px;
 }

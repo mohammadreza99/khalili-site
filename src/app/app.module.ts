@@ -6,7 +6,7 @@ import { SharedModule } from '@shared/shared.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainModule } from './main/main.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
@@ -20,6 +20,7 @@ import { Global } from './app.global';
     AppRoutingModule,
     SharedModule,
     MainModule,
+    HttpClientModule,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

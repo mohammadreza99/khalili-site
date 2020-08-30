@@ -12,7 +12,7 @@
         <del class="first-price">{{ product.price | number }} </del>
       </div>
       <div class="final-price d-flex">
-        <span class="symbol font-regular">تومان</span>{{ finalPrice | number }}
+        <span class="symbol pr-2 font-regular">تومان</span>{{ finalPrice | number }}
       </div>
     </div>
     <div *ngIf="product.timer" class="d-flex">

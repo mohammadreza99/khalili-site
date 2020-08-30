@@ -1,0 +1,21 @@
+.price {
+  .discount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fb3449;
+    font-weight: 700;
+    color: #fff;
+    min-width: 43px;
+    height: 23px;
+  }
+  .first-price {
+    color: #acacac;
+  }
+  .final-price {
+    color: #000;
+    font-weight: 700;
+    .symbol {
+    }
+  }
+}

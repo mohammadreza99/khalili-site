@@ -1,28 +1,31 @@
-<div class="container-fluid shadow-sm bg-white">
+<div class="container-fluid shadow-sm bg-white fixed-top">
   <div class="row">
     <div class="container px-0 position-relative">
-      <nav class="navbar navbar-light justify-content-between bg-white pb-2 px-3">
-        <div class="btns d-flex align-items-center">
-          <span><i class="far fa-search pr-3 py-2 text-muted border-right font-bold"></i></span>
-          <button class="bg-white text-muted border rounded-lg font-light px-3 py-2 ml-3">ورود به حساب کاربری <i class="far fa-search text-muted"></i></button>
-          <ag-dropdown class="list-unstyled"></ag-dropdown>
+      <nav class="row navbar navbar-light justify-content-between bg-white pb-2 px-3">
+        <div class="col-12 col-lg-4 btns d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <span><i class="far fa-search pr-3 py-2 text-muted border-right font-bold"></i></span>
+            <button class="bg-white text-muted border rounded-lg font-light px-3 py-2 ml-3">ورود به حساب کاربری <i class="far fa-search text-muted"></i></button>
+            <ag-dropdown class="list-unstyled"></ag-dropdown>
+          </div>
+          <a class="d-block d-md-none navbar-brand h-100 mr-0"><img class="h-100" src="../../../../assets/images/logo.png"></a>
         </div>
-        <div class="d-flex h-100 align-items-center flex-grow-1 justify-content-end">
-          <form class="form-inline bg-light rounded-lg mr-4 w-50 justify-content-end  py-1">
+        <div class="col-12 col-lg-8 d-flex h-100 align-items-center  justify-content-end">
+          <form class="d-flex bg-light rounded-lg mr-4 w-100 justify-content-end align-items-center py-1">
             <input
-              class="form-control p-0 text-right bg-light border-0 flex-grow-1"
+              class="form-control p-0 text-right bg-light border-0"
               type="search"
               placeholder="... جستجو در سایت"
             />
-            <i class="fal fa-search mr-sm-3 text-muted"></i>
+            <i class="fal fa-search mr-3 text-muted"></i>
           </form>
-          <a class="navbar-brand h-100 mr-0"><img class="h-100" src="../../../../assets/images/logo.png"></a>
+          <button class="navbar-toggler d-block d-md-none" type="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="d-none d-md-block navbar-brand h-100 mr-0"><img class="h-100" src="../../../../assets/images/logo.png"></a>
         </div>
       </nav>
-      <nav class="navbar navbar-expand-lg navbar-light mt-5">
-        <button class="navbar-toggler" type="button">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <nav class="navbar navbar-expand-lg navbar-light ">
         <div class="collapse navbar-collapse justify-content-end ">
           <div class="navbar-nav flex-row-reverse ">
             <div class="mega-menu">

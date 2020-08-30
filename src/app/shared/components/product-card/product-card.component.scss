@@ -6,7 +6,6 @@
     @include text-style($size: 0.857rem);
   }
   .card-price {
-    flex-direction: column;
     .discount {
       display: flex;
       align-items: center;
@@ -25,7 +24,6 @@
       font-weight: 700;
       .symbol {
         font-size: 14px;
-        padding-right: 5px;
       }
     }
   }

@@ -2,12 +2,12 @@
   <div class="row">
     <div class="container px-0 position-relative">
       <nav
-        class="row navbar navbar-light justify-content-between bg-white pb-2 px-3 flex-row-reverse"
+        class="navbar navbar-light justify-content-between bg-white flex-row-reverse navbar-top"
       >
         <div
           class="col-12 col-lg-4 btns d-flex align-items-center justify-content-between"
         >
-          <a class="d-block d-md-none navbar-brand h-100 mr-0"
+          <a routerLink="/" class="d-block d-lg-none navbar-brand h-100 mr-0"
             ><img class="h-100" src="../../../../assets/images/logo.png"
           /></a>
           <div class="d-flex align-items-center w-100 justify-content-end">
@@ -27,10 +27,10 @@
         <div
           class="col-12 col-lg-8 d-flex h-100 align-items-center justify-content-end"
         >
-          <a class="d-none d-md-block navbar-brand h-100 mr-0"
+          <a routerLink="/" class="d-none d-lg-block navbar-brand h-100 mr-0"
             ><img class="h-100" src="../../../../assets/images/logo.png"
           /></a>
-          <button class="navbar-toggler d-block d-md-none" type="button">
+          <button class="navbar-toggler d-block d-lg-none" type="button">
             <span class="navbar-toggler-icon"></span>
           </button>
           <form
@@ -47,7 +47,7 @@
       </nav>
       <nav
         [class]="isScrolled ? 'hide' : 'show'"
-        class="navbar navbar-expand-md navbar-light d-none d-md-block"
+        class="navbar navbar-expand-md navbar-light d-none d-lg-block navbar-bottom"
       >
         <div class="collapse navbar-collapse justify-content-start">
           <div class="navbar-nav flex-row">

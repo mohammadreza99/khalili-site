@@ -5,7 +5,7 @@
         <div class="col-12">
           <div class="wrapper">
             <div
-              class="container-fluid rounded-lg shadow-sm bg-white py-5 px-3 mt-5"
+              class="container-fluid rounded-lg shadow-sm bg-white py-5 px-3"
             >
               <div class="row">
                 <div class="col-3">
@@ -245,61 +245,80 @@
             <div class="tab-pane fade">1</div>
             <div class="tab-pane fade">2</div>
             <div class="tab-pane fade show active">
-              <div class="bars-row">
-                <div class="side">
-                  <div>5 star</div>
-                </div>
-                <div class="middle">
-                  <div class="bar-container">
-                    <div class="bar-5"></div>
+              <div class="container-fluid">
+                <div class="row py-5">
+                  <div class="col-6">
+                    <h4 class="h5 mb-3">امتیاز کاربران به :</h4>
+                    <p class="mb-5">
+                      دو پرفیوم زنانه امپر مدل Gorgeous In Red حجم 80 میلی لیتر
+                    </p>
+                    <div class="bar-row d-flex align-items-center font-light">
+                      <span>نسبت به قیمت</span>
+                      <div class="bar-container">
+                        <div [style.width.%]="50" class="bar"></div>
+                      </div>
+                      <span class="mr-4">خوب</span>
+                    </div>
+                    <div class="bar-row d-flex align-items-center font-light">
+                      <span>ارزش خرید نسبت به قیمت</span>
+                      <div class="bar-container">
+                        <div [style.width.%]="50" class="bar"></div>
+                      </div>
+                      <span class="mr-4">خوب</span>
+                    </div>
+                    <div class="bar-row d-flex align-items-center font-light">
+                      <span>ارزش خرید نسبت به قیمت</span>
+                      <div class="bar-container">
+                        <div [style.width.%]="50" class="bar"></div>
+                      </div>
+                      <span class="mr-4">خوب</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <h5>شما هم می‌توانید در مورد این کالا نظر بدهید.</h5>
+                    <p>
+                      برای ثبت نظر، لازم است ابتدا وارد حساب کاربری خود شوید.
+                    </p>
+                    <button class="btn btn-primary btn-dark px-4 py-2">
+                      افزودن نظر
+                    </button>
                   </div>
                 </div>
-                <div class="side right">
-                  <div>150</div>
-                </div>
-                <div class="side">
-                  <div>4 star</div>
-                </div>
-                <div class="middle">
-                  <div class="bar-container">
-                    <div class="bar-4"></div>
+                <div class="row py-5">
+                  <div class="col-12">
+                    <h5 class="border-bottom h6 pb-3 font-light">
+                      نظرات کاربران
+                    </h5>
+                    <div class="row py-3">
+                      <div class="col-4">
+                        <p class="mb-3">نام خریدار</p>
+                        <p class="mb-3">در تاریخ 1399/05/08</p>
+                        <div class="alert alert-primary mb-3" role="alert">
+                          توصیه میکنم
+                        </div>
+                        <div>
+                          فروشنده : <span class="font-bold">دیجیکالا</span>
+                        </div>
+                      </div>
+                      <div class="col-8">
+                        <h5 class="border-bottom pb-3">عنوان نظر</h5>
+                        <p>متن نظر</p>
+                        <div class="feedback d-flex align-items-center">
+                          <small class="font-light"
+                            >آیا این نظر برایتان مفید بود؟
+                          </small>
+                          <div class="buttons">
+                            <small class="border rounded-lg p-1 mx-2 font-light"
+                              >0 بله</small
+                            >
+                            <small class="border rounded-lg p-1 mx-2 font-light"
+                              >0 خیر</small
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="side right">
-                  <div>63</div>
-                </div>
-                <div class="side">
-                  <div>3 star</div>
-                </div>
-                <div class="middle">
-                  <div class="bar-container">
-                    <div class="bar-3"></div>
-                  </div>
-                </div>
-                <div class="side right">
-                  <div>15</div>
-                </div>
-                <div class="side">
-                  <div>2 star</div>
-                </div>
-                <div class="middle">
-                  <div class="bar-container">
-                    <div class="bar-2"></div>
-                  </div>
-                </div>
-                <div class="side right">
-                  <div>6</div>
-                </div>
-                <div class="side">
-                  <div>1 star</div>
-                </div>
-                <div class="middle">
-                  <div class="bar-container">
-                    <div class="bar-1"></div>
-                  </div>
-                </div>
-                <div class="side right">
-                  <div>20</div>
                 </div>
               </div>
             </div>

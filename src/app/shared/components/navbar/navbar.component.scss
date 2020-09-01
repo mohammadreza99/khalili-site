@@ -3,7 +3,7 @@
 .navbar {
   transition: all 0.4s;
   user-select: none;
-  padding-bottom: 0;
+  height: 65px;
   &:first-child {
     z-index: 1000;
   }
@@ -65,10 +65,19 @@
   }
 }
 
+.navbar.navbar-top {
+  height: auto;
+  @include large() {
+    height: 65px;
+  }
+}
+
 .hide {
   transform: translateY(-65px);
   height: 0;
+  padding: 0;
 }
+
 .show {
   transform: translateY(0);
   height: 65px;

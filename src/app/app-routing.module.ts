@@ -9,6 +9,11 @@ const routes: Routes = [
   // data: { breadcrumb: '' },
   // },
   {
+    path: 'auth',
+    loadChildren: () =>
+      import('@modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
     path: '',
     component: MainPage,
     data: { breadcrumb: '' },
@@ -24,6 +29,28 @@ const routes: Routes = [
           import('@modules/products/products.module').then(
             (m) => m.ProductsModule
           ),
+      },
+      {
+        path: 'guide',
+        loadChildren: () =>
+          import('@modules/guide/guide.module').then((m) => m.GuideModule),
+      },
+      {
+        path: 'orders',
+        loadChildren: () =>
+          import('@modules/orders/orders.module').then((m) => m.OrdersModule),
+      },
+      {
+        path: 'sellers',
+        loadChildren: () =>
+          import('@modules/sellers/sellers.module').then(
+            (m) => m.SellersModule
+          ),
+      },
+      {
+        path: 'users',
+        loadChildren: () =>
+          import('@modules/users/users.module').then((m) => m.UsersModule),
       },
     ],
   },

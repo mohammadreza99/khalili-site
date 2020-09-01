@@ -16,30 +16,7 @@ export class HomePage {
   constructor(private cd: ChangeDetectorRef) {}
   zoomedImageSrc="../../../assets/images/logo.png"
   zoomedImageSrc1="../../../assets/images/1.jpg"
-  menuItems = [
-    {
-      id: '1',
-      title: 'ایتم 1',
-      list: ['11', '12'],
-    },
-    {
-      id: '2',
-      title: 'ایتم 2',
-      list: ['21', '22'],
-    },
-    {
-      id: '3',
-      title: 'ایتم 3',
-      list: ['31', '32', '33'],
-    },
-    {
-      id: '4',
-      title: 'ایتم4',
-      list: ['41'],
-    },
-  ];
 
-  megaMenuList = this.menuItems[0].list;
 
   banerSlider = [
     {
@@ -188,9 +165,7 @@ export class HomePage {
     },
   ];
 
-  onMouseEnter(rootId) {
-    this.megaMenuList = this.menuItems.find((item) => item.id == rootId).list;
-  }
+  
 
   onMouseEnterMenuItem(id: string) {
     document.querySelector('#' + id).classList.add('show');

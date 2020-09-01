@@ -1,7 +1,7 @@
 @import "mixins.scss";
 
 .offer {
-  background-color: #ef394e;
+  background-color: $bg-secondary;
   .offer-box {
     padding: 30px 0;
     .offer-img {

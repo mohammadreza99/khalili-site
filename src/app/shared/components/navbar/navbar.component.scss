@@ -26,7 +26,7 @@
       text-decoration: none;
       border-bottom: 2px solid transparent;
       &:hover {
-        border-bottom-color: red;
+        border-bottom-color: $primary;
       }
     }
     .mega-menu {
@@ -47,7 +47,7 @@
         .sub-category li {
           @include text-style($subtitle-color, $font-size-sm, 3);
           &:hover {
-            color: red;
+            color: $primary;
           }
         }
         .main-category li {
@@ -57,7 +57,7 @@
             border-top-color: $gray-002;
             border-bottom-color: $gray-002;
             background-color: $gray-001;
-            color: red;
+            color: $primary;
           }
         }
       }

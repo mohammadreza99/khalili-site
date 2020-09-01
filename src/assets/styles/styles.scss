@@ -12,8 +12,10 @@ body {
   font-size: $font-size-sm;
   text-align: right;
   direction: rtl;
+  font-family: IRANyekan;
   .ui-widget {
-    font-family: IRANSans;
+    font-family: IRANyekan;
+    // font-family: IRANSans;
     [class|="ui"]:not([class*="pi"]):not([class*="fa"]):not([class*="ql"]) {
       font-family: inherit;
     }

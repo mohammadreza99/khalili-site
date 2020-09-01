@@ -23,10 +23,8 @@ export class NavbarComponent implements OnInit {
   onScroll(event) {
     const scrollTop = event.target.scrollingElement.scrollTop;
     if (scrollTop > 100) {
-      console.log(this.isScrolled);
       this.isScrolled = true;
     } else {
-      console.log(this.isScrolled);
       this.isScrolled = false;
     }
   }
@@ -38,21 +36,25 @@ export class NavbarComponent implements OnInit {
     {
       id: '1',
       title: 'ایتم 1',
+      icon:'cheeseburger',
       list: ['11', '12'],
     },
     {
       id: '2',
       title: 'ایتم 2',
+      icon:'marker',
       list: ['21', '22'],
     },
     {
       id: '3',
       title: 'ایتم 3',
+      icon:'tshirt',
       list: ['31', '32', '33'],
     },
     {
       id: '4',
       title: 'ایتم4',
+      icon:'motorcycle',
       list: ['41'],
     },
   ];

@@ -2,6 +2,14 @@
 swiper {
   width: 100%;
   height: auto;
+  &::ng-deep{
+    .swiper-button-next, .swiper-button-prev{
+      color:$primary;
+    }
+    .swiper-pagination-bullet-active{
+      background-color: $primary;
+    }
+  }
 }
 
 [class*="swiper-button"] {

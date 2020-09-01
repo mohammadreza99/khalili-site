@@ -78,8 +78,13 @@ export class HomePage {
   ];
 
   offerConfig = {
-    slidesPerView: 3,
+    slidesPerView: 1,
     spaceBetween: 10,
+    breakpoints:{
+      '575': { slidesPerView: 1 },
+      '768 ': { slidesPerView: 2 },
+      '992 ': { slidesPerView: 3 },
+    }
   };
 
   products = [

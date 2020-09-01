@@ -10,9 +10,13 @@ export class ProductsSliderComponent implements OnInit {
   @Input() title: string;
 
   config = {
-    slidesPerView: 4,
-    slidesPerGroup: 4,
+    slidesPerView: 1,
     spaceBetween: 20,
+    breakpoints:{
+      '575': { slidesPerView: 2 },
+      '768 ': { slidesPerView: 3 },
+      '992 ': { slidesPerView: 4 ,slidesPerGroup: 3},
+    }
   };
 
   constructor() {}

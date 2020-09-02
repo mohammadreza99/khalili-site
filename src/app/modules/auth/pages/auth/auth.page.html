@@ -1,20 +1,37 @@
 <div class="container-fluid h-100">
   <div class="row align-items-center justify-content-center h-100">
     <div class="col-4">
-      <div class="border p-4 rounded-lg">
-        <div class="text-center logo">
+      <div class="border p-4 rounded-lg register" *ngIf="showRegister">
+        <div class="text-center logo mb-5">
           <img src="https://www.digikala.com/static/files/bc60cf05.svg" />
         </div>
 
         <h5>ورود / ثبت نام</h5>
-        <p class="text-muted">شماره موبایل یا پست الکترونیک خود را وارد کنید</p>
-        <div class="form-group">
-          <input
-            placeholder="شماره موبایل یا پست الکترونیک"
-            class="form-control"
-          />
-        </div>
-        <button class="btn btn-lg btn-primary btn-block my-5">ادامه</button>
+        <p class="text-muted">شماره موبایل خود را وارد کنید</p>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister($event)">
+          <div class="form-group">
+            <input
+              formControlName="control"
+              placeholder="شماره موبایل"
+              class="form-control"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="showError(registerForm,'required')"
+            >
+              لطفا شماره موبایل خود را وارد کنید
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="showError(registerForm,'pattern')"
+            >
+              لطفا شماره موبایل صحیح وارد کنید
+            </div>
+          </div>
+          <button type="submit" class="btn btn-lg btn-primary btn-block my-5">
+            ادامه
+          </button>
+        </form>
 
         <small class="font-light text-muted">
           با ورود و یا ثبت نام در دیجی‌کالا شما
@@ -25,8 +42,8 @@
         </small>
       </div>
 
-      <div class="border p-4 rounded-lg">
-        <div class="d-flex justify-content-between mb-4">
+      <div class="border p-4 rounded-lg login-confirm" *ngIf="showLoginConfirm">
+        <div class="d-flex justify-content-between mb-5">
           <div class="back-icon">
             <i class="fa fa-chevron-right"></i>
           </div>
@@ -39,20 +56,78 @@
         <h5>رمز عبور را وارد کنید</h5>
         <p class="text-muted">رمز عبور حساب کاربری خود را وارد کنید</p>
         <div class="form-group">
+          <input placeholder="رمز عبور" class="form-control" />
+        </div>
+        <small><a routerLink="">بازیابی رمز عبور</a></small>
+        <button class="btn btn-lg btn-primary btn-block my-5">ورود</button>
+      </div>
+
+      <div
+        class="border p-4 rounded-lg register-confirm"
+        *ngIf="showRegisterConfirm"
+      >
+        <div class="d-flex justify-content-between mb-5">
+          <div class="back-icon">
+            <i class="fa fa-chevron-right"></i>
+          </div>
+          <div class="logo">
+            <img src="https://www.digikala.com/static/files/bc60cf05.svg" />
+          </div>
+          <div class="placeholder"></div>
+        </div>
+
+        <h5>کد تایید را وارد نمایید</h5>
+        <p class="text-muted">
+          حساب کاربری با شماره موبایل {{registerForm.get('control').value}} وجود
+          ندارد. برای ساخت حساب جدید، کد تایید برای این شماره ارسال گردید.
+        </p>
+        <form
+          [formGroup]="registerConfirmForm"
+          (ngSubmit)="onSubmitRegisterConfirm($event)"
+        >
+          <div class="form-group">
+            <input
+              formControlName="control"
+              placeholder="شماره موبایل"
+              class="form-control"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="showError(registerConfirmForm,'required')"
+            >
+              لطفا کد تایید را وارد کنید
+            </div>
+          </div>
+          <button type="submit" class="btn btn-lg btn-primary btn-block my-5">
+            تایید
+          </button>
+        </form>
+      </div>
+
+      <div class="border p-4 rounded-lg forget" *ngIf="showForget">
+        <div class="d-flex justify-content-between mb-5">
+          <div class="back-icon">
+            <i class="fa fa-chevron-right"></i>
+          </div>
+          <div class="logo">
+            <img src="https://www.digikala.com/static/files/bc60cf05.svg" />
+          </div>
+          <div class="placeholder"></div>
+        </div>
+
+        <h5>بازیابی رمزعبور</h5>
+        <p class="text-muted">
+          لطفا پست الکترونیک یا شماره موبایل خود را وارد نمایید.
+        </p>
+        <div class="form-group">
           <input
             placeholder="شماره موبایل یا پست الکترونیک"
             class="form-control"
           />
         </div>
-        <button class="btn btn-lg btn-primary btn-block my-5">ادامه</button>
-
-        <small class="font-light text-muted">
-          با ورود و یا ثبت نام در دیجی‌کالا شما
-          <a routerLink=""> شرایط و قوانین </a>
-          استفاده از سرویس های سایت دیجی‌کالا و
-          <a routerLink=""> قوانین حریم خصوصی </a>
-          آن را می‌پذیرید.
-        </small>
+        <button class="btn btn-lg btn-primary btn-block my-5">
+          ارسال درخواست
+        </button>
       </div>
     </div>
   </div>

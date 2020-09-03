@@ -8,26 +8,12 @@
 
         <h5>ورود / ثبت نام</h5>
         <p class="text-muted">شماره موبایل خود را وارد کنید</p>
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister($event)">
-          <div class="form-group">
-            <input
-              formControlName="control"
-              placeholder="شماره موبایل"
-              class="form-control"
-            />
-            <div
-              class="invalid-feedback"
-              *ngIf="showError(registerForm,'required')"
-            >
-              لطفا شماره موبایل خود را وارد کنید
-            </div>
-            <div
-              class="invalid-feedback"
-              *ngIf="showError(registerForm,'pattern')"
-            >
-              لطفا شماره موبایل صحیح وارد کنید
-            </div>
-          </div>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+          <prm-input-text
+            formControlName="control"
+            placeholder="شماره موبایل"
+            [errors]="[{type:'required',message:'لطفا شماره موبایل خود را وارد کنید'}]"
+          ></prm-input-text>
           <button type="submit" class="btn btn-lg btn-primary btn-block my-5">
             ادامه
           </button>
@@ -77,18 +63,15 @@
         </div>
 
         <h5>کد تایید را وارد نمایید</h5>
-        <p class="text-muted">
-          حساب کاربری با شماره موبایل {{registerForm.get('control').value}} وجود
-          ندارد. برای ساخت حساب جدید، کد تایید برای این شماره ارسال گردید.
-        </p>
+        <p class="text-muted">لطفا کد تایید ارسال شده را وارد کنید.</p>
         <form
           [formGroup]="registerConfirmForm"
-          (ngSubmit)="onSubmitRegisterConfirm($event)"
+          (ngSubmit)="onSubmitRegisterConfirm()"
         >
-          <div class="form-group">
+          <!-- <div class="form-group">
             <input
               formControlName="control"
-              placeholder="شماره موبایل"
+              placeholder="کد تایید"
               class="form-control"
             />
             <div
@@ -97,7 +80,12 @@
             >
               لطفا کد تایید را وارد کنید
             </div>
-          </div>
+          </div> -->
+          <prm-input-text
+            formControlName="control"
+            placeholder="کد تایید"
+            [errors]="[{type:'required',message:'لطفا کد تایید را وارد کنید'}]"
+          ></prm-input-text>
           <button type="submit" class="btn btn-lg btn-primary btn-block my-5">
             تایید
           </button>

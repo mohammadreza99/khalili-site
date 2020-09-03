@@ -9,6 +9,8 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductsSliderComponent } from './components/products-slider/products-slider.component';
 import { CategoriesPromoComponent } from './components/categories-promo/categories-promo.component';
+import { DialogFormComponent } from './components/dialog-form/dialog-form.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 export const COMPONENTS: Type<any>[] = [
   CarouselComponent,
@@ -21,4 +23,6 @@ export const COMPONENTS: Type<any>[] = [
   ClickOutsideDirective,
   FooterComponent,
   CategoriesPromoComponent,
+  DialogFormComponent,
+  LoadingComponent,
 ];

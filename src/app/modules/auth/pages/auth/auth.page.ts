@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../business/auth.service';
+import { CheckOtpModel } from '../../model/auth.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'auth',
@@ -20,51 +22,42 @@ export class AuthPage implements OnInit {
   });
 
   registerConfirmForm = new FormGroup({
-    control: new FormControl(null, [
-      Validators.required,
-      Validators.pattern('[0-9]{11}'),
-    ]),
+    control: new FormControl(null, [Validators.required]),
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  onSubmitRegister(formEl) {
-    formEl.target.classList.add('was-validated');
+  onSubmitRegister() {
     if (this.registerForm.valid) {
       this.authService
         .register(this.registerForm.get('control').value)
         .subscribe((res: any) => {
           if (res.success) {
-            if (res.data.isNewUser && res.data.isSendSMS) {
-              this.showRegister = false;
+            this.showRegister = false;
+            if (res.data.isSendSMS) {
               this.showRegisterConfirm = true;
+            } else if (!res.data.isSendSMS) {
+              this.showLoginConfirm = true;
             }
           }
         });
     }
   }
 
-  onSubmitRegisterConfirm(formEl) {
-    formEl.target.classList.add('was-validated');
+  onSubmitRegisterConfirm() {
     if (this.registerForm.valid) {
-      this.authService
-        .register(this.registerForm.get('control').value)
-        .subscribe((res: any) => {
-          if (res.success) {
-            if (res.data.isNewUser && res.data.isSendSMS) {
-              this.showRegister = false;
-              this.showRegisterConfirm = true;
-            }
-          }
-        });
+      const checkOtp: CheckOtpModel = {
+        mobileNo: this.registerForm.get('control').value,
+        oTPcode: this.registerConfirmForm.get('control').value,
+      };
+      this.authService.checkOtp(checkOtp).subscribe((res: any) => {
+        if (res.success && res.data.token) {
+          this.authService.saveToken(res.data.token);
+          this.showRegisterConfirm = false;
+          this.router.navigate(['/']);
+        }
+      });
     }
-  }
-
-  showError(formGroup: FormGroup, errorType: string) {
-    return (
-      (formGroup.get('control').touched || formGroup.get('control').dirty) &&
-      formGroup.get('control').hasError(errorType)
-    );
   }
 
   ngOnInit(): void {}

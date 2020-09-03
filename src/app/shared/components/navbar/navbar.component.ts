@@ -23,10 +23,8 @@ export class NavbarComponent implements OnInit {
   onScroll(event) {
     const scrollTop = event.target.scrollingElement.scrollTop;
     if (scrollTop > 100) {
-      console.log(this.isScrolled);
       this.isScrolled = true;
     } else {
-      console.log(this.isScrolled);
       this.isScrolled = false;
     }
   }

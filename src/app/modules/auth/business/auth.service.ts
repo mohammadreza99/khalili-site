@@ -1,37 +1,33 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { User } from '../model/auth.model';
+import { User, CheckOtpModel } from '../model/auth.model';
 import { BaseService } from '@app/services/base.service';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService extends BaseService {
-  private tokenSubject = new BehaviorSubject<string>(null);
-  private readonly registerEndPoint = '/User/Register/';
-  private readonly registerConformEndPoint = '/User/CheckOtpAndRegister/';
-
   register(mobileNo: string) {
-    return this.post(`${this.registerEndPoint}`, { mobileNo }, 'json');
+    return this.post('/User/Register/', { mobileNo }, 'json');
   }
 
-
-
-  
-
-  // login(user: User) {
-  //   return this.post(`${this.endPoint}`, user, 'json');
-  // }
+  checkOtp(checkOtp: CheckOtpModel) {
+    return this.post('/User/CheckOtpAndRegister/', checkOtp, 'json');
+  }
 
   saveToken(token: string) {
-    this.tokenSubject.next(token);
+    localStorage.setItem('token', token);
   }
 
   getToken(): string {
-    return this.tokenSubject.value;
+    return localStorage.getItem('token');
   }
 
   isAuthenticated(): boolean {
     return this.getToken() ? true : false;
+  }
+
+  logout() {
+    localStorage.clear();
   }
 }

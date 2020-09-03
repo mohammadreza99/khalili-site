@@ -20,7 +20,6 @@ import { Global } from './app.global';
     AppRoutingModule,
     SharedModule,
     MainModule,
-    HttpClientModule,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

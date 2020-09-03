@@ -9,6 +9,6 @@ import { ProductService } from '../../business/product.service';
 export class ProductsPage implements OnInit {
   constructor(private productService: ProductService) {}
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(console.log);
+    
   }
 }

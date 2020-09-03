@@ -1,3 +1,3 @@
+import { ProfilePage } from './pages/profile/profile.page';
 
-
-export const COMPONENTS = [];
+export const COMPONENTS = [ProfilePage];

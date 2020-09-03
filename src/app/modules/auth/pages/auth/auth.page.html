@@ -41,10 +41,12 @@
 
         <h5>رمز عبور را وارد کنید</h5>
         <p class="text-muted">رمز عبور حساب کاربری خود را وارد کنید</p>
-        <div class="form-group">
-          <input placeholder="رمز عبور" class="form-control" />
-        </div>
-        <small><a routerLink="">بازیابی رمز عبور</a></small>
+        <prm-input-text
+        formControlName="control"
+        placeholder="رمز عبور"
+        [errors]="[{type:'required',message:'لطفا رمز عبور را وارد کنید'}]"
+      ></prm-input-text>
+        <small><a (click)="showForget=true">بازیابی رمز عبور</a></small>
         <button class="btn btn-lg btn-primary btn-block my-5">ورود</button>
       </div>
 
@@ -68,19 +70,6 @@
           [formGroup]="registerConfirmForm"
           (ngSubmit)="onSubmitRegisterConfirm()"
         >
-          <!-- <div class="form-group">
-            <input
-              formControlName="control"
-              placeholder="کد تایید"
-              class="form-control"
-            />
-            <div
-              class="invalid-feedback"
-              *ngIf="showError(registerConfirmForm,'required')"
-            >
-              لطفا کد تایید را وارد کنید
-            </div>
-          </div> -->
           <prm-input-text
             formControlName="control"
             placeholder="کد تایید"
@@ -107,14 +96,43 @@
         <p class="text-muted">
           لطفا پست الکترونیک یا شماره موبایل خود را وارد نمایید.
         </p>
-        <div class="form-group">
-          <input
-            placeholder="شماره موبایل یا پست الکترونیک"
-            class="form-control"
-          />
-        </div>
+        <prm-input-text
+        formControlName="control"
+        placeholder="شماره موبایل یا پست الکترونیک"
+        [errors]="[{type:'required',message:'لطفا شماره موبایل یا پست الکترونیک را وارد کنید'}]"
+      ></prm-input-text>
         <button class="btn btn-lg btn-primary btn-block my-5">
           ارسال درخواست
+        </button>
+      </div>
+
+      <div class="border p-4 rounded-lg changePassword" *ngIf="showChangePassword">
+        <div class="d-flex justify-content-between mb-5">
+          <div class="back-icon">
+            <i class="fa fa-chevron-right"></i>
+          </div>
+          <div class="logo">
+            <img src="https://www.digikala.com/static/files/bc60cf05.svg" />
+          </div>
+          <div class="placeholder"></div>
+        </div>
+
+        <h5>تغییر رمز عبور</h5>
+        <p class="text-muted">
+          رمز عبور شما باید حداقل ۶ حرف باشد
+        </p>
+        <prm-input-text
+        formControlName="control"
+        placeholder="رمز عبور جدید"
+        [errors]="[
+        {type:'required',
+          message:'لطفا رمز عبور جدید را وارد کنید'},
+        {type:'minLength',
+          message:'لطفا  بیش از 6 کاراکتر وارد کنید'}
+        ]"
+      ></prm-input-text>
+        <button class="btn btn-lg btn-primary btn-block my-5">
+          تغییر رمز عبور
         </button>
       </div>
     </div>

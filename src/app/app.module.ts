@@ -11,6 +11,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { Global } from './app.global';
+import { AuthGuard } from './modules/auth/business/auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,6 +40,7 @@ import { Global } from './app.global';
       useClass: LoaderInterceptor,
       multi: true,
     },
+    AuthGuard,
   ],
 })
 export class AppModule {

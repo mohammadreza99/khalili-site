@@ -5,6 +5,7 @@ import { FaqPage } from './pages/faq/faq.page';
 import { PrivacyPage } from './pages/privacy/privacy.page';
 import { TermsPage } from './pages/terms/terms.page';
 import { AboutPage } from './pages/about/about.page';
+import { ContactPage } from './pages/contact/contact.page';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutPage,
+    data: { title: '' },
+  },
+  {
+    path: 'contact',
+    component: ContactPage,
     data: { title: '' },
   },
 ];

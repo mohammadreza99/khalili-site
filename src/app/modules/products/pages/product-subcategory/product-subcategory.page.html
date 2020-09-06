@@ -1,0 +1,79 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <div class="bg-white rounded-lg shadow-sm px-3">
+            <ag-accordion>
+              <ag-accordion-item icon="fa-book" title="1st Week">
+                <accordion-content>
+                  <ul class="courses-list list-unstyled pr-3">
+                    <li class="mar-t-16">
+                      <a class="pad-24" href="#">Title of first week</a>
+                    </li>
+                    <li class="mar-t-16">
+                      <a class="pad-24" href="#">Title of first week</a>
+                    </li>
+                    <li class="mar-t-16">
+                      <a class="pad-24" href="#">Title of first week</a>
+                    </li>
+                    <li class="mar-t-16">
+                      <a class="pad-24" href="#">Title of first week</a>
+                    </li>
+                    <li class="mar-t-16">
+                      <a class="pad-24" href="#">Title of first week</a>
+                    </li>
+                  </ul>
+                </accordion-content>
+              </ag-accordion-item>
+              <ag-accordion-item icon="fa-book" title="2st Week">
+                <accordion-content>
+                  <ul class="courses-list list-unstyled pr-3">
+                    <li class="mar-t-16">
+                      <a class="pad-24" href="#">Title of first week</a>
+                    </li>
+                    <li class="mar-t-16">
+                      <a class="pad-24" href="#">Title of first week</a>
+                    </li>
+                    <li class="mar-t-16">
+                      <a class="pad-24" href="#">Title of first week</a>
+                    </li>
+                    <li class="mar-t-16">
+                      <a class="pad-24" href="#">Title of first week</a>
+                    </li>
+                    <li class="mar-t-16">
+                      <a class="pad-24" href="#">Title of first week</a>
+                    </li>
+                  </ul>
+                </accordion-content>
+              </ag-accordion-item>
+            </ag-accordion>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="row no-gutters">
+            <div class="col-4" dir="ltr" *ngFor="let product of products">
+              <product-card [product]="product"></product-card>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-4">
+          <p-paginator
+            class="shadow-sm rounded-lg"
+            [rows]="10"
+            [totalRecords]="100"
+          ></p-paginator>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12">
+          <products-slider
+            [config]="config"
+            [products]="products"
+            title="محصولات پربازدید اخیر"
+          ></products-slider>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

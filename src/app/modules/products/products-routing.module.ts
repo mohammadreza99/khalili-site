@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsPage } from './pages/products/products.page';
 import { ProductDetailsPage } from './pages/product-details/product-details.page';
-import { ProductSubcategoryComponent } from './pages/product-subcategory/product-subcategory.component';
+import { ProductSubcategoryPage } from './pages/product-subcategory/product-subcategory.page';
+import { ProductCategoryPage } from './pages/product-category/product-category.page';
 
 const routes: Routes = [
   {
@@ -16,8 +17,13 @@ const routes: Routes = [
     data: { title: '' },
   },
   {
+    path: 'category/:id',
+    component: ProductCategoryPage,
+    data: { title: '' },
+  },
+  {
     path: 'subcategory/:id',
-    component: ProductSubcategoryComponent,
+    component: ProductSubcategoryPage,
     data: { title: '' },
   },
 ];

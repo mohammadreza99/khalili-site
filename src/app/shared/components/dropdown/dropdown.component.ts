@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '@app/modules/auth/business/auth.service';
 
 @Component({
   selector: 'ag-dropdown',
@@ -6,12 +7,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./dropdown.component.scss'],
 })
 export class DropdownComponent implements OnInit {
-  @Input() icon = 'fal fa-chevron-down';
-  @Input() title: string = 'title';
-  @Input() iconPos: 'start' | 'end' = 'end';
-  @Output() listItemClick = new EventEmitter();
-
+  constructor(private authService: AuthService) {}
   isDropdownOpen = false;
+
+  @Input() name: string;
 
   ngOnInit(): void {}
 
@@ -21,5 +20,10 @@ export class DropdownComponent implements OnInit {
 
   toggleDropDown() {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  logout() {
+    this.authService.logout();
+    window.location.reload();
   }
 }

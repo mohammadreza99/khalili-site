@@ -4,12 +4,26 @@
   (click)="toggleDropDown()"
   (clickOutside)="onClickOutside()"
 >
-  <a class="nav-link dropdown-toggle"> {{ title }}</a>
+  <a class="nav-link dropdown-toggle">
+    <small><i class="fa fa-chevron-down"></i></small>
+    <i class="fal fa-user mx-2"></i
+  ></a>
   <div
-    class="dropdown-menu border-0 pad-y-24 ag-rounded-lg ag-shadow-xsm"
+    class="dropdown-menu rounded pad-y-24 ag-rounded-lg ag-shadow-xsm shadow-sm"
     [ngClass]="{ show: isDropdownOpen }"
   >
-    content
-    <ng-content></ng-content>
+    <div>
+      <div
+        [routerLink]="['/users/profile']"
+        class="dropdown-item d-flex align-items-center"
+      >
+        <i class="pi pi-user ml-2"></i>
+        <small>{{ name }}</small>
+      </div>
+      <div (click)="logout()" class="dropdown-item d-flex align-items-center">
+        <i class="pi pi-sign-out ml-2"></i>
+        <small> خروج از حساب </small>
+      </div>
+    </div>
   </div>
 </li>

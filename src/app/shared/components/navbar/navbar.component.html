@@ -11,16 +11,25 @@
             ><img class="h-100" src="../../../../assets/images/logo.png"
           /></a>
           <div class="d-flex align-items-center w-100 justify-content-end">
-            <!-- <ag-dropdown class="list-unstyled"></ag-dropdown> -->
+            <ag-dropdown
+              *ngIf="profile"
+              [name]="
+                profile?.firstName && profile?.lastName
+                  ? profile?.firstName + ' ' + profile?.lastName
+                  : 'پروفایل کاربری'
+              "
+              class="list-unstyled"
+            ></ag-dropdown>
             <button
-              [routerLink]="['/users/profile']"
+              *ngIf="!profile"
+              [routerLink]="['/auth']"
               class="bg-white text-muted border rounded-lg font-light px-3 py-2 ml-3"
             >
-             <i class="far fa-user text-muted"></i> ورود به حساب کاربری 
+              <i class="far fa-user text-muted"></i> ورود به حساب کاربری
             </button>
             <span
               ><i
-                class="far fa-shopping-cart pr-3 py-2 text-muted border-right "
+                class="far fa-shopping-cart pr-3 py-2 text-muted border-right"
               ></i
             ></span>
           </div>
@@ -71,7 +80,7 @@
                           (mouseenter)="showSubMenuById(i + 1)"
                         >
                           <span>
-                            <i [class]="'fal fa-'+item.icon"></i>
+                            <i [class]="'fal fa-' + item.icon"></i>
                             {{ item.title }}
                           </span>
                         </li>

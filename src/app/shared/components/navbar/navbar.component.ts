@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 
 import { Router } from '@angular/router';
+import { UserService } from '@app/modules/users/business/user.service';
+import { Profile } from '@app/modules/users/model/user.model';
 
 @Component({
   selector: 'ag-navbar',
@@ -15,10 +17,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   @Input() isHomePage: boolean;
-  // @ViewChild('menu') menu: ElementRef;
   @HostListener('window:scroll', ['$event'])
   onScroll(event) {
     const scrollTop = event.target.scrollingElement.scrollTop;
@@ -36,31 +37,36 @@ export class NavbarComponent implements OnInit {
     {
       id: '1',
       title: 'ایتم 1',
-      icon:'cheeseburger',
+      icon: 'cheeseburger',
       list: ['11', '12'],
     },
     {
       id: '2',
       title: 'ایتم 2',
-      icon:'marker',
+      icon: 'marker',
       list: ['21', '22'],
     },
     {
       id: '3',
       title: 'ایتم 3',
-      icon:'tshirt',
+      icon: 'tshirt',
       list: ['31', '32', '33'],
     },
     {
       id: '4',
       title: 'ایتم4',
-      icon:'motorcycle',
+      icon: 'motorcycle',
       list: ['41'],
     },
   ];
   megaMenuList = this.menuItems[0].list;
-
-  ngOnInit(): void {}
+  profile: Profile;
+  
+  ngOnInit(): void {
+    this.userService.getProfileInfo().subscribe((res) => {
+      this.profile = res;
+    });
+  }
 
   showSubMenuById(rootId) {
     this.megaMenuList = this.menuItems.find((item) => item.id == rootId).list;

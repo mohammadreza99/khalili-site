@@ -1,3 +1,13 @@
 .fa-edit {
   cursor: pointer;
 }
+
+.nav-link {
+  cursor: pointer;
+}
+
+p-table ::ng-deep tbody {
+  .pi-chevron-right:before {
+    content: "\e900" !important;
+  }
+}

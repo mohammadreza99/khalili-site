@@ -1,21 +1,32 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="userProfile">
   <div class="row">
     <div class="container">
       <div class="row">
         <div class="col-3">
-          <div class="nav flex-column nav-pills border rounded">
+          <div class="nav flex-column nav-pills border rounded" #navs>
             <div class="bg-light rounded-top d-flex align-items-center p-2">
               <img
-                src="https://via.placeholder.com/50x50"
+                [src]="userProfile?.avatar || 'https://via.placeholder.com/50x50'"
                 class="rounded-circle"
               />
               <div class="user-info mr-3">
-                <p class="mb-0">محمدرضا شهبازی</p>
+                <p class="mb-0">
+                  {{userProfile.firstName + ' ' + userProfile.lastName}}
+                </p>
                 <small class="text-muted">09391886467</small>
               </div>
             </div>
-            <a class="nav-link active" href="#v-pills-settings">سفارش های من</a>
-            <a class="nav-link" href="#v-pills-settings">پروفایل کاربری</a>
+            <a
+              class="nav-link active"
+              (click)="onClick($event,tabPans,navs,'orders')"
+              >سفارش های من</a
+            >
+            <a class="nav-link" (click)="onClick($event,tabPans,navs,'profile')"
+              >پروفایل کاربری</a
+            >
+            <a class="nav-link" (click)="onClick($event,tabPans,navs,'address')"
+              >آدرس ها</a
+            >
             <button
               type="button"
               class="btn btn-link text-right text-danger mt-4 border-top"
@@ -25,99 +36,226 @@
           </div>
         </div>
         <div class="col-9">
-          <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" *ngIf="userProfile">
-              <div class="row">
-                <div class="col-12">
-                  <h5>اطلاعات حساب</h5>
-                </div>
-                <div class="col-6">
-                  <div
-                    class="box d-flex align-items-center justify-content-between py-3 border-bottom"
-                  >
-                    <div class="info">
-                      <p class="mb-0">نام و نام خانوادگی</p>
-                      <span class="text-muted"
-                        >{{(userProfile.firstName + " " + userProfile.lastName)
-                        || '-'}}</span
+          <div class="tab-content" #tabPans>
+            <div class="tab-pane fade orders show active">
+              <p-table [columns]="cols" [value]="cars" dataKey="vin">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th style="width: 3em"></th>
+                    <th *ngFor="let col of columns">{{col.header}}</th>
+                  </tr>
+                </ng-template>
+                <ng-template
+                  pTemplate="body"
+                  let-rowData
+                  let-expanded="expanded"
+                  let-columns="columns"
+                >
+                  <tr>
+                    <td>
+                      <a href="#" [pRowToggler]="rowData">
+                        <i
+                          [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+                        ></i>
+                      </a>
+                    </td>
+                    <td *ngFor="let col of columns">{{rowData[col.field]}}</td>
+                  </tr>
+                </ng-template>
+                <ng-template
+                  pTemplate="rowexpansion"
+                  let-rowData
+                  let-columns="columns"
+                >
+                  <tr>
+                    <td [attr.colspan]="columns.length + 1">
+                      <div
+                        class="p-grid -fluid"
+                        style="font-size: 16px; padding: 20px"
                       >
-                    </div>
-                    <i class="fa fa-edit" (click)="onEditFullName()"></i>
+                        <div class="p-col-12 p-md-3" style="text-align: center">
+                          <img
+                            [attr.alt]="rowData.brand"
+                            src="assets/showcase/images/demo/car/{{rowData.brand}}.png"
+                          />
+                        </div>
+                        <div class="p-col-12 p-md-9">
+                          <div class="p-grid">
+                            <div class="p-col-12">
+                              <b>Vin:</b> {{rowData.vin}}
+                            </div>
+                            <div class="p-col-12">
+                              <b>Year:</b> {{rowData.year}}
+                            </div>
+                            <div class="p-col-12">
+                              <b>Brand:</b> {{rowData.brand}}
+                            </div>
+                            <div class="p-col-12">
+                              <b>Color:</b> {{rowData.color}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+            <div class="tab-pane fade profile">
+              <div class="bg-white p-3 border shadow-sm rounded-lg">
+                <div class="row">
+                  <div class="col-12">
+                    <h5>اطلاعات حساب</h5>
                   </div>
-                </div>
-                <div class="col-6">
-                  <div
-                    class="box d-flex align-items-center justify-content-between py-3 border-bottom"
-                  >
-                    <div class="info">
-                      <p class="mb-0">کدملی</p>
-                      <span class="text-muted"
-                        >{{userProfile.nationalCode || '-'}}</span
-                      >
+                  <div class="col-6">
+                    <div
+                      class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+                    >
+                      <div class="info">
+                        <p class="mb-0">نام و نام خانوادگی</p>
+                        <span class="text-muted"
+                          >{{(userProfile.firstName + " " +
+                          userProfile.lastName) || '-'}}</span
+                        >
+                      </div>
+                      <i class="fa fa-edit" (click)="onEditFullName()"></i>
                     </div>
-                    <i class="fa fa-edit" (click)="onEditNationalCode()"></i>
                   </div>
-                </div>
-                <div class="col-6">
-                  <div
-                    class="box d-flex align-items-center justify-content-between py-3 border-bottom"
-                  >
-                    <div class="info">
-                      <p class="mb-0">ایمیل</p>
-                      <span class="text-muted">-</span>
+                  <div class="col-6">
+                    <div
+                      class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+                    >
+                      <div class="info">
+                        <p class="mb-0">کدملی</p>
+                        <span class="text-muted"
+                          >{{userProfile.nationalCode || '-'}}</span
+                        >
+                      </div>
+                      <i class="fa fa-edit" (click)="onEditNationalCode()"></i>
                     </div>
-                    <i class="fa fa-edit" (click)="onEditEmail()"></i>
                   </div>
-                </div>
-                <div class="col-6">
-                  <div
-                    class="box d-flex align-items-center justify-content-between py-3 border-bottom"
-                  >
-                    <div class="info">
-                      <p class="mb-0">تاریخ تولد</p>
-                      <span class="text-muted">-</span>
+                  <div class="col-6">
+                    <div
+                      class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+                    >
+                      <div class="info">
+                        <p class="mb-0">ایمیل</p>
+                        <span class="text-muted">-</span>
+                      </div>
+                      <i class="fa fa-edit" (click)="onEditEmail()"></i>
                     </div>
-                    <i class="fa fa-edit" (click)="onEditBirthDate()"></i>
                   </div>
-                </div>
-                <div class="col-6">
-                  <div
-                    class="box d-flex align-items-center justify-content-between py-3 border-bottom"
-                  >
-                    <div class="info">
-                      <p class="mb-0">شغل</p>
-                      <span class="text-muted">-</span>
+                  <div class="col-6">
+                    <div
+                      class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+                    >
+                      <div class="info">
+                        <p class="mb-0">تاریخ تولد</p>
+                        <span class="text-muted">-</span>
+                      </div>
+                      <i class="fa fa-edit" (click)="onEditBirthDate()"></i>
                     </div>
-                    <i class="fa fa-edit" (click)="onEditJob()"></i>
                   </div>
-                </div>
-                <div class="col-6">
-                  <div
-                    class="box d-flex align-items-center justify-content-between py-3 border-bottom"
-                  >
-                    <div class="info">
-                      <p class="mb-0">شماره کارت جهت مرجوعی وجه</p>
-                      <span class="text-muted">-</span>
+                  <div class="col-6">
+                    <div
+                      class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+                    >
+                      <div class="info">
+                        <p class="mb-0">شغل</p>
+                        <span class="text-muted">-</span>
+                      </div>
+                      <i class="fa fa-edit" (click)="onEditJob()"></i>
                     </div>
-                    <i class="fa fa-edit" (click)="onEditCarNumber()"></i>
                   </div>
-                </div>
-                <div class="col-6">
-                  <div
-                    class="box d-flex align-items-center justify-content-between py-3 border-bottom"
-                  >
-                    <div class="info">
-                      <p class="mb-0">رمز عبور</p>
-                      <span class="text-muted">-</span>
+                  <div class="col-6">
+                    <div
+                      class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+                    >
+                      <div class="info">
+                        <p class="mb-0">شماره کارت جهت مرجوعی وجه</p>
+                        <span class="text-muted">-</span>
+                      </div>
+                      <i class="fa fa-edit" (click)="onEditCarNumber()"></i>
                     </div>
-                    <i class="fa fa-edit" (click)="onEditPasword()"></i>
+                  </div>
+                  <div class="col-6">
+                    <div
+                      class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+                    >
+                      <div class="info">
+                        <p class="mb-0">رمز عبور</p>
+                        <span class="text-muted">-</span>
+                      </div>
+                      <i class="fa fa-edit" (click)="onEditPasword()"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade">...</div>
-            <div class="tab-pane fade">...</div>
-            <div class="tab-pane fade">...</div>
+            <div class="tab-pane fade address">
+              <div class="address-box py-2 border-bottom">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="full-address">خانی ابادنو-شهرک شریعتی</div>
+                  <div class="actions">
+                    <button class="btn btn-danger p-1 ml-2">
+                      <small>حذف</small>
+                    </button>
+                    <button class="btn btn-primary p-1">
+                      <small>ویرایش</small>
+                    </button>
+                  </div>
+                </div>
+                <div class="text-muted d-flex align-items-center">
+                  <i class="fa fa-user ml-2"></i>
+                  <span>
+                    <small>تهران، تهران</small>
+                  </span>
+                </div>
+                <div class="text-muted d-flex align-items-center">
+                  <i class="fa fa-user ml-2"></i>
+                  <span>
+                    <small>تهران، تهران</small>
+                  </span>
+                </div>
+                <div class="text-muted d-flex align-items-center">
+                  <i class="fa fa-user ml-2"></i>
+                  <span>
+                    <small>تهران، تهران</small>
+                  </span>
+                </div>
+              </div>
+              <div class="address-box py-2 border-bottom">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="full-address">خانی ابادنو-شهرک شریعتی</div>
+                  <div class="actions">
+                    <button class="btn btn-danger p-1 ml-2">
+                      <small>حذف</small>
+                    </button>
+                    <button class="btn btn-primary p-1">
+                      <small>ویرایش</small>
+                    </button>
+                  </div>
+                </div>
+                <div class="text-muted d-flex align-items-center">
+                  <i class="fa fa-user ml-2"></i>
+                  <span>
+                    <small>تهران، تهران</small>
+                  </span>
+                </div>
+                <div class="text-muted d-flex align-items-center">
+                  <i class="fa fa-user ml-2"></i>
+                  <span>
+                    <small>تهران، تهران</small>
+                  </span>
+                </div>
+                <div class="text-muted d-flex align-items-center">
+                  <i class="fa fa-user ml-2"></i>
+                  <span>
+                    <small>تهران، تهران</small>
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

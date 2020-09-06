@@ -9,7 +9,7 @@ export class ProductsSliderComponent implements OnInit {
   @Input() products = [];
   @Input() title: string;
 
-  config = {
+  @Input()config = {
     slidesPerView: 1,
     spaceBetween: 20,
     breakpoints:{

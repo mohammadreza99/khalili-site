@@ -14,7 +14,7 @@ export class AddressInsertModel {
   lng: number;
   districtId: number;
   address: string;
-  plaque: string;
+  plaque: number;
   unit: number;
   postalCode: string;
   isReceiver: boolean;

@@ -1,1 +1,56 @@
-<p>address-info works!</p>
+<div class="address-box py-2 border-bottom">
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="full-address">{{ address.address }}</div>
+    <div class="actions">
+      <button class="btn btn-danger p-1 ml-2">
+        <small>حذف</small>
+      </button>
+      <button (click)="onEditClick()" class="btn btn-primary p-1">
+        <small>ویرایش</small>
+      </button>
+    </div>
+  </div>
+  <div class="text-muted d-flex align-items-center">
+    <i class="fa fa-user ml-2"></i>
+    <span>
+      <small>تهران، تهران</small>
+    </span>
+  </div>
+  <div class="text-muted d-flex align-items-center">
+    <i class="fa fa-user ml-2"></i>
+    <span>
+      <small>{{ address.postalCode }}</small>
+    </span>
+  </div>
+  <div class="text-muted d-flex align-items-center">
+    <i class="fa fa-user ml-2"></i>
+    <span>
+      <small>{{ address.mobileNo }}</small>
+    </span>
+  </div>
+  <div class="text-muted d-flex align-items-center">
+    <i class="fa fa-user ml-2"></i>
+    <span>
+      <small>{{ address.firstName }} {{ address.lastName }}</small>
+    </span>
+  </div>
+</div>
+
+<p-dialog
+  header="ویرایش مقادیر اولیه"
+  [(visible)]="showAddressDetailsDialog"
+  [modal]="true"
+  [draggable]="false"
+  [blockScroll]="true"
+  [style]="{ width: '800px' }"
+>
+  <div>
+    <div
+      style="height: 500px"
+      leaflet
+      [leafletOptions]="options"
+      [leafletLayers]="layers"
+      (leafletClick)="leafletClick($event)"
+    ></div>
+  </div>
+</p-dialog>

@@ -11,6 +11,7 @@ import { ProductsSliderComponent } from './components/products-slider/products-s
 import { CategoriesPromoComponent } from './components/categories-promo/categories-promo.component';
 import { DialogFormComponent } from './components/dialog-form/dialog-form.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { AddressInfoComponent } from './components/address-info/address-info.component';
 import { AccordionComponent } from './components/accordion/accordion.component';
 import { AccordionItemComponent } from './components/accordion-item/accordion-item.component';
 
@@ -27,6 +28,7 @@ export const COMPONENTS: Type<any>[] = [
   CategoriesPromoComponent,
   DialogFormComponent,
   LoadingComponent,
+  AddressInfoComponent,
   AccordionComponent,
   AccordionItemComponent,
 ];

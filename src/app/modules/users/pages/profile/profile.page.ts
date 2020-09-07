@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DialogFormService } from '@app/services/dialog-form.service';
 import { Profile } from '../../model/user.model';
 import { UserService } from '../../business/user.service';
+import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
 
 @Component({
   selector: 'profile',
@@ -13,6 +14,26 @@ export class ProfilePage implements OnInit {
     private dialogFormService: DialogFormService,
     private userService: UserService
   ) {}
+
+
+
+  address = [
+    {
+      lat: 35.6908164,
+      lng: 51.3802295,
+      districtId: 1,
+      address: 'شریعتی خیابان قبا',
+      plaque: 65,
+      unit: 2,
+      postalCode: '1234567890',
+      isReceiver: true,
+      firstName: 'سولماز',
+      lastName: 'شکری',
+      nationalCode: '0017630665',
+      mobileNo: '09354013081',
+    },
+  ];
+
   cols = [
     { field: 'vin', header: 'Vin' },
     { field: 'year', header: 'Year' },

@@ -1,25 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'product-subcategory',
-  templateUrl: './product-subcategory.component.html',
-  styleUrls: ['./product-subcategory.component.scss']
+  selector: 'product-category',
+  templateUrl: './product-category.page.html',
+  styleUrls: ['./product-category.page.scss'],
 })
-export class ProductSubcategoryComponent implements OnInit {
+export class ProductCategoryPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-  config = {
+  items = [
+    {
+      img: './../../../assets/images/adv-3.jpg',
+      url: '',
+    },
+    {
+      img: './../../../assets/images/adv-4.jpg',
+      url: '',
+    },
+    {
+      img: './../../../assets/images/adv-5.jpg',
+      url: '',
+    },
+  ];
+
+  headerSliderConfig = {
+    effect: 'fade',
+    speed: 800,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+  };
+
+  productsSliderConfig = {
     slidesPerView: 1,
     spaceBetween: 20,
-    breakpoints:{
+    breakpoints: {
       '575': { slidesPerView: 2 },
       '768 ': { slidesPerView: 3 },
-      '992 ': { slidesPerView: 5 ,slidesPerGroup: 4},
-    }
-  }
+    },
+  };
 
   products = [
     {

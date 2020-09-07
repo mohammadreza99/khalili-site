@@ -1,0 +1,20 @@
+<div class="accordion-item" [class.active]="active">
+  <div class="accordion-header" (click)="setActive.emit()">
+    <div class="header d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center py-3">
+        <i class="fas ml-3 {{ icon }}"></i>
+        <span>{{ title }}</span>
+      </div>
+      <i class="fal fa-chevron-{{ active ? 'up' : 'down' }}"></i>
+    </div>
+    <ng-content select="accordion-header"></ng-content>
+  </div>
+  <div
+    class="accordion-content"
+    [style.height.px]="active ? content.scrollHeight : 0"
+  >
+    <div #content>
+      <ng-content select="accordion-content"></ng-content>
+    </div>
+  </div>
+</div>

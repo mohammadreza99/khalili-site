@@ -1,0 +1,28 @@
+.question-cat {
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    height: 1px;
+    background-color: rgb(192, 192, 192);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 90%;
+    width: 1px;
+    background-color: rgb(192, 192, 192);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 12px 0 hsla(0, 0%, 71%, 0.46);
+    border-radius: 8px;
+  }
+}

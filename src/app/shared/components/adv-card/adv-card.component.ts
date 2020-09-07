@@ -10,7 +10,7 @@ export class AdvCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  @Input()items = [];
+  @Input() items = [];
   config = {
     effect: 'fade',
     speed: 800,

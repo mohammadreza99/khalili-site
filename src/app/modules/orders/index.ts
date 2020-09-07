@@ -1,3 +1,3 @@
+import { CartPage } from './pages/cart/cart.page';
 
-
-export const COMPONENTS = [];
+export const COMPONENTS = [CartPage];

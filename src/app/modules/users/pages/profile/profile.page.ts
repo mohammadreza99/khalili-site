@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DialogFormService } from '@app/services/dialog-form.service';
 import { Profile } from '../../model/user.model';
 import { UserService } from '../../business/user.service';
+import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
 
 @Component({
   selector: 'profile',
@@ -13,6 +14,26 @@ export class ProfilePage implements OnInit {
     private dialogFormService: DialogFormService,
     private userService: UserService
   ) {}
+
+  options = {
+    layers: [
+      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20})
+    ],
+    zoom: 16,
+    center: latLng(35.6908164, 51.3802295)
+  };
+
+  layers = [
+    marker([ 35.6908164, 51.3802295 ]
+      )
+  ];
+
+  leafletClick(args){
+  this.layers = [
+  marker([ args.latlng.lat, args.latlng.lng ])
+  ]
+}
+
   cols = [
     { field: 'vin', header: 'Vin' },
     { field: 'year', header: 'Year' },

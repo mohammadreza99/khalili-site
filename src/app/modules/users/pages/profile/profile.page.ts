@@ -15,24 +15,24 @@ export class ProfilePage implements OnInit {
     private userService: UserService
   ) {}
 
-  options = {
-    layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20})
-    ],
-    zoom: 16,
-    center: latLng(35.6908164, 51.3802295)
-  };
 
-  layers = [
-    marker([ 35.6908164, 51.3802295 ]
-      )
+
+  address = [
+    {
+      lat: 35.6908164,
+      lng: 51.3802295,
+      districtId: 1,
+      address: 'شریعتی خیابان قبا',
+      plaque: 65,
+      unit: 2,
+      postalCode: '1234567890',
+      isReceiver: true,
+      firstName: 'سولماز',
+      lastName: 'شکری',
+      nationalCode: '0017630665',
+      mobileNo: '09354013081',
+    },
   ];
-
-  leafletClick(args){
-  this.layers = [
-  marker([ args.latlng.lat, args.latlng.lng ])
-  ]
-}
 
   cols = [
     { field: 'vin', header: 'Vin' },

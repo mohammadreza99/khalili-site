@@ -230,21 +230,98 @@
 
       <div class="row">
         <div class="col-12">
-          <ul class="nav nav-tabs p-0">
+          <ul class="nav nav-tabs p-0" #navs>
             <li class="nav-item">
-              <a class="nav-link active">نقد و بررسی</a>
+              <a
+                class="nav-link active"
+                (click)="onClickTab($event,tabPans,navs,'analyze')"
+                >نقد و بررسی</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link">مشخصات</a>
+              <a
+                class="nav-link"
+                (click)="onClickTab($event,tabPans,navs,'fields')"
+                >مشخصات</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link">نظرات کاربران</a>
+              <a
+                class="nav-link"
+                (click)="onClickTab($event,tabPans,navs,'comments')"
+                >نظرات کاربران</a
+              >
             </li>
           </ul>
-          <div class="tab-content">
-            <div class="tab-pane fade">1</div>
-            <div class="tab-pane fade">2</div>
-            <div class="tab-pane fade show active">
+          <div class="tab-content bg-white shadow-sm rounded-bottom" #tabPans>
+            <div class="tab-pane fade show active analyze">
+              <div class="container-fluid">
+                <div class="row py-5">
+                  <div class="col-12">
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+                    با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
+                    و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                    تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
+                    کاربردی می باشد. لورم ایپسوم متن ساختگی با تولید سادگی
+                    نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                    چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                    لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
+                    متنوع با هدف بهبود ابزارهای کاربردی می باشد. لورم ایپسوم متن
+                    ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                    طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در
+                    ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد
+                    نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می
+                    باشد. سرتیتر بزرگ از نوع h1 لورم ایپسوم متن ساختگی با تولید
+                    سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                    چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                    لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
+                    متنوع با هدف بهبود ابزارهای کاربردی می باشد. لورم ایپسوم متن
+                    ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                    طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در
+                    ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد
+                    نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می
+                    باشد. لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                    چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
+                    روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
+                    فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
+                    ابزارهای کاربردی می باشد. سرتیتر h2
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade fields">
+              <div class="container-fluid py-5">
+                <div class="row mb-2 align-items-center">
+                  <div class="col-3 bg-light align-self-stretch">
+                    <div class="px-3 py-2">شسیشسی شس</div>
+                  </div>
+                  <div class="col-9 bg-light">
+                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
+                  </div>
+                </div>
+                <div class="row mb-2 align-items-center">
+                  <div class="col-3 bg-light align-self-stretch">
+                    <div class="px-3 py-2">شسیشسی شس</div>
+                  </div>
+                  <div class="col-9 bg-light">
+                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
+                  </div>
+                </div>
+                <div class="row mb-2 align-items-center">
+                  <div class="col-3 bg-light align-self-stretch">
+                    <div class="px-3 py-2">شسیشسی شس</div>
+                  </div>
+                  <div class="col-9 bg-light">
+                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
+                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
+                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
+                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
+                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade comments">
               <div class="container-fluid">
                 <div class="row py-5">
                   <div class="col-6">

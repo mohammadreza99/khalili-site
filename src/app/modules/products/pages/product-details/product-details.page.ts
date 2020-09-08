@@ -65,5 +65,19 @@ export class ProductDetailsPage implements OnInit {
       link: '',
     },
   ];
+
   ngOnInit(): void {}
+
+  onClickTab(event, tabPane, navs, active) {
+    navs.querySelectorAll('.nav-link').forEach((element) => {
+      element.classList.remove('active');
+    });
+    tabPane.querySelectorAll('.tab-pane').forEach((element) => {
+      element.classList.remove('show');
+      element.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    tabPane.querySelector(`.${active}`).classList.add('show');
+    tabPane.querySelector(`.${active}`).classList.add('active');
+  }
 }

@@ -15,8 +15,6 @@ export class ProfilePage implements OnInit {
     private userService: UserService
   ) {}
 
-
-
   address = [
     {
       lat: 35.6908164,
@@ -62,7 +60,7 @@ export class ProfilePage implements OnInit {
     this.userProfile = await this.userService.getProfileInfo().toPromise();
   }
 
-  onClick(event, tabPane, navs, active) {
+  onClickTab(event, tabPane, navs, active) {
     navs.querySelectorAll('.nav-link').forEach((element) => {
       element.classList.remove('active');
     });

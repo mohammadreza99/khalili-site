@@ -9,7 +9,7 @@ import { ContactPage } from './pages/contact/contact.page';
 
 const routes: Routes = [
   {
-    path: 'faq-category/:id',
+    path: 'faq-category',
     component: FaqCategoryPage,
     data: { title: '' },
   },

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { SiteTerms } from '../../model/guide.model';
+import { BasicService } from '../../business/guide.service';
 
 @Component({
   selector: 'terms',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TermsPage implements OnInit {
 
-  constructor() { }
+  data$: Observable<SiteTerms[]>;
+
+  constructor( private basicService: BasicService) { }
 
   ngOnInit(): void {
+    this.data$ = this.basicService.select<SiteTerms>('Terms');
   }
-
 }

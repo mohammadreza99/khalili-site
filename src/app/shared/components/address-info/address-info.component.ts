@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AddressInsertModel } from '@app/modules/users/model/user.model';
+import { AddressModel } from '@app/modules/users/model/user.model';
 import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'address-info',
@@ -8,11 +9,30 @@ import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
   styleUrls: ['./address-info.component.scss'],
 })
 export class AddressInfoComponent implements OnInit {
-  @Input() address: AddressInsertModel;
+  @Input() address: AddressModel;
   showAddressDetailsDialog=false;
+  showMap=true;
+  form : FormGroup;
   constructor() {}
+  
+  ngOnInit(){
+    this.form=new FormGroup({
+      state: new FormControl(null , Validators.required),
+      city: new FormControl(null , Validators.required),
+      district: new FormControl(null , Validators.required),
+      address: new FormControl(null , Validators.required),
+      Plaque: new FormControl(null , Validators.required),
+      Unit: new FormControl(null , Validators.required),
+      PostalCode: new FormControl(null , Validators.required),
+      IsReceiver: new FormControl(false , Validators.required),
+      FirstName: new FormControl(null , Validators.required),
+      LastName: new FormControl(null , Validators.required),
+      NationalCode: new FormControl(null , Validators.required),
+      MobileNo: new FormControl(null , Validators.required),
+    });
+  }
 
-  ngOnInit(): void {}
+  
   options = {
     layers: [
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -27,7 +47,13 @@ export class AddressInfoComponent implements OnInit {
   leafletClick(args) {
     this.layers = [marker([args.latlng.lat, args.latlng.lng])];
   }
+
+
   onEditClick(){
     this.showAddressDetailsDialog=true;
+  }
+
+  addAddressDetail(){
+    this.showMap=false
   }
 }

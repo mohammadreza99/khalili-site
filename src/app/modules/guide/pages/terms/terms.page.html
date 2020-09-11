@@ -4,37 +4,11 @@
       <div class="row">
         <div class="col-12">
           <div class="bg-white rounded-lg shadow-sm p-4">
-            <div class="row">
+            <div class="row" *ngIf="(data$ | async) as data">
               <div class="col-12">
                 <h3>قوانین</h3>
               </div>
-              <div class="col-12">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-                delectus adipisci, deleniti nemo quae culpa itaque reprehenderit
-                soluta repellat, voluptatem aliquam quod quia autem quam,
-                nostrum voluptas velit consequatur eos. Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Tempore delectus adipisci,
-                deleniti nemo quae culpa itaque reprehenderit soluta repellat,
-                voluptatem aliquam quod quia autem quam, nostrum voluptas velit
-                consequatur eos. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Tempore delectus adipisci, deleniti nemo quae
-                culpa itaque reprehenderit soluta repellat, voluptatem aliquam
-                quod quia autem quam, nostrum voluptas velit consequatur eos.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-                delectus adipisci, deleniti nemo quae culpa itaque reprehenderit
-                soluta repellat, voluptatem aliquam quod quia autem quam,
-                nostrum voluptas velit consequatur eos. Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Tempore delectus adipisci,
-                deleniti nemo quae culpa itaque reprehenderit soluta repellat,
-                voluptatem aliquam quod quia autem quam, nostrum voluptas velit
-                consequatur eos. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Tempore delectus adipisci, deleniti nemo quae
-                culpa itaque reprehenderit soluta repellat, voluptatem aliquam
-                quod quia autem quam, nostrum voluptas velit consequatur eos.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-                delectus adipisci, deleniti nemo quae culpa itaque reprehenderit
-                soluta repellat, voluptatem aliquam quod quia autem quam,
-                nostrum voluptas velit consequatur eos.
+              <div class="col-12" [innerHTML]="data[0].description">
               </div>
             </div>
           </div>

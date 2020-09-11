@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="bg-white rounded-lg shadow-sm p-4">
+            <div class="row">
+              <div class="col-12">
+                <h4>سبد خرید</h4>
+                <p>
+                  سبدخرید شما خالی است. برای افزودن محصولات دلخواه خود به صفحه‌ی
+                  فروشگاه مراجعه کنید.
+                </p>
+                <button class="btn btn-primary p-1" [routerLink]="['/']">
+                  <small>مشاهده فروشگاه</small>
+                </button>
+              </div>
+              <div class="col-12"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9">
+          <div class="bg-white rounded-lg shadow-sm pt-5 px-4">
+            <!-- CART ITEM -->
+            <div class="row cart-item pb-5">
+              <div class="col-3">
+                <img
+                  class="w-100"
+                  src="http://via.placeholder.com/140x140"
+                  alt=""
+                />
+              </div>
+              <div class="col-9">
+                <h6>ندروید باکس آ‌مدیا مدل EM95S - 4/32</h6>
+                <ul class="list-unstyled p-0 text-muted">
+                  <li class="d-flex align-items-center">
+                    <i class="fa fa-home ml-2"></i>
+                    <small>سرویس ویژه دیجی کالا: ۷ روز تضمین بازگشت کالا</small>
+                  </li>
+                  <li class="d-flex align-items-center">
+                    <i class="fa fa-home ml-2"></i>
+                    <small>سرویس ویژه دیجی کالا: ۷ روز تضمین بازگشت کالا</small>
+                  </li>
+                  <li class="d-flex align-items-center">
+                    <i class="fa fa-home ml-2"></i>
+                    <small>سرویس ویژه دیجی کالا: ۷ روز تضمین بازگشت کالا</small>
+                  </li>
+                </ul>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="right-side d-flex align-items-center">
+                    <div
+                      class="counter border rounded-lg d-flex align-items-center justify-content-between px-3"
+                    >
+                      <i class="fal fa-plus" (click)="plusClick()"></i>
+                      <span class="mx-3">{{productCount}}</span>
+                      <i class="fal fa-minus" (click)="minusClick()"></i>
+                    </div>
+                    <button
+                      class="btn btn-outline-danger p-1 mx-3"
+                      (click)="onDeleteProduct()"
+                    >
+                      <i class="fal ml-1 fa-trash"></i>
+                      <small>حذف</small>
+                    </button>
+                  </div>
+                  <div class="left-side text-left">
+                    <small class="text-danger">تخفیف ۳۵۰,۰۰۰ تومان </small>
+                    <div>۱,۴۰۰,۰۰۰ تومان</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 factor">
+          <div class="bg-white rounded-lg shadow-sm p-4">
+            <div
+              class="d-flex justify-content-between align-items-center text-muted"
+            >
+              <small>قیمت کالاها </small>
+              <small>۱,۷۵۰,۰۰۰ تومان</small>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted">تخفیف کالاها</small>
+              <small class="text-danger">(۲۰٪) ۳۵۰,۰۰۰ تومان</small>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="font-weight-bold">جمع</small>
+              <small class="font-weight-bold">۱,۴۰۰,۰۰۰ تومان</small>
+            </div>
+            <hr class="border-bottom" />
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="font-weight-bold">قابل پرداخت</small>
+              <span class="font-weight-bold">۱,۴۰۰,۰۰۰ تومان</span>
+            </div>
+            <button
+              class="btn btn-primary btn-block mt-4 btn-lg"
+              routerLink="/orders/shipping"
+            >
+              ادامه فرآیند خرید
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

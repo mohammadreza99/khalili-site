@@ -1,0 +1,11 @@
+p-tabView ::ng-deep .ui-tabview-nav {
+  display: flex;
+  li {
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+
+.box-item {
+  width: 100px;
+}

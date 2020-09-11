@@ -77,7 +77,7 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  onClick(event, tabPane, navs, active) {
+  onClickTab(event, tabPane, navs, active) {
     navs.querySelectorAll('.nav-link').forEach((element) => {
       element.classList.remove('active');
     });

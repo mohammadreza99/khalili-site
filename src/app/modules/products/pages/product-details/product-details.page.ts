@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailsPage implements OnInit {
   constructor() {}
+    zoomedImageSrc="../../../../../assets/images/1.jpg"
+  zoomedImageSrc1="../../../../../assets/images/2.jpg"
+
   products = [
     {
       img: '../../../assets/images/1.jpg',

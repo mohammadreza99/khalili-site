@@ -92,7 +92,9 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe();
+        this.userService.insertOrUpdateProfile(res).subscribe(() => {
+          this.loadProfile();
+        });
       });
   }
 
@@ -108,7 +110,9 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe();
+        this.userService.insertOrUpdateProfile(res).subscribe(() => {
+          this.loadProfile();
+        });
       });
   }
 
@@ -124,7 +128,9 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe();
+        this.userService.insertOrUpdateProfile(res).subscribe(() => {
+          this.loadProfile();
+        });
       });
   }
 
@@ -140,7 +146,9 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe();
+        this.userService.insertOrUpdateProfile(res).subscribe(() => {
+          this.loadProfile();
+        });
       });
   }
 
@@ -157,7 +165,9 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe();
+        this.userService.insertOrUpdateProfile(res).subscribe(() => {
+          this.loadProfile();
+        });
       });
   }
 
@@ -173,7 +183,9 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe();
+        this.userService.insertOrUpdateProfile(res).subscribe(() => {
+          this.loadProfile();
+        });
       });
   }
 
@@ -189,7 +201,9 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe();
+        this.userService.insertOrUpdateProfile(res).subscribe(() => {
+          this.loadProfile();
+        });
       });
   }
 }

@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { BaseService } from '@app/services/base.service';
-import { Profile } from '../model/user.model';
+import {
+  BaseCity,
+  BaseDistrict,
+  BaseState,
+  Profile,
+} from '../model/user.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -20,5 +25,25 @@ export class UserService extends BaseService {
     return this.get<Profile>('/User/Profile/', 'json').pipe(
       map((res: any) => res.data)
     );
+  }
+
+  getStates() {
+    return this.get<BaseState[]>('/App/StateSelect/', 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
+
+  getCities(stateId: any) {
+    return this.get<BaseCity[]>(
+      '/App/CitySelect/?stateId=' + stateId,
+      'json'
+    ).pipe(map((res: any) => res.data));
+  }
+
+  getDistricts(cityId: any) {
+    return this.get<BaseDistrict[]>(
+      '/App/DistrictSelect/?cityId=' + cityId,
+      'json'
+    ).pipe(map((res: any) => res.data));
   }
 }

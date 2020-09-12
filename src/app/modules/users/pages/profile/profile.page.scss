@@ -11,3 +11,7 @@ p-table ::ng-deep tbody {
     content: "\e900" !important;
   }
 }
+
+address-info:last-of-type ::ng-deep .address-box {
+  border: 0 !important;
+}

@@ -1,0 +1,76 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-12">
+          <div
+            style="height: 300px"
+            leaflet
+            [leafletOptions]="options"
+            [leafletLayers]="layers"
+            (leafletClick)="leafletClick($event)"
+          ></div>
+        </div>
+      </div>
+      <form class="form-row" [formGroup]="form">
+        <prm-input-dropdown
+          *ngIf="convertedStates"
+          class="col-6 mb-3"
+          [items]="convertedStates"
+          label="استان"
+          labelPosition="top"
+          formControlName="control"
+          (onChange)="onStateChange($event)"
+        ></prm-input-dropdown>
+        <prm-input-dropdown
+          *ngIf="convertedCities"
+          class="col-6 mb-3"
+          [items]="convertedCities"
+          label="شهر"
+          labelPosition="top"
+          formControlName="control"
+          (onChange)="onCityChange($event)"
+        ></prm-input-dropdown>
+        <prm-input-dropdown
+          *ngIf="convertedDistricts"
+          class="col-12 mb-3"
+          [items]="convertedDistricts"
+          label="محله"
+          labelPosition="top"
+          formControlName="control"
+        ></prm-input-dropdown>
+        <prm-input-text
+          class="col-12 mb-3"
+          label="نشانی پستی"
+          labelPosition="top"
+          formControlName="control"
+        ></prm-input-text>
+        <prm-input-text
+          class="col-3 mb-3"
+          label="پلاک"
+          labelPosition="top"
+          formControlName="control"
+        ></prm-input-text>
+        <prm-input-text
+          class="col-3 mb-3"
+          label="واحد"
+          labelPosition="top"
+          formControlName="control"
+        ></prm-input-text>
+        <prm-input-text
+          labelPosition="top"
+          class="col-6 mb-3"
+          label="کدپستی"
+          formControlName="control"
+        ></prm-input-text>
+        <div class="py-4 border-top col-12 text-left">
+          <prm-button
+            label="تایید و ثبت"
+            color="primary"
+            (click)="onSubmitAddress()"
+          ></prm-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

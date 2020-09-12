@@ -14,6 +14,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { AddressInfoComponent } from './components/address-info/address-info.component';
 import { AccordionComponent } from './components/accordion/accordion.component';
 import { AccordionItemComponent } from './components/accordion-item/accordion-item.component';
+import { AddressModifyComponent } from './components/address-modify/address-modify.component';
 
 export const COMPONENTS: Type<any>[] = [
   CarouselComponent,
@@ -31,4 +32,5 @@ export const COMPONENTS: Type<any>[] = [
   AddressInfoComponent,
   AccordionComponent,
   AccordionItemComponent,
+  AddressModifyComponent,
 ];

@@ -6,6 +6,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  OnChanges,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -29,8 +30,9 @@ import { PrimeFilterMatchMode } from '../../prime-type/prime-filter-match-mode';
     },
   ],
 })
-export class PrimeInputDropdownComponent extends PrimeInputBaseComponent
-  implements OnInit, AfterViewInit {
+export class PrimeInputDropdownComponent
+  extends PrimeInputBaseComponent
+  implements OnInit, AfterViewInit, OnChanges {
   // constructor() { super() }
 
   @Input() items: PrimeDropdownItem[] | PrimeDropdownGroup[] | any[] = [];
@@ -58,6 +60,13 @@ export class PrimeInputDropdownComponent extends PrimeInputBaseComponent
   ngOnInit() {
     super.ngOnInit();
     this.selectId = this.getId();
+    if (typeof this.items[0] == 'string')
+      for (const item of this.items)
+        this._items.push(this.createFilterOptions(item));
+    else this._items = this.items;
+  }
+
+  ngOnChanges() {
     if (typeof this.items[0] == 'string')
       for (const item of this.items)
         this._items.push(this.createFilterOptions(item));

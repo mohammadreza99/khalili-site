@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AddressInsertModel } from '@app/modules/users/model/user.model';
-import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
+import { DialogService } from 'primeng/dynamicdialog';
+import { AddressModifyComponent } from '../address-modify/address-modify.component';
 
 @Component({
   selector: 'address-info',
@@ -9,25 +10,17 @@ import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
 })
 export class AddressInfoComponent implements OnInit {
   @Input() address: AddressInsertModel;
-  showAddressDetailsDialog=false;
-  constructor() {}
+  showAddressDetailsDialog = true;
+
+  constructor(public dialogService: DialogService) {}
 
   ngOnInit(): void {}
-  options = {
-    layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 20,
-      }),
-    ],
-    zoom: 16,
-    center: latLng(35.6908164, 51.3802295),
-  };
-  layers = [marker([35.6908164, 51.3802295])];
 
-  leafletClick(args) {
-    this.layers = [marker([args.latlng.lat, args.latlng.lng])];
-  }
-  onEditClick(){
-    this.showAddressDetailsDialog=true;
+  onEditClick() {
+    this.dialogService.open(AddressModifyComponent, {
+      header: 'ویرایش نشانی',
+      width: '800px',
+      data: { id: '2' },
+    });
   }
 }

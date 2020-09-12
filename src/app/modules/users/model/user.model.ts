@@ -28,3 +28,20 @@ export class Password {
   password: string;
   oldPassword: string;
 }
+
+export class BaseState {
+  id: Object;
+  title: string;
+}
+
+export class BaseCity {
+  id: Object;
+  stateId: number;
+  title: string;
+}
+
+export class BaseDistrict {
+  id: Object;
+  cityId: number;
+  title: string;
+}

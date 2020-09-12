@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogFormService } from '@app/services/dialog-form.service';
-import { Profile } from '../../model/user.model';
+import { Profile, BaseJob, Password } from '../../model/user.model';
 import { UserService } from '../../business/user.service';
 import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
+import * as moment from 'jalali-moment';
+import { Observable } from 'rxjs';
+import { SelectItem } from 'primeng';
 
 @Component({
   selector: 'profile',
@@ -31,7 +34,6 @@ export class ProfilePage implements OnInit {
       mobileNo: '09354013081',
     },
   ];
-
   cols = [
     { field: 'vin', header: 'Vin' },
     { field: 'year', header: 'Year' },
@@ -51,6 +53,11 @@ export class ProfilePage implements OnInit {
     { brand: 'Fiat', year: 2013, color: 'Red', vin: '245t2s' },
   ];
   userProfile: Profile;
+  pass: Password;
+  jobs = [];
+  jobTitle = '';
+  showAvatarDialog = false;
+  avatars = ['1', '2', '3', '4', '5', '6'];
 
   ngOnInit(): void {
     this.loadProfile();
@@ -58,6 +65,16 @@ export class ProfilePage implements OnInit {
 
   async loadProfile() {
     this.userProfile = await this.userService.getProfileInfo().toPromise();
+    this.userService.getJobs().subscribe((jobs) => {
+      for (const job of jobs)
+        this.jobs.push({
+          value: job.id,
+          label: job.title,
+        });
+      this.jobTitle = this.jobs.find(
+        (job) => job.value == this.userProfile.jobId
+      ).label;
+    });
   }
 
   onClickTab(event, tabPane, navs, active) {
@@ -92,9 +109,11 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe(() => {
-          this.loadProfile();
-        });
+        if (res) {
+          this.userProfile.firstName = res.firstName;
+          this.userProfile.lastName = res.lastName;
+          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+        }
       });
   }
 
@@ -110,9 +129,10 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe(() => {
-          this.loadProfile();
-        });
+        if (res) {
+          this.userProfile.nationalCode = res.nationalCode;
+          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+        }
       });
   }
 
@@ -128,9 +148,10 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe(() => {
-          this.loadProfile();
-        });
+        if (res) {
+          this.userProfile.email = res.email;
+          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+        }
       });
   }
 
@@ -138,7 +159,7 @@ export class ProfilePage implements OnInit {
     this.dialogFormService
       .show('تاریخ تولد', [
         {
-          type: 'text',
+          type: 'date-picker',
           formControlName: 'birthDate',
           value: this.userProfile.birthDate,
           label: 'تاریخ تولد',
@@ -146,9 +167,12 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe(() => {
-          this.loadProfile();
-        });
+        if (res) {
+          this.userProfile.birthDate = moment(
+            res.birthDate.momentObj._d
+          ).format('jYYYY/jMM/jDD');
+          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+        }
       });
   }
 
@@ -157,7 +181,7 @@ export class ProfilePage implements OnInit {
       .show('شغل', [
         {
           type: 'dropdown',
-          dropdownItems: [],
+          dropdownItems: this.jobs,
           formControlName: 'jobId',
           value: this.userProfile.jobId,
           label: 'شغل',
@@ -165,9 +189,13 @@ export class ProfilePage implements OnInit {
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe(() => {
-          this.loadProfile();
-        });
+        if (res) {
+          this.userProfile.jobId = res.jobId;
+          this.jobTitle = this.jobs.find(
+            (job) => job.value == this.userProfile.jobId
+          ).label;
+          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+        }
       });
   }
 
@@ -176,16 +204,17 @@ export class ProfilePage implements OnInit {
       .show('شماره کارت', [
         {
           type: 'text',
-          formControlName: 'firstName',
+          formControlName: 'cardNumber',
           value: this.userProfile.cardNumber,
           label: 'شماره کارت',
           labelWidth: 80,
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe(() => {
-          this.loadProfile();
-        });
+        if (res) {
+          this.userProfile.cardNumber = res.cardNumber;
+          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+        }
       });
   }
 
@@ -194,16 +223,30 @@ export class ProfilePage implements OnInit {
       .show('رمزعبور', [
         {
           type: 'text',
-          formControlName: 'firstName',
-          value: this.userProfile.firstName,
+          formControlName: 'oldPassword',
+          label: 'رمز عبور قبلی',
+          labelWidth: 80,
+        },
+        {
+          type: 'text',
+          formControlName: 'password',
           label: 'رمزعبور',
           labelWidth: 80,
         },
       ])
       .onClose.subscribe((res) => {
-        this.userService.insertOrUpdateProfile(res).subscribe(() => {
-          this.loadProfile();
-        });
+        // if(res && res.password && res.oldPassword)
+        // this.userService.insertOrUpdatePassword(res).subscribe();
       });
   }
+
+  onEditAvatar(avatar){
+    this.userProfile.avatar = avatar;
+    this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+  }
+
+  onAvatarClick() {
+    this.showAvatarDialog = true;
+  }
+
 }

@@ -44,7 +44,8 @@
   [blockScroll]="true"
   [style]="{ width: '800px' }"
 >
-  <div>
+
+  <div *ngIf="showMap">
     <div
       style="height: 500px"
       leaflet
@@ -52,5 +53,11 @@
       [leafletLayers]="layers"
       (leafletClick)="leafletClick($event)"
     ></div>
+    <button (click)="addAddressDetail()" class="btn btn-primary p-1">
+      <small>ثبت و افزودن  جزییات</small>
+    </button>
+  </div>
+  <div *ngIf="!showMap">
+
   </div>
 </p-dialog> -->

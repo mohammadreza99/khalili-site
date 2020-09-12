@@ -6,7 +6,8 @@
           <div class="nav flex-column nav-pills border rounded" #navs>
             <div class="bg-light rounded-top d-flex align-items-center p-2">
               <img
-                [src]="userProfile?.avatar || 'https://via.placeholder.com/50x50'"
+                (click)="onAvatarClick()"
+                [src]="'../../../../../assets/images/avatar/'+ (userProfile?.avatar || '1.png')"
                 class="rounded-circle"
               />
               <div class="user-info mr-3">
@@ -151,7 +152,9 @@
                     >
                       <div class="info">
                         <p class="mb-0">ایمیل</p>
-                        <span class="text-muted">-</span>
+                        <span class="text-muted"
+                          >{{userProfile.email || '-'}}</span
+                        >
                       </div>
                       <i class="fa fa-edit" (click)="onEditEmail()"></i>
                     </div>
@@ -162,7 +165,9 @@
                     >
                       <div class="info">
                         <p class="mb-0">تاریخ تولد</p>
-                        <span class="text-muted">-</span>
+                        <span class="text-muted"
+                          >{{userProfile.birthDate || '-'}}</span
+                        >
                       </div>
                       <i class="fa fa-edit" (click)="onEditBirthDate()"></i>
                     </div>
@@ -173,7 +178,7 @@
                     >
                       <div class="info">
                         <p class="mb-0">شغل</p>
-                        <span class="text-muted">-</span>
+                        <span class="text-muted">{{ jobTitle || '-'}}</span>
                       </div>
                       <i class="fa fa-edit" (click)="onEditJob()"></i>
                     </div>
@@ -184,7 +189,9 @@
                     >
                       <div class="info">
                         <p class="mb-0">شماره کارت جهت مرجوعی وجه</p>
-                        <span class="text-muted">-</span>
+                        <span class="text-muted"
+                          >{{userProfile.cardNumber || '-'}}</span
+                        >
                       </div>
                       <i class="fa fa-edit" (click)="onEditCarNumber()"></i>
                     </div>
@@ -195,7 +202,7 @@
                     >
                       <div class="info">
                         <p class="mb-0">رمز عبور</p>
-                        <span class="text-muted">-</span>
+                        <span class="text-muted">******</span>
                       </div>
                       <i class="fa fa-edit" (click)="onEditPasword()"></i>
                     </div>
@@ -214,3 +221,27 @@
     </div>
   </div>
 </div>
+
+<p-dialog
+  header="تغییر نمایه کاربری شما"
+  [(visible)]="showAvatarDialog"
+  [modal]="true"
+  [draggable]="false"
+  [blockScroll]="true"
+  [style]="{ width: '800px' }"
+>
+<div class="col-12">
+  <div class="row">
+    <div
+      *ngFor="let avatar of avatars"
+      class="col-4 d-flex justify-content-center"
+    >
+      <img
+        (click)="onEditAvatar(avatar)"
+        [src]="'../../../../../assets/images/avatar/'+avatar+'.png'"
+        class="rounded-circle"
+      />
+    </div>
+  </div>
+</div>
+</p-dialog>

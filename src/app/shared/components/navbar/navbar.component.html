@@ -78,6 +78,7 @@
                         <li
                           class="bg-hover-light pr-3"
                           *ngFor="let item of menuItems; let i = index"
+                          [routerLink]="['/products/category/',item.id]"
                           (mouseenter)="showSubMenuById(i + 1)"
                         >
                           <span>
@@ -89,7 +90,7 @@
                     </div>
                     <div class="sub-category col-9">
                       <ul class="list-unstyled">
-                        <li *ngFor="let item of megaMenuList">
+                        <li *ngFor="let item of megaMenuList"  [routerLink]="['/products/subcategory/',item.id]">
                           {{ item }}
                         </li>
                       </ul>
@@ -99,12 +100,27 @@
               </div>
             </div>
             <div>
-              <a class="nav-item nav-link"
-                ><i class="fal fa-badge-percent pl-1"></i>تخفیف ها
+              <a class="nav-item nav-link" [routerLink]="['/guide/about']"
+                ><i class="fal fa-badge-percent pl-1"></i>درباره ما
               </a>
             </div>
             <div>
-              <a class="nav-item nav-link"
+              <a class="nav-item nav-link" [routerLink]="['/guide/contact']"
+                ><i class="fal fa-badge-percent pl-1"></i>تماس با ما
+              </a>
+            </div>
+            <div>
+              <a class="nav-item nav-link" [routerLink]="['/guide/privacy']"
+                ><i class="fal fa-badge-percent pl-1"></i>حریم خصوصی
+              </a>
+            </div>
+            <div>
+              <a class="nav-item nav-link" [routerLink]="['/guide/terms']"
+                ><i class="fal fa-badge-percent pl-1"></i>قوانین و مقررات
+              </a>
+            </div>
+            <div>
+              <a class="nav-item nav-link" [routerLink]="['/guide/faq-category']"
                 ><i class="fal fa-question-circle pl-1"></i>سوالی دارید؟
               </a>
             </div>

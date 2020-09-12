@@ -17,9 +17,9 @@ export class UserService extends BaseService {
     return this.post('/User/ProfileInsert/', profile, 'json');
   }
 
-  // insertOrUpdatePassword() {
-  //   return this.post('/User/SetOrChangePassword/', profile, 'json');
-  // }
+  insertOrUpdatePassword(password) {
+    return this.post('/User/SetOrChangePassword/', password, 'json');
+  }
 
   getProfileInfo() {
     return this.get<Profile>('/User/Profile/', 'json').pipe(
@@ -45,5 +45,11 @@ export class UserService extends BaseService {
       '/App/DistrictSelect/?cityId=' + cityId,
       'json'
     ).pipe(map((res: any) => res.data));
+  }
+  
+  getJobs() {
+    return this.get('/Base/Admin/JobSelect/', 'json').pipe(
+      map((res: any) => res.data)
+    );
   }
 }

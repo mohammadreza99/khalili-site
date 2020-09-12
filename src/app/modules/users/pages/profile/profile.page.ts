@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogFormService } from '@app/services/dialog-form.service';
-import { Profile, BaseJob, Password } from '../../model/user.model';
+import {
+  Profile,
+  BaseJob,
+  Password,
+  BaseDistrict,
+  BaseState,
+} from '../../model/user.model';
 import { UserService } from '../../business/user.service';
 import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
 import * as moment from 'jalali-moment';
 import { Observable } from 'rxjs';
 import { SelectItem } from 'primeng';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'profile',
@@ -58,9 +65,18 @@ export class ProfilePage implements OnInit {
   jobTitle = '';
   showAvatarDialog = false;
   avatars = ['1', '2', '3', '4', '5', '6'];
-
+  originalStates: BaseState[];
+  convertedStates: SelectItem[];
+  originalCities: BaseState[];
+  convertedCities: SelectItem[];
+  originalDistricts: BaseDistrict[];
+  convertedDistricts: SelectItem[];
+  form = new FormGroup({
+    control: new FormControl(),
+  });
   ngOnInit(): void {
     this.loadProfile();
+    this.loadStates();
   }
 
   async loadProfile() {
@@ -240,7 +256,41 @@ export class ProfilePage implements OnInit {
       });
   }
 
-  onEditAvatar(avatar){
+  async loadStates() {
+    this.originalStates = await this.userService.getStates().toPromise();
+    this.convertedStates = this.originalStates.map((item) => {
+      return { label: item.title, value: item.id };
+    });
+  }
+
+  async loadCities(stateId: number) {
+    this.originalCities = await this.userService.getCities(stateId).toPromise();
+    this.convertedCities = [];
+    this.convertedCities = this.originalCities.map((item) => {
+      return { label: item.title, value: item.id };
+    });
+  }
+
+  async loadDistricts(cityId: number) {
+    this.originalDistricts = await this.userService
+      .getDistricts(cityId)
+      .toPromise();
+    this.convertedDistricts = this.originalDistricts.map((item) => {
+      return { label: item.title, value: item.id };
+    });
+  }
+
+  onStateChange(stateId) {
+    this.loadCities(stateId);
+  }
+
+  onCityChange(cityId) {
+    this.loadDistricts(cityId);
+  }
+
+  onSubmitAddress() {}
+
+  onEditAvatar(avatar) {
     this.userProfile.avatar = avatar;
     this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
   }
@@ -248,5 +298,4 @@ export class ProfilePage implements OnInit {
   onAvatarClick() {
     this.showAvatarDialog = true;
   }
-
 }

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '@app/modules/users/business/user.service';
 import { BaseDistrict, BaseState } from '@app/modules/users/model/user.model';
 import { tileLayer, latLng, marker } from 'leaflet';
@@ -13,7 +13,6 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
   styleUrls: ['./address-modify.component.scss'],
 })
 export class AddressModifyComponent implements OnInit {
-  form = new FormGroup({ control: new FormControl() });
   options = {
     layers: [
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -23,6 +22,20 @@ export class AddressModifyComponent implements OnInit {
     zoom: 16,
     center: latLng(35.6908164, 51.3802295),
   };
+  form = new FormGroup({
+    state: new FormControl(null, Validators.required),
+    city: new FormControl(null, Validators.required),
+    district: new FormControl(null, Validators.required),
+    address: new FormControl(null, Validators.required),
+    Plaque: new FormControl(null, Validators.required),
+    Unit: new FormControl(null, Validators.required),
+    PostalCode: new FormControl(null, Validators.required),
+    IsReceiver: new FormControl(false, Validators.required),
+    FirstName: new FormControl(null, Validators.required),
+    LastName: new FormControl(null, Validators.required),
+    NationalCode: new FormControl(null, Validators.required),
+    MobileNo: new FormControl(null, Validators.required),
+  });
   layers = [marker([35.6908164, 51.3802295])];
   originalStates: BaseState[];
   convertedStates: SelectItem[];
@@ -35,10 +48,9 @@ export class AddressModifyComponent implements OnInit {
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
     private userService: UserService,
-    private cd: ChangeDetectorRef
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loadStates();
   }
 
@@ -72,7 +84,6 @@ export class AddressModifyComponent implements OnInit {
 
   onStateChange(stateId) {
     this.loadCities(stateId);
-    this.cd.detectChanges();
   }
 
   onCityChange(cityId) {

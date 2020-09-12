@@ -114,7 +114,7 @@
               </div>
             </div>
             <div class="tab-pane fade profile">
-              <div class="bg-white p-3 border shadow-sm rounded-lg">
+              <div class="bg-white p-3 border shadow-sm rounded-lg mb-3">
                 <div class="row">
                   <div class="col-12">
                     <h5>اطلاعات حساب</h5>
@@ -209,10 +209,75 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="tab-pane fade address">
+
               <div class="bg-white p-3 border shadow-sm rounded-lg">
-                <address-info [address]="address[0]"></address-info>
+                <div class="row">
+                  <div class="col-12">
+                    <h5>اطلاعات حقوقی</h5>
+                  </div>
+                </div>
+                <form class="form-row" [formGroup]="form">
+                  <prm-input-text
+                    class="col-6 mb-3"
+                    label="نام سازمان"
+                    labelPosition="top"
+                    formControlName="control"
+                  ></prm-input-text>
+                  <prm-input-text
+                    class="col-6 mb-3"
+                    label="کد اقتصادی"
+                    labelPosition="top"
+                    formControlName="control"
+                  ></prm-input-text>
+                  <prm-input-text
+                    class="col-6 mb-3"
+                    label="شناسه ملی"
+                    labelPosition="top"
+                    formControlName="control"
+                  ></prm-input-text>
+                  <prm-input-text
+                    class="col-6 mb-3"
+                    label="شناسه ثبت"
+                    labelPosition="top"
+                    formControlName="control"
+                  ></prm-input-text>
+                  <prm-input-dropdown
+                    *ngIf="convertedStates"
+                    class="col-6 mb-3"
+                    [items]="convertedStates"
+                    label="استان"
+                    labelPosition="top"
+                    formControlName="control"
+                    (onChange)="onStateChange($event)"
+                  ></prm-input-dropdown>
+                  <prm-input-dropdown
+                    [disabled]="!convertedCities"
+                    class="col-6 mb-3"
+                    [items]="convertedCities"
+                    label="شهر"
+                    labelPosition="top"
+                    formControlName="control"
+                    (onChange)="onCityChange($event)"
+                  ></prm-input-dropdown>
+                  <prm-input-text
+                    class="col-6 mb-3"
+                    label="شماره تلفن ثابت"
+                    labelPosition="top"
+                    formControlName="control"
+                  ></prm-input-text>
+                  <div class="pt-4 border-top col-12 text-left">
+                    <prm-button
+                      label="تایید و ثبت"
+                      color="primary"
+                      (click)="onSubmitAddress()"
+                    ></prm-button>
+                  </div>
+                </form>
+              </div>
+              <div class="tab-pane fade address">
+                <div class="bg-white p-3 border shadow-sm rounded-lg">
+                  <address-info [address]="address[0]"></address-info>
+                </div>
               </div>
             </div>
           </div>
@@ -220,28 +285,28 @@
       </div>
     </div>
   </div>
-</div>
 
-<p-dialog
-  header="تغییر نمایه کاربری شما"
-  [(visible)]="showAvatarDialog"
-  [modal]="true"
-  [draggable]="false"
-  [blockScroll]="true"
-  [style]="{ width: '800px' }"
->
-<div class="col-12">
-  <div class="row">
-    <div
-      *ngFor="let avatar of avatars"
-      class="col-4 d-flex justify-content-center"
-    >
-      <img
-        (click)="onEditAvatar(avatar)"
-        [src]="'../../../../../assets/images/avatar/'+avatar+'.png'"
-        class="rounded-circle"
-      />
+  <p-dialog
+    header="تغییر نمایه کاربری شما"
+    [(visible)]="showAvatarDialog"
+    [modal]="true"
+    [draggable]="false"
+    [blockScroll]="true"
+    [style]="{ width: '800px' }"
+  >
+    <div class="col-12">
+      <div class="row">
+        <div
+          *ngFor="let avatar of avatars"
+          class="col-4 d-flex justify-content-center"
+        >
+          <img
+            (click)="onEditAvatar(avatar)"
+            [src]="'../../../../../assets/images/avatar/'+avatar+'.png'"
+            class="rounded-circle"
+          />
+        </div>
+      </div>
     </div>
-  </div>
+  </p-dialog>
 </div>
-</p-dialog>

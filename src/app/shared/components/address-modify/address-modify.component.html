@@ -23,7 +23,7 @@
           (onChange)="onStateChange($event)"
         ></prm-input-dropdown>
         <prm-input-dropdown
-          *ngIf="convertedCities"
+          [disabled]="!convertedCities"
           class="col-6 mb-3"
           [items]="convertedCities"
           label="شهر"
@@ -32,7 +32,7 @@
           (onChange)="onCityChange($event)"
         ></prm-input-dropdown>
         <prm-input-dropdown
-          *ngIf="convertedDistricts"
+          [disabled]="!convertedDistricts"
           class="col-12 mb-3"
           [items]="convertedDistricts"
           label="محله"

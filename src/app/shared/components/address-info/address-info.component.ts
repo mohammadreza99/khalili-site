@@ -11,26 +11,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AddressInfoComponent implements OnInit {
   @Input() address: AddressModel;
-  form: FormGroup;
 
   constructor(public dialogService: DialogService) {}
 
-  ngOnInit() {
-    this.form = new FormGroup({
-      state: new FormControl(null, Validators.required),
-      city: new FormControl(null, Validators.required),
-      district: new FormControl(null, Validators.required),
-      address: new FormControl(null, Validators.required),
-      Plaque: new FormControl(null, Validators.required),
-      Unit: new FormControl(null, Validators.required),
-      PostalCode: new FormControl(null, Validators.required),
-      IsReceiver: new FormControl(false, Validators.required),
-      FirstName: new FormControl(null, Validators.required),
-      LastName: new FormControl(null, Validators.required),
-      NationalCode: new FormControl(null, Validators.required),
-      MobileNo: new FormControl(null, Validators.required),
-    });
-  }
+  ngOnInit() {}
 
   onEditClick() {
     this.dialogService.open(AddressModifyComponent, {

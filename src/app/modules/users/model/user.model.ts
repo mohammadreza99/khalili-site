@@ -10,13 +10,13 @@ export class Profile {
 }
 
 export class AddressModel {
-  id?:number;
-  stateId?:number;
-  stateTitle?:string;
-  cityId?:number;
-  cityTitle?:string;
-  districtId?:number;
-  districtTitle?:string;
+  id?: number;
+  stateId?: number;
+  stateTitle?: string;
+  cityId?: number;
+  cityTitle?: string;
+  districtId?: number;
+  districtTitle?: string;
   lat?: number;
   lng?: number;
   address?: string;
@@ -29,7 +29,6 @@ export class AddressModel {
   nationalCode?: string;
   mobileNo?: string;
 }
-
 
 export class Password {
   password: string;
@@ -57,4 +56,13 @@ export class BaseJob {
   id: Object;
   title: string;
   isActive: boolean;
+}
+export class OrganizationModel {
+  id?: number;
+  name: string;
+  economicCode: string;
+  registrationId: string;
+  nationalId: string;
+  telNumber: string;
+  cityId: number;
 }

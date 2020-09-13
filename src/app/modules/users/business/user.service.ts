@@ -5,7 +5,9 @@ import {
   BaseCity,
   BaseDistrict,
   BaseState,
+  OrganizationModel,
   Profile,
+  Password
 } from '../model/user.model';
 import { map } from 'rxjs/operators';
 
@@ -17,8 +19,12 @@ export class UserService extends BaseService {
     return this.post('/User/ProfileInsert/', profile, 'json');
   }
 
-  insertOrUpdatePassword(password) {
+  insertOrUpdatePassword(password:Password) {
     return this.post('/User/SetOrChangePassword/', password, 'json');
+  }
+
+  insertOrUpdateOrganization(organization:OrganizationModel) {
+    return this.post('/User/OrganizationInsert/', organization, 'json');
   }
 
   getProfileInfo() {
@@ -49,6 +55,11 @@ export class UserService extends BaseService {
   
   getJobs() {
     return this.get('/Base/Admin/JobSelect/', 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
+  getOrganization() {
+    return this.get('/User/Organization/', 'json').pipe(
       map((res: any) => res.data)
     );
   }

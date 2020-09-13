@@ -218,58 +218,66 @@
                 </div>
                 <form class="form-row" [formGroup]="form">
                   <prm-input-text
+                    [errors]="errors"
                     class="col-6 mb-3"
                     label="نام سازمان"
                     labelPosition="top"
-                    formControlName="control"
+                    formControlName="name"
                   ></prm-input-text>
                   <prm-input-text
+                    [errors]="errors"
                     class="col-6 mb-3"
                     label="کد اقتصادی"
                     labelPosition="top"
-                    formControlName="control"
+                    formControlName="economicCode"
                   ></prm-input-text>
                   <prm-input-text
+                    [errors]="errors"
                     class="col-6 mb-3"
                     label="شناسه ملی"
                     labelPosition="top"
-                    formControlName="control"
+                    formControlName="nationalId"
                   ></prm-input-text>
                   <prm-input-text
+                    [errors]="errors"
                     class="col-6 mb-3"
                     label="شناسه ثبت"
                     labelPosition="top"
-                    formControlName="control"
+                    formControlName="registrationId"
                   ></prm-input-text>
                   <prm-input-dropdown
+                    [errors]="errors"
                     *ngIf="convertedStates"
                     class="col-6 mb-3"
                     [items]="convertedStates"
                     label="استان"
                     labelPosition="top"
-                    formControlName="control"
+                    formControlName="state"
                     (onChange)="onStateChange($event)"
                   ></prm-input-dropdown>
                   <prm-input-dropdown
+                    [errors]="errors"
                     [disabled]="!convertedCities"
                     class="col-6 mb-3"
                     [items]="convertedCities"
                     label="شهر"
                     labelPosition="top"
-                    formControlName="control"
+                    formControlName="city"
                     (onChange)="onCityChange($event)"
                   ></prm-input-dropdown>
                   <prm-input-text
+                    [errors]="errors"
                     class="col-6 mb-3"
                     label="شماره تلفن ثابت"
                     labelPosition="top"
-                    formControlName="control"
+                    formControlName="telNumber"
                   ></prm-input-text>
                   <div class="pt-4 border-top col-12 text-left">
                     <prm-button
                       label="تایید و ثبت"
                       color="primary"
-                      (click)="onSubmitAddress()"
+                      [type]="'submit'"
+                      (click)="onSubmitOrganization()"
                     ></prm-button>
                   </div>
                 </form>

@@ -6,13 +6,14 @@ import {
   Password,
   BaseDistrict,
   BaseState,
+  OrganizationModel
 } from '../../model/user.model';
 import { UserService } from '../../business/user.service';
 import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
 import * as moment from 'jalali-moment';
 import { Observable } from 'rxjs';
 import { SelectItem } from 'primeng';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'profile',
@@ -71,12 +72,28 @@ export class ProfilePage implements OnInit {
   convertedCities: SelectItem[];
   originalDistricts: BaseDistrict[];
   convertedDistricts: SelectItem[];
+  organization :OrganizationModel;
+  errors=[
+    {
+      type:"required",
+      message:"این فیلد الزامیست"
+    }
+  ]
   form = new FormGroup({
-    control: new FormControl(),
+    id: new FormControl(null),
+    name: new FormControl(null,Validators.required),
+    economicCode: new FormControl(null,Validators.required),
+    nationalId: new FormControl(null,Validators.required),
+    registrationId: new FormControl(null,Validators.required),
+    state: new FormControl(null,Validators.required),
+    city: new FormControl(null,Validators.required),
+    telNumber: new FormControl(null,Validators.required),
   });
+
   ngOnInit(): void {
     this.loadProfile();
     this.loadStates();
+    this.loadOrganization();
   }
 
   async loadProfile() {
@@ -263,6 +280,19 @@ export class ProfilePage implements OnInit {
     });
   }
 
+  async loadOrganization() {
+    this.organization = await this.userService.getOrganization().toPromise();
+    this.form.controls["id"].setValue(this.organization[0].id);
+    this.form.controls["name"].setValue(this.organization[0].name);
+    this.form.controls["economicCode"].setValue(this.organization[0].economicCode);
+    this.form.controls["registrationId"].setValue(this.organization[0].registrationId);
+    this.form.controls["nationalId"].setValue(this.organization[0].nationalId);
+    this.form.controls["telNumber"].setValue(this.organization[0].telNumber);
+    this.form.controls["city"].setValue(this.organization[0].cityId);
+    this.form.controls["state"].setValue(this.organization[0].stateId);
+    
+  }
+
   async loadCities(stateId: number) {
     this.originalCities = await this.userService.getCities(stateId).toPromise();
     this.convertedCities = [];
@@ -297,5 +327,24 @@ export class ProfilePage implements OnInit {
 
   onAvatarClick() {
     this.showAvatarDialog = true;
+  }
+  
+  onSubmitOrganization(){
+    if(this.form.valid){
+      this.organization={
+        name: this.form.controls["name"].value,
+        economicCode:this.form.controls["economicCode"].value,
+        registrationId: this.form.controls["registrationId"].value,
+        nationalId: this.form.controls["nationalId"].value,
+        telNumber:this.form.controls["telNumber"].value,
+        cityId: this.form.controls["city"].value,
+      };
+      console.log( this.organization );
+      
+      this.userService.insertOrUpdateOrganization(this.organization).subscribe((c)=>{
+        console.log(c);
+        
+      });
+    }
   }
 }

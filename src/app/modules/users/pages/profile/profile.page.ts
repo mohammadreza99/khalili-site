@@ -6,7 +6,7 @@ import {
   Password,
   BaseDistrict,
   BaseState,
-  OrganizationModel
+  OrganizationModel, AddressModel
 } from '../../model/user.model';
 import { UserService } from '../../business/user.service';
 import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
@@ -73,6 +73,7 @@ export class ProfilePage implements OnInit {
   originalDistricts: BaseDistrict[];
   convertedDistricts: SelectItem[];
   organization :OrganizationModel;
+  addresses:AddressModel[];
   errors=[
     {
       type:"required",
@@ -94,21 +95,9 @@ export class ProfilePage implements OnInit {
     this.loadProfile();
     this.loadStates();
     this.loadOrganization();
+    this.loadAddresses();
   }
 
-  async loadProfile() {
-    this.userProfile = await this.userService.getProfileInfo().toPromise();
-    this.userService.getJobs().subscribe((jobs) => {
-      for (const job of jobs)
-        this.jobs.push({
-          value: job.id,
-          label: job.title,
-        });
-      this.jobTitle = this.jobs.find(
-        (job) => job.value == this.userProfile.jobId
-      ).label;
-    });
-  }
 
   onClickTab(event, tabPane, navs, active) {
     navs.querySelectorAll('.nav-link').forEach((element) => {
@@ -271,6 +260,26 @@ export class ProfilePage implements OnInit {
         // if(res && res.password && res.oldPassword)
         // this.userService.insertOrUpdatePassword(res).subscribe();
       });
+  }
+  
+  async loadProfile() {
+    this.userProfile = await this.userService.getProfileInfo().toPromise();
+    this.userService.getJobs().subscribe((jobs) => {
+      for (const job of jobs)
+        this.jobs.push({
+          value: job.id,
+          label: job.title,
+        });
+      this.jobTitle = this.jobs.find(
+        (job) => job.value == this.userProfile.jobId
+      ).label;
+    });
+  }
+
+  async loadAddresses() {
+    this.addresses = await this.userService.getAddresses().toPromise();
+    console.log(this.addresses);
+    
   }
 
   async loadStates() {

@@ -19,7 +19,7 @@
           [items]="convertedStates"
           label="استان"
           labelPosition="top"
-          formControlName="control"
+          formControlName="state"
           (onChange)="onStateChange($event)"
         ></prm-input-dropdown>
         <prm-input-dropdown
@@ -28,7 +28,7 @@
           [items]="convertedCities"
           label="شهر"
           labelPosition="top"
-          formControlName="control"
+          formControlName="city"
           (onChange)="onCityChange($event)"
         ></prm-input-dropdown>
         <prm-input-dropdown
@@ -37,31 +37,55 @@
           [items]="convertedDistricts"
           label="محله"
           labelPosition="top"
-          formControlName="control"
+          formControlName="district"
         ></prm-input-dropdown>
         <prm-input-text
           class="col-12 mb-3"
           label="نشانی پستی"
           labelPosition="top"
-          formControlName="control"
+          formControlName="address"
         ></prm-input-text>
         <prm-input-text
           class="col-3 mb-3"
           label="پلاک"
           labelPosition="top"
-          formControlName="control"
+          formControlName="plaque"
         ></prm-input-text>
         <prm-input-text
           class="col-3 mb-3"
           label="واحد"
           labelPosition="top"
-          formControlName="control"
+          formControlName="unit"
         ></prm-input-text>
         <prm-input-text
           labelPosition="top"
           class="col-6 mb-3"
           label="کدپستی"
-          formControlName="control"
+          formControlName="postalCode"
+        ></prm-input-text>
+        <prm-input-text
+          labelPosition="top"
+          class="col-6 mb-3"
+          label="نام"
+          formControlName="firstName"
+        ></prm-input-text>
+        <prm-input-text
+          labelPosition="top"
+          class="col-6 mb-3"
+          label="نام خانوادگی"
+          formControlName="lastName"
+        ></prm-input-text>
+        <prm-input-text
+          labelPosition="top"
+          class="col-6 mb-3"
+          label="کد ملی"
+          formControlName="nationalCode"
+        ></prm-input-text>
+        <prm-input-text
+          labelPosition="top"
+          class="col-6 mb-3"
+          label="شماره موبایل"
+          formControlName="mobileNo"
         ></prm-input-text>
         <div class="py-4 border-top col-12 text-left">
           <prm-button
@@ -69,7 +93,7 @@
             color="primary"
             (click)="onSubmitAddress()"
           ></prm-button>
-        </div>
+        </div> 
       </form>
     </div>
   </div>

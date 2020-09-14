@@ -13,6 +13,21 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
   styleUrls: ['./address-modify.component.scss'],
 })
 export class AddressModifyComponent implements OnInit {
+ 
+  form = new FormGroup({
+    state: new FormControl(null, Validators.required),
+    city: new FormControl(null, Validators.required),
+    district: new FormControl(null, Validators.required),
+    address: new FormControl(null, Validators.required),
+    plaque: new FormControl(null, Validators.required),
+    unit: new FormControl(null, Validators.required),
+    postalCode: new FormControl(null, Validators.required),
+    isReceiver: new FormControl(false, Validators.required),
+    firstName: new FormControl(null, Validators.required),
+    lastName: new FormControl(null, Validators.required),
+    nationalCode: new FormControl(null, Validators.required),
+    mobileNo: new FormControl(null, Validators.required),
+  });
   options = {
     layers: [
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -22,20 +37,6 @@ export class AddressModifyComponent implements OnInit {
     zoom: 16,
     center: latLng(35.6908164, 51.3802295),
   };
-  form = new FormGroup({
-    state: new FormControl(null, Validators.required),
-    city: new FormControl(null, Validators.required),
-    district: new FormControl(null, Validators.required),
-    address: new FormControl(null, Validators.required),
-    Plaque: new FormControl(null, Validators.required),
-    Unit: new FormControl(null, Validators.required),
-    PostalCode: new FormControl(null, Validators.required),
-    IsReceiver: new FormControl(false, Validators.required),
-    FirstName: new FormControl(null, Validators.required),
-    LastName: new FormControl(null, Validators.required),
-    NationalCode: new FormControl(null, Validators.required),
-    MobileNo: new FormControl(null, Validators.required),
-  });
   layers = [marker([35.6908164, 51.3802295])];
   originalStates: BaseState[];
   convertedStates: SelectItem[];
@@ -80,6 +81,7 @@ export class AddressModifyComponent implements OnInit {
     this.convertedDistricts = this.originalDistricts.map((item) => {
       return { label: item.title, value: item.id };
     });
+    
   }
 
   onStateChange(stateId) {

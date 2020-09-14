@@ -31,6 +31,14 @@ export class UserService extends BaseService {
     return this.post('/User/AddressInsert/', address, 'json');
   }
 
+  updateAddress(address:AddressModel) {
+    return this.put('/User/AddressUpdate/', address, 'json');
+  }
+
+  removeAddress(id) {
+    // return this.put('/User/AddressToggleActive/id', 'json');
+  }
+
   getProfileInfo() {
     return this.get<Profile>('/User/Profile/', 'json').pipe(
       map((res: any) => res.data)

@@ -285,7 +285,7 @@
             </div>
             <div class="tab-pane fade address">
               <div class="bg-white p-3 border shadow-sm rounded-lg">
-                <address-info [address]="address[0]"></address-info>
+                <address-info (onRemoveAddress)="onRemoveAddress($event)" (onEditAddress)="onEditAddress($event)" [address]="address[0]"></address-info>
               </div>
             </div>
           </div>

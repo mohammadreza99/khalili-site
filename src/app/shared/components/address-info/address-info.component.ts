@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component,EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AddressModifyComponent } from '../address-modify/address-modify.component';
 import { AddressModel } from '@app/modules/users/model/user.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'address-info',
@@ -11,11 +12,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AddressInfoComponent implements OnInit {
   @Input() address: AddressModel;
+  @Output() onEditAddress=new EventEmitter();
+  @Output() onRemoveAddress=new EventEmitter();
 
   constructor(public dialogService: DialogService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onEditClick() {
     this.dialogService.open(AddressModifyComponent, {
@@ -23,12 +25,11 @@ export class AddressInfoComponent implements OnInit {
       width: '800px',
       data: { id: '2' },
     }).onClose.subscribe((res) => {
-      console.log(res);
       if (res) {
-        let address: AddressModel=
-        {
-        lat:35.6908164,
-        lng:51.3802295,
+        let address: AddressModel={
+        id:this.address.id,
+        lat:res.lat,
+        lng:res.lng,
         districtId:res.district,
         address:res.address,
         plaque:res.plaque,
@@ -39,9 +40,13 @@ export class AddressInfoComponent implements OnInit {
         lastName:res.lastName,
         nationalCode:res.nationalCode,
         mobileNo:res.mobileNo
-        
         }
+        this.onEditAddress.emit(address);
       }
     });
+  }
+
+  onRemoveClick(){
+    this.onRemoveAddress.emit(this.address.id)
   }
 }

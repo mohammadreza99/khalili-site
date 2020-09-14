@@ -27,6 +27,8 @@ export class AddressModifyComponent implements OnInit {
     lastName: new FormControl(null, Validators.required),
     nationalCode: new FormControl(null, Validators.required),
     mobileNo: new FormControl(null, Validators.required),
+    lat: new FormControl(null, Validators.required),
+    lng: new FormControl(null, Validators.required),
   });
   options = {
     layers: [
@@ -57,6 +59,8 @@ export class AddressModifyComponent implements OnInit {
 
   leafletClick(args) {
     this.layers = [marker([args.latlng.lat, args.latlng.lng])];
+    this.form.controls['lat'].setValue(args.latlng.lat)
+    this.form.controls['lng'].setValue(args.latlng.lng)
   }
 
   async loadStates() {

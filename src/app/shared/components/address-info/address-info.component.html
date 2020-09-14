@@ -3,7 +3,7 @@
     <div class="full-address">{{ address.address }}</div>
     <div class="actions">
       <button class="btn btn-danger p-1 ml-2">
-        <small>حذف</small>
+        <small (click)="onRemoveClick()">حذف</small>
       </button>
       <button (click)="onEditClick()" class="btn btn-primary p-1">
         <small>ویرایش</small>

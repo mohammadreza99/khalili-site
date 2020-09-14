@@ -278,8 +278,6 @@ export class ProfilePage implements OnInit {
 
   async loadAddresses() {
     this.addresses = await this.userService.getAddresses().toPromise();
-    console.log(this.addresses);
-    
   }
 
   async loadStates() {
@@ -348,12 +346,15 @@ export class ProfilePage implements OnInit {
         telNumber:this.form.controls["telNumber"].value,
         cityId: this.form.controls["city"].value,
       };
-      console.log( this.organization );
-      
-      this.userService.insertOrUpdateOrganization(this.organization).subscribe((c)=>{
-        console.log(c);
-        
-      });
+      this.userService.insertOrUpdateOrganization(this.organization).subscribe();
     }
+  }
+
+  onEditAddress(address){
+    this.userService.updateAddress(address).subscribe();
+  }
+
+  onRemoveAddress(addressId){
+    // this.userService.removeAddress(addressId).subscribe();
   }
 }

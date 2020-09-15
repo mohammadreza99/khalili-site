@@ -36,7 +36,7 @@ export class UserService extends BaseService {
   }
 
   removeAddress(id) {
-    // return this.put('/User/AddressToggleActive/id', 'json');
+    
   }
 
   getProfileInfo() {

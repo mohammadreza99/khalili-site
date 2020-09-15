@@ -345,13 +345,16 @@ export class ProfilePage implements OnInit {
 
   onEditAddress(address) {
     this.userService.updateAddress(address).subscribe();
+    this.loadAddresses();
   }
 
   onAddAddress(address) {
     this.userService.insertAddress(address).subscribe();
+    this.loadAddresses();
   }
 
   onRemoveAddress(addressId) {
     // this.userService.removeAddress(addressId).subscribe();
+    this.loadAddresses();
   }
 }

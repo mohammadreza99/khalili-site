@@ -6,7 +6,8 @@ import {
   Password,
   BaseDistrict,
   BaseState,
-  OrganizationModel, AddressModel
+  OrganizationModel,
+  AddressModel,
 } from '../../model/user.model';
 import { UserService } from '../../business/user.service';
 import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
@@ -56,23 +57,23 @@ export class ProfilePage implements OnInit {
   convertedCities: SelectItem[];
   originalDistricts: BaseDistrict[];
   convertedDistricts: SelectItem[];
-  organization :OrganizationModel;
-  addresses:AddressModel[];
-  errors=[
+  organization: OrganizationModel;
+  addresses: AddressModel[];
+  errors = [
     {
-      type:"required",
-      message:"این فیلد الزامیست"
-    }
-  ]
+      type: 'required',
+      message: 'این فیلد الزامیست',
+    },
+  ];
   form = new FormGroup({
     id: new FormControl(null),
-    name: new FormControl(null,Validators.required),
-    economicCode: new FormControl(null,Validators.required),
-    nationalId: new FormControl(null,Validators.required),
-    registrationId: new FormControl(null,Validators.required),
-    state: new FormControl(null,Validators.required),
-    city: new FormControl(null,Validators.required),
-    telNumber: new FormControl(null,Validators.required),
+    name: new FormControl(null, Validators.required),
+    economicCode: new FormControl(null, Validators.required),
+    nationalId: new FormControl(null, Validators.required),
+    registrationId: new FormControl(null, Validators.required),
+    state: new FormControl(null, Validators.required),
+    city: new FormControl(null, Validators.required),
+    telNumber: new FormControl(null, Validators.required),
   });
 
   ngOnInit(): void {
@@ -81,7 +82,6 @@ export class ProfilePage implements OnInit {
     this.loadOrganization();
     this.loadAddresses();
   }
-
 
   onClickTab(event, tabPane, navs, active) {
     navs.querySelectorAll('.nav-link').forEach((element) => {
@@ -245,7 +245,7 @@ export class ProfilePage implements OnInit {
         // this.userService.insertOrUpdatePassword(res).subscribe();
       });
   }
-  
+
   async loadProfile() {
     this.userProfile = await this.userService.getProfileInfo().toPromise();
     this.userService.getJobs().subscribe((jobs) => {
@@ -256,7 +256,7 @@ export class ProfilePage implements OnInit {
         });
       this.jobTitle = this.jobs.find(
         (job) => job.value == this.userProfile.jobId
-      ).label;
+      )?.label;
     });
   }
 
@@ -273,17 +273,24 @@ export class ProfilePage implements OnInit {
 
   async loadOrganization() {
     this.organization = await this.userService.getOrganization().toPromise();
-    this.form.controls["id"].setValue(this.organization[0].id);
-    this.form.controls["name"].setValue(this.organization[0].name);
-    this.form.controls["economicCode"].setValue(this.organization[0].economicCode);
-    this.form.controls["registrationId"].setValue(this.organization[0].registrationId);
-    this.form.controls["nationalId"].setValue(this.organization[0].nationalId);
-    this.form.controls["telNumber"].setValue(this.organization[0].telNumber);
-    this.form.controls["city"].setValue(this.organization[0].cityId);
-    this.form.controls["state"].setValue(this.organization[0].stateId);
-    
+    if (this.organization[0]) {
+      this.form.controls['id'].setValue(this.organization[0].id);
+      this.form.controls['name'].setValue(this.organization[0].name);
+      this.form.controls['economicCode'].setValue(
+        this.organization[0].economicCode
+      );
+      this.form.controls['registrationId'].setValue(
+        this.organization[0].registrationId
+      );
+      this.form.controls['nationalId'].setValue(
+        this.organization[0].nationalId
+      );
+      this.form.controls['telNumber'].setValue(this.organization[0].telNumber);
+      this.form.controls['city'].setValue(this.organization[0].cityId);
+      this.form.controls['state'].setValue(this.organization[0].stateId);
+      this.loadCities(this.organization[0].stateId);
+    }
   }
-
   async loadCities(stateId: number) {
     this.originalCities = await this.userService.getCities(stateId).toPromise();
     this.convertedCities = [];
@@ -319,30 +326,32 @@ export class ProfilePage implements OnInit {
   onAvatarClick() {
     this.showAvatarDialog = true;
   }
-  
-  onSubmitOrganization(){
-    if(this.form.valid){
-      this.organization={
-        name: this.form.controls["name"].value,
-        economicCode:this.form.controls["economicCode"].value,
-        registrationId: this.form.controls["registrationId"].value,
-        nationalId: this.form.controls["nationalId"].value,
-        telNumber:this.form.controls["telNumber"].value,
-        cityId: this.form.controls["city"].value,
+
+  onSubmitOrganization() {
+    if (this.form.valid) {
+      this.organization = {
+        name: this.form.controls['name'].value,
+        economicCode: this.form.controls['economicCode'].value,
+        registrationId: this.form.controls['registrationId'].value,
+        nationalId: this.form.controls['nationalId'].value,
+        telNumber: this.form.controls['telNumber'].value,
+        cityId: this.form.controls['city'].value,
       };
-      this.userService.insertOrUpdateOrganization(this.organization).subscribe();
+      this.userService
+        .insertOrUpdateOrganization(this.organization)
+        .subscribe();
     }
   }
 
-  onEditAddress(address){
+  onEditAddress(address) {
     this.userService.updateAddress(address).subscribe();
   }
 
-  onAddAddress(address){
+  onAddAddress(address) {
     this.userService.insertAddress(address).subscribe();
   }
 
-  onRemoveAddress(addressId){
+  onRemoveAddress(addressId) {
     // this.userService.removeAddress(addressId).subscribe();
   }
 }

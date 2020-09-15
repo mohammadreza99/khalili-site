@@ -55,6 +55,7 @@ export class AddressModifyComponent implements OnInit {
 
   ngOnInit() {
     this.loadStates();
+    if(this.config.data.address){
     this.form.controls['state'].setValue(this.config.data.address.stateId);
     this.form.controls['city'].setValue(this.config.data.address.cityId);
     this.form.controls['district'].setValue(this.config.data.address.districtId);
@@ -69,8 +70,10 @@ export class AddressModifyComponent implements OnInit {
     this.form.controls['mobileNo'].setValue(this.config.data.address.mobileNo);
     this.form.controls['lat'].setValue(this.config.data.address.lat);
     this.form.controls['lng'].setValue(this.config.data.address.lng);
+    this.loadCities(this.config.data.address.stateId);
+    this.loadDistricts(this.config.data.address.cityId);
   }
-
+}
   leafletClick(args) {
     this.layers = [marker([args.latlng.lat, args.latlng.lng])];
     this.form.controls['lat'].setValue(args.latlng.lat)

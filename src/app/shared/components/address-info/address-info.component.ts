@@ -71,7 +71,7 @@ export class AddressInfoComponent implements OnInit {
         nationalCode:res.nationalCode,
         mobileNo:res.mobileNo
         }
-        this.onAddAddress.emit(_address);
+        this.onEditAddress.emit(_address);
       }
     });
   }

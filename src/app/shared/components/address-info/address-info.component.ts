@@ -11,15 +11,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./address-info.component.scss'],
 })
 export class AddressInfoComponent implements OnInit {
-  @Input() address: AddressModel;
+  @Input() addresses: AddressModel[];
   @Output() onEditAddress=new EventEmitter();
+  @Output() onAddAddress=new EventEmitter();
   @Output() onRemoveAddress=new EventEmitter();
 
   constructor(public dialogService: DialogService) {}
 
   ngOnInit() {}
 
-  onEditClick() {
+  onAddClick(){
     this.dialogService.open(AddressModifyComponent, {
       header: 'ویرایش نشانی',
       width: '800px',
@@ -27,7 +28,6 @@ export class AddressInfoComponent implements OnInit {
     }).onClose.subscribe((res) => {
       if (res) {
         let address: AddressModel={
-        id:this.address.id,
         lat:res.lat,
         lng:res.lng,
         districtId:res.district,
@@ -41,12 +41,41 @@ export class AddressInfoComponent implements OnInit {
         nationalCode:res.nationalCode,
         mobileNo:res.mobileNo
         }
-        this.onEditAddress.emit(address);
+        this.onAddAddress.emit(address);
       }
     });
   }
 
-  onRemoveClick(){
-    this.onRemoveAddress.emit(this.address.id)
+  onEditClick(id) {
+    this.dialogService.open(AddressModifyComponent, {
+      header: 'ویرایش نشانی',
+      width: '800px',
+      data: { 
+        id: '2' 
+      },
+    }).onClose.subscribe((res) => {
+      if (res) {
+        let address: AddressModel={
+        id:id,
+        lat:res.lat,
+        lng:res.lng,
+        districtId:res.district,
+        address:res.address,
+        plaque:res.plaque,
+        unit:res.unit,
+        postalCode:res.postalCode,
+        isReceiver:true,
+        firstName:res.firstName,
+        lastName:res.lastName,
+        nationalCode:res.nationalCode,
+        mobileNo:res.mobileNo
+        }
+        this.onAddAddress.emit(address);
+      }
+    });
+  }
+
+  onRemoveClick(id){
+    this.onRemoveAddress.emit(id)
   }
 }

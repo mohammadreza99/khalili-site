@@ -354,6 +354,10 @@ export class ProfilePage implements OnInit {
     this.userService.updateAddress(address).subscribe();
   }
 
+  onAddAddress(address){
+    this.userService.insertAddress(address).subscribe();
+  }
+
   onRemoveAddress(addressId){
     // this.userService.removeAddress(addressId).subscribe();
   }

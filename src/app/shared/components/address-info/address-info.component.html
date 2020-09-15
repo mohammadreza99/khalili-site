@@ -1,11 +1,11 @@
-<div class="address-box py-2 border-bottom">
+<div class="address-box py-2 border-bottom" *ngFor="let address of addresses">
   <div class="d-flex align-items-center justify-content-between">
     <div class="full-address">{{ address.address }}</div>
     <div class="actions">
       <button class="btn btn-danger p-1 ml-2">
-        <small (click)="onRemoveClick()">حذف</small>
+        <small (click)="onRemoveClick(address.id)">حذف</small>
       </button>
-      <button (click)="onEditClick()" class="btn btn-primary p-1">
+      <button (click)="onEditClick(address.id)" class="btn btn-primary p-1">
         <small>ویرایش</small>
       </button>
     </div>
@@ -35,6 +35,9 @@
     </span>
   </div>
 </div>
+<button (click)="onAddClick()" class="btn btn-primary p-1">
+  <small>افزودن</small>
+</button>
 <!-- 
 <p-dialog
   header="ویرایش مقادیر اولیه"

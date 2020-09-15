@@ -5,7 +5,7 @@
       <button class="btn btn-danger p-1 ml-2">
         <small (click)="onRemoveClick(address.id)">حذف</small>
       </button>
-      <button (click)="onEditClick(address.id)" class="btn btn-primary p-1">
+      <button (click)="onEditClick(address)" class="btn btn-primary p-1">
         <small>ویرایش</small>
       </button>
     </div>
@@ -38,7 +38,7 @@
 <button (click)="onAddClick()" class="btn btn-primary p-1">
   <small>افزودن</small>
 </button>
-<!-- 
+<!--
 <p-dialog
   header="ویرایش مقادیر اولیه"
   [(visible)]="showAddressDetailsDialog"

@@ -13,7 +13,7 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
   styleUrls: ['./address-modify.component.scss'],
 })
 export class AddressModifyComponent implements OnInit {
- 
+
   form = new FormGroup({
     state: new FormControl(null, Validators.required),
     city: new FormControl(null, Validators.required),
@@ -55,6 +55,20 @@ export class AddressModifyComponent implements OnInit {
 
   ngOnInit() {
     this.loadStates();
+    this.form.controls['state'].setValue(this.config.data.address.stateId);
+    this.form.controls['city'].setValue(this.config.data.address.cityId);
+    this.form.controls['district'].setValue(this.config.data.address.districtId);
+    this.form.controls['address'].setValue(this.config.data.address.address);
+    this.form.controls['plaque'].setValue(this.config.data.address.plaque);
+    this.form.controls['unit'].setValue(this.config.data.address.unit);
+    this.form.controls['postalCode'].setValue(this.config.data.address.postalCode);
+    this.form.controls['isReceiver'].setValue(this.config.data.address.isReceiver);
+    this.form.controls['firstName'].setValue(this.config.data.address.firstName);
+    this.form.controls['lastName'].setValue(this.config.data.address.lastName);
+    this.form.controls['nationalCode'].setValue(this.config.data.address.nationalCode);
+    this.form.controls['mobileNo'].setValue(this.config.data.address.mobileNo);
+    this.form.controls['lat'].setValue(this.config.data.address.lat);
+    this.form.controls['lng'].setValue(this.config.data.address.lng);
   }
 
   leafletClick(args) {
@@ -85,7 +99,7 @@ export class AddressModifyComponent implements OnInit {
     this.convertedDistricts = this.originalDistricts.map((item) => {
       return { label: item.title, value: item.id };
     });
-    
+
   }
 
   onStateChange(stateId) {

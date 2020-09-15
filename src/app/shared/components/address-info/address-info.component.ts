@@ -24,7 +24,8 @@ export class AddressInfoComponent implements OnInit {
     this.dialogService.open(AddressModifyComponent, {
       header: 'ویرایش نشانی',
       width: '800px',
-      data: { id: '2' },
+      data: {
+        },
     }).onClose.subscribe((res) => {
       if (res) {
         let address: AddressModel={
@@ -46,17 +47,17 @@ export class AddressInfoComponent implements OnInit {
     });
   }
 
-  onEditClick(id) {
+  onEditClick(address) {
     this.dialogService.open(AddressModifyComponent, {
       header: 'ویرایش نشانی',
       width: '800px',
-      data: { 
-        id: '2' 
+      data: {
+        address: address
       },
     }).onClose.subscribe((res) => {
       if (res) {
-        let address: AddressModel={
-        id:id,
+        let _address: AddressModel={
+        id:address.id,
         lat:res.lat,
         lng:res.lng,
         districtId:res.district,
@@ -70,7 +71,7 @@ export class AddressInfoComponent implements OnInit {
         nationalCode:res.nationalCode,
         mobileNo:res.mobileNo
         }
-        this.onAddAddress.emit(address);
+        this.onAddAddress.emit(_address);
       }
     });
   }

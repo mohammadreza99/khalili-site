@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
         filter((r) => r.outlet === 'primary'),
         mergeMap((r) => r.data),
         map((event) => {
-          return event['breadcrumb'];
+          return event['title'];
         })
       )
       .subscribe((titleString) => {

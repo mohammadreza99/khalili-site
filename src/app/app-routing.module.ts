@@ -4,28 +4,26 @@ import { MainPage } from './main/main/main.page';
 import { AuthGuard } from './modules/auth/business/auth.guard';
 
 const routes: Routes = [
-  // {
-  // path: 'login',
-  // component:LoginPage
-  // data: { breadcrumb: '' },
-  // },
   {
     path: 'auth',
+    data: { title: '' },
     loadChildren: () =>
       import('@modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '',
     component: MainPage,
-    data: { breadcrumb: '' },
+    data: { title: '' },
     children: [
       {
         path: '',
+        data: { title: '' },
         loadChildren: () =>
           import('@modules/home/home.module').then((m) => m.HomeModule),
       },
       {
         path: 'products',
+        data: { title: '' },
         loadChildren: () =>
           import('@modules/products/products.module').then(
             (m) => m.ProductsModule
@@ -33,17 +31,20 @@ const routes: Routes = [
       },
       {
         path: 'guide',
+        data: { title: '' },
         loadChildren: () =>
           import('@modules/guide/guide.module').then((m) => m.GuideModule),
       },
       {
         path: 'orders',
+        data: { title: '' },
         loadChildren: () =>
           import('@modules/orders/orders.module').then((m) => m.OrdersModule),
       },
       {
         path: 'sellers',
-        canActivate:[AuthGuard],
+        data: { title: '' },
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('@modules/sellers/sellers.module').then(
             (m) => m.SellersModule
@@ -51,6 +52,7 @@ const routes: Routes = [
       },
       {
         path: 'users',
+        data: { title: '' },
         loadChildren: () =>
           import('@modules/users/users.module').then((m) => m.UsersModule),
       },

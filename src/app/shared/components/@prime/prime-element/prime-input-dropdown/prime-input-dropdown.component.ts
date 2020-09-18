@@ -60,14 +60,14 @@ export class PrimeInputDropdownComponent
   ngOnInit() {
     super.ngOnInit();
     this.selectId = this.getId();
-    if (typeof this.items[0] == 'string')
+    if (this.items && typeof this.items[0] == 'string')
       for (const item of this.items)
         this._items.push(this.createFilterOptions(item));
     else this._items = this.items;
   }
 
   ngOnChanges() {
-    if (typeof this.items[0] == 'string')
+    if (this.items && typeof this.items[0] == 'string')
       for (const item of this.items)
         this._items.push(this.createFilterOptions(item));
     else this._items = this.items;

@@ -13,7 +13,6 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
   styleUrls: ['./address-modify.component.scss'],
 })
 export class AddressModifyComponent implements OnInit {
-
   form = new FormGroup({
     state: new FormControl(null, Validators.required),
     city: new FormControl(null, Validators.required),
@@ -22,7 +21,7 @@ export class AddressModifyComponent implements OnInit {
     plaque: new FormControl(null, Validators.required),
     unit: new FormControl(null, Validators.required),
     postalCode: new FormControl(null, Validators.required),
-    isReceiver: new FormControl(false, Validators.required),
+    isReceiver: new FormControl(false),
     firstName: new FormControl(null, Validators.required),
     lastName: new FormControl(null, Validators.required),
     nationalCode: new FormControl(null, Validators.required),
@@ -40,6 +39,7 @@ export class AddressModifyComponent implements OnInit {
     center: latLng(35.6908164, 51.3802295),
   };
   layers = [marker([35.6908164, 51.3802295])];
+
   originalStates: BaseState[];
   convertedStates: SelectItem[];
   originalCities: BaseState[];
@@ -50,34 +50,38 @@ export class AddressModifyComponent implements OnInit {
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
     this.loadStates();
-    if(this.config.data.address){
-    this.form.controls['state'].setValue(this.config.data.address.stateId);
-    this.form.controls['city'].setValue(this.config.data.address.cityId);
-    this.form.controls['district'].setValue(this.config.data.address.districtId);
-    this.form.controls['address'].setValue(this.config.data.address.address);
-    this.form.controls['plaque'].setValue(this.config.data.address.plaque);
-    this.form.controls['unit'].setValue(this.config.data.address.unit);
-    this.form.controls['postalCode'].setValue(this.config.data.address.postalCode);
-    this.form.controls['isReceiver'].setValue(this.config.data.address.isReceiver);
-    this.form.controls['firstName'].setValue(this.config.data.address.firstName);
-    this.form.controls['lastName'].setValue(this.config.data.address.lastName);
-    this.form.controls['nationalCode'].setValue(this.config.data.address.nationalCode);
-    this.form.controls['mobileNo'].setValue(this.config.data.address.mobileNo);
-    this.form.controls['lat'].setValue(this.config.data.address.lat);
-    this.form.controls['lng'].setValue(this.config.data.address.lng);
-    this.loadCities(this.config.data.address.stateId);
-    this.loadDistricts(this.config.data.address.cityId);
+    const address = this.config.data.address;
+    if (address) {
+      this.form.setValue({
+        state: address.stateId,
+        city: address.cityId,
+        district: address.districtId,
+        address: address.address,
+        plaque: address.plaque,
+        unit: address.unit,
+        postalCode: address.postalCode,
+        isReceiver: address.isReceiver,
+        firstName: address.firstName,
+        lastName: address.lastName,
+        nationalCode: address.nationalCode,
+        mobileNo: address.mobileNo,
+        lat: address.lat,
+        lng: address.lng,
+      });
+      this.loadCities(address.stateId);
+      this.loadDistricts(address.cityId);
+    }
   }
-}
+
   leafletClick(args) {
     this.layers = [marker([args.latlng.lat, args.latlng.lng])];
-    this.form.controls['lat'].setValue(args.latlng.lat)
-    this.form.controls['lng'].setValue(args.latlng.lng)
+    this.form.controls['lat'].setValue(args.latlng.lat);
+    this.form.controls['lng'].setValue(args.latlng.lng);
   }
 
   async loadStates() {
@@ -102,7 +106,6 @@ export class AddressModifyComponent implements OnInit {
     this.convertedDistricts = this.originalDistricts.map((item) => {
       return { label: item.title, value: item.id };
     });
-
   }
 
   onStateChange(stateId) {
@@ -114,6 +117,6 @@ export class AddressModifyComponent implements OnInit {
   }
 
   onSubmitAddress() {
-    this.ref.close(this.form.value);
+    if (this.form.valid) this.ref.close(this.form.value);
   }
 }

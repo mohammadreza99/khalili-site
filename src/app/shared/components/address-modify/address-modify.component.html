@@ -63,37 +63,46 @@
           label="کدپستی"
           formControlName="postalCode"
         ></prm-input-text>
-        <prm-input-text
-          labelPosition="top"
-          class="col-6 mb-3"
-          label="نام"
-          formControlName="firstName"
-        ></prm-input-text>
-        <prm-input-text
-          labelPosition="top"
-          class="col-6 mb-3"
-          label="نام خانوادگی"
-          formControlName="lastName"
-        ></prm-input-text>
-        <prm-input-text
-          labelPosition="top"
-          class="col-6 mb-3"
-          label="کد ملی"
-          formControlName="nationalCode"
-        ></prm-input-text>
-        <prm-input-text
-          labelPosition="top"
-          class="col-6 mb-3"
-          label="شماره موبایل"
-          formControlName="mobileNo"
-        ></prm-input-text>
+        <prm-input-checkbox-single
+          class="col-12 mb-3"
+          label="گیرنده سفارش خودم هستم"
+          [formControl]="form.get('isReceiver')"
+        ></prm-input-checkbox-single>
+        <div class="col-12" *ngIf="form.get('isReceiver').value == false">
+          <div class="row">
+            <prm-input-text
+              labelPosition="top"
+              class="col-6 mb-3"
+              label="نام گیرنده"
+              formControlName="firstName"
+            ></prm-input-text>
+            <prm-input-text
+              labelPosition="top"
+              class="col-6 mb-3"
+              label="نام خانوادگی گیرنده"
+              formControlName="lastName"
+            ></prm-input-text>
+            <prm-input-text
+              labelPosition="top"
+              class="col-6 mb-3"
+              label="کدملی گیرنده"
+              formControlName="nationalCode"
+            ></prm-input-text>
+            <prm-input-text
+              labelPosition="top"
+              class="col-6 mb-3"
+              label="شماره موبایل"
+              formControlName="mobileNo"
+            ></prm-input-text>
+          </div>
+        </div>
         <div class="py-4 border-top col-12 text-left">
           <prm-button
             label="تایید و ثبت"
             color="primary"
             (click)="onSubmitAddress()"
           ></prm-button>
-        </div> 
+        </div>
       </form>
     </div>
   </div>

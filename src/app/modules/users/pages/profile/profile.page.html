@@ -7,14 +7,14 @@
             <div class="bg-light rounded-top d-flex align-items-center p-2">
               <img
                 (click)="onAvatarClick()"
-                [src]="'../../../../../assets/images/avatar/'+ (userProfile?.avatar || '1.png')"
+                [src]="'../../../../../assets/images/avatar/'+ (userProfile.avatar || '1.png')"
                 class="rounded-circle"
               />
               <div class="user-info mr-3">
                 <p class="mb-0">
                   {{userProfile.firstName + ' ' + userProfile.lastName}}
                 </p>
-                <small class="text-muted">09391886467</small>
+                <small class="text-muted">{{userProfile.mobileNo}}</small>
               </div>
             </div>
             <a
@@ -33,6 +33,7 @@
               >آدرس ها</a
             >
             <button
+              (click)="logout()"
               type="button"
               class="btn btn-link text-right text-danger mt-4 border-top"
             >
@@ -216,37 +217,37 @@
                     <h5>اطلاعات حقوقی</h5>
                   </div>
                 </div>
-                <form class="form-row" [formGroup]="form">
+                <form class="form-row" [formGroup]="organizationForm">
                   <prm-input-text
-                    [errors]="errors"
+                    [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
                     class="col-6 mb-3"
                     label="نام سازمان"
                     labelPosition="top"
                     formControlName="name"
                   ></prm-input-text>
                   <prm-input-text
-                    [errors]="errors"
+                    [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
                     class="col-6 mb-3"
                     label="کد اقتصادی"
                     labelPosition="top"
                     formControlName="economicCode"
                   ></prm-input-text>
                   <prm-input-text
-                    [errors]="errors"
+                    [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
                     class="col-6 mb-3"
                     label="شناسه ملی"
                     labelPosition="top"
                     formControlName="nationalId"
                   ></prm-input-text>
                   <prm-input-text
-                    [errors]="errors"
+                    [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
                     class="col-6 mb-3"
                     label="شناسه ثبت"
                     labelPosition="top"
                     formControlName="registrationId"
                   ></prm-input-text>
                   <prm-input-dropdown
-                    [errors]="errors"
+                    [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
                     *ngIf="convertedStates"
                     class="col-6 mb-3"
                     [items]="convertedStates"
@@ -256,7 +257,7 @@
                     (onChange)="onStateChange($event)"
                   ></prm-input-dropdown>
                   <prm-input-dropdown
-                    [errors]="errors"
+                    [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
                     [disabled]="!convertedCities"
                     class="col-6 mb-3"
                     [items]="convertedCities"
@@ -266,7 +267,7 @@
                     (onChange)="onCityChange($event)"
                   ></prm-input-dropdown>
                   <prm-input-text
-                    [errors]="errors"
+                    [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
                     class="col-6 mb-3"
                     label="شماره تلفن ثابت"
                     labelPosition="top"
@@ -310,7 +311,7 @@
     <div class="col-12">
       <div class="row">
         <div
-          *ngFor="let avatar of avatars"
+          *ngFor="let avatar of avatarNames"
           class="col-4 d-flex justify-content-center"
         >
           <img

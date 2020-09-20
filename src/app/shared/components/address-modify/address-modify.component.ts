@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '@app/modules/users/business/user.service';
-import { BaseDistrict, BaseState } from '@app/modules/users/model/user.model';
+import { Profile } from '@app/modules/users/model/user.model';
 import { tileLayer, latLng, marker } from 'leaflet';
 import { SelectItem } from 'primeng';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -39,12 +39,10 @@ export class AddressModifyComponent implements OnInit {
     center: latLng(35.6908164, 51.3802295),
   };
   layers = [marker([35.6908164, 51.3802295])];
+  currentUser: Profile;
 
-  originalStates: BaseState[];
   convertedStates: SelectItem[];
-  originalCities: BaseState[];
   convertedCities: SelectItem[];
-  originalDistricts: BaseDistrict[];
   convertedDistricts: SelectItem[];
 
   constructor(
@@ -84,30 +82,6 @@ export class AddressModifyComponent implements OnInit {
     this.form.controls['lng'].setValue(args.latlng.lng);
   }
 
-  async loadStates() {
-    this.originalStates = await this.userService.getStates().toPromise();
-    this.convertedStates = this.originalStates.map((item) => {
-      return { label: item.title, value: item.id };
-    });
-  }
-
-  async loadCities(stateId: number) {
-    this.originalCities = await this.userService.getCities(stateId).toPromise();
-    this.convertedCities = [];
-    this.convertedCities = this.originalCities.map((item) => {
-      return { label: item.title, value: item.id };
-    });
-  }
-
-  async loadDistricts(cityId: number) {
-    this.originalDistricts = await this.userService
-      .getDistricts(cityId)
-      .toPromise();
-    this.convertedDistricts = this.originalDistricts.map((item) => {
-      return { label: item.title, value: item.id };
-    });
-  }
-
   onStateChange(stateId) {
     this.loadCities(stateId);
   }
@@ -116,7 +90,47 @@ export class AddressModifyComponent implements OnInit {
     this.loadDistricts(cityId);
   }
 
+  onReceiveChange(isReceiver: boolean) {
+    if (isReceiver) {
+      this.userService.getProfileInfo().subscribe((res) => {
+        console.log(res);
+        // this.form.patchValue({
+        //   firstName: this.currentUser.firstName,
+        //   lastName: this.currentUser.lastName,
+        //   nationalCode: this.currentUser.nationalCode,
+        //   // mobileNo: ,
+        // });
+      });
+    }
+  }
+
   onSubmitAddress() {
     if (this.form.valid) this.ref.close(this.form.value);
+  }
+
+  async loadStates() {
+    const originalStates = await this.userService.getStates().toPromise();
+    this.convertedStates = originalStates.map((item) => {
+      return { label: item.title, value: item.id };
+    });
+  }
+
+  async loadCities(stateId: number) {
+    const originalCities = await this.userService
+      .getCities(stateId)
+      .toPromise();
+    this.convertedCities = [];
+    this.convertedCities = originalCities.map((item) => {
+      return { label: item.title, value: item.id };
+    });
+  }
+
+  async loadDistricts(cityId: number) {
+    const originalDistricts = await this.userService
+      .getDistricts(cityId)
+      .toPromise();
+    this.convertedDistricts = originalDistricts.map((item) => {
+      return { label: item.title, value: item.id };
+    });
   }
 }

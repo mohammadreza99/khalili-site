@@ -33,6 +33,7 @@ import { PrimeInputTagsComponent } from './prime-input-tags/prime-input-tags.com
 import { PrimeInputTextComponent } from './prime-input-text/prime-input-text.component';
 import { PrimeInputTextareaComponent } from './prime-input-textarea/prime-input-textarea.component';
 import { PrimeInputEditorComponent } from './prime-input-editor/prime-input-editor.component';
+import { NumberOnlyDirective } from '../prime-directive/number-only.directive';
 
 export const ELEMENTS = [
   PrimeButtonComponent,
@@ -70,5 +71,6 @@ export const ELEMENTS = [
   PrimeInputTextComponent,
   PrimeInputTextareaComponent,
   PrimeInputEditorComponent,
+  NumberOnlyDirective,
 ];
 export const ENTRY_COMPONENTS = [];

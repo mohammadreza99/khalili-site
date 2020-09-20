@@ -1,12 +1,24 @@
 export class Profile {
+  constructor() {
+    this.avatar = null;
+    this.firstName = null;
+    this.lastName = null;
+    this.email = null;
+    this.nationalCode = null;
+    this.birthDate = null;
+    this.jobId = null;
+    this.cardNumber = null;
+  }
   avatar: string;
   firstName: string;
   lastName: string;
+  mobileNo?: string;
   email: string;
   nationalCode: string;
   birthDate: string;
   jobId: number;
   cardNumber: string;
+  isPassword?: boolean;
 }
 
 export class AddressModel {

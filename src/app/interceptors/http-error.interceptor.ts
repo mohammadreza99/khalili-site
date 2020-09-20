@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  ComponentFactoryResolver,
-  ViewContainerRef,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -11,7 +7,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, finalize } from 'rxjs/operators';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {

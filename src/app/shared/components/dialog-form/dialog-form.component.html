@@ -8,6 +8,7 @@
       />
       <prm-input-text
         *ngSwitchCase="'text'"
+        [type]="item.inputMode || 'text'"
         [label]="item.label ? item.label : ''"
         [labelWidth]="item.labelWidth"
         [placeholder]="item.placeholder ? item.placeholder : ''"

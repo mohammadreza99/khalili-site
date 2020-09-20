@@ -1,1 +1,86 @@
-<p>profile-info works!</p>
+<div class="bg-white p-3 border shadow-sm rounded-lg mb-3">
+  <div class="row">
+    <div class="col-12">
+      <h5>اطلاعات حساب</h5>
+    </div>
+    <div class="col-6">
+      <div
+        class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+      >
+        <div class="info">
+          <p class="mb-0">نام و نام خانوادگی</p>
+          <span class="text-muted">{{
+            userProfile.firstName + " " + userProfile.lastName || "-"
+          }}</span>
+        </div>
+        <i class="fa fa-edit" (click)="onEditFullName()"></i>
+      </div>
+    </div>
+    <div class="col-6">
+      <div
+        class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+      >
+        <div class="info">
+          <p class="mb-0">کدملی</p>
+          <span class="text-muted">{{ userProfile.nationalCode || "-" }}</span>
+        </div>
+        <i class="fa fa-edit" (click)="onEditNationalCode()"></i>
+      </div>
+    </div>
+    <div class="col-6">
+      <div
+        class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+      >
+        <div class="info">
+          <p class="mb-0">ایمیل</p>
+          <span class="text-muted">{{ userProfile.email || "-" }}</span>
+        </div>
+        <i class="fa fa-edit" (click)="onEditEmail()"></i>
+      </div>
+    </div>
+    <div class="col-6">
+      <div
+        class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+      >
+        <div class="info">
+          <p class="mb-0">تاریخ تولد</p>
+          <span class="text-muted">{{ userProfile.birthDate || "-" }}</span>
+        </div>
+        <i class="fa fa-edit" (click)="onEditBirthDate()"></i>
+      </div>
+    </div>
+    <div class="col-6">
+      <div
+        class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+      >
+        <div class="info">
+          <p class="mb-0">شغل</p>
+          <span class="text-muted">{{ jobTitle || "-" }}</span>
+        </div>
+        <i class="fa fa-edit" (click)="onEditJob()"></i>
+      </div>
+    </div>
+    <div class="col-6">
+      <div
+        class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+      >
+        <div class="info">
+          <p class="mb-0">شماره کارت جهت مرجوعی وجه</p>
+          <span class="text-muted">{{ userProfile.cardNumber || "-" }}</span>
+        </div>
+        <i class="fa fa-edit" (click)="onEditCarNumber()"></i>
+      </div>
+    </div>
+    <div class="col-6">
+      <div
+        class="box d-flex align-items-center justify-content-between py-3 border-bottom"
+      >
+        <div class="info">
+          <p class="mb-0">رمز عبور</p>
+          <span class="text-muted">******</span>
+        </div>
+        <i class="fa fa-edit" (click)="onEditPasword()"></i>
+      </div>
+    </div>
+  </div>
+</div>

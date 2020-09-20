@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { User, CheckOtpModel, CheckPasswordModel, ChangePasswordModel } from '../model/auth.model';
+import {
+  User,
+  CheckOtpModel,
+  CheckPasswordModel,
+  ChangePasswordModel,
+} from '../model/auth.model';
 import { BaseService } from '@app/services/base.service';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService extends BaseService {
+  constructor(private router: Router) {
+    super();
+  }
   register(mobileNo: string) {
     return this.post('/User/Register/', { mobileNo }, 'json');
   }
@@ -24,9 +33,9 @@ export class AuthService extends BaseService {
   }
 
   changePass(changePass: ChangePasswordModel) {
-    return this.post(' /User/SetOrChangePassword/', changePass , 'json');
+    return this.post(' /User/SetOrChangePassword/', changePass, 'json');
   }
-  
+
   saveToken(token: string) {
     localStorage.setItem('token', token);
   }
@@ -40,6 +49,8 @@ export class AuthService extends BaseService {
   }
 
   logout() {
-    localStorage.clear();
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
+    window.location.reload();
   }
 }

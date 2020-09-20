@@ -1,20 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { DialogFormService } from '@app/services/dialog-form.service';
 import {
   Profile,
-  BaseJob,
   Password,
-  BaseDistrict,
-  BaseState,
   OrganizationModel,
   AddressModel,
 } from '../../model/user.model';
 import { UserService } from '../../business/user.service';
-import { tileLayer, latLng, circle, polygon, marker, icon } from 'leaflet';
 import * as moment from 'jalali-moment';
-import { Observable } from 'rxjs';
 import { SelectItem } from 'primeng';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataService } from '@app/services/data.service';
+import { AuthService } from '@app/modules/auth/business/auth.service';
 
 @Component({
   selector: 'profile',
@@ -24,7 +21,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ProfilePage implements OnInit {
   constructor(
     private dialogFormService: DialogFormService,
-    private userService: UserService
+    private dataService: DataService,
+    private userService: UserService,
+    private vcRef: ViewContainerRef,
+    private authService: AuthService
   ) {}
 
   cols = [
@@ -45,27 +45,13 @@ export class ProfilePage implements OnInit {
     { brand: 'Ford', year: 2000, color: 'Black', vin: 'h54hw5' },
     { brand: 'Fiat', year: 2013, color: 'Red', vin: '245t2s' },
   ];
+
   userProfile: Profile;
   pass: Password;
   jobs = [];
   jobTitle = '';
-  showAvatarDialog = false;
-  avatars = ['1', '2', '3', '4', '5', '6'];
-  originalStates: BaseState[];
-  convertedStates: SelectItem[];
-  originalCities: BaseState[];
-  convertedCities: SelectItem[];
-  originalDistricts: BaseDistrict[];
-  convertedDistricts: SelectItem[];
   organization: OrganizationModel;
-  addresses: AddressModel[];
-  errors = [
-    {
-      type: 'required',
-      message: 'این فیلد الزامیست',
-    },
-  ];
-  form = new FormGroup({
+  organizationForm = new FormGroup({
     id: new FormControl(null),
     name: new FormControl(null, Validators.required),
     economicCode: new FormControl(null, Validators.required),
@@ -76,6 +62,14 @@ export class ProfilePage implements OnInit {
     telNumber: new FormControl(null, Validators.required),
   });
 
+  showAvatarDialog = false;
+  avatarNames = ['1', '2', '3', '4', '5', '6'];
+
+  addresses: AddressModel[];
+  convertedStates: SelectItem[];
+  convertedCities: SelectItem[];
+  convertedDistricts: SelectItem[];
+
   ngOnInit(): void {
     this.loadProfile();
     this.loadStates();
@@ -83,19 +77,9 @@ export class ProfilePage implements OnInit {
     this.loadAddresses();
   }
 
-  onClickTab(event, tabPane, navs, active) {
-    navs.querySelectorAll('.nav-link').forEach((element) => {
-      element.classList.remove('active');
-    });
-    tabPane.querySelectorAll('.tab-pane').forEach((element) => {
-      element.classList.remove('show');
-      element.classList.remove('active');
-    });
-    event.target.classList.add('active');
-    tabPane.querySelector(`.${active}`).classList.add('show');
-    tabPane.querySelector(`.${active}`).classList.add('active');
-  }
-
+  ///////////////////////////////////////////////////////////////////////
+  //                              Profile                              //
+  ///////////////////////////////////////////////////////////////////////
   onEditFullName() {
     this.dialogFormService
       .show('نام و نام خانوادگی', [
@@ -103,6 +87,7 @@ export class ProfilePage implements OnInit {
           type: 'text',
           formControlName: 'firstName',
           value: this.userProfile.firstName,
+          errors: [{ type: 'required', message: 'این فیلد الزامیست' }],
           label: 'نام',
           labelWidth: 80,
         },
@@ -110,6 +95,7 @@ export class ProfilePage implements OnInit {
           type: 'text',
           formControlName: 'lastName',
           value: this.userProfile.lastName,
+          errors: [{ type: 'required', message: 'این فیلد الزامیست' }],
           label: 'نام خانوادگی',
           labelWidth: 80,
         },
@@ -118,7 +104,9 @@ export class ProfilePage implements OnInit {
         if (res) {
           this.userProfile.firstName = res.firstName;
           this.userProfile.lastName = res.lastName;
-          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+          this.userService.insertOrUpdateProfile(res).subscribe(() => {
+            this.dataService.successfullMessage(this.vcRef);
+          });
         }
       });
   }
@@ -130,6 +118,7 @@ export class ProfilePage implements OnInit {
           type: 'text',
           formControlName: 'nationalCode',
           value: this.userProfile.nationalCode,
+          errors: [{ type: 'required', message: 'این فیلد الزامیست' }],
           label: 'کد ملی',
           labelWidth: 80,
         },
@@ -137,7 +126,9 @@ export class ProfilePage implements OnInit {
       .onClose.subscribe((res) => {
         if (res) {
           this.userProfile.nationalCode = res.nationalCode;
-          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+          this.userService.insertOrUpdateProfile(res).subscribe(() => {
+            this.dataService.successfullMessage(this.vcRef);
+          });
         }
       });
   }
@@ -149,6 +140,10 @@ export class ProfilePage implements OnInit {
           type: 'text',
           formControlName: 'email',
           value: this.userProfile.email,
+          errors: [
+            { type: 'email', message: 'لطفا ایمیل معتبر وارد کنید' },
+            { type: 'required', message: 'این فیلد الزامیست' },
+          ],
           label: 'ایمیل',
           labelWidth: 80,
         },
@@ -156,7 +151,9 @@ export class ProfilePage implements OnInit {
       .onClose.subscribe((res) => {
         if (res) {
           this.userProfile.email = res.email;
-          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+          this.userService.insertOrUpdateProfile(res).subscribe(() => {
+            this.dataService.successfullMessage(this.vcRef);
+          });
         }
       });
   }
@@ -168,6 +165,7 @@ export class ProfilePage implements OnInit {
           type: 'date-picker',
           formControlName: 'birthDate',
           value: this.userProfile.birthDate,
+          errors: [{ type: 'required', message: 'این فیلد الزامیست' }],
           label: 'تاریخ تولد',
           labelWidth: 80,
         },
@@ -177,7 +175,15 @@ export class ProfilePage implements OnInit {
           this.userProfile.birthDate = moment(
             res.birthDate.momentObj._d
           ).format('jYYYY/jMM/jDD');
-          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+          this.userService
+            .insertOrUpdateProfile({
+              birthDate: moment(res.birthDate.momentObj._d).format(
+                'jYYYY/jMM/jDD'
+              ),
+            } as Profile)
+            .subscribe(() => {
+              this.dataService.successfullMessage(this.vcRef);
+            });
         }
       });
   }
@@ -190,6 +196,7 @@ export class ProfilePage implements OnInit {
           dropdownItems: this.jobs,
           formControlName: 'jobId',
           value: this.userProfile.jobId,
+          errors: [{ type: 'required', message: 'این فیلد الزامیست' }],
           label: 'شغل',
           labelWidth: 80,
         },
@@ -200,7 +207,9 @@ export class ProfilePage implements OnInit {
           this.jobTitle = this.jobs.find(
             (job) => job.value == this.userProfile.jobId
           ).label;
-          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+          this.userService.insertOrUpdateProfile(res).subscribe(() => {
+            this.dataService.successfullMessage(this.vcRef);
+          });
         }
       });
   }
@@ -212,6 +221,7 @@ export class ProfilePage implements OnInit {
           type: 'text',
           formControlName: 'cardNumber',
           value: this.userProfile.cardNumber,
+          errors: [{ type: 'required', message: 'این فیلد الزامیست' }],
           label: 'شماره کارت',
           labelWidth: 80,
         },
@@ -219,33 +229,129 @@ export class ProfilePage implements OnInit {
       .onClose.subscribe((res) => {
         if (res) {
           this.userProfile.cardNumber = res.cardNumber;
-          this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
+          this.userService.insertOrUpdateProfile(res).subscribe(() => {
+            this.dataService.successfullMessage(this.vcRef);
+          });
         }
       });
   }
 
   onEditPasword() {
-    this.dialogFormService
-      .show('رمزعبور', [
-        {
-          type: 'text',
-          formControlName: 'oldPassword',
-          label: 'رمز عبور قبلی',
-          labelWidth: 80,
-        },
-        {
-          type: 'text',
-          formControlName: 'password',
-          label: 'رمزعبور',
-          labelWidth: 80,
-        },
-      ])
-      .onClose.subscribe((res) => {
-        // if(res && res.password && res.oldPassword)
-        // this.userService.insertOrUpdatePassword(res).subscribe();
-      });
+    console.log(this.userProfile);
+    if (this.userProfile.isPassword) {
+      this.dialogFormService
+        .show('ویرایش رمز عبور', [
+          {
+            type: 'text',
+            formControlName: 'oldPassword',
+            label: 'رمز عبور قبلی',
+            inputMode: 'password',
+            errors: [{ type: 'required', message: 'این فیلد الزامیست' }],
+            labelWidth: 80,
+          },
+          {
+            type: 'text',
+            formControlName: 'password',
+            errors: [{ type: 'required', message: 'این فیلد الزامیست' }],
+            inputMode: 'password',
+            label: 'رمزعبور',
+            labelWidth: 80,
+          },
+        ])
+        .onClose.subscribe((res) => {
+          this.userService.insertOrUpdatePassword(res).subscribe(() => {
+            this.dataService.successfullMessage(this.vcRef);
+          });
+        });
+    } else {
+      this.dialogFormService
+        .show('اختصاص رمز عبور', [
+          {
+            type: 'text',
+            formControlName: 'password',
+            errors: [{ type: 'required', message: 'این فیلد الزامیست' }],
+            label: 'رمزعبور',
+            labelWidth: 80,
+            inputMode: 'password',
+          },
+          {
+            type: 'hidden',
+            formControlName: 'oldPassword',
+            value: null,
+          },
+        ])
+        .onClose.subscribe((res) => {
+          this.userService.insertOrUpdatePassword(res).subscribe(() => {
+            this.dataService.successfullMessage(this.vcRef);
+          });
+        });
+    }
   }
 
+  onEditAvatar(avatar) {
+    this.userProfile.avatar = avatar;
+    this.userService.insertOrUpdateProfile(this.userProfile).subscribe(() => {
+      this.dataService.successfullMessage(this.vcRef);
+    });
+  }
+
+  onAvatarClick() {
+    this.showAvatarDialog = true;
+  }
+
+  onSubmitOrganization() {
+    if (this.organizationForm.valid) {
+      this.organization = {
+        name: this.organizationForm.controls['name'].value,
+        economicCode: this.organizationForm.controls['economicCode'].value,
+        registrationId: this.organizationForm.controls['registrationId'].value,
+        nationalId: this.organizationForm.controls['nationalId'].value,
+        telNumber: this.organizationForm.controls['telNumber'].value,
+        cityId: this.organizationForm.controls['city'].value,
+      };
+      this.userService
+        .insertOrUpdateOrganization(this.organization)
+        .subscribe();
+    }
+  }
+
+  onStateChange(stateId) {
+    this.loadCities(stateId);
+  }
+
+  onCityChange(cityId) {
+    this.loadDistricts(cityId);
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  ///////////////////////////////////////////////////////////////////////
+  //                              Address                              //
+  ///////////////////////////////////////////////////////////////////////
+  onEditAddress(address) {
+    this.userService.updateAddress(address).subscribe(() => {
+      this.dataService.successfullMessage(this.vcRef);
+      this.loadAddresses();
+    });
+  }
+
+  onAddAddress(address) {
+    this.userService.insertAddress(address).subscribe(() => {
+      this.dataService.successfullMessage(this.vcRef);
+      this.loadAddresses();
+    });
+  }
+
+  onRemoveAddress(addressId) {
+    // this.userService.removeAddress(addressId).subscribe();
+    this.loadAddresses();
+  }
+
+  ///////////////////////////////////////////////////////////////////////
+  //                              Data Load                            //
+  ///////////////////////////////////////////////////////////////////////
   async loadProfile() {
     this.userProfile = await this.userService.getProfileInfo().toPromise();
     this.userService.getJobs().subscribe((jobs) => {
@@ -260,101 +366,63 @@ export class ProfilePage implements OnInit {
     });
   }
 
+  async loadOrganization() {
+    this.organization = await this.userService.getOrganization().toPromise();
+    if (this.organization[0]) {
+      this.organizationForm.patchValue({
+        id: this.organization[0].id,
+        name: this.organization[0].name,
+        economicCode: this.organization[0].economicCode,
+        nationalId: this.organization[0].nationalId,
+        registrationId: this.organization[0].registrationId,
+        state: this.organization[0].stateId,
+        city: this.organization[0].cityId,
+        telNumber: this.organization[0].telNumber,
+      });
+      this.loadCities(this.organization[0].stateId);
+    }
+  }
+
   async loadAddresses() {
     this.addresses = await this.userService.getAddresses().toPromise();
   }
 
   async loadStates() {
-    this.originalStates = await this.userService.getStates().toPromise();
-    this.convertedStates = this.originalStates.map((item) => {
+    const originalStates = await this.userService.getStates().toPromise();
+    this.convertedStates = originalStates.map((item) => {
       return { label: item.title, value: item.id };
     });
   }
 
-  async loadOrganization() {
-    this.organization = await this.userService.getOrganization().toPromise();
-    if (this.organization[0]) {
-      this.form.controls['id'].setValue(this.organization[0].id);
-      this.form.controls['name'].setValue(this.organization[0].name);
-      this.form.controls['economicCode'].setValue(
-        this.organization[0].economicCode
-      );
-      this.form.controls['registrationId'].setValue(
-        this.organization[0].registrationId
-      );
-      this.form.controls['nationalId'].setValue(
-        this.organization[0].nationalId
-      );
-      this.form.controls['telNumber'].setValue(this.organization[0].telNumber);
-      this.form.controls['city'].setValue(this.organization[0].cityId);
-      this.form.controls['state'].setValue(this.organization[0].stateId);
-      this.loadCities(this.organization[0].stateId);
-    }
-  }
   async loadCities(stateId: number) {
-    this.originalCities = await this.userService.getCities(stateId).toPromise();
+    const originalCities = await this.userService
+      .getCities(stateId)
+      .toPromise();
     this.convertedCities = [];
-    this.convertedCities = this.originalCities.map((item) => {
+    this.convertedCities = originalCities.map((item) => {
       return { label: item.title, value: item.id };
     });
   }
 
   async loadDistricts(cityId: number) {
-    this.originalDistricts = await this.userService
+    const originalDistricts = await this.userService
       .getDistricts(cityId)
       .toPromise();
-    this.convertedDistricts = this.originalDistricts.map((item) => {
+    this.convertedDistricts = originalDistricts.map((item) => {
       return { label: item.title, value: item.id };
     });
   }
 
-  onStateChange(stateId) {
-    this.loadCities(stateId);
-  }
-
-  onCityChange(cityId) {
-    this.loadDistricts(cityId);
-  }
-
-  onSubmitAddress() {}
-
-  onEditAvatar(avatar) {
-    this.userProfile.avatar = avatar;
-    this.userService.insertOrUpdateProfile(this.userProfile).subscribe();
-  }
-
-  onAvatarClick() {
-    this.showAvatarDialog = true;
-  }
-
-  onSubmitOrganization() {
-    if (this.form.valid) {
-      this.organization = {
-        name: this.form.controls['name'].value,
-        economicCode: this.form.controls['economicCode'].value,
-        registrationId: this.form.controls['registrationId'].value,
-        nationalId: this.form.controls['nationalId'].value,
-        telNumber: this.form.controls['telNumber'].value,
-        cityId: this.form.controls['city'].value,
-      };
-      this.userService
-        .insertOrUpdateOrganization(this.organization)
-        .subscribe();
-    }
-  }
-
-  onEditAddress(address) {
-    this.userService.updateAddress(address).subscribe();
-    this.loadAddresses();
-  }
-
-  onAddAddress(address) {
-    this.userService.insertAddress(address).subscribe();
-    this.loadAddresses();
-  }
-
-  onRemoveAddress(addressId) {
-    // this.userService.removeAddress(addressId).subscribe();
-    this.loadAddresses();
+  onClickTab(event, tabPane, navs, active) {
+    navs.querySelectorAll('.nav-link').forEach((element) => {
+      element.classList.remove('active');
+    });
+    tabPane.querySelectorAll('.tab-pane').forEach((element) => {
+      element.classList.remove('show');
+      element.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    tabPane.querySelector(`.${active}`).classList.add('show');
+    tabPane.querySelector(`.${active}`).classList.add('active');
   }
 }

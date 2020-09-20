@@ -1,0 +1,72 @@
+<div class="bg-white p-3 border shadow-sm rounded-lg">
+  <div class="row">
+    <div class="col-12">
+      <h5>اطلاعات حقوقی</h5>
+    </div>
+  </div>
+  <form class="form-row" [formGroup]="form">
+    <prm-input-text
+      [errors]="[{ type: 'required', message: 'این فیلد الزامیست' }]"
+      class="col-6 mb-3"
+      label="نام سازمان"
+      labelPosition="top"
+      formControlName="name"
+    ></prm-input-text>
+    <prm-input-text
+      [errors]="[{ type: 'required', message: 'این فیلد الزامیست' }]"
+      class="col-6 mb-3"
+      label="کد اقتصادی"
+      labelPosition="top"
+      formControlName="economicCode"
+    ></prm-input-text>
+    <prm-input-text
+      [errors]="[{ type: 'required', message: 'این فیلد الزامیست' }]"
+      class="col-6 mb-3"
+      label="شناسه ملی"
+      labelPosition="top"
+      formControlName="nationalId"
+    ></prm-input-text>
+    <prm-input-text
+      [errors]="[{ type: 'required', message: 'این فیلد الزامیست' }]"
+      class="col-6 mb-3"
+      label="شناسه ثبت"
+      labelPosition="top"
+      formControlName="registrationId"
+    ></prm-input-text>
+    <prm-input-dropdown
+      [errors]="[{ type: 'required', message: 'این فیلد الزامیست' }]"
+      *ngIf="convertedStates"
+      class="col-6 mb-3"
+      [items]="convertedStates"
+      label="استان"
+      labelPosition="top"
+      formControlName="state"
+      (onChange)="onStateChange($event)"
+    ></prm-input-dropdown>
+    <prm-input-dropdown
+      [errors]="[{ type: 'required', message: 'این فیلد الزامیست' }]"
+      [disabled]="!convertedCities"
+      class="col-6 mb-3"
+      [items]="convertedCities"
+      label="شهر"
+      labelPosition="top"
+      formControlName="city"
+      (onChange)="onCityChange($event)"
+    ></prm-input-dropdown>
+    <prm-input-text
+      [errors]="[{ type: 'required', message: 'این فیلد الزامیست' }]"
+      class="col-6 mb-3"
+      label="شماره تلفن ثابت"
+      labelPosition="top"
+      formControlName="telNumber"
+    ></prm-input-text>
+    <div class="pt-4 border-top col-12 text-left">
+      <prm-button
+        label="تایید و ثبت"
+        color="primary"
+        [type]="'submit'"
+        (click)="onSubmitOrganization()"
+      ></prm-button>
+    </div>
+  </form>
+</div>

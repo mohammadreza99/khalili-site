@@ -67,6 +67,7 @@
           class="col-12 mb-3"
           label="گیرنده سفارش خودم هستم"
           [formControl]="form.get('isReceiver')"
+          (onChange)="onReceiveChange($event)"
         ></prm-input-checkbox-single>
         <div class="col-12" *ngIf="form.get('isReceiver').value == false">
           <div class="row">

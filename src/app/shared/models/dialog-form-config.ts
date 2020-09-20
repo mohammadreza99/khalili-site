@@ -5,6 +5,7 @@ export type DialogFormConfig =
   | {
       type: 'text';
       label?: string;
+      inputMode?: 'text' | 'password';
       labelWidth?: number;
       readonly?: boolean;
       placeholder?: string;

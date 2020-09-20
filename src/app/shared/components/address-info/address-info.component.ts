@@ -24,6 +24,7 @@ export class AddressInfoComponent implements OnInit {
       .open(AddressModifyComponent, {
         header: 'افزودن نشانی',
         width: '800px',
+        contentStyle: { 'overflow-y': 'scroll' },
         data: {},
       })
       .onClose.subscribe((res) => {
@@ -51,6 +52,7 @@ export class AddressInfoComponent implements OnInit {
     this.dialogService
       .open(AddressModifyComponent, {
         header: 'ویرایش نشانی',
+        contentStyle: { 'overflow-y': 'scroll' },
         width: '800px',
         data: {
           address: address,

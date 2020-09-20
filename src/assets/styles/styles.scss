@@ -15,10 +15,13 @@ body {
   font-family: IRANyekan;
   .ui-widget {
     font-family: IRANyekan;
-    // font-family: IRANSans;
     [class|="ui"]:not([class*="pi"]):not([class*="fa"]):not([class*="ql"]) {
       font-family: inherit;
     }
+  }
+
+  .ui-dialog .ui-dialog-content {
+    overflow: visible;
   }
 
   @include medium() {

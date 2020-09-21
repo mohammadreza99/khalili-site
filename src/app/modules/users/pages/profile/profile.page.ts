@@ -237,7 +237,6 @@ export class ProfilePage implements OnInit {
   }
 
   onEditPasword() {
-    console.log(this.userProfile);
     if (this.userProfile.isPassword) {
       this.dialogFormService
         .show('ویرایش رمز عبور', [

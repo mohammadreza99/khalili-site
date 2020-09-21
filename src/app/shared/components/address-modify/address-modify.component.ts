@@ -39,7 +39,6 @@ export class AddressModifyComponent implements OnInit {
     center: latLng(35.6908164, 51.3802295),
   };
   layers = [marker([35.6908164, 51.3802295])];
-  currentUser: Profile;
 
   convertedStates: SelectItem[];
   convertedCities: SelectItem[];
@@ -71,6 +70,7 @@ export class AddressModifyComponent implements OnInit {
         lat: address.lat,
         lng: address.lng,
       });
+      this.layers = [marker([address.lat, address.lng])];
       this.loadCities(address.stateId);
       this.loadDistricts(address.cityId);
     }
@@ -93,13 +93,12 @@ export class AddressModifyComponent implements OnInit {
   onReceiveChange(isReceiver: boolean) {
     if (isReceiver) {
       this.userService.getProfileInfo().subscribe((res) => {
-        console.log(res);
-        // this.form.patchValue({
-        //   firstName: this.currentUser.firstName,
-        //   lastName: this.currentUser.lastName,
-        //   nationalCode: this.currentUser.nationalCode,
-        //   // mobileNo: ,
-        // });
+        this.form.patchValue({
+          firstName: res.firstName,
+          lastName: res.lastName,
+          nationalCode: res.nationalCode,
+          mobileNo: res.mobileNo,
+        });
       });
     }
   }

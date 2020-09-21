@@ -3,6 +3,7 @@ import { ErrorService } from './services/error.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { PrimeToastService } from './shared/components/@prime/prime-service/prime-toast.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
   constructor(
     private errorService: ErrorService,
     private vcRef: ViewContainerRef,
+    private toastService: PrimeToastService,
     private router: Router,
     private title: Title,
     private route: ActivatedRoute
@@ -43,10 +45,15 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.errorService.getError().subscribe((error) => {
       if (error) {
-        // this.toastService.show(
-        //   { summary: 'خطا', detail: error, severity: 'error' },
-        //   this.vcRef
-        // );
+        this.toastService.show(
+          {
+            summary: error.title,
+            detail: error.message,
+            severity: 'error',
+            life: 10000,
+          },
+          this.vcRef
+        );
       }
     });
   }

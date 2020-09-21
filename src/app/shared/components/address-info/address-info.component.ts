@@ -3,6 +3,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { AddressModifyComponent } from '../address-modify/address-modify.component';
 import { AddressModel } from '@app/modules/users/model/user.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '@app/modules/users/business/user.service';
 
 @Component({
   selector: 'address-info',
@@ -15,7 +16,10 @@ export class AddressInfoComponent implements OnInit {
   @Output() onAddAddress = new EventEmitter();
   @Output() onRemoveAddress = new EventEmitter();
 
-  constructor(public dialogService: DialogService) {}
+  constructor(
+    public dialogService: DialogService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {}
 
@@ -75,7 +79,8 @@ export class AddressInfoComponent implements OnInit {
             nationalCode: res.nationalCode,
             mobileNo: res.mobileNo,
           };
-          this.onEditAddress.emit(_address);
+          this.userService.updateAddress(_address);
+          // this.onEditAddress.emit(_address);
         }
       });
   }

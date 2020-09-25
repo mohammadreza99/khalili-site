@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from '@app/modules/home/business/home.service';
 
 @Component({
   selector: 'ag-footer',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  constructor() {}
+  constructor(private homeService: HomeService) {}
   footerItems = [
     {
       title: 'راهنمای خرید از دیجی‌کالا',
@@ -21,12 +22,20 @@ export class FooterComponent implements OnInit {
       items: ['نحوه ثبت سفارش', 'رویه ارسال سفارش', 'شیوه‌های پرداخت'],
     },
   ];
-  ngOnInit(): void {}
-  goToTop(){
+  footerDescription$;
+  socials$;
+
+  ngOnInit(): void {
+    this.footerDescription$ = this.homeService.getFooterDescription();
+    this.socials$ = this.homeService.getSocials();
+    this.socials$.subscribe(console.log);
+  }
+
+  goToTop() {
     window.scroll({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
 }

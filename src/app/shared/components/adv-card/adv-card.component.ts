@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { InvokeFunctionExpr } from '@angular/compiler';
 
 @Component({
   selector: 'adv-card',

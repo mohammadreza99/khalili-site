@@ -1,19 +1,22 @@
 <div class="card">
-  <a class="py-4" [routerLink]="['/products/details', 1]">
-    <img class="card-img-top" [src]="product.img" alt="Card image cap" />
+  <a class="py-4" [routerLink]="['/products/details', product.productId]">
+    <img class="card-img-top" [src]="product.keyMedia" alt="Card image cap" />
   </a>
-  <div class="card-body" *ngIf="product.title">
-    <a [routerLink]="['/products/details', 1]" class="card-title text-right">
-      {{ product.title }}
+  <div class="card-body">
+    <a
+      [routerLink]="['/products/details', product.productId]"
+      class="card-title text-right"
+    >
+      {{ product.name }}
     </a>
-    <div *ngIf="product.price" class="card-price">
-      <div *ngIf="product.discount" class="d-flex align-items-center">
+    <div class="card-price">
+      <div *ngIf="product.disCountPrice" class="d-flex align-items-center">
         <div class="discount rounded-pill mr-2">{{ product.discount }}%</div>
-        <del class="first-price">{{ product.price | number }} </del>
+        <del class="first-price">{{ product.disCountPrice | number }} </del>
       </div>
       <div class="final-price d-flex">
         <span class="symbol pr-2 font-regular">تومان</span
-        >{{ finalPrice | number }}
+        >{{ product.price | number }}
       </div>
     </div>
     <div *ngIf="product.timer" class="d-flex">

@@ -1,69 +1,25 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectorRef,
-  ViewChild,
-  ElementRef,
-  HostListener,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HomeService } from '../../business/home.service';
 
 @Component({
   selector: 'home-page',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage {
-  constructor(private cd: ChangeDetectorRef) {}
-  zoomedImageSrc="../../../assets/images/logo.png"
-  zoomedImageSrc1="../../../assets/images/1.jpg"
+export class HomePage implements OnInit {
+  constructor(private homeService: HomeService) {}
 
-
-  banerSlider = [
-    {
-      img: './../../../assets/images/adv-3.jpg',
-      url: '',
-    },
-    {
-      img: './../../../assets/images/adv-4.jpg',
-      url: '',
-    },
-    {
-      img: './../../../assets/images/adv-5.jpg',
-      url: '',
-    },
-  ];
-
-  baner3 = [
-    {
-      img: './../../../assets/images/adv-6.jpg',
-      url: '',
-    },
-  ];
-
-  baner4 = [
-    {
-      img: './../../../assets/images/adv-7.jpg',
-      url: '',
-    },
-  ];
-
-  baner5 = [
-    {
-      img: './../../../assets/images/adv-8.jpg',
-      url: '',
-    },
-  ];
-
+  zoomedImageSrc = '../../../assets/images/logo.png';
+  zoomedImageSrc1 = '../../../assets/images/1.jpg';
   offerConfig = {
     slidesPerView: 1,
     spaceBetween: 10,
-    breakpoints:{
+    breakpoints: {
       '575': { slidesPerView: 1 },
       '768 ': { slidesPerView: 2 },
       '992 ': { slidesPerView: 3 },
-    }
+    },
   };
-
   products = [
     {
       img: '../../../assets/images/1.jpg',
@@ -122,7 +78,6 @@ export class HomePage {
       link: '',
     },
   ];
-
   brands = [
     {
       img: '../../../assets/images/brand-1.jpg',
@@ -164,8 +119,29 @@ export class HomePage {
       img: '../../../assets/images/brand-14.jpg',
     },
   ];
+  menu: any[];
+  slider$: any[];
+  amazingOffers: { title: string; obj: any[] };
+  mostViewed: { title: string; obj: any[] };
+  categoryVarious: { title: string; obj: any[] };
+  newProducts: { title: string; obj: any[] };
+  mostSellers: { title: string; obj: any[] };
 
-  
+  ngOnInit(): void {
+    this.homeService.getMenu().subscribe((res) => {
+      this.menu = res;
+    });
+    this.homeService.getSlider().subscribe((res) => {
+      this.slider$ = res;
+    });
+    this.homeService.getAllHomePage().subscribe((res) => {
+      this.amazingOffers = res[0];
+      this.mostViewed = res[1];
+      this.categoryVarious = res[2];
+      this.newProducts = res[3];
+      this.mostSellers = res[4];
+    });
+  }
 
   onMouseEnterMenuItem(id: string) {
     document.querySelector('#' + id).classList.add('show');

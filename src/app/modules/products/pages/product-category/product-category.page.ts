@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../business/product.service';
 
 @Component({
   selector: 'product-category',
@@ -6,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-category.page.scss'],
 })
 export class ProductCategoryPage implements OnInit {
-  constructor() {}
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  categoryDescription$;
+  categorySlider$;
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.categoryDescription$ = this.productService.getCategoryDescription(id);
+    this.categorySlider$ = this.productService.getCategorySlider(id);
+  }
 
   items = [
     {

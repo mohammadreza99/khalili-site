@@ -3,7 +3,6 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <!-- <adv-card [items]="slider$"></adv-card> -->
           <carousel [showArrows]="true" [config]="offerConfig">
             <div *ngFor="let item of slider$ | async" class="swiper-slide">
               <img

@@ -12,7 +12,7 @@ const routes: Routes = [
     data: { title: '' },
   },
   {
-    path: 'details/:id',
+    path: 'details/:id/:code',
     component: ProductDetailsPage,
     data: { title: '' },
   },

@@ -1,10 +1,21 @@
 <div class="card">
-  <a class="py-4" [routerLink]="['/products/details', product.productId]">
-    <img class="card-img-top" [src]="product.keyMedia" alt="Card image cap" />
+  <a
+    class="py-4"
+    [routerLink]="['/products/details', product.productId, product.productCode]"
+  >
+    <img
+      class="card-img-top"
+      [src]="product.keyMedia | safe | async"
+      alt="Card image cap"
+    />
   </a>
   <div class="card-body">
     <a
-      [routerLink]="['/products/details', product.productId]"
+      [routerLink]="[
+        '/products/details',
+        product.productId,
+        product.productCode
+      ]"
       class="card-title text-right"
     >
       {{ product.name }}

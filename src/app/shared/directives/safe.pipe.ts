@@ -13,7 +13,7 @@ export class SafePipe extends BaseService implements PipeTransform {
 
   transform(value: string): Observable<SafeResourceUrl> {
     return new Observable<SafeResourceUrl>((observer) => {
-      this.get<any>('/' + value, 'blob').subscribe((blob) => {
+      this.get<any>('/V1/DownloadMedia?key=' + value, 'blob').subscribe((blob) => {
         let objectURL = URL.createObjectURL(blob);
         let safeUrl: SafeResourceUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
           objectURL

@@ -120,7 +120,7 @@ export class HomePage implements OnInit {
     },
   ];
   menu: any[];
-  slider$: any[];
+  slider$: any;
   amazingOffers: { title: string; obj: any[] };
   mostViewed: { title: string; obj: any[] };
   categoryVarious: { title: string; obj: any[] };
@@ -131,9 +131,7 @@ export class HomePage implements OnInit {
     this.homeService.getMenu().subscribe((res) => {
       this.menu = res;
     });
-    this.homeService.getSlider().subscribe((res) => {
-      this.slider$ = res;
-    });
+    // this.slider$ = this.homeService.getSlider();
     this.homeService.getAllHomePage().subscribe((res) => {
       this.amazingOffers = res[0];
       this.mostViewed = res[1];

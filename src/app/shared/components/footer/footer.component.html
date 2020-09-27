@@ -12,7 +12,7 @@
 </div>
 <div class="container-fluid border-top footer">
   <div class="row">
-    <div class="container d-none d-lg-block">
+    <div class="container d-none d-md-block">
       <div class="row">
         <div
           class="col-12 py-5 d-flex justify-content-between banners border-bottom"
@@ -69,9 +69,9 @@
       <div class="row">
         <div class="col-12 py-5">
           <div class="row">
-            <div class="col-8 d-none d-lg-block">
+            <div class="col-lg-8 mb-3 mb-lg-0">
               <div class="row">
-                <div class="col-4" *ngFor="let col of footerItems">
+                <div class="col-sm-4" *ngFor="let col of footerItems">
                   <ul>
                     {{
                       col.title
@@ -81,25 +81,22 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-lg-4">
-              <p>از تخفیف‌ها و جدیدترین‌های دیجی‌کالا باخبر شوید</p>
+            <div class="col-lg-4">
+              <p>از تخفیف‌ها و جدیدترین‌های فروشگاه ما باخبر شوید</p>
               <div class="input-box">
                 <input placeholder="آدرس ایمیل خود را وارد کنید" />
                 <button>ارسال</button>
               </div>
-              <p>دیجی‌کالا را در شبکه‌های اجتماعی دنبال کنید</p>
+              <p>فروشگاه ما را در شبکه‌های اجتماعی دنبال کنید</p>
               <div class="social-media">
                 <a
                   [href]="item.link"
                   target="_blank"
+                  class="px-3"
                   *ngFor="let item of socials$ | async"
                 >
                   <img [src]="item.icon | safe | async" alt=""
                 /></a>
-                <!-- <span><i class="fab fa-linkedin"></i></span>
-                <span><i class="fab fa-instagram"></i></span>
-                <span><i class="fab fa-twitter"></i></span>
-                <span><i class="fab fa-facebook"></i></span> -->
               </div>
             </div>
           </div>
@@ -113,19 +110,21 @@
               </div>
             </div>
             <div class="col-12 col-lg-4">
-              <div class="d-flex align-items-center shared-app-wrapper">
+              <div
+                class="d-flex flex-wrap align-items-center shared-app-wrapper"
+              >
                 <img
-                  class="mr-3"
+                  class="mx-2"
                   [src]="'../../../assets/images/footer-imgs/sib-app.png'"
                   alt=""
                 />
                 <img
-                  class="mr-3"
+                  class="mx-2"
                   [src]="'../../../assets/images/footer-imgs/google-play.png'"
                   alt=""
                 />
                 <img
-                  class="mr-3"
+                  class="mx-2"
                   [src]="'../../../assets/images/footer-imgs/bazar.png'"
                   alt=""
                 />
@@ -139,7 +138,7 @@
       <div class="row">
         <div class="col-12 py-5">
           <div class="row">
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-lg-8 mb-3 mb-lg-0">
               <div>
                 {{ footerDescription$ | async }}
               </div>
@@ -165,7 +164,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12 text-center pt-2 pb-0 border-top d-none d-lg-block">
+        <div class="col-12 text-center pt-2 pb-0 border-top">
           <small>
             استفاده از مطالب فروشگاه اینترنتی دیجی‌کالا فقط برای مقاصد غیرتجاری
             و با ذکر منبع بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران

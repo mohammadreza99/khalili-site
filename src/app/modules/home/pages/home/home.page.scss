@@ -14,3 +14,14 @@
     }
   }
 }
+
+carousel {
+  &,
+  & ::ng-deep swiper {
+    height: 450px;
+    display: block;
+  }
+  & ::ng-deep img {
+    height: 100%;
+  }
+}

@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  showSidebar = false;
   isScrolled = false;
   showMenu = false;
   isOpen = false;
@@ -61,7 +62,7 @@ export class NavbarComponent implements OnInit {
   ];
   megaMenuList = this.menuItems[0].list;
   profile: Profile;
-  
+
   ngOnInit(): void {
     this.userService.getProfileInfo().subscribe((res) => {
       this.profile = res;

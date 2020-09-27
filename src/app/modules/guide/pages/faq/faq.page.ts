@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BasicService } from '../../business/guide.service';
+import { GuideService } from '../../business/guide.service';
 import { Observable } from 'rxjs';
 import { SiteFAQ, SiteFAQCategory } from '../../model/guide.model';
 @Component({
@@ -10,10 +10,10 @@ import { SiteFAQ, SiteFAQCategory } from '../../model/guide.model';
 export class FaqPage implements OnInit {
   data$: Observable<SiteFAQ[]>;
   category$: Observable<SiteFAQCategory[]>;
-  constructor(private basicService: BasicService,) { }
+  constructor(private guideService: GuideService,) { }
   
   ngOnInit(): void {
-    this.data$ = this.basicService.select<SiteFAQ>('FAQ');
-    this.category$ = this.basicService.select<SiteFAQCategory>('FAQCategory');
+    this.data$ = this.guideService.select<SiteFAQ>('FAQ');
+    this.category$ = this.guideService.select<SiteFAQCategory>('FAQCategory');
   }
 }

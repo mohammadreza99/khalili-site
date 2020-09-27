@@ -7,7 +7,7 @@ import { Result } from '@app/app.global';
 @Injectable({
   providedIn: 'root',
 })
-export class BasicService extends BaseService {
+export class GuideService extends BaseService {
   constructor() {
     super();
   }
@@ -41,5 +41,30 @@ export class BasicService extends BaseService {
       map((res: any) => res.data)
     );
   }
-}
 
+  getFaq(faqCategoryId?: number) {
+    return this.get('/V1/Faq/?faqCategoryId=' + faqCategoryId, 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
+
+  getFaqCategories() {
+    return this.get('/V1/FaqCategory/', 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
+
+  getTerms() {
+    return this.get('/V1/Terms/', 'json').pipe(map((res: any) => res.data));
+  }
+
+  getPrivacy() {
+    return this.get('/V1/Privacy/', 'json').pipe(map((res: any) => res.data));
+  }
+
+  postContact(contact) {
+    return this.post('/V1/ContactFormInsert/', contact, 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
+}

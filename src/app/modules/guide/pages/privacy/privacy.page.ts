@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SitePrivacy } from '../../model/guide.model';
-import { BasicService } from '../../business/guide.service';
+import { GuideService } from '../../business/guide.service';
 
 @Component({
   selector: 'privacy',
   templateUrl: './privacy.page.html',
-  styleUrls: ['./privacy.page.scss']
+  styleUrls: ['./privacy.page.scss'],
 })
 export class PrivacyPage implements OnInit {
-  data$: Observable<SitePrivacy[]>;
+  data$;
 
-  constructor( private basicService: BasicService) { }
+  constructor(private guideService: GuideService) {}
 
   ngOnInit(): void {
-    this.data$ = this.basicService.select<SitePrivacy>('Privacy');
+    this.data$ = this.guideService.getPrivacy();
   }
 }

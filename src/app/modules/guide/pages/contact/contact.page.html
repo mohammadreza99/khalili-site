@@ -7,33 +7,48 @@
             <div class="row justify-content-center mb-5">
               <div class="col-10">
                 <h4 class="mb-3">تماس با ما</h4>
-                <form class="form-row">
+                <form
+                  class="form-row"
+                  [formGroup]="form"
+                  (ngSubmit)="onSubmitForm()"
+                >
                   <prm-input-text
+                    formControlName="title"
                     class="col-6 mb-4"
                     placeholder="موضوع"
                     labelWidth="110"
                   ></prm-input-text>
                   <prm-input-text
+                    formControlName="fullName"
                     class="col-6 mb-4"
                     placeholder="نام و نام خانوادگی"
                     labelWidth="110"
                   ></prm-input-text>
                   <prm-input-text
+                    formControlName="email"
                     class="col-6 mb-4"
                     placeholder="ایمیل"
+                    [errors]="[{type:'email',message:'ایمیل صحیح نیست'}]"
                     labelWidth="110"
                   ></prm-input-text>
                   <prm-input-text
+                    formControlName="telPhone"
                     class="col-6 mb-4"
+                    [numberOnly]="true"
                     placeholder="تلفن تماس"
                     labelWidth="110"
                   ></prm-input-text>
                   <prm-input-textarea
+                    formControlName="description"
+                    [errors]="[{type:'required',message:'این فیلد الزامیست'}]"
                     class="col-12 mb-4"
                     placeholder="متن پیام"
                     labelWidth="110"
                   ></prm-input-textarea>
-                  <button class="btn btn-primary justify-self-end">
+                  <button
+                    type="submit"
+                    class="btn btn-primary justify-self-end"
+                  >
                     ثبت و ارسال
                   </button>
                 </form>
@@ -42,7 +57,7 @@
 
             <div class="row justify-content-center">
               <div class="col-10">
-                <h4 class="mb-3">اطلاعات دیجی کالا</h4>
+                <h4 class="mb-3">اطلاعات فروشگاه</h4>
                 <div class="row">
                   <div class="col-7">
                     <div class="d-flex align-items-center mb-3">

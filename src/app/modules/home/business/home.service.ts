@@ -27,4 +27,10 @@ export class HomeService extends BaseService {
   getSocials() {
     return this.get('/V1/Social/', 'json').pipe(map((res: any) => res.data));
   }
+
+  insertNews(Email: string) {
+    return this.post('/V1/NewsInsert/', { Email }, 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
 }

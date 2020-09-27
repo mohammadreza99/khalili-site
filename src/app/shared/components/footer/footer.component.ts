@@ -22,13 +22,13 @@ export class FooterComponent implements OnInit {
       items: ['نحوه ثبت سفارش', 'رویه ارسال سفارش', 'شیوه‌های پرداخت'],
     },
   ];
+
   footerDescription$;
   socials$;
 
   ngOnInit(): void {
     this.footerDescription$ = this.homeService.getFooterDescription();
     this.socials$ = this.homeService.getSocials();
-    this.socials$.subscribe(console.log);
   }
 
   goToTop() {

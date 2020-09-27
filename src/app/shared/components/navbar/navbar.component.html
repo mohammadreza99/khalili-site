@@ -41,7 +41,11 @@
           <a routerLink="/" class="d-none d-lg-block navbar-brand h-100 mr-0"
             ><img class="h-100" src="../../../../assets/images/logo.png"
           /></a>
-          <button class="navbar-toggler d-block d-lg-none" type="button">
+          <button
+            class="navbar-toggler d-block d-lg-none"
+            (click)="showSidebar = true"
+            type="button"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
           <form
@@ -136,3 +140,13 @@
     </div>
   </div>
 </div>
+
+<p-sidebar
+  appendTo="body"
+  position="right"
+  [showCloseIcon]="false"
+  [blockScroll]="true"
+  [(visible)]="showSidebar"
+>
+  Content
+</p-sidebar>

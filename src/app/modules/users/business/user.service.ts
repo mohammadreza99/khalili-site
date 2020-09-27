@@ -49,21 +49,21 @@ export class UserService extends BaseService {
   }
 
   getStates() {
-    return this.get<BaseState[]>('/App/StateSelect/', 'json').pipe(
+    return this.get<BaseState[]>('/V1/StateSelect/', 'json').pipe(
       map((res: any) => res.data)
     );
   }
 
-  getCities(stateId: any) {
+  getCities(stateId?: any) {
     return this.get<BaseCity[]>(
-      '/App/CitySelect/?stateId=' + stateId,
+      '/V1/CitySelect/?stateId=' + stateId,
       'json'
     ).pipe(map((res: any) => res.data));
   }
 
-  getDistricts(cityId: any) {
+  getDistricts(cityId?: any) {
     return this.get<BaseDistrict[]>(
-      '/App/DistrictSelect/?cityId=' + cityId,
+      '/V1/DistrictSelect/?cityId=' + cityId,
       'json'
     ).pipe(map((res: any) => res.data));
   }

@@ -86,6 +86,12 @@ export class ProductDetailsPage implements OnInit {
       alt: 'Description for Image 1',
       title: 'Title 1',
     },
+    {
+      previewImageSrc: 'https://via.placeholder.com/100x100',
+      thumbnailImageSrc: 'https://via.placeholder.com/100x100',
+      alt: 'Description for Image 1',
+      title: 'Title 1',
+    },
   ];
   responsiveOptions: any[] = [
     {

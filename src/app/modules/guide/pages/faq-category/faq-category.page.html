@@ -8,9 +8,9 @@
               <div class="col-12 p-4">
                 <h5>دسته‌بندی پرسش‌ها</h5>
               </div>
-              <div *ngFor="let d of data" class="col-4">
+              <div *ngFor="let d of data" class="col-sm-6 col-md-4">
                 <div
-                [routerLink]="['/guide/faq',d.id]"
+                  [routerLink]="['/guide/faq',d.id]"
                   class="question-cat p-4 d-flex flex-column align-items-center justify-content-center"
                 >
                   <img [src]="d.keyMedia" alt="" />

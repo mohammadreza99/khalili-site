@@ -79,6 +79,28 @@ export class ProductDetailsPage implements OnInit {
       link: '',
     },
   ];
+  images: any[] = [
+    {
+      previewImageSrc: 'https://via.placeholder.com/150x150',
+      thumbnailImageSrc: 'https://via.placeholder.com/150x150',
+      alt: 'Description for Image 1',
+      title: 'Title 1',
+    },
+  ];
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5,
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+    },
+  ];
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

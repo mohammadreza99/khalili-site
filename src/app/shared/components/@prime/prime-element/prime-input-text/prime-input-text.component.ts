@@ -4,6 +4,8 @@ import {
   forwardRef,
   AfterViewInit,
   Input,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -26,6 +28,7 @@ export class PrimeInputTextComponent
   implements OnInit, AfterViewInit {
   @Input() type: string = 'text';
   @Input() numberOnly: boolean = false;
+  @Output() onAfterBtnClick = new EventEmitter();
 
   ngOnInit() {
     super.ngOnInit();

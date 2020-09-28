@@ -1,4 +1,9 @@
 <div class="container-fluid">
+  <p-galleria [value]="images">
+    <ng-template pTemplate="item" let-item>
+      <img [src]="item.previewImageSrc" [alt]="item.alt" />
+    </ng-template>
+  </p-galleria>
   <div class="row">
     <div class="container">
       <div class="row mb-5">
@@ -9,12 +14,28 @@
             >
               <div class="row">
                 <div class="col-3">
-                  <div class="image-wrapper">
-                    <lib-ngx-image-zoom
+                  <!-- <div class="image-wrapper w-100"> -->
+                  <!-- <lib-ngx-image-zoom
                       [thumbImage]="zoomedImageSrc1"
                       [fullImage]="zoomedImageSrc"
-                    ></lib-ngx-image-zoom>
-                  </div>
+                    ></lib-ngx-image-zoom> -->
+                  <p-galleria
+                    [(value)]="images"
+                    [responsiveOptions]="responsiveOptions"
+                    [containerStyle]="{'max-width': '640px'}"
+                    [numVisible]="5"
+                  >
+                    <ng-template pTemplate="item" let-item>
+                      <img [src]="item.previewImageSrc" style="width: 100%" />
+                    </ng-template>
+                    <ng-template pTemplate="thumbnail" let-item>
+                      <div class="p-grid p-nogutter p-justify-center">
+                        <img [src]="item.thumbnailImageSrc" />
+                      </div>
+                    </ng-template>
+                  </p-galleria>
+
+                  <!-- </div> -->
                 </div>
 
                 <div class="col-5">
@@ -28,51 +49,37 @@
                       <i class="fa fa-star fa-sm text-warning ml-1"></i>
                       <small>4 <small class="text-muted"> (201) </small></small>
                     </div>
-                    <span class="mx-3">|</span>
+                    <!-- <span class="mx-3">|</span>
                     <div class="visions">
                       <small>149 دیدگاه کاربران</small>
-                    </div>
+                    </div> -->
                   </div>
 
-                  <div class="info d-flex align-items-center mb-5">
+                  <div class="info d-flex align-items-center my-4">
                     <small class="brand">
                       <span>برند : </span>
-                      <a href=""><span>Adidas</span></a>
+                      <a href="" class="border-dashed"><span>Adidas</span></a>
                     </small>
                     <small class="category mr-4">
                       <span>دسته بندی : </span>
-                      <a href=""><span>کیف و کفش</span></a>
+                      <a href="" class="border-dashed"
+                        ><span>کیف و کفش</span></a
+                      >
                     </small>
                   </div>
 
-                  <div class="choose-color">
-                    <span>انتخاب رنگ : </span>
-                    <div class="colors d-flex flex-wrap">
+                  <div class="choose-color d-flex align-items-center">
+                    <span class="font-medium fa-sm">انتخاب رنگ : </span>
+                    <div class="colors d-flex flex-wrap mr-2">
                       <span
-                        class="color d-flex align-items-center border rounded-lg px-3 ml-2"
+                        class="color border rounded-lg px-3 ml-2 font-regular fa-sm"
                       >
-                        <span
-                          class="rounded-circle ml-1"
-                          style="
-                            width: 16px;
-                            height: 16px;
-                            background-color: red;
-                          "
-                        ></span>
-                        <span>قرمز</span>
+                        قرمز
                       </span>
                       <span
-                        class="color d-flex align-items-center border rounded-lg px-3 ml-2"
+                        class="color border rounded-lg px-3 ml-2 font-regular fa-sm"
                       >
-                        <span
-                          class="rounded-circle ml-1"
-                          style="
-                            width: 16px;
-                            height: 16px;
-                            background-color: red;
-                          "
-                        ></span>
-                        <span>قرمز</span>
+                        قرمز
                       </span>
                     </div>
                   </div>
@@ -91,13 +98,13 @@
                               <span>فروشنده : </span>
                               <span class="font-bold">ماکو</span>
                             </div>
-                            <div class="function">
+                            <!-- <div class="function">
                               <small>
                                 <span>عملکرد : </span><span> 4.5 </span>از 5
                               </small>
                               <span class="text-muted mx-3">|</span>
                               <small> <span>83.6</span>% رضایت از کالا </small>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
 
@@ -114,9 +121,9 @@
                           <i class="fas fa-home text-muted ml-3"></i>
                           <div class="flex-grow-1">
                             <div>موجود در انبار</div>
-                            <small class="text-muted">
+                            <!-- <small class="text-muted">
                               ارسال توسط فروشگاه</small
-                            >
+                            > -->
                           </div>
                         </div>
 
@@ -214,7 +221,7 @@
         </div>
       </div>
 
-      <div class="row mb-5">
+      <!-- <div class="row mb-5">
         <div class="container">
           <div class="row">
             <div class="col-12">
@@ -225,7 +232,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="row">
         <div class="col-12">

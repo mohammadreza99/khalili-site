@@ -24,10 +24,10 @@
   <div class="row offer mt-4" *ngIf="amazingOffers">
     <div class="container">
       <div class="row offer-box">
-        <div class="offer-img col-3">
+        <div class="offer-img col-5 col-md-3">
           <img class="w-75" src="../../../assets/images/offer.png" />
         </div>
-        <div class="offer-products col-9">
+        <div class="offer-products col-7 col-md-9">
           <carousel [showArrows]="true" [config]="offerConfig">
             <div
               *ngFor="let product of amazingOffers.obj"

@@ -13,8 +13,42 @@ export class ProductDetailsPage implements OnInit {
     private productService: ProductService
   ) {}
 
+  /*
+  brandId: 1
+brandTitle: "سامسونگ"
+categoryId: 12
+categoryTitle: "دسته بندی 13"
+commentCount: 0
+descriptionSeo: "d fgsetg we vsdf d df  df dv"
+gainPoints: "ggg,[p[o\"
+id: "2f3a2778-8547-4d45-8812-bafa2a94d311"
+name: "nnnnnnnnnnn"
+nameEn: "sddd"
+productCode: "TTP-5A9A3"
+weakPoints: "hhh"
+  */
   productInfo$: any;
+
+  /*
+  colorId: 16
+colorTitle: "آبی2"
+disCountPrice: 66
+id: 14
+insuranceId: 1
+insuranceTitle: "بیمه دو"
+isDefault: true
+operation: 3
+price: 55
+qty: 99
+storeTitle: "فروشگاه"
+warrantyId: 2
+warrantyTitle: "تست 1"
+  */
   productPrice$: any;
+  /**
+   isDefault: true
+keyMedia: "Product/efxbhgcn.png"
+   */
   productMedia$: any;
   productDescription$: any;
   productComments$: any;

@@ -41,7 +41,11 @@
           <a routerLink="/" class="d-none d-lg-block navbar-brand h-100 mr-0"
             ><img class="h-100" src="../../../../assets/images/logo.png"
           /></a>
-          <button class="navbar-toggler d-block d-lg-none" type="button">
+          <button
+            class="navbar-toggler d-block d-lg-none"
+            (click)="showSidebar = true"
+            type="button"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
           <form
@@ -76,9 +80,9 @@
                     <div class="main-category col-3 p-0 border-left">
                       <ul class="list-unstyled m-0 p-0">
                         <li
-                          class="bg-hover-light pr-3"
+                          class="bg-hover-light pr-3 pointer"
                           *ngFor="let item of menuItems; let i = index"
-                          [routerLink]="['/products/category/',item.id]"
+                          [routerLink]="['/products/category/', item.id]"
                           (mouseenter)="showSubMenuById(i + 1)"
                         >
                           <span>
@@ -90,7 +94,11 @@
                     </div>
                     <div class="sub-category col-9">
                       <ul class="list-unstyled">
-                        <li *ngFor="let item of megaMenuList"  [routerLink]="['/products/subcategory/',item.id]">
+                        <li
+                          class="pointer"
+                          *ngFor="let item of megaMenuList"
+                          [routerLink]="['/products/subcategory/', item.id]"
+                        >
                           {{ item }}
                         </li>
                       </ul>
@@ -120,7 +128,9 @@
               </a>
             </div>
             <div>
-              <a class="nav-item nav-link" [routerLink]="['/guide/faq-category']"
+              <a
+                class="nav-item nav-link"
+                [routerLink]="['/guide/faq-category']"
                 ><i class="fal fa-question-circle pl-1"></i>سوالی دارید؟
               </a>
             </div>
@@ -130,3 +140,13 @@
     </div>
   </div>
 </div>
+
+<p-sidebar
+  appendTo="body"
+  position="right"
+  [showCloseIcon]="false"
+  [blockScroll]="true"
+  [(visible)]="showSidebar"
+>
+  Content
+</p-sidebar>

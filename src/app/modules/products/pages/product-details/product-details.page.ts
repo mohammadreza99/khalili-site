@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../business/product.service';
 
 @Component({
   selector: 'product-details',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-details.page.scss'],
 })
 export class ProductDetailsPage implements OnInit {
-  constructor() {}
-    zoomedImageSrc="../../../../../assets/images/1.jpg"
-  zoomedImageSrc1="../../../../../assets/images/2.jpg"
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
 
+  productInfo$: any;
+  productPrice$: any;
+  productMedia$: any;
+  productDescription$: any;
+  productComments$: any;
+  relatedProducts$: any;
+  zoomedImageSrc = '../../../../../assets/images/1.jpg';
+  zoomedImageSrc1 = '../../../../../assets/images/2.jpg';
   products = [
     {
       img: '../../../assets/images/1.jpg',
@@ -68,8 +79,61 @@ export class ProductDetailsPage implements OnInit {
       link: '',
     },
   ];
+  images: any[] = [
+    {
+      previewImageSrc: 'https://via.placeholder.com/150x150',
+      thumbnailImageSrc: 'https://via.placeholder.com/150x150',
+      alt: 'Description for Image 1',
+      title: 'Title 1',
+    },
+  ];
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5,
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+    },
+  ];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    const code = this.route.snapshot.paramMap.get('code');
+    this.productInfo$ = this.productService.getProductInfo(id, code);
+    this.productPrice$ = this.productService.getProductPrice(id, code);
+    this.productMedia$ = this.productService.getProductMedia(id, code);
+    this.productDescription$ = this.productService.getProductDescription(
+      id,
+      code
+    );
+    this.productComments$ = this.productService.getProductComments(id, code);
+    this.relatedProducts$ = this.productService.getRelatedProducts(id, code);
+
+    this.productInfo$?.subscribe((res) => {
+      console.log('productInfo', res);
+    });
+    this.productPrice$?.subscribe((res) => {
+      console.log('productPrice', res);
+    });
+    this.productMedia$?.subscribe((res) => {
+      console.log('productMedia', res);
+    });
+    this.productDescription$?.subscribe((res) => {
+      console.log('productDescription', res);
+    });
+    this.productComments$?.subscribe((res) => {
+      console.log('productComments', res);
+    });
+    this.relatedProducts$?.subscribe((res) => {
+      console.log('relatedProducts', res);
+    });
+  }
 
   onClickTab(event, tabPane, navs, active) {
     navs.querySelectorAll('.nav-link').forEach((element) => {

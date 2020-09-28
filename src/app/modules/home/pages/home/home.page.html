@@ -3,22 +3,34 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <adv-card [items]="banerSlider"></adv-card>
+          <carousel
+            class="shadow-sm"
+            [showArrows]="true"
+            [config]="mainSliderConfig"
+          >
+            <div *ngFor="let item of slider$ | async" class="swiper-slide">
+              <img
+                class="card-img-top"
+                [src]="item.keyMedia | safe | async"
+                alt="Card image cap"
+              />
+            </div>
+          </carousel>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row offer mt-4">
+  <div class="row offer mt-4" *ngIf="amazingOffers">
     <div class="container">
       <div class="row offer-box">
-        <div class="offer-img col-3">
+        <div class="offer-img col-5 col-md-3">
           <img class="w-75" src="../../../assets/images/offer.png" />
         </div>
-        <div class="offer-products col-9">
+        <div class="offer-products col-7 col-md-9">
           <carousel [showArrows]="true" [config]="offerConfig">
             <div
-              *ngFor="let product of products"
+              *ngFor="let product of amazingOffers.obj"
               class="swiper-slide"
               dir="ltr"
             >
@@ -30,67 +42,52 @@
     </div>
   </div>
 
-  <div class="row mt-4">
+  <div class="row mt-4" *ngIf="categoryVarious">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <categories-promo [promo]="categoryVarious"></categories-promo>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4" *ngIf="mostViewed">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <products-slider
-            [products]="products"
-            title="محصولات پربازدید اخیر"
+            [products]="mostViewed.obj"
+            [title]="mostViewed.title"
           ></products-slider>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row mt-4">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <categories-promo></categories-promo>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row mt-4">
+  <div class="row mt-4" *ngIf="newProducts">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <products-slider
-            [products]="products"
-            title="محصولات پربازدید اخیر"
+            [products]="newProducts.obj"
+            [title]="newProducts.title"
           ></products-slider>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row mt-4">
+  <div class="row mt-4" *ngIf="mostSellers">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <products-slider
-            [products]="products"
-            title="محصولات پربازدید اخیر"
-          ></products-slider>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row mt-4">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <products-slider
-            [products]="products"
-            title="محصولات پربازدید اخیر"
+            [products]="mostSellers.obj"
+            [title]="mostSellers.title"
           ></products-slider>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-

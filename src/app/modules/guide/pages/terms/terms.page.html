@@ -6,10 +6,9 @@
           <div class="bg-white rounded-lg shadow-sm p-4">
             <div class="row" *ngIf="(data$ | async) as data">
               <div class="col-12">
-                <h3>قوانین</h3>
+                <h3>{{data[0].title}}</h3>
               </div>
-              <div class="col-12" [innerHTML]="data[0].description">
-              </div>
+              <div class="col-12" [innerHTML]="data[0].description"></div>
             </div>
           </div>
         </div>

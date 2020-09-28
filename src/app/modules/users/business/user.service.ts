@@ -16,50 +16,54 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UserService extends BaseService {
-  insertOrUpdateProfile(profile: Profile) {
-    return this.post('/User/ProfileInsert/', profile, 'json');
+  getProfileInfo() {
+    return this.get<Profile>('/V1/Profile/', 'json').pipe(
+      map((res: any) => res.data)
+    );
   }
 
-  insertOrUpdatePassword(password: Password) {
-    return this.post('/User/SetOrChangePassword/', password, 'json');
+  insertOrUpdateProfile(profile: Profile) {
+    return this.post('/V1/ProfileInsert/', profile, 'json');
+  }
+
+  getOrganization() {
+    return this.get('/V1/Organization/', 'json').pipe(
+      map((res: any) => res.data)
+    );
   }
 
   insertOrUpdateOrganization(organization: OrganizationModel) {
-    return this.post('/User/OrganizationInsert/', organization, 'json');
+    return this.post('/V1/OrganizationInsert/', organization, 'json');
+  }
+
+  getAddresses() {
+    return this.get('/V1/Address/', 'json').pipe(map((res: any) => res.data));
   }
 
   insertAddress(address: AddressModel) {
-    return this.post('/User/AddressInsert/', address, 'json');
+    return this.post('/V1/AddressInsert/', address, 'json');
   }
 
   updateAddress(address: AddressModel) {
-    return this.put('/User/AddressUpdate/', address, 'json');
-  }
-
-  removeAddress(id) {}
-
-  getProfileInfo() {
-    return this.get<Profile>('/User/Profile/', 'json').pipe(
-      map((res: any) => res.data)
-    );
+    return this.put('/V1/AddressUpdate/', address, 'json');
   }
 
   getStates() {
-    return this.get<BaseState[]>('/App/StateSelect/', 'json').pipe(
+    return this.get<BaseState[]>('/V1/StateSelect/', 'json').pipe(
       map((res: any) => res.data)
     );
   }
 
-  getCities(stateId: any) {
+  getCities(stateId?: any) {
     return this.get<BaseCity[]>(
-      '/App/CitySelect/?stateId=' + stateId,
+      '/V1/CitySelect/?stateId=' + stateId,
       'json'
     ).pipe(map((res: any) => res.data));
   }
 
-  getDistricts(cityId: any) {
+  getDistricts(cityId?: any) {
     return this.get<BaseDistrict[]>(
-      '/App/DistrictSelect/?cityId=' + cityId,
+      '/V1/DistrictSelect/?cityId=' + cityId,
       'json'
     ).pipe(map((res: any) => res.data));
   }
@@ -70,13 +74,7 @@ export class UserService extends BaseService {
     );
   }
 
-  getOrganization() {
-    return this.get('/User/Organization/', 'json').pipe(
-      map((res: any) => res.data)
-    );
-  }
-
-  getAddresses() {
-    return this.get('/User/Address/', 'json').pipe(map((res: any) => res.data));
+  insertOrUpdatePassword(password: Password) {
+    return this.post('/User/SetOrChangePassword/', password, 'json');
   }
 }

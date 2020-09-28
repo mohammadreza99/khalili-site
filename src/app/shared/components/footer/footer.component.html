@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-12 text-center py-3">
       <span class="text-bold go-up" (click)="goToTop()">
-        <i class="far fa-chevron-up d-inline-flex justify-content-center align-items-center rounded-circle bg-white text-muted  border"
+        <i
+          class="far fa-chevron-up d-inline-flex justify-content-center align-items-center rounded-circle bg-white text-muted border"
         ></i>
         برگشت به بالا
       </span>
@@ -11,9 +12,11 @@
 </div>
 <div class="container-fluid border-top footer">
   <div class="row">
-    <div class="container d-none d-lg-block">
+    <div class="container d-none d-md-block">
       <div class="row">
-        <div  class="col-12 py-5 d-flex justify-content-between banners border-bottom">
+        <div
+          class="col-12 py-5 d-flex justify-content-between banners border-bottom"
+        >
           <div
             class="d-flex flex-grow-1 flex-column justify-content-between align-items-center"
           >
@@ -66,9 +69,9 @@
       <div class="row">
         <div class="col-12 py-5">
           <div class="row">
-            <div class="col-8 d-none d-lg-block">
+            <div class="col-lg-8 mb-3 mb-lg-0">
               <div class="row">
-                <div class="col-4" *ngFor="let col of footerItems">
+                <div class="col-sm-4" *ngFor="let col of footerItems">
                   <ul>
                     {{
                       col.title
@@ -78,47 +81,58 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-lg-4">
-              <p>از تخفیف‌ها و جدیدترین‌های دیجی‌کالا باخبر شوید</p>
-              <div class="input-box">
-                <input placeholder="آدرس ایمیل خود را وارد کنید" />
-                <button>ارسال</button>
-              </div>
-              <p>دیجی‌کالا را در شبکه‌های اجتماعی دنبال کنید</p>
+            <div class="col-lg-4">
+              <p>از تخفیف‌ها و جدیدترین‌های فروشگاه ما باخبر شوید</p>
+              <prm-input-text
+                (onAfterBtnClick)="submitEmail()"
+                [formControl]="emailFormControl"
+                [beforeAfterConfig]="{
+                  after: { type: 'button', label: 'ارسال' }
+                }"
+                placeholder="آدرس ایمیل خود را وارد کنید"
+              ></prm-input-text>
+              <small
+                class="font-light"
+                *ngIf="
+                  emailFormControl.invalid &&
+                  (emailFormControl.dirty || emailFormControl.touched)
+                "
+                class="text-danger mb-0"
+              >
+                لطفا ایمیل معتبر وارد کنید.
+              </small>
+              <p class="mt-3">فروشگاه ما را در شبکه‌های اجتماعی دنبال کنید</p>
               <div class="social-media">
-                <span><i class="fab fa-linkedin"></i></span>
-                <span><i class="fab fa-instagram"></i></span>
-                <span><i class="fab fa-twitter"></i></span>
-                <span><i class="fab fa-facebook"></i></span>
+                <a
+                  [href]="item.link"
+                  target="_blank"
+                  class="px-2"
+                  *ngFor="let item of socials$ | async"
+                >
+                  <img [src]="item.icon | safe | async"
+                /></a>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-12 pt-5 border-top">
+        <div class="col-12 pt-3 border-top">
           <div class="row">
-            <div class="col-8  d-none d-lg-block">
-              <div>
-                <span>هفت روز هفته ، ۲۴ ساعت شبانه‌روز پاسخگوی شما هستیم</span>
-                <span>شماره تماس : ۶۱۹۳۰۰۰۰ - ۰۲۱</span>
-              </div>
+            <div class="col-8 d-none d-lg-block">
+              <div>همین حالا اپلیکیشن فروشگاه ما را دانلود کنید</div>
             </div>
             <div class="col-12 col-lg-4">
-              <div class="d-flex align-items-center shared-app-wrapper">
-                <img
-                  class="mr-3"
-                  [src]="'../../../assets/images/footer-imgs/sib-app.png'"
-                  alt=""
-                />
-                <img
-                  class="mr-3"
-                  [src]="'../../../assets/images/footer-imgs/google-play.png'"
-                  alt=""
-                />
-                <img
-                  class="mr-3"
-                  [src]="'../../../assets/images/footer-imgs/bazar.png'"
-                  alt=""
-                />
+              <div
+                class="d-flex flex-wrap align-items-center shared-app-wrapper"
+              >
+                <a class="mx-1" href="http://">
+                  <img src="assets/images/footer-imgs/sib-app.png" />
+                </a>
+                <a class="mx-1" href="http://">
+                  <img src="assets/images/footer-imgs/google-play.png" />
+                </a>
+                <a class="mx-1" href="http://">
+                  <img src="assets/images/footer-imgs/bazar.png" />
+                </a>
               </div>
             </div>
           </div>
@@ -129,47 +143,25 @@
       <div class="row">
         <div class="col-12 py-5">
           <div class="row">
-
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-lg-8 mb-3 mb-lg-0">
               <div>
-                <h5>فروشگاه دیجی کالا</h5>
-                فروشگاه اینترنتی دیجی‌کالا، بررسی، انتخاب و خرید آنلاین
-                دیجی‌کالا به عنوان یکی از قدیمی‌ترین فروشگاه های اینترنتی با بیش
-                از یک دهه تجربه، با پایبندی به سه اصل، پرداخت در محل، 7 روز
-                ضمانت بازگشت کالا و تضمین اصل‌بودن کالا موفق شده تا همگام با
-                فروشگاه‌های معتبر جهان، به بزرگ‌ترین فروشگاه اینترنتی ایران
-                تبدیل شود. به محض ورود به سایت دیجی‌کالا با دنیایی از کالا رو به
-                رو می‌شوید! هر آنچه که نیاز دارید و به ذهن شما خطور می‌کند در
-                اینجا پیدا خواهید کرد.مشاهده بیشتر اسباب بازیعطر و
-                ادوکلنتلویزیونرنگ مو و ابرومانتو
+                {{ footerDescription$ | async }}
               </div>
             </div>
-            <div class="col-12  col-lg-4 ">
+            <div class="col-12 col-lg-4">
               <div class="d-flex align-items-center namad-wrapper">
-                <img
-                  class="mr-3"
-                  [src]="'../../../assets/images/footer-imgs/namad1.png'"
-                  alt=""
-                />
-                <img
-                  class="mr-3"
-                  [src]="'../../../assets/images/footer-imgs/namad2.png'"
-                  alt=""
-                />
-                <img
-                  class="mr-3"
-                  [src]="'../../../assets/images/footer-imgs/namad3.png'"
-                  alt=""
-                />
+                <img class="mr-3" src="assets/images/footer-imgs/namad1.png" />
+                <img class="mr-3" src="assets/images/footer-imgs/namad2.png" />
+                <img class="mr-3" src="assets/images/footer-imgs/namad3.png" />
               </div>
             </div>
           </div>
         </div>
-        <div class="col-12 text-center pt-2 pb-0 border-top  d-none d-lg-block">
+        <div class="col-12 text-center pt-2 pb-0 border-top">
           <small>
-            استفاده از مطالب فروشگاه اینترنتی دیجی‌کالا فقط برای مقاصد غیرتجاری
-            و با ذکر منبع بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران
-            فن آوازه (فروشگاه آنلاین دیجی‌کالا) می‌باشد.
+            استفاده از مطالب فروشگاه اینترنتی فروشگاه فقط برای مقاصد غیرتجاری و
+            با ذکر منبع بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران فن
+            آوازه (فروشگاه آنلاین فروشگاه) می‌باشد.
           </small>
         </div>
       </div>

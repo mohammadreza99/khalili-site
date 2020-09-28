@@ -12,7 +12,7 @@ import { PrimeModule } from './components/@prime/prime.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
-  declarations: [...COMPONENTS, ],
+  declarations: [...COMPONENTS],
   imports: [
     CommonModule,
     ReactiveFormsModule,

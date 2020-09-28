@@ -13,6 +13,7 @@
     [name]="name"
     [maxlength]="maxlength"
     [beforeAfter]="beforeAfterConfig"
+    (onAfterBtnClick)="onAfterBtnClick.emit()"
     [(ngModel)]="value"
     (input)="_onInput()"
     (blur)="_onBlur()"

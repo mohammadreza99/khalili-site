@@ -1,8 +1,8 @@
 @import "mixins";
 .footer {
   background: #eceff1;
-  .banners{
-    p{
+  .banners {
+    p {
       @include text-style($size: $font-size-sm);
     }
   }
@@ -52,14 +52,13 @@
       font-weight: 300;
     }
   }
-  .social-media i {
-    color: #4b4b4b;
-    padding: 0 5px;
+  .social-media img {
+    width: 30px;
   }
   .shared-app-wrapper,
   .namad-wrapper {
     img {
-      width: 110px;
+      width: 100px;
     }
   }
   .about {
@@ -68,7 +67,7 @@
     background-color: #e4edf0;
   }
 }
-.go-up i{
+.go-up i {
   display: inline-block;
   width: 40px;
   height: 40px;

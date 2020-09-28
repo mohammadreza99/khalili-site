@@ -39,9 +39,9 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { PasswordModule } from 'primeng/password';
 import { TreeModule } from 'primeng/tree';
 import { EditorModule } from 'primeng/editor';
-import {PaginatorModule} from 'primeng/paginator';
+import { PaginatorModule } from 'primeng/paginator';
 import { PickListModule } from 'primeng';
-
+import { GalleriaModule } from 'primeng/galleria';
 export const MODULES = [
   ButtonModule,
   SidebarModule,
@@ -85,5 +85,6 @@ export const MODULES = [
   PasswordModule,
   EditorModule,
   PickListModule,
-  PaginatorModule
+  PaginatorModule,
+  GalleriaModule,
 ];

@@ -37,9 +37,7 @@ export class HomePage implements OnInit {
   mostSellers: { title: string; obj: any[] };
 
   ngOnInit(): void {
-    this.homeService.getMenu().subscribe((res) => {
-      this.menu = res;
-    });
+
     this.slider$ = this.homeService.getSlider();
     this.homeService.getAllHomePage().subscribe((res) => {
       this.amazingOffers = res[0];

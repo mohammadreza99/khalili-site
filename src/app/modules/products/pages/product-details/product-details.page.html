@@ -17,11 +17,10 @@
                   <p-galleria
                     [(value)]="images"
                     [responsiveOptions]="responsiveOptions"
-                    [containerStyle]="{'max-width': '640px'}"
                     [numVisible]="5"
                   >
                     <ng-template pTemplate="item" let-item>
-                      <img [src]="item.previewImageSrc" style="width: 100%" />
+                      <img [src]="item.previewImageSrc" class="w-100" />
                     </ng-template>
                     <ng-template pTemplate="thumbnail" let-item>
                       <div class="p-grid p-nogutter p-justify-center">
@@ -71,7 +70,7 @@
                     labelWidth="110"
                     [showClear]="false"
                     label="انتخاب رنگ"
-                    [items]="[{label:'3',value:'2'},{label:'1',value:''}]"
+                    [items]="availableColors"
                   ></prm-input-dropdown>
                 </div>
                 <div class="col-lg-3 col-md-5">

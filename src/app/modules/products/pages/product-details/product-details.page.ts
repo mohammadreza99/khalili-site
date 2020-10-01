@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { ProductService } from '../../business/product.service';
 
 @Component({
@@ -13,106 +14,27 @@ export class ProductDetailsPage implements OnInit {
     private productService: ProductService
   ) {}
 
-  /*
-  brandId: 1
-brandTitle: "سامسونگ"
-categoryId: 12
-categoryTitle: "دسته بندی 13"
-commentCount: 0
-descriptionSeo: "d fgsetg we vsdf d df  df dv"
-gainPoints: "ggg,[p[o\"
-id: "2f3a2778-8547-4d45-8812-bafa2a94d311"
-name: "nnnnnnnnnnn"
-nameEn: "sddd"
-productCode: "TTP-5A9A3"
-weakPoints: "hhh"
-  */
   productInfo$: any;
-
-  /*
-  colorId: 16
-colorTitle: "آبی2"
-disCountPrice: 66
-id: 14
-insuranceId: 1
-insuranceTitle: "بیمه دو"
-isDefault: true
-operation: 3
-price: 55
-qty: 99
-storeTitle: "فروشگاه"
-warrantyId: 2
-warrantyTitle: "تست 1"
-  */
   productPrices: any;
   defaultPrice: any;
-  /**
-   isDefault: true
-keyMedia: "Product/efxbhgcn.png"
-   */
   productMedia$: any;
   productDescription$: any;
   productComments$: any;
   productFields$: any;
   relatedProducts$: any;
-  zoomedImageSrc = '../../../../../assets/images/1.jpg';
-  zoomedImageSrc1 = '../../../../../assets/images/2.jpg';
-  products = [
+  availableColors: any[];
+  responsiveOptions: any[] = [
     {
-      img: '../../../assets/images/1.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
+      breakpoint: '1024px',
+      numVisible: 5,
     },
     {
-      img: '../../../assets/images/2.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
+      breakpoint: '768px',
+      numVisible: 3,
     },
     {
-      img: '../../../assets/images/3.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/4.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/5.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/6.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/7.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
+      breakpoint: '560px',
+      numVisible: 1,
     },
   ];
   images: any[] = [
@@ -129,29 +51,8 @@ keyMedia: "Product/efxbhgcn.png"
       title: 'Title 1',
     },
   ];
-  attributeTypes = {
-    1: 'Text',
-    2: 'Number',
-    3: 'Date',
-    4: 'Text Area',
-    5: 'Select',
-    6: 'Multi Select',
-    7: 'CheckBox',
-  };
-  responsiveOptions: any[] = [
-    {
-      breakpoint: '1024px',
-      numVisible: 5,
-    },
-    {
-      breakpoint: '768px',
-      numVisible: 3,
-    },
-    {
-      breakpoint: '560px',
-      numVisible: 1,
-    },
-  ];
+  // zoomedImageSrc = '../../../../../assets/images/1.jpg';
+  // zoomedImageSrc1 = '../../../../../assets/images/2.jpg';
 
   ngOnInit(): void {
     const code = this.route.snapshot.paramMap.get('code');
@@ -164,28 +65,10 @@ keyMedia: "Product/efxbhgcn.png"
     this.productService.getProductPrice(code).subscribe((res: any[]) => {
       this.defaultPrice = res.find((item) => item.isDefault);
       this.productPrices = res.filter((item) => item.isDefault);
-      console.log('productPrice', res);
-      console.log('defaultPrice', this.defaultPrice);
-      console.log('OtherPrices', this.productPrices);
-    });
-
-    this.productInfo$?.subscribe((res) => {
-      console.log('productInfo', res);
-    });
-    this.productFields$?.subscribe((res) => {
-      console.log('productFields', res);
-    });
-    this.productMedia$?.subscribe((res) => {
-      console.log('productMedia', res);
-    });
-    this.productComments$?.subscribe((res) => {
-      console.log('productComments', res);
     });
   }
 
-  onColorChange(color){
-    
-  }
+  onColorChange(color) {}
 
   onClickTab(event, tabPane, navs, active) {
     navs.querySelectorAll('.nav-link').forEach((element) => {

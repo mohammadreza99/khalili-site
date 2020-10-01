@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GuideService } from '../../business/guide.service';
 import { Observable } from 'rxjs';
 import { SiteFAQ, SiteFAQCategory } from '../../model/guide.model';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'faq',
   templateUrl: './faq.page.html',
@@ -9,11 +10,19 @@ import { SiteFAQ, SiteFAQCategory } from '../../model/guide.model';
 })
 export class FaqPage implements OnInit {
   data$: Observable<SiteFAQ[]>;
-  category$: Observable<SiteFAQCategory[]>;
-  constructor(private guideService: GuideService,) { }
+  category;
+  constructor(private guideService: GuideService,private route: ActivatedRoute) { }
   
   ngOnInit(): void {
-    this.data$ = this.guideService.select<SiteFAQ>('FAQ');
-    this.category$ = this.guideService.select<SiteFAQCategory>('FAQCategory');
+    let id = +this.route.snapshot.paramMap.get('id');
+      this.data$ = this.guideService.getFaq(id);
+    this.guideService.getFaqCategories().subscribe(res=>{
+     res.forEach(element => {
+       if(element.id==id)
+       this.category=element;
+     });
+    })
+    
+
   }
 }

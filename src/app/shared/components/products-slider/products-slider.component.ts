@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProductsSliderComponent implements OnInit {
   @Input() products: any[];
   @Input() title: string;
+  @Input() moreThen: any;
 
   @Input() config = {
     slidesPerView: 1,

@@ -35,9 +35,15 @@ export class HomePage implements OnInit {
   categoryVarious: { title: string; obj: any[] };
   newProducts: { title: string; obj: any[] };
   mostSellers: { title: string; obj: any[] };
+  homePageCases: {
+    moreThen: boolean;
+    obj: any[];
+    orderNo: number;
+    title: string;
+    typeId: number;
+  }[];
 
   ngOnInit(): void {
-
     this.slider$ = this.homeService.getSlider();
     this.homeService.getAllHomePage().subscribe((res) => {
       this.amazingOffers = res[0];
@@ -45,6 +51,8 @@ export class HomePage implements OnInit {
       this.categoryVarious = res[2];
       this.newProducts = res[3];
       this.mostSellers = res[4];
+      console.log(res);
+      this.homePageCases = res;
     });
   }
 

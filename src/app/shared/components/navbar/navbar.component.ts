@@ -61,7 +61,7 @@ export class NavbarComponent implements OnInit {
       list: ['41'],
     },
   ];
-  megaMenuList 
+  megaMenuList;
   // megaMenuList =this.menuItems[0].list;
   profile: Profile;
 
@@ -69,13 +69,13 @@ export class NavbarComponent implements OnInit {
     this.userService.getProfileInfo().subscribe((res) => {
       this.profile = res;
     });
+
     this.userService.getMenu().subscribe((res) => {
       this.menuItems = this.generateMenu(res);
       this.megaMenuList = this.menuItems[0].list;
-      console.log(this.menuItems);
-      
     });
   }
+
   generateMenu(menu) {
     let lvl1 = [];
     menu.forEach((res) => {
@@ -101,13 +101,15 @@ export class NavbarComponent implements OnInit {
           }
         });
         item.children = list;
-        list=[]
+        list = [];
       });
     });
     return lvl1;
   }
+
   showSubMenuById(rootId) {
-    this.megaMenuList = this.menuItems[rootId-1].list;
+    this.megaMenuList = this.menuItems[rootId - 1].list;
+    console.log(this.megaMenuList);
   }
 
   onMouseEnterMenuItem(id: string) {

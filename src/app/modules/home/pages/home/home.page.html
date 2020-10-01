@@ -21,7 +21,57 @@
     </div>
   </div>
 
-  <div class="row offer mt-4" *ngIf="amazingOffers">
+  <ng-container *ngIf="homePageCases">
+    <ng-container *ngFor="let item of homePageCases">
+      <ng-container [ngSwitch]="item.typeId">
+        <div class="row offer mt-4" *ngSwitchCase="1">
+          <div class="container">
+            <div class="row offer-box">
+              <div class="offer-img col-5 col-md-3">
+                <img class="w-75" src="../../../assets/images/offer.png" />
+              </div>
+              <div class="offer-products col-7 col-md-9">
+                <carousel [showArrows]="true" [config]="offerConfig">
+                  <div
+                    *ngFor="let product of item.obj"
+                    class="swiper-slide"
+                    dir="ltr"
+                  >
+                    <product-card [product]="product"></product-card>
+                  </div>
+                </carousel>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4" *ngSwitchCase="3">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <categories-promo [promo]="item"></categories-promo>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4" *ngSwitchCase="2">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <products-slider
+                  [products]="item.obj"
+                  [title]="item.title"
+                  [moreThen]="item.moreThen"
+                ></products-slider>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <!-- <div class="row offer mt-4" *ngIf="amazingOffers">
     <div class="container">
       <div class="row offer-box">
         <div class="offer-img col-5 col-md-3">
@@ -89,5 +139,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

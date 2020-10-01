@@ -5,10 +5,10 @@
         <div class="col-12">
           <div class="wrapper">
             <div
-              class="container-fluid rounded-lg shadow-sm bg-white py-5 px-3"
+              class="container-fluid rounded-lg shadow-sm bg-white py-4 px-3"
             >
               <div class="row">
-                <div class="col-lg-3 mb-4 mb-lg-0">
+                <div class="col-lg-5 mb-4 mb-lg-0">
                   <!-- <div class="image-wrapper w-100"> -->
                   <!-- <lib-ngx-image-zoom
                       [thumbImage]="zoomedImageSrc1"
@@ -29,96 +29,87 @@
                       </div>
                     </ng-template>
                   </p-galleria>
-
                   <!-- </div> -->
                 </div>
+                <div class="col-lg-4 col-md-7 mb-4 mb-lg-0">
+                  <ng-container *ngIf="productInfo$ | async as info">
+                    <h6>{{info.name}}</h6>
+                    <small class="text-muted"> {{info.nameEn}} </small>
 
-                <div class="col-md-7 col-lg-5 mb-4 mb-lg-0">
-                  <h6>مبدل Micro USB به کانکتور USB-C هوآوی مدل Redukc</h6>
-                  <small class="text-muted">
-                    Huawei Redukc Micro USB to Type C Adapter
-                  </small>
-
-                  <div class="feedbacks d-flex align-items-center text-primary">
-                    <div class="rates">
-                      <i class="fa fa-star fa-sm text-warning ml-1"></i>
-                      <small>4 <small class="text-muted"> (201) </small></small>
+                    <div
+                      class="feedbacks d-flex align-items-center text-primary"
+                    >
+                      <!-- <div class="rates">
+                        <i class="fa fa-star fa-sm text-warning ml-1"></i>
+                        <small>4 <small class="text-muted"> (201) </small></small>
+                      </div> -->
+                      <!-- <span class="mx-3">|</span> -->
+                      <div class="visions">
+                        <small>{{info.commentCount}} دیدگاه کاربران</small>
+                      </div>
                     </div>
-                    <!-- <span class="mx-3">|</span>
-                    <div class="visions">
-                      <small>149 دیدگاه کاربران</small>
-                    </div> -->
-                  </div>
 
-                  <div class="info d-flex align-items-center my-4">
-                    <small class="brand">
-                      <span>برند : </span>
-                      <a href="" class="border-dashed"><span>Adidas</span></a>
-                    </small>
-                    <small class="category mr-4">
-                      <span>دسته بندی : </span>
-                      <a href="" class="border-dashed"
-                        ><span>کیف و کفش</span></a
-                      >
-                    </small>
-                  </div>
-
-                  <div class="choose-color d-flex align-items-center">
-                    <span class="font-medium fa-sm">انتخاب رنگ : </span>
-                    <div class="colors d-flex flex-wrap mr-2">
-                      <span
-                        class="color border rounded-lg px-3 ml-2 font-regular fa-sm"
-                      >
-                        قرمز
-                      </span>
-                      <span
-                        class="color border rounded-lg px-3 ml-2 font-regular fa-sm"
-                      >
-                        قرمز
-                      </span>
+                    <div class="info d-flex align-items-center my-4">
+                      <small class="brand">
+                        <span>برند : </span>
+                        <span>{{info.brandTitle}}</span>
+                      </small>
+                      <small class="category mr-4">
+                        <span>دسته بندی : </span>
+                        <a
+                          [routerLink]="['/products/subcategory/', info.categoryId]"
+                          class="border-dashed"
+                        >
+                          <span>{{info.categoryTitle}}</span>
+                        </a>
+                      </small>
                     </div>
-                  </div>
+                  </ng-container>
+                  <prm-input-dropdown
+                    (onChange)="onColorChange($event)"
+                    [placeholder]="null"
+                    labelWidth="110"
+                    [showClear]="false"
+                    label="انتخاب رنگ"
+                    [items]="[{label:'3',value:'2'},{label:'1',value:''}]"
+                  ></prm-input-dropdown>
                 </div>
-
-                <div class="col-md-5 col-lg-4">
-                  <div class="row">
+                <div class="col-lg-3 col-md-5">
+                  <div class="row" *ngIf="defaultPrice">
                     <div class="col-12">
                       <div class="wrapper bg-light border px-3 rounded-lg">
                         <div
-                          class="seller d-flex align-items-center border-bottom mx-2 py-2"
+                          class="seller d-flex align-items-center border-bottom py-2"
                         >
                           <i class="fas fa-home text-muted ml-3"></i>
                           <div class="seller-info flex-grow-1">
-                            <div>
+                            <div class="fa-sm">
                               <span>فروشنده : </span>
-                              <span class="font-bold">ماکو</span>
+                              <span class="font-bold"
+                                >{{defaultPrice.storeTitle}}</span
+                              >
                             </div>
-                            <!-- <div class="function">
-                              <small>
-                                <span>عملکرد : </span><span> 4.5 </span>از 5
-                              </small>
-                              <span class="text-muted mx-3">|</span>
-                              <small> <span>83.6</span>% رضایت از کالا </small>
-                            </div> -->
                           </div>
                         </div>
 
                         <div
-                          class="warranty d-flex align-items-center border-bottom mx-2 py-2"
+                          class="warranty d-flex align-items-center border-bottom py-2"
                         >
                           <i class="fas fa-home text-muted ml-3"></i>
-                          <span>گارانتی اصالت و سلامت فیزیکی کالا</span>
+                          <span class="fa-sm"
+                            >{{defaultPrice.warrantyTitle}}</span
+                          >
                         </div>
 
                         <div
-                          class="inventory d-flex align-items-center border-bottom mx-2 py-2"
+                          class="inventory d-flex align-items-center border-bottom py-2"
                         >
                           <i class="fas fa-home text-muted ml-3"></i>
                           <div class="flex-grow-1">
-                            <div>موجود در انبار</div>
-                            <!-- <small class="text-muted">
-                              ارسال توسط فروشگاه</small
-                            > -->
+                            <div class="fa-sm">
+                              {{defaultPrice.qty > 0 ? 'موجود در انبار' :
+                              'ناموجود'}}
+                            </div>
                           </div>
                         </div>
 
@@ -126,34 +117,32 @@
                           <div
                             class="d-flex align-items-center justify-content-end"
                           >
-                            <del class="first-price">{{ 15200 | number }} </del>
+                            <del class="first-price text-muted"
+                              >{{ defaultPrice.price | number }}
+                            </del>
                             <div class="discount rounded-pill mr-2">18%</div>
                           </div>
                           <div class="final-price d-flex justify-content-end">
-                            <span class="h3"> {{ 10000 | number }} </span>
-                            <span class="symbol pr-2 font-regular">تومان</span>
+                            <span class="h2 mb-0">
+                              {{ defaultPrice.disCountPrice | number }}
+                            </span>
+                            <span class="symbol pr-2 font-regular fa-sm"
+                              >تومان</span
+                            >
                           </div>
-                          <div class="best-price">
+                          <!-- <div class="best-price">
                             <i class="fas fa-check ml-2 text-success fa-sm"></i>
                             <small>بهترین قیمت ۳۰ روز گذشته</small>
-                          </div>
+                          </div> -->
                         </div>
 
-                        <button class="btn btn-block btn-primary my-2">
-                          افزودن به سبد خرید
+                        <button
+                          [ngClass]="{'disabled': defaultPrice.qty < 0}"
+                          class="btn btn-block btn-primary my-2"
+                        >
+                          {{defaultPrice.qty > 0 ? 'افزودن به سبد خرید' :
+                          'ناموجود'}}
                         </button>
-
-                        <!-- <div class="other-sellers py-2">
-                          <div
-                            class="d-flex justify-content-between align-items-center"
-                          >
-                            <span>
-                              <span class="font-bold">3 فروشنده</span> دیگر این
-                              کالا
-                            </span>
-                            <small> <a href="">مشاهده</a></small>
-                          </div>
-                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -171,44 +160,55 @@
           </h6>
         </div>
         <div class="col-12">
-          <div class="bg-white rounded-lg">
-            <div class="container-fluid">
+          <div class="rounded-lg shadow-sm bg-white px-2">
+            <div
+              class="container-fluid py-2 border-bottom"
+              *ngFor="let price of productPrices"
+            >
               <div class="row align-items-center">
-                <div class="col-6 col-lg">
-                  <div class="seller d-flex align-items-center mx-2 py-2">
+                <div class="col-5 col-lg">
+                  <div class="seller d-flex align-items-center mx-2">
                     <i class="fas fa-home text-muted ml-3"></i>
                     <div class="seller-info flex-grow-1">
                       <div>
                         <span>فروشنده : </span>
-                        <span class="font-bold">ماکو</span>
+                        <span class="font-bold">{{price.storeTitle}}</span>
                       </div>
-                      <div class="function">
+                      <!-- <div class="function"> 
                         <small>
                           <span>عملکرد : </span><span> 4.5 </span>از 5
                         </small>
-                        <!-- <span class="text-muted mx-3">|</span> -->
-                        <!-- <small> <span>83.6</span>% رضایت از کالا </small> -->
-                      </div>
+                        <span class="text-muted mx-3">|</span> 
+                       <small> <span>83.6</span>% رضایت از کالا </small> 
+                      </div> -->
                     </div>
                   </div>
                 </div>
                 <div class="col d-none d-lg-block">
-                  <div class="inventory d-flex align-items-center mx-2 py-2">
+                  <div class="inventory d-flex align-items-center mx-2">
                     <i class="fas fa-home text-muted ml-3"></i>
                     <div class="flex-grow-1">
-                      <div>موجود در انبار</div>
-                      <!-- <small class="text-muted"> ارسال توسط فروشگاه</small> -->
+                      <div>
+                        {{defaultPrice.qty > 0 ? 'موجود در انبار' : 'ناموجود'}}
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-3 col-lg-3">
+                <div class="col-4 col-lg-3">
                   <div class="final-price d-flex justify-content-center">
-                    <span class="h3"> {{ 10000 | number }} </span>
+                    <span class="h3 mb-0">
+                      {{ defaultPrice.disCountPrice | number }}</span
+                    >
                     <span class="symbol pr-2 font-regular">تومان</span>
                   </div>
                 </div>
-                <div class="col-2 col-lg-2">
-                  <button class="btn btn-primary">افزودن به سبدخرید</button>
+                <div class="col-3">
+                  <button
+                    [ngClass]="{'disabled': defaultPrice.qty < 0}"
+                    class="btn btn-primary btn-block"
+                  >
+                    {{defaultPrice.qty > 0 ? 'افزودن به سبد' : 'ناموجود'}}
+                  </button>
                 </div>
               </div>
             </div>
@@ -216,18 +216,18 @@
         </div>
       </div>
 
-      <!-- <div class="row mb-5">
+      <div class="row mb-5">
         <div class="container">
           <div class="row">
             <div class="col-12">
               <products-slider
-                [products]="products"
+                [products]="relatedProducts$ | async"
                 title="محصولات مشابه"
               ></products-slider>
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
 
       <div class="row">
         <div class="col-12">
@@ -264,32 +264,37 @@
             </div>
             <div class="tab-pane fade fields">
               <div class="container-fluid py-5">
-                <div class="row mb-2 align-items-center">
-                  <div class="col-3 bg-light align-self-stretch">
-                    <div class="px-3 py-2">شسیشسی شس</div>
+                <div
+                  class="row mb-2 align-items-stretch field"
+                  *ngFor="let field of productFields$ | async"
+                >
+                  <div class="col-md-3 field-name">
+                    <div class="px-3 py-2">{{field.attributeTitle}}</div>
                   </div>
-                  <div class="col-9 bg-light">
-                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
-                  </div>
-                </div>
-                <div class="row mb-2 align-items-center">
-                  <div class="col-3 bg-light align-self-stretch">
-                    <div class="px-3 py-2">شسیشسی شس</div>
-                  </div>
-                  <div class="col-9 bg-light">
-                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
-                  </div>
-                </div>
-                <div class="row mb-2 align-items-center">
-                  <div class="col-3 bg-light align-self-stretch">
-                    <div class="px-3 py-2">شسیشسی شس</div>
-                  </div>
-                  <div class="col-9 bg-light">
-                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
-                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
-                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
-                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
-                    <div class="px-3 py-2">سشی شسی شسی شسی شسی شسی شسی</div>
+                  <div class="col-md-9 field-value">
+                    <ng-container
+                      *ngIf="field.attributeTypeId == 6;else attributesCheckboxValue"
+                    >
+                      <ul class="px-3 py-2 mb-0">
+                        <li
+                          *ngFor="let listValueItem of field.value.split(',')"
+                        >
+                          {{listValueItem}}
+                        </li>
+                      </ul>
+                    </ng-container>
+                    <ng-template #attributesCheckboxValue>
+                      <ng-container
+                        *ngIf="field.attributeTypeId == 7;else attributesTextValue"
+                      >
+                        <div class="px-3 py-2">
+                          {{field.value == 'true' ? 'بله' : 'خیر'}}
+                        </div>
+                      </ng-container>
+                    </ng-template>
+                    <ng-template #attributesTextValue>
+                      <div class="px-3 py-2">{{field.value }}</div>
+                    </ng-template>
                   </div>
                 </div>
               </div>
@@ -297,7 +302,7 @@
             <div class="tab-pane fade comments">
               <div class="container-fluid">
                 <div class="row py-5">
-                  <div class="col-6">
+                  <div class="col-lg-6 mb-3 mb-lg-0">
                     <h4 class="h5 mb-3">امتیاز کاربران به :</h4>
                     <p class="mb-5">
                       دو پرفیوم زنانه امپر مدل Gorgeous In Red حجم 80 میلی لیتر
@@ -324,11 +329,8 @@
                       <span class="mr-4">خوب</span>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-lg-6">
                     <h5>شما هم می‌توانید در مورد این کالا نظر بدهید.</h5>
-                    <p>
-                      برای ثبت نظر، لازم است ابتدا وارد حساب کاربری خود شوید.
-                    </p>
                     <button class="btn btn-primary btn-dark px-4 py-2">
                       افزودن نظر
                     </button>

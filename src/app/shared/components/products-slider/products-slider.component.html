@@ -1,7 +1,7 @@
 <div class="wrapper d-flex rounded-lg">
-  <div class="wrapper-title d-flex mb-4" *ngIf="title">
-    <h4 class="p-3">{{ title }}</h4>
-    <div class="p-3 border-bottom text-left mr-4">
+  <div class="wrapper-title d-flex mb-4">
+    <h4 class="p-3" *ngIf="title">{{ title }}</h4>
+    <div class="p-3 border-bottom text-left mr-4" *ngIf="moreThen">
       <a href="http://"> مشاهده همه </a>
     </div>
   </div>

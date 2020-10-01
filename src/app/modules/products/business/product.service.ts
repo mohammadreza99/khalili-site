@@ -11,44 +11,44 @@ export class ProductService extends BaseService {
     super();
   }
 
-  getProductInfo(id, code) {
+  getProductInfo(code) {
     return this.get('/V1/Product/', 'json', {
-      Id: id,
+      ProductCode: code,
+    }).pipe(map((res: any) => res.data[0]));
+  }
+
+  getProductFields(code) {
+    return this.get('/V1/ProductInfo/', 'json', {
       ProductCode: code,
     }).pipe(map((res: any) => res.data));
   }
 
-  getProductPrice(id, code) {
+  getProductPrice(code) {
     return this.get('/V1/ProductPrice/', 'json', {
-      Id: id,
       ProductCode: code,
     }).pipe(map((res: any) => res.data));
   }
 
-  getProductMedia(id, code) {
+  getProductMedia(code) {
     return this.get('/V1/ProductMedia/', 'json', {
-      Id: id,
       ProductCode: code,
     }).pipe(map((res: any) => res.data));
   }
 
-  getProductDescription(id, code) {
+  getProductDescription(code) {
     return this.get('/V1/ProductDescription/', 'json', {
-      Id: id,
       ProductCode: code,
     }).pipe(map((res: any) => res.data[0].description));
   }
 
-  getProductComments(id, code) {
+  getProductComments(code) {
     return this.get('/V1/ProductComment/', 'json', {
-      Id: id,
       ProductCode: code,
     }).pipe(map((res: any) => res.data));
   }
 
-  getRelatedProducts(id, code) {
+  getRelatedProducts(code) {
     return this.get('/V1/ProductLinked/', 'json', {
-      Id: id,
       ProductCode: code,
     }).pipe(map((res: any) => res.data));
   }

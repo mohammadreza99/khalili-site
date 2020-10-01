@@ -7,7 +7,7 @@
             <p-tree [value]="convertedCategories" dir="rtl" class="rtl ui-rtl">
               <ng-template let-node pTemplate="default">
                 <div class="d-flex align-items-center">
-                  <p>{{node.label}}</p>
+                  <p  [routerLink]="['/products/subcategory/',node.id]">{{node.label}}</p>
                 </div>
               </ng-template>
             </p-tree>
@@ -37,44 +37,51 @@
             <div class="col mt-3">
               <img
                 class="w-100"
+                [routerLink]="['/products/subcategory/', categoryImages[0].id]"
                 [src]="categoryImages[0].icon | safe | async"
               />
             </div>
             <div class="col mt-3">
               <img
                 class="w-100"
+                [routerLink]="['/products/subcategory/', categoryImages[1].id]"
                 [src]="categoryImages[1].icon | safe | async"
               />
             </div>
             <div class="col mt-3">
               <img
                 class="w-100"
+                [routerLink]="['/products/subcategory/', categoryImages[2].id]"
                 [src]="categoryImages[2].icon | safe | async"
               />
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6 mt-3">
+            <div class="col-md-6 mt-3" >
               <img
                 class="w-100"
+                [routerLink]="['/products/subcategory/', categoryImages[3].id]"
                 [src]="categoryImages[3].icon | safe | async"
               />
             </div>
             <div class="col-md-6 mt-3">
               <img
                 class="w-100"
+                [routerLink]="['/products/subcategory/', categoryImages[4].id]"
                 [src]="categoryImages[4].icon | safe | async"
               />
             </div>
             <div class="col-md-6 mt-3">
               <img
                 class="w-100"
+                [routerLink]="['/products/subcategory/', categoryImages[5].id]"
                 [src]="categoryImages[5].icon | safe | async"
               />
             </div>
             <div class="col-md-6 mt-3">
               <img
                 class="w-100"
+                [routerLink]="['/products/subcategory/', categoryImages[6].id]"
                 [src]="categoryImages[6].icon | safe | async"
               />
             </div>

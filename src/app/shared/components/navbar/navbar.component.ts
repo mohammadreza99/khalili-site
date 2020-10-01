@@ -82,7 +82,6 @@ export class NavbarComponent implements OnInit {
 
   showSubMenuById(rootId) {
     this.megaMenuList = this.menuItems[rootId - 1].list;
-    console.log(this.megaMenuList);
   }
 
   onMouseEnterMenuItem(id: string) {

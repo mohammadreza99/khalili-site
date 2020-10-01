@@ -44,7 +44,8 @@ storeTitle: "فروشگاه"
 warrantyId: 2
 warrantyTitle: "تست 1"
   */
-  productPrice$: any;
+  productPrices: any;
+  defaultPrice: any;
   /**
    isDefault: true
 keyMedia: "Product/efxbhgcn.png"
@@ -52,6 +53,7 @@ keyMedia: "Product/efxbhgcn.png"
   productMedia$: any;
   productDescription$: any;
   productComments$: any;
+  productFields$: any;
   relatedProducts$: any;
   zoomedImageSrc = '../../../../../assets/images/1.jpg';
   zoomedImageSrc1 = '../../../../../assets/images/2.jpg';
@@ -127,6 +129,15 @@ keyMedia: "Product/efxbhgcn.png"
       title: 'Title 1',
     },
   ];
+  attributeTypes = {
+    1: 'Text',
+    2: 'Number',
+    3: 'Date',
+    4: 'Text Area',
+    5: 'Select',
+    6: 'Multi Select',
+    7: 'CheckBox',
+  };
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -143,36 +154,37 @@ keyMedia: "Product/efxbhgcn.png"
   ];
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
     const code = this.route.snapshot.paramMap.get('code');
-    this.productInfo$ = this.productService.getProductInfo(id, code);
-    this.productPrice$ = this.productService.getProductPrice(id, code);
-    this.productMedia$ = this.productService.getProductMedia(id, code);
-    this.productDescription$ = this.productService.getProductDescription(
-      id,
-      code
-    );
-    this.productComments$ = this.productService.getProductComments(id, code);
-    this.relatedProducts$ = this.productService.getRelatedProducts(id, code);
+    this.productInfo$ = this.productService.getProductInfo(code);
+    this.productMedia$ = this.productService.getProductMedia(code);
+    this.productFields$ = this.productService.getProductFields(code);
+    this.productDescription$ = this.productService.getProductDescription(code);
+    this.productComments$ = this.productService.getProductComments(code);
+    this.relatedProducts$ = this.productService.getRelatedProducts(code);
+    this.productService.getProductPrice(code).subscribe((res: any[]) => {
+      this.defaultPrice = res.find((item) => item.isDefault);
+      this.productPrices = res.filter((item) => item.isDefault);
+      console.log('productPrice', res);
+      console.log('defaultPrice', this.defaultPrice);
+      console.log('OtherPrices', this.productPrices);
+    });
 
     this.productInfo$?.subscribe((res) => {
       console.log('productInfo', res);
     });
-    this.productPrice$?.subscribe((res) => {
-      console.log('productPrice', res);
+    this.productFields$?.subscribe((res) => {
+      console.log('productFields', res);
     });
     this.productMedia$?.subscribe((res) => {
       console.log('productMedia', res);
     });
-    this.productDescription$?.subscribe((res) => {
-      console.log('productDescription', res);
-    });
     this.productComments$?.subscribe((res) => {
       console.log('productComments', res);
     });
-    this.relatedProducts$?.subscribe((res) => {
-      console.log('relatedProducts', res);
-    });
+  }
+
+  onColorChange(color){
+    
   }
 
   onClickTab(event, tabPane, navs, active) {

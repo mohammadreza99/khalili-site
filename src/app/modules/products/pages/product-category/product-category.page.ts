@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../business/product.service';
-
+import { TreeNode } from 'primeng';
 @Component({
   selector: 'product-category',
   templateUrl: './product-category.page.html',
@@ -12,30 +12,30 @@ export class ProductCategoryPage implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute
   ) {}
-
+  originalCategories;
+  convertedCategories: TreeNode[];
   categoryDescription$;
   categorySlider$;
+  categoryImages$;
+  categoryProductsSlider$;
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.categoryDescription$ = this.productService.getCategoryDescription(id);
     this.categorySlider$ = this.productService.getCategorySlider(id);
+    this.categoryImages$ = this.productService.getCategoryImages(id);
+    this.categoryProductsSlider$=this.productService.getCategoryMainPage(id);
+    this.loadList(+id);
   }
 
-  items = [
-    {
-      img: './../../../assets/images/adv-3.jpg',
-      url: '',
-    },
-    {
-      img: './../../../assets/images/adv-4.jpg',
-      url: '',
-    },
-    {
-      img: './../../../assets/images/adv-5.jpg',
-      url: '',
-    },
-  ];
+  async loadList(id) {
+    this.originalCategories = await this.productService
+      .getCategoryAllList(id)
+      .toPromise();
+    this.convertedCategories = this.productService.convertToTreeNodeList(
+        this.originalCategories
+        );
+  }
 
   headerSliderConfig = {
     effect: 'fade',

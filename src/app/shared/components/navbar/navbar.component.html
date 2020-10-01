@@ -102,7 +102,7 @@
                           [routerLink]="['/products/subcategory/', item.id]"
                         >
                           <ul> {{ item.title }}
-                            <li *ngFor="let child of item.children">
+                            <li *ngFor="let child of item.children" [routerLink]="['/products/subcategory/', item.id]">
                               {{ child.title }}
                             </li>
                           </ul>

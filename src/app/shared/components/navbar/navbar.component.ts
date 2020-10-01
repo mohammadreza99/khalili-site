@@ -45,8 +45,6 @@ export class NavbarComponent implements OnInit {
     this.userService.getMenu().subscribe((res) => {
       this.menuItems = this.generateMenu(res);
       this.megaMenuList = this.menuItems[0].list;
-      console.log(this.menuItems);
-      
     });
   }
   generateMenu(menu) {

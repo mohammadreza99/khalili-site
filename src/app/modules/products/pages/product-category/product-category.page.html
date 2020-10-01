@@ -3,91 +3,53 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-3">
-          <div class="bg-white rounded-lg shadow-sm px-3">
-            <ag-accordion>
-              <ag-accordion-item icon="fa-book" title="1st Week">
-                <accordion-content>
-                  <ul class="courses-list list-unstyled pr-3">
-                    <li class="mar-t-16">
-                      <a class="pad-24" href="#">Title of first week</a>
-                    </li>
-                    <li class="mar-t-16">
-                      <a class="pad-24" href="#">Title of first week</a>
-                    </li>
-                    <li class="mar-t-16">
-                      <a class="pad-24" href="#">Title of first week</a>
-                    </li>
-                    <li class="mar-t-16">
-                      <a class="pad-24" href="#">Title of first week</a>
-                    </li>
-                    <li class="mar-t-16">
-                      <a class="pad-24" href="#">Title of first week</a>
-                    </li>
-                  </ul>
-                </accordion-content>
-              </ag-accordion-item>
-              <ag-accordion-item icon="fa-book" title="2st Week">
-                <accordion-content>
-                  <ul class="courses-list list-unstyled pr-3">
-                    <li class="mar-t-16">
-                      <a class="pad-24" href="#">Title of first week</a>
-                    </li>
-                    <li class="mar-t-16">
-                      <a class="pad-24" href="#">Title of first week</a>
-                    </li>
-                    <li class="mar-t-16">
-                      <a class="pad-24" href="#">Title of first week</a>
-                    </li>
-                    <li class="mar-t-16">
-                      <a class="pad-24" href="#">Title of first week</a>
-                    </li>
-                    <li class="mar-t-16">
-                      <a class="pad-24" href="#">Title of first week</a>
-                    </li>
-                  </ul>
-                </accordion-content>
-              </ag-accordion-item>
-            </ag-accordion>
+          <div class="bg-white rounded-lg shadow-sm ">
+            <p-tree [value]="convertedCategories" dir="rtl" class="rtl ui-rtl">
+              <ng-template let-node pTemplate="default">
+                <div class="d-flex align-items-center">
+                  <p>{{node.label}}</p>
+                </div>
+              </ng-template>
+            </p-tree>
+
           </div>
         </div>
         <div class="col-lg-9">
           <div class="row">
-            <div class="col-12">
+            <div class="col-12" *ngIf="(categorySlider$ | async) as categorySlider">
               <carousel
                 [showArrows]="true"
                 [showBullets]="true"
                 [config]="headerSliderConfig"
               >
-                <div *ngFor="let item of items" class="swiper-slide">
+                <div *ngFor="let item of categorySlider " class="swiper-slide">
                   <img
                     class="card-img-top"
-                    [src]="item.img"
-                    alt="Card image cap"
+                    [src]="item.keyMedia | safe | async"
+                    [alt]="item.alt"
                   />
                 </div>
               </carousel>
             </div>
           </div>
+          <div *ngIf="(categoryImages$ | async) as categoryImages">
           <div class="row">
             <div class="col mt-3">
               <img
                 class="w-100"
-                src="https://via.placeholder.com/400x300"
-                alt=""
+                [src]="categoryImages[0].icon | safe | async"
               />
             </div>
             <div class="col mt-3">
               <img
                 class="w-100"
-                src="https://via.placeholder.com/400x300"
-                alt=""
+                [src]="categoryImages[1].icon | safe | async"
               />
             </div>
             <div class="col mt-3">
               <img
                 class="w-100"
-                src="https://via.placeholder.com/400x300"
-                alt=""
+                [src]="categoryImages[2].icon | safe | async"
               />
             </div>
           </div>
@@ -95,60 +57,44 @@
             <div class="col-md-6 mt-3">
               <img
                 class="w-100"
-                src="https://via.placeholder.com/820x300"
-                alt=""
+                [src]="categoryImages[3].icon | safe | async"
               />
             </div>
             <div class="col-md-6 mt-3">
               <img
                 class="w-100"
-                src="https://via.placeholder.com/820x300"
-                alt=""
+                [src]="categoryImages[4].icon | safe | async"
               />
             </div>
             <div class="col-md-6 mt-3">
               <img
                 class="w-100"
-                src="https://via.placeholder.com/820x300"
-                alt=""
+                [src]="categoryImages[5].icon | safe | async"
               />
             </div>
             <div class="col-md-6 mt-3">
               <img
                 class="w-100"
-                src="https://via.placeholder.com/820x300"
-                alt=""
+                [src]="categoryImages[6].icon | safe | async"
               />
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 mt-3">
-              <products-slider
-                [config]="productsSliderConfig"
-                [products]="products"
-                title="محصولات پربازدید اخیر"
-              ></products-slider>
-            </div>
-            <div class="col-12 mt-3">
-              <products-slider
-                [config]="productsSliderConfig"
-                [products]="products"
-                title="محصولات پربازدید اخیر"
-              ></products-slider>
-            </div>
-            <div class="col-12 mt-3">
-              <products-slider
-                [config]="productsSliderConfig"
-                [products]="products"
-                title="محصولات پربازدید اخیر"
-              ></products-slider>
-            </div>
-          </div>
+        </div>
 
-          <div class="row">
-            <div class="col-12 mt-3">
+          <div class="row" *ngIf="(categoryProductsSlider$|async) as categoryProductsSlider">
+            <!-- <div class="col-12 mt-3" *ngFor="let item of categoryProductsSlider">
+              <products-slider
+                [config]="productsSliderConfig"
+                [products]="item.obj"
+                [title]="item.title"
+              ></products-slider>
+            </div> -->
+          </div> 
+
+          <div class="row" >
+            <div class="col-12 mt-3" *ngIf="categoryDescription$ | async as categoryDescription">
               <div class="bg-white rounded-lg shadow-sm px-3">
-                {{categoryDescription$ | async}}
+                {{categoryDescription[0].description}}
               </div>
             </div>
           </div>

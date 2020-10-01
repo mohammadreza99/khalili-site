@@ -34,35 +34,8 @@ export class NavbarComponent implements OnInit {
   isScrolled = false;
   showMenu = false;
   isOpen = false;
-  menu = [];
-  menuItems = [
-    {
-      id: '1',
-      title: 'ایتم 1',
-      icon: 'cheeseburger',
-      list: ['11', '12'],
-    },
-    {
-      id: '2',
-      title: 'ایتم 2',
-      icon: 'marker',
-      list: ['21', '22'],
-    },
-    {
-      id: '3',
-      title: 'ایتم 3',
-      icon: 'tshirt',
-      list: ['31', '32', '33'],
-    },
-    {
-      id: '4',
-      title: 'ایتم4',
-      icon: 'motorcycle',
-      list: ['41'],
-    },
-  ];
-  megaMenuList 
-  // megaMenuList =this.menuItems[0].list;
+  menuItems = [];
+  megaMenuList ;
   profile: Profile;
 
   ngOnInit(): void {
@@ -95,7 +68,7 @@ export class NavbarComponent implements OnInit {
       list = [];
       res.list.forEach((item) => {
         Object.assign(item, { children: [] });
-        this.menu.forEach((m) => {
+        menu.forEach((m) => {
           if (m.lvl == 3 && m.parentId === item.id) {
             list.push(m);
           }

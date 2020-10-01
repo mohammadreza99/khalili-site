@@ -99,7 +99,11 @@
                           *ngFor="let item of megaMenuList"
                           [routerLink]="['/products/subcategory/', item.id]"
                         >
-                          {{ item.title }}
+                          <ul> {{ item.title }}
+                            <li *ngFor="let child of item.children">
+                              {{ child.title }}
+                            </li>
+                          </ul>
                         </li>
                       </ul>
                     </div>

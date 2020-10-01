@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit {
   isScrolled = false;
   showMenu = false;
   isOpen = false;
+  menu = [];
   menuItems = [
     {
       id: '1',
@@ -60,17 +61,53 @@ export class NavbarComponent implements OnInit {
       list: ['41'],
     },
   ];
-  megaMenuList = this.menuItems[0].list;
+  megaMenuList 
+  // megaMenuList =this.menuItems[0].list;
   profile: Profile;
 
   ngOnInit(): void {
     this.userService.getProfileInfo().subscribe((res) => {
       this.profile = res;
     });
+    this.userService.getMenu().subscribe((res) => {
+      this.menuItems = this.generateMenu(res);
+      this.megaMenuList = this.menuItems[0].list;
+      console.log(this.menuItems);
+      
+    });
   }
-
+  generateMenu(menu) {
+    let lvl1 = [];
+    menu.forEach((res) => {
+      if (res.lvl == 1) {
+        lvl1.push(res);
+        Object.assign(lvl1, { list: [] });
+      }
+    });
+    lvl1.forEach((res) => {
+      let list = [];
+      menu.forEach((m) => {
+        if (m.lvl == 2 && m.parentId === res.id) {
+          list.push(m);
+        }
+      });
+      res.list = list;
+      list = [];
+      res.list.forEach((item) => {
+        Object.assign(item, { children: [] });
+        this.menu.forEach((m) => {
+          if (m.lvl == 3 && m.parentId === item.id) {
+            list.push(m);
+          }
+        });
+        item.children = list;
+        list=[]
+      });
+    });
+    return lvl1;
+  }
   showSubMenuById(rootId) {
-    this.megaMenuList = this.menuItems.find((item) => item.id == rootId).list;
+    this.megaMenuList = this.menuItems[rootId-1].list;
   }
 
   onMouseEnterMenuItem(id: string) {

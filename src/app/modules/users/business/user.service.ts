@@ -16,6 +16,11 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UserService extends BaseService {
+
+  getMenu() {
+    return this.get('/V1/Menu/', 'json').pipe(map((res: any) => res.data));
+  }
+
   getProfileInfo() {
     return this.get<Profile>('/V1/Profile/', 'json').pipe(
       map((res: any) => res.data)

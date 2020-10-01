@@ -39,4 +39,5 @@ export const COMPONENTS: Type<any>[] = [
   OrganizationInfoComponent,
   ProfileInfoComponent,
   SafePipe,
+  LogoComponent,
 ];

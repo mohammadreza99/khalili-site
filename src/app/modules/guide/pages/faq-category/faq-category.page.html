@@ -13,7 +13,7 @@
                   [routerLink]="['/guide/faq',d.id]"
                   class="question-cat p-4 d-flex flex-column align-items-center justify-content-center"
                 >
-                  <img [src]="d.keyMedia" alt="" />
+                  <img class="w-100" [src]="d.keyMedia | safe | async" alt="" />
                   <div class="mt-4">{{d.title}}</div>
                 </div>
               </div>

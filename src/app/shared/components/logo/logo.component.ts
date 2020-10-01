@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./logo.component.scss'],
 })
 export class LogoComponent implements OnInit {
-  @Input() logo = 'https://via.placeholder.com/130x60';
+  @Input() logo = 'https://www.digikala.com/static/files/bc60cf05.svg';
 
   ngOnInit(): void {}
 }

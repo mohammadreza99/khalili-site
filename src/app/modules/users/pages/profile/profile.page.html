@@ -7,7 +7,7 @@
             <div class="bg-light rounded-top d-flex align-items-center p-2">
               <img
                 (click)="onAvatarClick()"
-                [src]="'../../../../../assets/images/avatar/'+ (userProfile.avatar || '1.png')"
+                [src]="'../../../../../assets/images/avatar/'+ (userProfile.avatar+'.png' || '1.png')"
                 class="rounded-circle avatar"
               />
               <div class="user-info mr-3">
@@ -306,7 +306,7 @@
     [modal]="true"
     [draggable]="false"
     [blockScroll]="true"
-    [style]="{ width: '800px' }"
+    [style]="{ width: '800px'}"
   >
     <div class="col-12">
       <div class="row">
@@ -317,7 +317,7 @@
           <img
             (click)="onEditAvatar(avatar)"
             [src]="'../../../../../assets/images/avatar/'+avatar+'.png'"
-            class="rounded-circle"
+            class="rounded-circle avatar my-2"
           />
         </div>
       </div>

@@ -25,7 +25,8 @@ export class ProductDetailsPage implements OnInit {
   productComments$: any;
   productFields$: any;
   relatedProducts$: any;
-  availableColors: any[];
+  availableColors: any[] = [];
+  prices: any[] = [];
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -58,7 +59,7 @@ export class ProductDetailsPage implements OnInit {
   // zoomedImageSrc = '../../../../../assets/images/1.jpg';
   // zoomedImageSrc1 = '../../../../../assets/images/2.jpg';
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.productCode = this.route.snapshot.paramMap.get('code');
     this.productInfo$ = this.productService.getProductInfo(this.productCode);
     this.productMedia$ = this.productService.getProductMedia(this.productCode);
@@ -77,12 +78,37 @@ export class ProductDetailsPage implements OnInit {
     this.productService
       .getProductPrice(this.productCode)
       .subscribe((res: any[]) => {
-        this.defaultPrice = res.find((item) => item.isDefault);
-        this.productPrices = res.filter((item) => item.isDefault);
+        this.prices = res;
+        res.forEach((price) => {
+          if (!this.availableColors.find((color) => color.id == price.colorId))
+            this.availableColors.push({
+              label: price.colorTitle,
+              value: price.colorId,
+            });
+        });
+        this.defaultPrice = res.find(
+          (item) =>
+            item.isDefault && item.colorId == this.availableColors[0].value
+        );
+        this.productPrices = res.filter(
+          (item) =>
+            !item.isDefault && item.colorId == this.availableColors[0].value
+        );
+        console.log(this.productPrices);
       });
   }
 
-  onColorChange(color) {}
+  onColorChange(colorId) {
+    let selectedColor = this.availableColors.find(
+      (color) => color.value == colorId
+    );
+    this.defaultPrice = this.prices.find(
+      (item) => item.isDefault && item.colorId == selectedColor.value
+    );
+    this.productPrices = this.prices.filter(
+      (item) => !item.isDefault && item.colorId == selectedColor.value
+    );
+  }
 
   onAddToCard() {
     this.orderService.storeCart(this.productCode);

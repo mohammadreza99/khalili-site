@@ -60,11 +60,13 @@
                     </div>
                   </ng-container>
                   <prm-input-dropdown
+                  *ngIf="availableColors[0]"
                     (onChange)="onColorChange($event)"
                     [placeholder]="null"
                     labelWidth="110"
                     [showClear]="false"
                     label="انتخاب رنگ"
+                    [value]="availableColors[0].value"
                     [items]="availableColors"
                   ></prm-input-dropdown>
                 </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { ProductService } from '../../business/product.service';
 
 @Component({
@@ -22,7 +21,8 @@ export class ProductDetailsPage implements OnInit {
   productComments$: any;
   productFields$: any;
   relatedProducts$: any;
-  availableColors: any[];
+  availableColors: any[] = [];
+  prices: any[] = [];
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -54,7 +54,7 @@ export class ProductDetailsPage implements OnInit {
   // zoomedImageSrc = '../../../../../assets/images/1.jpg';
   // zoomedImageSrc1 = '../../../../../assets/images/2.jpg';
 
-  ngOnInit(): void {
+  ngOnInit() {
     const code = this.route.snapshot.paramMap.get('code');
     this.productInfo$ = this.productService.getProductInfo(code);
     this.productMedia$ = this.productService.getProductMedia(code);
@@ -63,12 +63,38 @@ export class ProductDetailsPage implements OnInit {
     this.productComments$ = this.productService.getProductComments(code);
     this.relatedProducts$ = this.productService.getRelatedProducts(code);
     this.productService.getProductPrice(code).subscribe((res: any[]) => {
-      this.defaultPrice = res.find((item) => item.isDefault);
-      this.productPrices = res.filter((item) => item.isDefault);
+      this.prices = res;
+      res.forEach((price) => {
+        if (!this.availableColors.find((color) => color.id == price.colorId))
+          this.availableColors.push({
+            label: price.colorTitle,
+            value: price.colorId,
+          });
+      });
+      this.defaultPrice = res.find(
+        (item) =>
+          item.isDefault && item.colorId == this.availableColors[0].value
+      );
+      this.productPrices = res.filter(
+        (item) =>
+          (!item.isDefault) && item.colorId == this.availableColors[0].value
+      );
+      console.log(this.productPrices );
+      
     });
   }
 
-  onColorChange(color) {}
+  onColorChange(colorId) {
+    let selectedColor = this.availableColors.find(
+      (color) => color.value == colorId
+    );
+    this.defaultPrice = this.prices.find(
+      (item) => item.isDefault && item.colorId == selectedColor.value
+    );
+    this.productPrices = this.prices.filter(
+      (item) => !item.isDefault && item.colorId == selectedColor.value
+    );
+  }
 
   onClickTab(event, tabPane, navs, active) {
     navs.querySelectorAll('.nav-link').forEach((element) => {

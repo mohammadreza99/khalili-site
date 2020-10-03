@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { OrderService } from '@app/modules/orders/business/order.service';
 
 import { ProductService } from '../../business/product.service';
 
@@ -11,7 +12,9 @@ import { ProductService } from '../../business/product.service';
 export class ProductDetailsPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router,
+    private orderService: OrderService
   ) {}
 
   productInfo$: any;
@@ -51,24 +54,40 @@ export class ProductDetailsPage implements OnInit {
       title: 'Title 1',
     },
   ];
+  productCode: string;
   // zoomedImageSrc = '../../../../../assets/images/1.jpg';
   // zoomedImageSrc1 = '../../../../../assets/images/2.jpg';
 
   ngOnInit(): void {
-    const code = this.route.snapshot.paramMap.get('code');
-    this.productInfo$ = this.productService.getProductInfo(code);
-    this.productMedia$ = this.productService.getProductMedia(code);
-    this.productFields$ = this.productService.getProductFields(code);
-    this.productDescription$ = this.productService.getProductDescription(code);
-    this.productComments$ = this.productService.getProductComments(code);
-    this.relatedProducts$ = this.productService.getRelatedProducts(code);
-    this.productService.getProductPrice(code).subscribe((res: any[]) => {
-      this.defaultPrice = res.find((item) => item.isDefault);
-      this.productPrices = res.filter((item) => item.isDefault);
-    });
+    this.productCode = this.route.snapshot.paramMap.get('code');
+    this.productInfo$ = this.productService.getProductInfo(this.productCode);
+    this.productMedia$ = this.productService.getProductMedia(this.productCode);
+    this.productFields$ = this.productService.getProductFields(
+      this.productCode
+    );
+    this.productDescription$ = this.productService.getProductDescription(
+      this.productCode
+    );
+    this.productComments$ = this.productService.getProductComments(
+      this.productCode
+    );
+    this.relatedProducts$ = this.productService.getRelatedProducts(
+      this.productCode
+    );
+    this.productService
+      .getProductPrice(this.productCode)
+      .subscribe((res: any[]) => {
+        this.defaultPrice = res.find((item) => item.isDefault);
+        this.productPrices = res.filter((item) => item.isDefault);
+      });
   }
 
   onColorChange(color) {}
+
+  onAddToCard() {
+    this.orderService.storeCart(this.productCode);
+    this.router.navigate(['/orders/cart']);
+  }
 
   onClickTab(event, tabPane, navs, active) {
     navs.querySelectorAll('.nav-link').forEach((element) => {

@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="container">
-      <div class="row">
+      <div class="row" *ngIf="cartProducts.length == 0">
         <div class="col-12">
           <div class="bg-white rounded-lg shadow-sm p-4">
             <div class="row">
@@ -20,32 +20,34 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-9">
+      <div class="row" *ngIf="cartProducts.length != 0">
+        <div class="col-lg-8 mb-4 mb-lg-0">
           <div class="bg-white rounded-lg shadow-sm pt-5 px-4">
-            <!-- CART ITEM -->
-            <div class="row cart-item pb-5">
-              <div class="col-3">
+            <div
+              class="row cart-item pb-5"
+              *ngFor="let item of cartProducts;let i = index"
+            >
+              <div class="col-md-4 col-lg-3 mb-3 mb-md-0">
                 <img
                   class="w-100"
                   src="http://via.placeholder.com/140x140"
                   alt=""
                 />
               </div>
-              <div class="col-9">
-                <h6>ندروید باکس آ‌مدیا مدل EM95S - 4/32</h6>
+              <div class="col-md-8 col-lg-9">
+                <h6>{{item.name}}</h6>
                 <ul class="list-unstyled p-0 text-muted">
                   <li class="d-flex align-items-center">
                     <i class="fa fa-home ml-2"></i>
-                    <small>سرویس ویژه : ۷ روز تضمین بازگشت کالا</small>
+                    <small>{{item.color}}</small>
                   </li>
                   <li class="d-flex align-items-center">
                     <i class="fa fa-home ml-2"></i>
-                    <small>سرویس ویژه : ۷ روز تضمین بازگشت کالا</small>
+                    <small>{{item.warranty}}</small>
                   </li>
                   <li class="d-flex align-items-center">
                     <i class="fa fa-home ml-2"></i>
-                    <small>سرویس ویژه : ۷ روز تضمین بازگشت کالا</small>
+                    <small>{{item.store}}</small>
                   </li>
                 </ul>
                 <div class="d-flex align-items-center justify-content-between">
@@ -53,28 +55,30 @@
                     <div
                       class="counter border rounded-lg d-flex align-items-center justify-content-between px-3"
                     >
-                      <i class="fal fa-plus" (click)="plusClick()"></i>
-                      <span class="mx-3">{{productCount}}</span>
-                      <i class="fal fa-minus" (click)="minusClick()"></i>
+                      <i class="fal fa-plus" (click)="plusClick(item)"></i>
+                      <span class="mx-3">{{item.quantity}}</span>
+                      <i class="fal fa-minus" (click)="minusClick(item)"></i>
                     </div>
                     <button
                       class="btn btn-outline-danger p-1 mx-3"
-                      (click)="onDeleteProduct()"
+                      (click)="onDeleteProduct(i)"
                     >
                       <i class="fal ml-1 fa-trash"></i>
                       <small>حذف</small>
                     </button>
                   </div>
                   <div class="left-side text-left">
-                    <small class="text-danger">تخفیف ۳۵۰,۰۰۰ تومان </small>
-                    <div>۱,۴۰۰,۰۰۰ تومان</div>
+                    <small class="text-danger" *ngIf="item.discountPrice"
+                      >{{item.discountPrice}}
+                    </small>
+                    <div>{{item.price}}</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-3 factor">
+        <div class="col-lg-4 factor">
           <div class="bg-white rounded-lg shadow-sm p-4">
             <div
               class="d-flex justify-content-between align-items-center text-muted"

@@ -113,7 +113,7 @@ export class ProductDetailsPage implements OnInit {
   onAddToCard() {
     this.orderService.storeCart(this.productCode);
     this.router.navigate(['/orders/cart']);
-  }
+length  }
 
   onClickTab(event, tabPane, navs, active) {
     navs.querySelectorAll('.nav-link').forEach((element) => {

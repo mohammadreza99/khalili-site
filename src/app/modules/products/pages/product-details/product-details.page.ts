@@ -14,7 +14,7 @@ export class ProductDetailsPage implements OnInit {
   ) {}
 
   productInfo$: any;
-  productPrices: any;
+  productPrices: any=[];
   defaultPrice: any;
   productMedia$: any;
   productDescription$: any;
@@ -76,10 +76,12 @@ export class ProductDetailsPage implements OnInit {
           item.isDefault && item.colorId == this.availableColors[0].value
       );
       this.productPrices = res.filter(
-        (item) =>
-          (!item.isDefault) && item.colorId == this.availableColors[0].value
+        (item) =>{
+          console.log(item.isDefault);
+          return (!item.isDefault) && item.colorId == this.availableColors[0].value
+        }
+         
       );
-      console.log(this.productPrices );
       
     });
   }

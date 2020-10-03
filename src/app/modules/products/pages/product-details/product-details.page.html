@@ -38,11 +38,6 @@
                     <div
                       class="feedbacks d-flex align-items-center text-primary"
                     >
-                      <!-- <div class="rates">
-                        <i class="fa fa-star fa-sm text-warning ml-1"></i>
-                        <small>4 <small class="text-muted"> (201) </small></small>
-                      </div> -->
-                      <!-- <span class="mx-3">|</span> -->
                       <div class="visions">
                         <small>{{info.commentCount}} دیدگاه کاربران</small>
                       </div>
@@ -131,13 +126,10 @@
                               >تومان</span
                             >
                           </div>
-                          <!-- <div class="best-price">
-                            <i class="fas fa-check ml-2 text-success fa-sm"></i>
-                            <small>بهترین قیمت ۳۰ روز گذشته</small>
-                          </div> -->
                         </div>
 
                         <button
+                          (click)="onAddToCard()"
                           [ngClass]="{'disabled': defaultPrice.qty < 0}"
                           class="btn btn-block btn-primary my-2"
                         >
@@ -308,7 +300,7 @@
                     <p class="mb-5">
                       دو پرفیوم زنانه امپر مدل Gorgeous In Red حجم 80 میلی لیتر
                     </p>
-                    <div class="bar-row d-flex align-items-center font-light">
+                    <!-- <div class="bar-row d-flex align-items-center font-light">
                       <span>نسبت به قیمت</span>
                       <div class="bar-container">
                         <div [style.width.%]="50" class="bar"></div>
@@ -328,7 +320,7 @@
                         <div [style.width.%]="50" class="bar"></div>
                       </div>
                       <span class="mr-4">خوب</span>
-                    </div>
+                    </div> -->
                   </div>
                   <div class="col-lg-6">
                     <h5>شما هم می‌توانید در مورد این کالا نظر بدهید.</h5>
@@ -356,7 +348,7 @@
                       <div class="col-8">
                         <h5 class="border-bottom pb-3">عنوان نظر</h5>
                         <p>متن نظر</p>
-                        <div class="feedback d-flex align-items-center">
+                        <!-- <div class="feedback d-flex align-items-center">
                           <small class="font-light"
                             >آیا این نظر برایتان مفید بود؟
                           </small>
@@ -368,7 +360,7 @@
                               >0 خیر</small
                             >
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>

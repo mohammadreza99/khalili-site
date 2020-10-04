@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ProductService } from '@app/modules/products/business/product.service';
+import { PrimeConfirmService } from '@app/shared/components/@prime/prime-service/prime-confirm.service';
 import { OrderService } from '../../business/order.service';
 
 @Component({
@@ -10,40 +11,56 @@ import { OrderService } from '../../business/order.service';
 export class CartPage implements OnInit {
   constructor(
     private orderService: OrderService,
-    private productService: ProductService
+    private productService: ProductService,
+    private dialogService: PrimeConfirmService,
+    private vcRef: ViewContainerRef
   ) {}
 
   cartProducts = [];
+  actualPriceSum = 0;
+  discountSum = 0;
+  finalPaySum = 0;
 
   ngOnInit(): void {
     this.loadCart();
   }
 
   async loadCart() {
-    const code = this.orderService.getCart();
-    const info = await this.productService.getProductInfo(code).toPromise();
-    const price = await this.productService.getProductPrice(code).toPromise();
-    const media = await this.productService.getProductMedia(code).toPromise();
-    this.cartProducts.push({
-      name: info.name,
-      store: '',
-      warranty: '',
-      price: 0,
-      discountPrice: 0,
-      color: '',
-      quantity: 1,
-    });
-    localStorage.setItem(
-      'paid-products',
-      `{data: [{
-      id:${info.id},
-      code:${code},
-      name: ${name},
-      originalPrice: ,
-      price: ,
-      quantity: 1 ,
-    }]}`
-    );
+    const cart = this.orderService.getCart();
+    for (const cartItem of cart) {
+      const info = await this.productService
+        .getProductInfo(cartItem.productCode)
+        .toPromise();
+      const availableMedia = await this.productService
+        .getProductMedia(cartItem.productCode)
+        .toPromise();
+      const availabelPrices = await this.productService
+        .getProductPrice(cartItem.productCode)
+        .toPromise();
+      const selectedPrice = availabelPrices.find(
+        (item) => cartItem.priceId == item.id
+      );
+      console.log(info);
+
+      const media = availableMedia.find((m) => m.isDefault);
+      this.cartProducts.push({
+        productCode: info.productCode,
+        name: info.name,
+        store: selectedPrice.storeTitle,
+        keyMedia: media.keyMedia,
+        warranty: selectedPrice.warrantyTitle,
+        price: selectedPrice.price,
+        discountPrice: selectedPrice.disCountPrice,
+        color: selectedPrice.colorTitle,
+        quantity: 1,
+      });
+
+      this.actualPriceSum += selectedPrice.price;
+      this.discountSum += selectedPrice.disCountPrice;
+    }
+    for (const item of this.cartProducts) {
+      this.finalPaySum += item.discountPrice;
+    }
   }
 
   plusClick(item) {
@@ -57,7 +74,15 @@ export class CartPage implements OnInit {
     item.quantity--;
   }
 
-  onDeleteProduct(index) {
-    this.cartProducts.splice(index, 1);
+  onDeleteProduct(name, index, productCode) {
+    this.dialogService
+      .show(
+        { message: 'آیا مایل به حذف این کالا هستید؟', header: name },
+        this.vcRef
+      )
+      .then(() => {
+        this.orderService.deleteCart(productCode);
+        this.cartProducts.splice(index, 1);
+      });
   }
 }

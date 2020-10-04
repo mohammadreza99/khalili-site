@@ -79,6 +79,17 @@ export class ProductService extends BaseService {
       map((res: any) => res.data)
     );
   }
+  getCategoryAllSubList(id: any) {
+    return this.get('/V1/CategoryAllSubCategory/?categoryId='+id,'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
+  getProductCategory(obj) { 
+   let url= "categoryId="+obj.categoryId+"&pageindex="+obj.pageIndex+"&sort="+obj.sort
+    return this.get('/V1/ProductCategory//?'+url,'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
   getCategorySortType() {
     return this.get('/V1/SortType/','json').pipe(
       map((res: any) => res.data)

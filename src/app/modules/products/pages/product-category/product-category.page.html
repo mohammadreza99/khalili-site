@@ -7,7 +7,7 @@
             <p-tree [value]="convertedCategories" dir="rtl" class="rtl ui-rtl">
               <ng-template let-node pTemplate="default">
                 <div class="d-flex align-items-center">
-                  <p [routerLink]="['/products/subcategory/',node.id]">
+                  <p [routerLink]="['/products/subcategory/',node.data.id]">
                     {{node.label}}
                   </p>
                 </div>

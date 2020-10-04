@@ -10,7 +10,10 @@ export class OrderService extends BaseService {
 
   storeCart(cart: { productCode: any; priceId: any }) {
     const localStorageData: any[] = this.getCart();
-    if (localStorageData && localStorageData.find((item) => item.productCode == cart.productCode)) {
+    if (
+      localStorageData &&
+      localStorageData.find((item) => item.productCode == cart.productCode)
+    ) {
       return;
     } else {
       this.cartProducts.push(cart);
@@ -20,5 +23,16 @@ export class OrderService extends BaseService {
 
   getCart(): { productCode: any; priceId: any }[] {
     return JSON.parse(localStorage.getItem('paid-products')) || [];
+  }
+
+  deleteCart(productCode) {
+    debugger;
+    const localStorageData: any[] = this.getCart();
+    const itemToDelete = localStorageData.find(
+      (item) => item.productCode == productCode
+    );
+    const index = localStorageData.indexOf(itemToDelete);
+    const finalCart = [...localStorageData.splice(index, 1)];
+    localStorage.setItem('paid-products', JSON.stringify(finalCart));
   }
 }

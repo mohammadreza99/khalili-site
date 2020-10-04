@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ProductService } from '@app/modules/products/business/product.service';
+import { PrimeConfirmService } from '@app/shared/components/@prime/prime-service/prime-confirm.service';
 import { OrderService } from '../../business/order.service';
 
 @Component({
@@ -10,7 +11,9 @@ import { OrderService } from '../../business/order.service';
 export class CartPage implements OnInit {
   constructor(
     private orderService: OrderService,
-    private productService: ProductService
+    private productService: ProductService,
+    private dialogService: PrimeConfirmService,
+    private vcRef: ViewContainerRef
   ) {}
 
   cartProducts = [];
@@ -34,8 +37,11 @@ export class CartPage implements OnInit {
       const selectedPrice = availabelPrices.find(
         (item) => cartItem.priceId == item.id
       );
+      console.log(info);
+
       const media = availableMedia.find((m) => m.isDefault);
       this.cartProducts.push({
+        productCode: info.productCode,
         name: info.name,
         store: selectedPrice.storeTitle,
         keyMedia: media.keyMedia,
@@ -59,7 +65,15 @@ export class CartPage implements OnInit {
     item.quantity--;
   }
 
-  onDeleteProduct(index) {
-    this.cartProducts.splice(index, 1);
+  onDeleteProduct(name, index, productCode) {
+    this.dialogService
+      .show(
+        { message: 'آیا مایل به حذف این کالا هستید؟', header: name },
+        this.vcRef
+      )
+      .then(() => {
+        this.orderService.deleteCart(productCode);
+        this.cartProducts.splice(index, 1);
+      });
   }
 }

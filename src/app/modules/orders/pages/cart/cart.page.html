@@ -57,21 +57,25 @@
                     >
                       <i class="fal fa-plus" (click)="plusClick(item)"></i>
                       <span class="mx-3">{{item.quantity}}</span>
-                      <i class="fal fa-minus" (click)="minusClick(item)"></i>
+                      <i
+                        class="fal fa-minus"
+                        [ngClass]="{'text-black-50': item.quantity == 1}"
+                        (click)="minusClick(item)"
+                      ></i>
                     </div>
                     <button
                       class="btn btn-outline-danger p-1 mx-3"
-                      (click)="onDeleteProduct(i)"
+                      (click)="onDeleteProduct(item.name,i,item.productCode)"
                     >
                       <i class="fal ml-1 fa-trash"></i>
                       <small>حذف</small>
                     </button>
                   </div>
                   <div class="left-side text-left">
-                    <small class="text-danger" *ngIf="item.discountPrice"
-                      >{{item.discountPrice}}
+                    <small class="text-danger" *ngIf="item.discountPrice">
+                      <del> {{item.price}} تومان </del>
                     </small>
-                    <div>{{item.price}}</div>
+                    <div>{{item.discountPrice}} تومان</div>
                   </div>
                 </div>
               </div>

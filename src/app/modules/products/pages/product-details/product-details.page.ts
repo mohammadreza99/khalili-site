@@ -18,7 +18,7 @@ export class ProductDetailsPage implements OnInit {
   ) {}
 
   productInfo$: any;
-  productPrices: any=[];
+  productPrices: any = [];
   defaultPrice: any;
   productMedia$: any;
   productDescription$: any;
@@ -94,7 +94,6 @@ export class ProductDetailsPage implements OnInit {
           (item) =>
             !item.isDefault && item.colorId == this.availableColors[0].value
         );
-        console.log(this.productPrices);
       });
   }
 
@@ -110,10 +109,21 @@ export class ProductDetailsPage implements OnInit {
     );
   }
 
-  onAddToCard() {
-    this.orderService.storeCart(this.productCode);
+  onAddToCardByDefaultPrice() {
+    this.orderService.storeCart({
+      productCode: this.productCode,
+      priceId: this.defaultPrice.id,
+    });
     this.router.navigate(['/orders/cart']);
-length  }
+  }
+
+  onAddToCardByOtherPrice(priceId) {
+    this.orderService.storeCart({
+      productCode: this.productCode,
+      priceId: priceId.id,
+    });
+    this.router.navigate(['/orders/cart']);
+  }
 
   onClickTab(event, tabPane, navs, active) {
     navs.querySelectorAll('.nav-link').forEach((element) => {

@@ -51,7 +51,6 @@ export class HomePage implements OnInit {
       this.categoryVarious = res[2];
       this.newProducts = res[3];
       this.mostSellers = res[4];
-      console.log(res);
       this.homePageCases = res;
     });
   }

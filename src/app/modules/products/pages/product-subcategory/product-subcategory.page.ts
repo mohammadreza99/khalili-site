@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../business/product.service';
 
 @Component({
   selector: 'product-subcategory',
@@ -6,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-subcategory.page.scss'],
 })
 export class ProductSubcategoryPage implements OnInit {
-  constructor() {}
+  constructor(private productService: ProductService) {}
+  sortTypeItems$:any;
+  ngOnInit(): void {
+    this.sortTypeItems$=this.productService.getCategorySortType();
 
-  ngOnInit(): void {}
+  }
   config = {
     slidesPerView: 1,
     spaceBetween: 20,

@@ -51,9 +51,14 @@
           </div>
         </div>
         <div class="col-lg-9">
+          <div class="row" *ngIf="(sortTypeItems$ | async) as sortTypeItems">
+            <div class="col" *ngFor="let item of sortTypeItems">
+              <small>{{item.title}}</small>
+            </div>
+          </div>
           <div class="row no-gutters">
             <div class="col-sm-6 col-lg-4" dir="ltr" *ngFor="let product of products">
-              <product-card [product]="product"></product-card>
+              <!-- <product-card [product]="product"></product-card> -->
             </div>
           </div>
         </div>
@@ -67,11 +72,11 @@
       </div>
       <div class="row mt-4">
         <div class="col-12">
-          <products-slider
+          <!-- <products-slider
             [config]="config"
             [products]="products"
             title="محصولات پربازدید اخیر"
-          ></products-slider>
+          ></products-slider> -->
         </div>
       </div>
     </div>

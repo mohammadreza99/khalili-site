@@ -79,6 +79,15 @@ export class ProductService extends BaseService {
       map((res: any) => res.data)
     );
   }
+  getCategorySortType() {
+    return this.get('/V1/SortType/','json').pipe(
+      map((res: any) => res.data)
+    );
+  }
+
+
+
+
 
   convertToTreeNodeList(items=[]) {
     let result: TreeNode[] = [];

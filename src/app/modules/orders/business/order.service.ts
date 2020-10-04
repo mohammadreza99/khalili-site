@@ -26,7 +26,6 @@ export class OrderService extends BaseService {
   }
 
   deleteCart(productCode) {
-    debugger;
     const localStorageData: any[] = this.getCart();
     const itemToDelete = localStorageData.find(
       (item) => item.productCode == productCode

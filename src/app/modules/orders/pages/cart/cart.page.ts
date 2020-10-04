@@ -40,7 +40,6 @@ export class CartPage implements OnInit {
       const selectedPrice = availabelPrices.find(
         (item) => cartItem.priceId == item.id
       );
-      console.log(info);
 
       const media = availableMedia.find((m) => m.isDefault);
       this.cartProducts.push({
@@ -83,6 +82,7 @@ export class CartPage implements OnInit {
       .then(() => {
         this.orderService.deleteCart(productCode);
         this.cartProducts.splice(index, 1);
+        this.loadCart();
       });
   }
 }

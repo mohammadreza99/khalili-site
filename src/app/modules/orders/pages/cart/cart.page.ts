@@ -17,6 +17,9 @@ export class CartPage implements OnInit {
   ) {}
 
   cartProducts = [];
+  actualPriceSum = 0;
+  discountSum = 0;
+  finalPaySum = 0;
 
   ngOnInit(): void {
     this.loadCart();
@@ -51,6 +54,12 @@ export class CartPage implements OnInit {
         color: selectedPrice.colorTitle,
         quantity: 1,
       });
+
+      this.actualPriceSum += selectedPrice.price;
+      this.discountSum += selectedPrice.disCountPrice;
+    }
+    for (const item of this.cartProducts) {
+      this.finalPaySum += item.discountPrice;
     }
   }
 

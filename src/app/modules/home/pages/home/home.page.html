@@ -9,11 +9,7 @@
             [config]="mainSliderConfig"
           >
             <div *ngFor="let item of slider$ | async" class="swiper-slide">
-              <img
-                class="card-img-top"
-                [src]="item.keyMedia | safe | async"
-                alt="Card image cap"
-              />
+              <img class="card-img-top" [src]="item.keyMedia | safe | async" />
             </div>
           </carousel>
         </div>

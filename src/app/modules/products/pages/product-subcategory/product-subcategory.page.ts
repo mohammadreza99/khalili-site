@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TreeNode } from 'primeng';
 import { ProductService } from '../../business/product.service';
 
 @Component({
@@ -7,11 +9,50 @@ import { ProductService } from '../../business/product.service';
   styleUrls: ['./product-subcategory.page.scss'],
 })
 export class ProductSubcategoryPage implements OnInit {
-  constructor(private productService: ProductService) {}
-  sortTypeItems$:any;
-  ngOnInit(): void {
-    this.sortTypeItems$=this.productService.getCategorySortType();
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute
+  ) {}
+  originalCategories;
+  convertedCategories: TreeNode[];
+  sortTypeItems$: any;
+  products$: any;
+  pageIndex=0;
+  sortType=1;
+  id;
 
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.id = +params['id'];
+      this.sortTypeItems$ = this.productService.getCategorySortType();
+      this.loadList(this.id);
+      this.loadProduct(this.id);
+      
+    });
+  }
+  async loadList(id) {
+    this.originalCategories = await this.productService
+      .getCategoryAllSubList(id)
+      .toPromise();
+    this.convertedCategories = this.productService.convertToTreeNodeList(
+      this.originalCategories
+    );
+  }
+  async loadProduct(id){
+    let obj={
+      categoryId: id,
+      pageIndex: this.pageIndex,
+      sort:this.sortType
+    }
+    this.products$ = await this.productService.getProductCategory(obj)
+  }
+  onPageChange(args){
+    this.pageIndex=+(args.page)+1;
+    this.loadProduct(this.id);
+  }
+  onSortTypeChange(id){
+    this.sortType=id;
+    this.loadProduct(this.id);
   }
   config = {
     slidesPerView: 1,
@@ -23,118 +64,4 @@ export class ProductSubcategoryPage implements OnInit {
     },
   };
 
-  products = [
-    {
-      img: '../../../assets/images/1.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/2.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/3.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/4.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/5.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/6.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/7.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/1.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/2.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/3.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/4.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/5.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/6.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-    {
-      img: '../../../assets/images/7.jpg',
-      title:
-        'گوشی موبایل اپل مدل iPhone 11 Pro A2217 دو سیم‌ کارت ظرفیت 256 گیگابایت',
-      price: '34499000',
-      discount: '50',
-      link: '',
-    },
-  ];
 }

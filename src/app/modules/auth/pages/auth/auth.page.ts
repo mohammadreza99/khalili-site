@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../business/auth.service';
-import { CheckOtpModel, CheckPasswordModel, ChangePasswordModel } from '../../model/auth.model';
-import { Router } from '@angular/router';
+import {
+  CheckOtpModel,
+  CheckPasswordModel,
+  ChangePasswordModel,
+} from '../../model/auth.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'auth',
@@ -39,12 +43,17 @@ export class AuthPage implements OnInit {
   });
 
   changePasswordForm = new FormGroup({
-    control: new FormControl(null, [Validators.required, Validators.minLength(6)])
+    control: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
   });
 
-
-
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   onSubmitRegister() {
     if (this.registerForm.valid) {
@@ -73,17 +82,19 @@ export class AuthPage implements OnInit {
         if (res.success && res.data.token) {
           this.authService.saveToken(res.data.token);
           this.showRegisterConfirm = false;
-          if(this.forgetForm.valid){
-
+          if (this.route.snapshot.queryParamMap.get('return')) {
+            this.router.navigate([
+              this.route.snapshot.queryParamMap.get('return'),
+            ]);
+          } else {
+            this.router.navigate(['/']);
           }
-          else
-          this.router.navigate(['/']);
         }
       });
     }
   }
 
-  onSubmitLoginConfirmForm () {
+  onSubmitLoginConfirmForm() {
     if (this.registerForm.valid) {
       const checkPass: CheckPasswordModel = {
         mobileNo: this.registerForm.get('control').value,
@@ -99,14 +110,14 @@ export class AuthPage implements OnInit {
     }
   }
 
-  onChangePasswordForm () {
+  onChangePasswordForm() {
     if (this.registerForm.valid) {
       const changePass: ChangePasswordModel = {
         password: this.changePasswordForm.get('control').value,
         oldPassword: null,
       };
       this.authService.changePass(changePass).subscribe((res: any) => {
-        if (res.success ) {
+        if (res.success) {
           // this.authService.saveToken(res.data.token);
           this.showChangePassword = false;
           this.router.navigate(['/']);
@@ -115,7 +126,7 @@ export class AuthPage implements OnInit {
     }
   }
 
-  onClickForget () {
+  onClickForget() {
     if (this.registerForm.valid) {
       this.authService
         .forgetPass(this.forgetForm.get('control').value)

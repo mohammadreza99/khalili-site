@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { BaseService } from '@app/services/base.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +32,12 @@ export class OrderService extends BaseService {
       (item) => item.productCode == productCode
     );
     const index = localStorageData.indexOf(itemToDelete);
-    const finalCart = [...localStorageData.splice(index, 1)];
+    localStorageData.splice(index, 1);
+    const finalCart = [...localStorageData];
     localStorage.setItem('paid-products', JSON.stringify(finalCart));
+  }
+
+  getShippingHours(productPrice){
+    return this.get('/V1/Shipping/?productPrice='+productPrice, 'json').pipe(map((res: any) => res.data));
   }
 }

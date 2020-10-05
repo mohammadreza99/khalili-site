@@ -3,86 +3,70 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-xl-9">
-          <div class="bg-white rounded-lg shadow-sm py-5 px-4">
-            <p class="font-weight-bold">
+          <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
+            <p class="font-weight-bold border-bottom">
               <i class="fal fa-shopping-basket"></i>
               خلاصه سفارش
             </p>
-            <div class="order-items mb-4 d-flex align-items-center flex-wrap">
-              <div class="box-item ml-2">
-                <img src="https://via.placeholder.com/90x90" alt="" />
+            <div class="order-items d-flex align-items-center flex-wrap">
+              <div class="box-item ml-3" *ngFor="let item of cartProducts">
+                <img
+                  class="w-100"
+                  [src]="item.keyMedia | safe | async"
+                  alt=""
+                />
                 <small>
                   <i class="fa fa-home"></i>
-                  قرمز
-                </small>
-              </div>
-              <div class="box-item ml-2">
-                <img src="https://via.placeholder.com/90x90" alt="" />
-                <small>
-                  <i class="fa fa-home"></i>
-                  قرمز
-                </small>
-              </div>
-              <div class="box-item ml-2">
-                <img src="https://via.placeholder.com/90x90" alt="" />
-                <small>
-                  <i class="fa fa-home"></i>
-                  قرمز
+                  {{item.color}}
                 </small>
               </div>
             </div>
-            <p class="font-weight-bold">
+          </div>
+          <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
+            <p class="font-weight-bold border-bottom">
               <i class="fal fa-map-marker-alt"></i>
               آدرس تحویل سفارش
             </p>
-            <p>
-              تهران، تهران، خانی ابادنو-شهرک شریعتی
-              <button class="btn btn-primary p-1 mr-3">
+            <div>
+              {{selectedAddress.address}}
+              <button
+                *ngIf="!showAddresses"
+                class="btn btn-primary p-1 mr-3"
+                (click)="showAddresses = true"
+              >
                 <small> تغییر آدرس </small>
               </button>
-            </p>
-            <prm-input-radio
-              class="mb-4 d-block"
-              [items]="['تهران، تهران، خانی ابادنو-شهرک شریعتی-','تهران، تهران، خانی ابادنو-شهرک شریعتی-','تهران، تهران، خانی ابادنو-شهرک شریعتی-']"
-            ></prm-input-radio>
-
-            <p class="font-weight-bold">
+            </div>
+            <ng-container *ngIf="showAddresses">
+              <p-radioButton
+                *ngFor="let address of availableAddresses"
+                class="d-block rtl"
+                name="address"
+                [label]="address.address"
+                [value]="address"
+                [(ngModel)]="selectedAddress"
+              ></p-radioButton>
+            </ng-container>
+          </div>
+          <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
+            <p class="font-weight-bold border-bottom">
               <i class="fal fa-clock"></i>
               انتخاب زمان ارسال
             </p>
-            <p-tabView>
-              <p-tabPanel>
-                <ng-template pTemplate="header">
-                  <a class="text-center">
-                    <small class="d-block font-weight-bold">چهارشنبه</small>
-                    <small class="d-block">19 اردیبهشت</small>
-                  </a>
-                </ng-template>
-                <prm-input-radio
-                  [items]="['ساعت 8 تا 9','ساعت 9 تا 10','ساعت 1 تا 12']"
-                ></prm-input-radio>
-              </p-tabPanel>
-              <p-tabPanel>
-                <ng-template pTemplate="header">
-                  <a class="text-center">
-                    <small class="d-block font-weight-bold">چهارشنبه</small>
-                    <small class="d-block">19 اردیبهشت</small>
-                  </a>
-                </ng-template>
-                <prm-input-radio
-                  [items]="['ساعت 1 تا 2','ساعت 2 تا 3','ساعت 3 تا 4']"
-                ></prm-input-radio>
-              </p-tabPanel>
-              <p-tabPanel>
-                <ng-template pTemplate="header">
-                  <a class="text-center">
-                    <small class="d-block font-weight-bold">چهارشنبه</small>
-                    <small class="d-block">19 اردیبهشت</small>
-                  </a>
-                </ng-template>
-                <prm-input-radio
-                  [items]="['ساعت 4 تا 5','ساعت 5 تا 6','ساعت 6 تا 7']"
-                ></prm-input-radio>
+            <p-tabView (onChange)="onShippingHourChange($event)">
+              <p-tabPanel
+                [header]="ship.date"
+                *ngFor="let ship of shippingHours"
+              >
+                <p-radioButton
+                  *ngFor="let info of ship.info;let i = index"
+                  class="d-block"
+                  name="shippingHours"
+                  [label]="info.title"
+                  [value]="info.title"
+                  [inputId]="'id'+i"
+                  [(ngModel)]="selectedShip"
+                ></p-radioButton>
               </p-tabPanel>
             </p-tabView>
           </div>
@@ -93,20 +77,18 @@
               class="d-flex justify-content-between align-items-center text-muted"
             >
               <small>قیمت کالاها </small>
-              <small>۱,۷۵۰,۰۰۰ تومان</small>
+              <small>{{actualPriceSum | number}} تومان</small>
             </div>
             <div class="d-flex justify-content-between align-items-center">
               <small class="text-muted">تخفیف کالاها</small>
-              <small class="text-danger">(۲۰٪) ۳۵۰,۰۰۰ تومان</small>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="font-weight-bold">جمع</small>
-              <small class="font-weight-bold">۱,۴۰۰,۰۰۰ تومان</small>
+              <small class="text-danger">{{disCountSum | number}} تومان</small>
             </div>
             <hr class="border-bottom" />
             <div class="d-flex justify-content-between align-items-center">
               <small class="font-weight-bold">قابل پرداخت</small>
-              <span class="font-weight-bold">۱,۴۰۰,۰۰۰ تومان</span>
+              <span class="font-weight-bold"
+                >{{finalPaySum | number}} تومان</span
+              >
             </div>
             <button
               class="btn btn-primary btn-block mt-4 btn-lg"

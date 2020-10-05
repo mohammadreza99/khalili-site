@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { Router } from '@angular/router';
+import { AuthService } from '@app/modules/auth/business/auth.service';
 import { UserService } from '@app/modules/users/business/user.service';
 import { Profile } from '@app/modules/users/model/user.model';
 
@@ -17,7 +18,11 @@ import { Profile } from '@app/modules/users/model/user.model';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   @Input() isHomePage: boolean;
   @HostListener('window:scroll', ['$event'])
@@ -35,13 +40,14 @@ export class NavbarComponent implements OnInit {
   showMenu = false;
   isOpen = false;
   menuItems = [];
-  megaMenuList ;
+  megaMenuList;
   profile: Profile;
 
   ngOnInit(): void {
-    this.userService.getProfileInfo().subscribe((res) => {
-      this.profile = res;
-    });
+    if (this.authService.isAuthenticated())
+      this.userService.getProfileInfo().subscribe((res) => {
+        this.profile = res;
+      });
 
     this.userService.getMenu().subscribe((res) => {
       this.menuItems = this.generateMenu(res);

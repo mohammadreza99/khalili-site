@@ -1,11 +1,25 @@
 p-tabView ::ng-deep .ui-tabview-nav {
-  display: flex;
   li {
-    flex-grow: 1;
+    float: right;
+    width: 80px;
     text-align: center;
+    a {
+      width: 100%;
+      padding: 0.571em 0 !important;
+    }
   }
 }
 
 .box-item {
   width: 100px;
+}
+
+p-radioButton ::ng-deep {
+  .ui-radiobutton {
+    vertical-align: text-bottom;
+  }
+  .ui-radiobutton-label {
+    margin: 0 0.5em 0 0;
+    font-size: 80%;
+  }
 }

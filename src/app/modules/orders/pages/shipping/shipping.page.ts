@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import * as moment from 'jalali-moment';
 import { UserService } from '@app/modules/users/business/user.service';
 import { AddressModel } from '@app/modules/users/model/user.model';

@@ -54,15 +54,17 @@
                 [header]="ship.date"
                 *ngFor="let ship of availableShippingHours"
               >
-                <p-radioButton
-                  *ngFor="let info of ship.info;let i = index"
-                  class="d-block"
-                  name="shippingHours"
-                  [disabled]="info.countUse == 0"
-                  [label]="info.title"
-                  [value]="info.shippingHourId"
-                  [(ngModel)]="selectedShip.ShippingHourId"
-                ></p-radioButton>
+                <form>
+                  <p-radioButton
+                    *ngFor="let info of ship.info;let i = index"
+                    class="d-block"
+                    name="shippingHours"
+                    [disabled]="info.countUse == 0"
+                    [label]="info.title"
+                    [value]="info.shippingHourId"
+                    [(ngModel)]="selectedShip.ShippingHourId"
+                  ></p-radioButton>
+                </form>
               </p-tabPanel>
             </p-tabView>
           </div>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { ProductService } from '@app/modules/products/business/product.service';
+import * as moment from 'jalali-moment';
 import { UserService } from '@app/modules/users/business/user.service';
+import { AddressModel } from '@app/modules/users/model/user.model';
 import { OrderService } from '../../business/order.service';
+import { CartProduct, ShippingHour } from '../../model/order.model';
 
 @Component({
   selector: 'shipping',
@@ -11,100 +12,83 @@ import { OrderService } from '../../business/order.service';
   styleUrls: ['./shipping.page.scss'],
 })
 export class ShippingPage implements OnInit {
-  cartProducts = [];
-  actualPriceSum = 0;
-  disCountSum = 0;
-  finalPaySum = 0;
-  shippingHours = [];
-  selectedShip = { ShippingHourId: null, DeliveryDate: null };
-  showAddresses = false;
-  availableAddresses = [];
-  selectedAddress = { address: null, id: null };
-  finalCart: {
-    UserAddressId: number;
-    DiscountId?: number;
-    DeliveryDate: string;
-    ShippingHourId: number;
-    Product: { ProductPriceId: number; Qty: number }[];
-  };
+  cartProducts: CartProduct[] = [];
+  actualPriceSum: number = 0;
+  disCountSum: number = 0;
+  finalPaySum: number = 0;
+  availableShippingHours: ShippingHour[] = [];
+  selectedShip: any = { ShippingHourId: null, DeliveryDate: null };
+  showAddresses: boolean = false;
+  availableAddresses: AddressModel[] = [];
+  selectedAddress: AddressModel = {};
+  selectedProducts: { ProductPriceId: number; Qty: number }[] = [];
 
   constructor(
     private orderService: OrderService,
-    private userService: UserService,
-    private productService: ProductService,
-    private router: Router
+    private userService: UserService
   ) {}
 
-  ngOnInit(): void {
-    this.loadCart();
+  ngOnInit() {
+    this.cartProducts = this.orderService.getSubmittedCart();
+    this.calclulateFinalSum();
+    this.loadData();
   }
 
-  async loadCart() {
-    const cart = this.orderService.getCart();
+  async loadData() {
     const priceIds = [];
-    for (const cartItem of cart) {
-      const info = await this.productService
-        .getProductInfo(cartItem.productCode)
-        .toPromise();
-      const availableMedia = await this.productService
-        .getProductMedia(cartItem.productCode)
-        .toPromise();
-      const availabelPrices = await this.productService
-        .getProductPrice(cartItem.productCode)
+    for (const cartItem of this.cartProducts) {
+      priceIds.push(
+        cartItem.price.id +
+          (this.cartProducts.indexOf(cartItem) == this.cartProducts.length - 1
+            ? ''
+            : ',')
+      );
+      this.availableShippingHours = await this.orderService
+        .getShippingHours(priceIds)
         .toPromise();
       this.availableAddresses = await this.userService
         .getAddresses()
         .toPromise();
       this.selectedAddress = this.availableAddresses[0];
-      const selectedPrice = availabelPrices.find(
-        (item) => cartItem.priceId == item.id
-      );
-      const media = availableMedia.find((m) => m.isDefault);
-      priceIds.push(
-        cartItem.priceId +
-          (cart.indexOf(cartItem) == cart.length - 1 ? '' : ',')
-      );
-
-      this.cartProducts.push({
-        productCode: info.productCode,
-        name: info.name,
-        store: selectedPrice.storeTitle,
-        keyMedia: media.keyMedia,
-        warranty: selectedPrice.warrantyTitle,
-        price: selectedPrice.price,
-        disCountPrice: selectedPrice.disCountPrice,
-        color: selectedPrice.colorTitle,
-        quantity: 1,
+      this.selectedShip.DeliveryDate = this.availableShippingHours[0].date;
+      this.selectedProducts.push({
+        ProductPriceId: cartItem.price.id,
+        Qty: cartItem.quantity,
       });
     }
-    for (const item of this.cartProducts) {
-      this.actualPriceSum += item.price;
-      this.disCountSum += item.price - item.disCountPrice;
-    }
-    this.calclulateFinalSum();
-    this.shippingHours = await this.orderService
-      .getShippingHours(priceIds)
-      .toPromise();
   }
 
   calclulateFinalSum() {
+    this.actualPriceSum = 0;
+    this.disCountSum = 0;
+    this.finalPaySum = 0;
+    for (const item of this.cartProducts) {
+      this.actualPriceSum += item.price.price * item.quantity;
+      if (item.price.disCountPrice)
+        this.disCountSum +=
+          (item.price.price - item.price.disCountPrice) * item.quantity;
+    }
     this.finalPaySum = this.actualPriceSum - this.disCountSum;
   }
 
   onShippingHourChange(event) {
-    this.selectedShip.DeliveryDate = this.shippingHours[event.index].date;
+    this.selectedShip.ShippingHourId = null;
+    this.selectedShip.DeliveryDate = this.availableShippingHours[
+      event.index
+    ].date;
   }
 
   goNextStep() {
     const finalCart = {
       UserAddressId: this.selectedAddress.id,
-      // DiscountId?: number;
-      DeliveryDate: this.selectedShip.DeliveryDate,
+      DeliveryDate: moment(this.selectedShip.DeliveryDate, 'jYYYY/jMM/jDD')
+        .toDate()
+        .toISOString(),
       ShippingHourId: this.selectedShip.ShippingHourId,
-      Product: [{ ProductPriceId: 13, Qty: 2 }],
+      Product: this.selectedProducts,
     };
-    console.log(finalCart);
-
-    this.orderService.submitOrder(finalCart).subscribe(console.log);
+    this.orderService.submitOrder(finalCart).subscribe((res) => {
+      window.open(res.link, '_self');
+    });
   }
 }

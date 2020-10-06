@@ -9,15 +9,11 @@
               خلاصه سفارش
             </p>
             <div class="order-items d-flex align-items-center flex-wrap">
-              <div class="box-item ml-3" *ngFor="let item of cartProducts">
-                <img
-                  class="w-100"
-                  [src]="item.keyMedia | safe | async"
-                  alt=""
-                />
+              <div class="box-item ml-4" *ngFor="let item of cartProducts">
+                <img class="w-100" [src]="item.keyMedia | safe | async" />
                 <small>
                   <i class="fa fa-home"></i>
-                  {{item.color}}
+                  {{item.price.colorTitle}}
                 </small>
               </div>
             </div>
@@ -56,12 +52,13 @@
             <p-tabView (onChange)="onShippingHourChange($event)">
               <p-tabPanel
                 [header]="ship.date"
-                *ngFor="let ship of shippingHours"
+                *ngFor="let ship of availableShippingHours"
               >
                 <p-radioButton
                   *ngFor="let info of ship.info;let i = index"
                   class="d-block"
                   name="shippingHours"
+                  [disabled]="info.countUse == 0"
                   [label]="info.title"
                   [value]="info.shippingHourId"
                   [inputId]="'id'+i"

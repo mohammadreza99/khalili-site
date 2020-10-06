@@ -1,34 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { BaseService } from '@app/services/base.service';
-import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CartProduct } from '../model/order.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService extends BaseService {
-  // storeOrderInLocalStorage() {
-  //   const localStorageData: any[] = this.getCart();
-  //   if (
-  //     localStorageData &&
-  //     localStorageData.find(
-  //       (item) => item.productCode == this.cartSubject.value.productCode
-  //     )
-  //   ) {
-  //     return;
-  //   } else {
-  //     this.cartProducts.push({
-  //       productCode: this.cartSubject.value.productCode,
-  //       priceId: this.cartSubject.value.priceId,
-  //       qty: 1,
-  //     });
-  //     localStorage.setItem('paid-products', JSON.stringify(this.cartProducts));
-  //   }
-  // }
-
-  cartSubject = new BehaviorSubject(null);
-
   cartProducts: any[] = [];
 
   storeCart(cart: { productCode: any; priceId: any }) {
@@ -57,6 +36,14 @@ export class OrderService extends BaseService {
     localStorageData.splice(index, 1);
     const finalCart = [...localStorageData];
     localStorage.setItem('paid-products', JSON.stringify(finalCart));
+  }
+
+  storeSubmittedCart(cart: CartProduct[]) {
+    localStorage.setItem('submitted-products', JSON.stringify(cart));
+  }
+
+  getSubmittedCart() {
+    return JSON.parse(localStorage.getItem('submitted-products'));
   }
 
   getShippingHours(productPrice) {

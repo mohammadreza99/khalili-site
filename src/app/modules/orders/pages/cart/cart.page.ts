@@ -2,9 +2,13 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@app/modules/auth/business/auth.service';
 import { ProductService } from '@app/modules/products/business/product.service';
-import { UserService } from '@app/modules/users/business/user.service';
+import {
+  ProductInfo,
+  ProductPrice,
+} from '@app/modules/products/model/product.model';
 import { PrimeConfirmService } from '@app/shared/components/@prime/prime-service/prime-confirm.service';
 import { OrderService } from '../../business/order.service';
+import { CartProduct } from '../../model/order.model';
 
 @Component({
   selector: 'cart',
@@ -21,7 +25,7 @@ export class CartPage implements OnInit {
     private authService: AuthService
   ) {}
 
-  cartProducts = [];
+  cartProducts: CartProduct[] = [];
   actualPriceSum = 0;
   disCountSum = 0;
   finalPaySum = 0;
@@ -33,47 +37,44 @@ export class CartPage implements OnInit {
   async loadCart() {
     const cart = this.orderService.getCart();
     for (const cartItem of cart) {
-      const info = await this.productService
+      const info: ProductInfo = await this.productService
         .getProductInfo(cartItem.productCode)
         .toPromise();
       const availableMedia = await this.productService
         .getProductMedia(cartItem.productCode)
         .toPromise();
-      const availabelPrices = await this.productService
+      const availabelPrices: ProductPrice[] = await this.productService
         .getProductPrice(cartItem.productCode)
         .toPromise();
-      const selectedPrice = availabelPrices.find(
+      const selectedPrice: ProductPrice = availabelPrices.find(
         (item) => cartItem.priceId == item.id
       );
-
       const media = availableMedia.find((m) => m.isDefault);
       this.cartProducts.push({
-        productCode: info.productCode,
-        name: info.name,
-        store: selectedPrice.storeTitle,
+        price: selectedPrice,
+        info: info,
         keyMedia: media.keyMedia,
-        warranty: selectedPrice.warrantyTitle,
-        price: selectedPrice.price,
-        disCountPrice: selectedPrice.disCountPrice,
-        color: selectedPrice.colorTitle,
         quantity: 1,
       });
-    }
-    for (const item of this.cartProducts) {
-      this.actualPriceSum += item.price;
-      this.disCountSum += item.price - item.disCountPrice;
     }
     this.calclulateFinalSum();
   }
 
   calclulateFinalSum() {
+    this.actualPriceSum = 0;
+    this.disCountSum = 0;
+    this.finalPaySum = 0;
+    for (const item of this.cartProducts) {
+      this.actualPriceSum += item.price.price * item.quantity;
+      if (item.price.disCountPrice)
+        this.disCountSum +=
+          (item.price.price - item.price.disCountPrice) * item.quantity;
+    }
     this.finalPaySum = this.actualPriceSum - this.disCountSum;
   }
 
   plusClick(item) {
-    item.quantity++;
-    this.actualPriceSum += item.disCountPrice ? item.disCountPrice : item.price;
-    this.disCountSum += item.price - item.disCountPrice;
+    this.cartProducts.find((i) => i == item).quantity++;
     this.calclulateFinalSum();
   }
 
@@ -81,9 +82,7 @@ export class CartPage implements OnInit {
     if (item.quantity == 1) {
       return;
     }
-    item.quantity--;
-    this.actualPriceSum -= item.disCountPrice ? item.disCountPrice : item.price;
-    this.disCountSum -= item.price - item.disCountPrice;
+    this.cartProducts.find((i) => i == item).quantity--;
     this.calclulateFinalSum();
   }
 
@@ -101,6 +100,7 @@ export class CartPage implements OnInit {
   }
 
   goNextStep() {
+    this.orderService.storeSubmittedCart(this.cartProducts);
     if (this.authService.isAuthenticated()) {
       this.router.navigate(['/orders/shipping']);
     } else {

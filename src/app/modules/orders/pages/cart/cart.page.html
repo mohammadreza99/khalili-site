@@ -22,9 +22,9 @@
       </div>
       <div class="row" *ngIf="cartProducts.length != 0">
         <div class="col-lg-8 mb-4 mb-lg-0">
-          <div class="bg-white rounded-lg shadow-sm pt-5 px-4">
+          <div class="bg-white rounded-lg shadow-sm px-4">
             <div
-              class="row cart-item pb-5"
+              class="row cart-item py-4 border-bottom"
               *ngFor="let item of cartProducts;let i = index"
             >
               <div class="col-md-4 col-lg-3 mb-3 mb-md-0">
@@ -35,19 +35,19 @@
                 />
               </div>
               <div class="col-md-8 col-lg-9">
-                <h6>{{item.name}}</h6>
+                <h6>{{item.info?.name}}</h6>
                 <ul class="list-unstyled p-0 text-muted">
                   <li class="d-flex align-items-center">
                     <i class="fa fa-home ml-2"></i>
-                    <small>{{item.color}}</small>
+                    <small>{{item.price.colorTitle}}</small>
                   </li>
                   <li class="d-flex align-items-center">
                     <i class="fa fa-home ml-2"></i>
-                    <small>{{item.warranty}}</small>
+                    <small>{{item.price.warrantyTitle}}</small>
                   </li>
                   <li class="d-flex align-items-center">
                     <i class="fa fa-home ml-2"></i>
-                    <small>{{item.store}}</small>
+                    <small>{{item.price.storeTitle}}</small>
                   </li>
                 </ul>
                 <div class="d-flex align-items-center justify-content-between">
@@ -65,17 +65,26 @@
                     </div>
                     <button
                       class="btn btn-outline-danger p-1 mx-3"
-                      (click)="onDeleteProduct(item.name,i,item.productCode)"
+                      (click)="onDeleteProduct(item.info.name,i,item.info.productCode)"
                     >
                       <i class="fal ml-1 fa-trash"></i>
                       <small>حذف</small>
                     </button>
                   </div>
-                  <div class="left-side text-left">
-                    <small class="text-danger" *ngIf="item.disCountPrice">
-                      <del> {{item.price | number}} تومان </del>
+                  <div
+                    class="left-side text-left"
+                    *ngIf="item.price.disCountPrice"
+                  >
+                    <small class="text-danger">
+                      <del> {{item.price.price | number}} تومان </del>
                     </small>
-                    <div>{{item.disCountPrice | number}} تومان</div>
+                    <div>{{item.price.disCountPrice | number}} تومان</div>
+                  </div>
+                  <div
+                    class="left-side text-left"
+                    *ngIf="!item.price.disCountPrice"
+                  >
+                    <div>{{item.price.price | number}} تومان</div>
                   </div>
                 </div>
               </div>

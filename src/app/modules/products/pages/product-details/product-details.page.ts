@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '@app/modules/orders/business/order.service';
 
 import { ProductService } from '../../business/product.service';
+import { ProductPrice } from '../../model/product.model';
 
 @Component({
   selector: 'product-details',
@@ -19,7 +20,7 @@ export class ProductDetailsPage implements OnInit {
 
   productInfo$: any;
   productPrices: any = [];
-  defaultPrice: any;
+  defaultPrice: ProductPrice;
   productMedia$: any;
   productDescription$: any;
   productComments$: any;
@@ -77,7 +78,7 @@ export class ProductDetailsPage implements OnInit {
     );
     this.productService
       .getProductPrice(this.productCode)
-      .subscribe((res: any[]) => {
+      .subscribe((res: ProductPrice[]) => {
         this.prices = res;
         res.forEach((price) => {
           if (
@@ -113,10 +114,6 @@ export class ProductDetailsPage implements OnInit {
   }
 
   onAddToCardByDefaultPrice() {
-    // this.orderService.cartSubject.next({
-    //   productCode: this.productCode,
-    //   priceId: this.defaultPrice.id,
-    // });
     this.orderService.storeCart({
       productCode: this.productCode,
       priceId: this.defaultPrice.id,
@@ -125,10 +122,6 @@ export class ProductDetailsPage implements OnInit {
   }
 
   onAddToCardByOtherPrice(priceId) {
-    // this.orderService.cartSubject.next({
-    //   productCode: this.productCode,
-    //   priceId: priceId.id,
-    // });
     this.orderService.storeCart({
       productCode: this.productCode,
       priceId: priceId.id,

@@ -21,3 +21,7 @@ export class ProductMedia {
   keyMedia: string;
   isDefault: boolean;
 }
+export class Info {
+  attributeId: number;
+  value: string;
+}

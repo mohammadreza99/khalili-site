@@ -80,13 +80,15 @@ export class ProductDetailsPage implements OnInit {
       .subscribe((res: any[]) => {
         this.prices = res;
         res.forEach((price) => {
-          if (!this.availableColors.find((color) => color.value == price.colorId))
+          if (
+            !this.availableColors.find((color) => color.value == price.colorId)
+          )
             this.availableColors.push({
               label: price.colorTitle,
               value: price.colorId,
             });
         });
-        
+
         this.defaultPrice = res.find(
           (item) =>
             item.isDefault && item.colorId == this.availableColors[0].value
@@ -108,10 +110,13 @@ export class ProductDetailsPage implements OnInit {
     this.productPrices = this.prices.filter(
       (item) => !item.isDefault && item.colorId == selectedColor.value
     );
-    
   }
 
   onAddToCardByDefaultPrice() {
+    // this.orderService.cartSubject.next({
+    //   productCode: this.productCode,
+    //   priceId: this.defaultPrice.id,
+    // });
     this.orderService.storeCart({
       productCode: this.productCode,
       priceId: this.defaultPrice.id,
@@ -120,6 +125,10 @@ export class ProductDetailsPage implements OnInit {
   }
 
   onAddToCardByOtherPrice(priceId) {
+    // this.orderService.cartSubject.next({
+    //   productCode: this.productCode,
+    //   priceId: priceId.id,
+    // });
     this.orderService.storeCart({
       productCode: this.productCode,
       priceId: priceId.id,

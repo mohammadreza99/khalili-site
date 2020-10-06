@@ -16,7 +16,7 @@ export class ShippingPage implements OnInit {
   disCountSum = 0;
   finalPaySum = 0;
   shippingHours = [];
-  selectedShip = '';
+  selectedShip = { ShippingHourId: null, DeliveryDate: null };
   showAddresses = false;
   availableAddresses = [];
   selectedAddress = { address: null, id: null };
@@ -25,9 +25,9 @@ export class ShippingPage implements OnInit {
     DiscountId?: number;
     DeliveryDate: string;
     ShippingHourId: number;
-    Product: { ProductPriceId: number; Qty: number };
-  }[];
-  
+    Product: { ProductPriceId: number; Qty: number }[];
+  };
+
   constructor(
     private orderService: OrderService,
     private userService: UserService,
@@ -92,6 +92,19 @@ export class ShippingPage implements OnInit {
   }
 
   onShippingHourChange(event) {
-    console.log(event);
+    this.selectedShip.DeliveryDate = this.shippingHours[event.index].date;
+  }
+
+  goNextStep() {
+    const finalCart = {
+      UserAddressId: this.selectedAddress.id,
+      // DiscountId?: number;
+      DeliveryDate: this.selectedShip.DeliveryDate,
+      ShippingHourId: this.selectedShip.ShippingHourId,
+      Product: [{ ProductPriceId: 13, Qty: 2 }],
+    };
+    console.log(finalCart);
+
+    this.orderService.submitOrder(finalCart).subscribe(console.log);
   }
 }

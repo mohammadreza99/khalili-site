@@ -4,17 +4,21 @@
       <div class="row">
         <div class="col-12">
           <div class="bg-white rounded-lg shadow-sm">
-            <div class="row px-4 pt-4">
+            <div class="row px-4 py-4">
               <div class="col-12">
                 <div class="d-flex align-items-center">
-                  <img class="category-img" [src]="category.keyMedia | safe | async"  />
+                  <img
+                    class="category-img"
+                    [src]="category.keyMedia | safe | async"
+                  />
                   <h5 class="mr-3">{{category.title}}</h5>
                 </div>
               </div>
-              <div class="col-12">
-                <ag-accordion *ngIf="(data$ |async ) as data">
+              <div class="col-12" *ngIf="(data$ |async ) as data">
+                <ag-accordion>
                   <ag-accordion-item
-                    icon="fa-chek"
+                    class="border rounded-lg px-4 mt-4"
+                    icon="fa-minus"
                     [title]="item.fAQ"
                     *ngFor="let item of data"
                   >

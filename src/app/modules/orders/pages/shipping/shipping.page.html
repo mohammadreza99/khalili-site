@@ -63,9 +63,9 @@
                   class="d-block"
                   name="shippingHours"
                   [label]="info.title"
-                  [value]="info.title"
+                  [value]="info.shippingHourId"
                   [inputId]="'id'+i"
-                  [(ngModel)]="selectedShip"
+                  [(ngModel)]="selectedShip.ShippingHourId"
                 ></p-radioButton>
               </p-tabPanel>
             </p-tabView>
@@ -92,7 +92,7 @@
             </div>
             <button
               class="btn btn-primary btn-block mt-4 btn-lg"
-              routerLink="/orders/shipping"
+              (click)="goNextStep()"
             >
               پرداخت سفارش
             </button>

@@ -95,9 +95,20 @@ export class ProductService extends BaseService {
       map((res: any) => res.data)
     );
   }
+  getCategoryFilterList(id) {
+    return this.get('/V1/CategoryFilter/?categoryId='+id,'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
 
 
-
+  getAttributesValue(attributeId: number){
+    return this.get(
+      '/V1/AttributeValueSelectWithAttributeId/?attributeId=' +
+      attributeId,
+      'json'
+    ).pipe(map((res: any) => res.data));
+  }
 
 
   convertToTreeNodeList(items=[]) {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TreeNode } from 'primeng';
 import { ProductService } from '../../business/product.service';
+import { Info } from '../../model/product.model';
 
 @Component({
   selector: 'product-subcategory',
@@ -17,14 +18,17 @@ export class ProductSubcategoryPage implements OnInit {
   convertedCategories: TreeNode[];
   sortTypeItems$: any;
   products$: any;
+  filterList$: any;
   pageIndex=0;
   sortType=1;
   id;
+  attributes: Info[]=[];
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
       this.sortTypeItems$ = this.productService.getCategorySortType();
+      this.filterList$=this.productService.getCategoryFilterList(this.id);
       this.loadList(this.id);
       this.loadProduct(this.id);
       
@@ -46,6 +50,7 @@ export class ProductSubcategoryPage implements OnInit {
     }
     this.products$ = await this.productService.getProductCategory(obj)
   }
+  
   onPageChange(args){
     this.pageIndex=+(args.page)+1;
     this.loadProduct(this.id);
@@ -54,6 +59,14 @@ export class ProductSubcategoryPage implements OnInit {
     this.sortType=id;
     this.loadProduct(this.id);
   }
+  onChangeAttributes(event) {
+    this.attributes = event;
+  }
+  onFilterClick(){
+    console.log(    this.attributes);
+    
+  }
+
   config = {
     slidesPerView: 1,
     spaceBetween: 20,

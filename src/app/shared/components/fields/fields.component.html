@@ -1,0 +1,73 @@
+<form class="form-row" [formGroup]="form">
+  <ng-container
+    *ngFor="let categoryAttribute of categoryAttributes"
+    [ngSwitch]="attributeTypes[categoryAttribute.attributeTypeId]"
+  >
+    <prm-input-text
+      class="col-12 mb-3"
+      *ngSwitchCase="'Text'"
+      labelPosition="top"
+      [label]="categoryAttribute.attributeTitle"
+      [labelWidth]="150"
+      [formControlName]="categoryAttribute.attributeId"
+    ></prm-input-text>
+    <prm-input-text
+      class="col-12 mb-3"
+      *ngSwitchCase="'Number'"
+      labelPosition="top"
+      [numberOnly]="true"
+      [label]="categoryAttribute.attributeTitle"
+      [labelWidth]="150"
+      [formControlName]="categoryAttribute.attributeId"
+    ></prm-input-text>
+    <prm-input-date-time-picker
+      class="col-12 mb-3"
+      *ngSwitchCase="'Date'"
+      labelPosition="top"
+      [label]="categoryAttribute.attributeTitle"
+      [labelWidth]="150"
+      [formControlName]="categoryAttribute.attributeId"
+    ></prm-input-date-time-picker>
+    <prm-input-textarea
+      class="col-12 mb-3"
+      *ngSwitchCase="'Text Area'"
+      labelPosition="top"
+      [label]="categoryAttribute.attributeTitle"
+      [labelWidth]="150"
+      [formControlName]="categoryAttribute.attributeId"
+    ></prm-input-textarea>
+    <div
+      class="col-12 mb-3"
+      *ngIf="formItems.controls[categoryAttribute.attributeId + 'items']"
+    >
+      <prm-input-dropdown
+        *ngSwitchCase="'Select'"
+        labelPosition="top"
+        [label]="categoryAttribute.attributeTitle"
+        [labelWidth]="150"
+        [formControlName]="categoryAttribute.attributeId"
+        [items]="formItems.controls[categoryAttribute.attributeId + 'items'].value"
+      ></prm-input-dropdown>
+    </div>
+    <div
+      class="col-12 mb-3"
+      *ngIf="formItems.controls[categoryAttribute.attributeId + 'items']"
+    >
+      <prm-input-multi-select
+        *ngSwitchCase="'Multi Select'"
+        [label]="categoryAttribute.attributeTitle"
+        [labelWidth]="150"
+        labelPosition="top"
+        [formControlName]="categoryAttribute.attributeId"
+        [items]="formItems.controls[categoryAttribute.attributeId + 'items'].value"
+      ></prm-input-multi-select>
+    </div>
+    <prm-input-checkbox-single
+      class="col-12 mb-3"
+      *ngSwitchCase="'CheckBox'"
+      [label]="categoryAttribute.attributeTitle"
+      [labelWidth]="150"
+      [formControlName]="categoryAttribute.attributeId"
+    ></prm-input-checkbox-single>
+  </ng-container>
+</form>

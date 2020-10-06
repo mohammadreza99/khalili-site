@@ -17,6 +17,17 @@
               </ng-template>
             </p-tree>
           </div>
+          <ng-container *ngIf="filterList$ |async as filterList ">
+            <fields
+              class="pt-2"
+              (valueChange)="onChangeAttributes($event)"
+              [categoryAttributes]="filterList"
+            ></fields>
+            <prm-button
+              [label]="'فیلتر'"
+              (click)="onFilterClick()"
+            ></prm-button>
+          </ng-container>
         </div>
         <div class="col-lg-9">
           <div class="row" *ngIf="(sortTypeItems$ | async) as sortTypeItems">

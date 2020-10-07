@@ -95,14 +95,22 @@
                       </ul>
                     </div>
                     <div class="sub-category col-9">
-                      <ul class="list-unstyled">
+                      <ul
+                        class="list-unstyled d-flex flex-column flex-wrap m-0 p-0"
+                      >
                         <li
-                          class="pointer"
+                          class="pointer col-3"
                           *ngFor="let item of megaMenuList"
                           [routerLink]="['/products/subcategory/', item.id]"
                         >
-                          <ul> {{ item.title }}
-                            <li *ngFor="let child of item.children" [routerLink]="['/products/subcategory/', item.id]">
+                          <ul class="m-0 p-0">
+                            {{
+                              item.title
+                            }}
+                            <li
+                              *ngFor="let child of item.children"
+                              [routerLink]="['/products/subcategory/', item.id]"
+                            >
                               {{ child.title }}
                             </li>
                           </ul>
@@ -154,5 +162,9 @@
   [blockScroll]="true"
   [(visible)]="showSidebar"
 >
-  Content
+  <div class="border-bottom py-3 mb-3 text-center bg-light">
+    <ag-logo></ag-logo>
+  </div>
+  <h6 class="mb-3 px-3 text-muted">دسته بندی کالاها</h6>
+  <p-panelMenu [multiple]="false" [model]="sideMenuItems"></p-panelMenu>
 </p-sidebar>

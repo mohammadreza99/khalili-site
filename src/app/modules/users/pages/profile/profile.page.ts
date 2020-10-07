@@ -289,6 +289,7 @@ export class ProfilePage implements OnInit {
 
   onEditAvatar(avatar) {
     this.userProfile.avatar = avatar;
+    this.showAvatarDialog = false;
     this.userService.insertOrUpdateProfile(this.userProfile).subscribe(() => {
       this.dataService.successfullMessage(this.vcRef);
     });

@@ -2,9 +2,9 @@
   <div class="row">
     <div class="container">
       <div class="row">
-        <div class="col-3">
-          <div class="nav flex-column nav-pills border rounded" #navs>
-            <div class="bg-light rounded-top d-flex align-items-center p-2">
+        <div class="col-lg-4 col-xl-3">
+          <div class="nav flex-column nav-pills border rounded bg-white" #navs>
+            <div class="bg-light rounded-top d-flex align-items-center p-2 border-bottom">
               <img
                 (click)="onAvatarClick()"
                 [src]="'../../../../../assets/images/avatar/'+ (userProfile.avatar+'.png' || '1.png')"
@@ -20,28 +20,35 @@
             <a
               class="nav-link active"
               (click)="onClickTab($event,tabPans,navs,'orders')"
-              >سفارش های من</a
             >
+              <i class="fa fa-list ml-3 align-middle"></i>
+              سفارش های من
+            </a>
             <a
               class="nav-link"
               (click)="onClickTab($event,tabPans,navs,'profile')"
-              >پروفایل کاربری</a
             >
+              <i class="fa fa-user ml-3 align-middle"></i>
+              پروفایل کاربری
+            </a>
             <a
               class="nav-link"
               (click)="onClickTab($event,tabPans,navs,'address')"
-              >آدرس ها</a
             >
+              <i class="fa fa-map-marker-alt ml-3 align-middle"></i>
+              آدرس ها
+            </a>
             <button
               (click)="logout()"
               type="button"
-              class="btn btn-link text-right text-danger mt-4 border-top"
+              class="btn btn-link text-right text-danger py-3 border-top"
             >
+              <i class="fa fa-sign-out ml-3 align-middle"></i>
               خروج از حساب
             </button>
           </div>
         </div>
-        <div class="col-9">
+        <div class="col-lg-8 col-xl-9">
           <div class="tab-content" #tabPans>
             <div class="tab-pane fade orders show active">
               <div class="bg-white p-3 border shadow-sm rounded-lg">
@@ -120,7 +127,7 @@
                   <div class="col-12">
                     <h5>اطلاعات حساب</h5>
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <div
                       class="box d-flex align-items-center justify-content-between py-3 border-bottom"
                     >
@@ -134,7 +141,7 @@
                       <i class="fa fa-edit" (click)="onEditFullName()"></i>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <div
                       class="box d-flex align-items-center justify-content-between py-3 border-bottom"
                     >
@@ -147,7 +154,7 @@
                       <i class="fa fa-edit" (click)="onEditNationalCode()"></i>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <div
                       class="box d-flex align-items-center justify-content-between py-3 border-bottom"
                     >
@@ -160,7 +167,7 @@
                       <i class="fa fa-edit" (click)="onEditEmail()"></i>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <div
                       class="box d-flex align-items-center justify-content-between py-3 border-bottom"
                     >
@@ -173,7 +180,7 @@
                       <i class="fa fa-edit" (click)="onEditBirthDate()"></i>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <div
                       class="box d-flex align-items-center justify-content-between py-3 border-bottom"
                     >
@@ -184,7 +191,7 @@
                       <i class="fa fa-edit" (click)="onEditJob()"></i>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <div
                       class="box d-flex align-items-center justify-content-between py-3 border-bottom"
                     >
@@ -197,7 +204,7 @@
                       <i class="fa fa-edit" (click)="onEditCarNumber()"></i>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <div
                       class="box d-flex align-items-center justify-content-between py-3 border-bottom"
                     >
@@ -220,28 +227,28 @@
                 <form class="form-row" [formGroup]="organizationForm">
                   <prm-input-text
                     [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
-                    class="col-6 mb-3"
+                    class="col-md-6 mb-3"
                     label="نام سازمان"
                     labelPosition="top"
                     formControlName="name"
                   ></prm-input-text>
                   <prm-input-text
                     [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
-                    class="col-6 mb-3"
+                    class="col-md-6 mb-3"
                     label="کد اقتصادی"
                     labelPosition="top"
                     formControlName="economicCode"
                   ></prm-input-text>
                   <prm-input-text
                     [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
-                    class="col-6 mb-3"
+                    class="col-md-6 mb-3"
                     label="شناسه ملی"
                     labelPosition="top"
                     formControlName="nationalId"
                   ></prm-input-text>
                   <prm-input-text
                     [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
-                    class="col-6 mb-3"
+                    class="col-md-6 mb-3"
                     label="شناسه ثبت"
                     labelPosition="top"
                     formControlName="registrationId"
@@ -249,7 +256,7 @@
                   <prm-input-dropdown
                     [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
                     *ngIf="convertedStates"
-                    class="col-6 mb-3"
+                    class="col-md-6 mb-3"
                     [items]="convertedStates"
                     label="استان"
                     labelPosition="top"
@@ -259,7 +266,7 @@
                   <prm-input-dropdown
                     [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
                     [disabled]="!convertedCities"
-                    class="col-6 mb-3"
+                    class="col-md-6 mb-3"
                     [items]="convertedCities"
                     label="شهر"
                     labelPosition="top"
@@ -268,7 +275,7 @@
                   ></prm-input-dropdown>
                   <prm-input-text
                     [errors]="[{type: 'required',message: 'این فیلد الزامیست'}]"
-                    class="col-6 mb-3"
+                    class="col-md-6 mb-3"
                     label="شماره تلفن ثابت"
                     labelPosition="top"
                     formControlName="telNumber"

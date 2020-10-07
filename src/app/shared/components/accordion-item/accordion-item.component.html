@@ -1,8 +1,8 @@
 <div class="accordion-item" [class.active]="active">
   <div class="accordion-header" (click)="setActive.emit()">
     <div class="header d-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center py-3">
-        <i class="fas ml-3 {{ icon }}"></i>
+      <div class="text-right py-3">
+        <i *ngIf="icon" class="fas ml-3 {{ icon }}"></i>
         <span>{{ title }}</span>
       </div>
       <i class="fal fa-chevron-{{ active ? 'up' : 'down' }}"></i>

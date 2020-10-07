@@ -19,7 +19,25 @@ body {
       font-family: inherit;
     }
   }
-
+  .ui-button , .btn-primary{
+    color: #ffffff;
+    background-color: $primary;
+    border: 1px solid $primary;
+    &:enabled:hover {
+      background-color: darken($color: $primary, $amount: 10);
+      color: #ffffff;
+      border-color: darken($color: $primary, $amount: 10);
+    }
+    &:enabled:focus {
+      outline: 0 none;
+      outline-offset: 0px;
+    }
+    &:enabled:active {
+      background-color: darken($color: $primary, $amount: 10);
+      color: #ffffff;
+      border-color: darken($color: $primary, $amount: 10);
+    }
+  }
   .ui-dialog .ui-dialog-content {
     overflow: visible;
   }

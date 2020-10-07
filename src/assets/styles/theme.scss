@@ -291,7 +291,6 @@ $themes: (
       &:enabled:focus {
         outline: 0 none;
         outline-offset: 0px;
-        box-shadow: 0 0 0 0.2em #aed3f3;
       }
       &:enabled:active {
         background-color: $activation-primary-300;

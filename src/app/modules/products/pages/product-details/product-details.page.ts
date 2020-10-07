@@ -27,6 +27,7 @@ export class ProductDetailsPage implements OnInit {
   relatedProducts$: any;
   availableColors: any[] = [];
   prices: any[] = [];
+  discountPersent:number;
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -91,6 +92,7 @@ export class ProductDetailsPage implements OnInit {
           (item) =>
             item.isDefault && item.colorId == this.availableColors[0].value
         );
+          this.discountPersent=this.defaultPrice.disCountPrice*100/this.defaultPrice.price;
         this.productPrices = res.filter(
           (item) =>
             !item.isDefault && item.colorId == this.availableColors[0].value
@@ -105,6 +107,7 @@ export class ProductDetailsPage implements OnInit {
     this.defaultPrice = this.prices.find(
       (item) => item.isDefault && item.colorId == selectedColor.value
     );
+    this.discountPersent=this.defaultPrice.disCountPrice*100/this.defaultPrice.price;
     this.productPrices = this.prices.filter(
       (item) => !item.isDefault && item.colorId == selectedColor.value
     );

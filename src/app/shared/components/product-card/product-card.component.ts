@@ -8,12 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProductCardComponent implements OnInit {
   constructor() {}
 
-  discount: number;
+  discountPersent: number;
 
   @Input() product;
 
   ngOnInit(): void {
     if (this.product.disCountPrice)
-      this.discount = (this.product.price * +this.product.discount) / 100;
+    this.discountPersent=this.product.disCountPrice*100/this.product.price;
   }
 }

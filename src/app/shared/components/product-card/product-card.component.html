@@ -22,7 +22,7 @@
     </a>
     <div class="card-price">
       <div *ngIf="product.disCountPrice" class="d-flex align-items-center">
-        <div class="discount rounded-pill mr-2">{{ product.discount }}%</div>
+        <div class="discount rounded-pill mr-2">{{discountPersent| number :'1.0-0'}}%</div>
         <del class="first-price">{{ product.disCountPrice | number }} </del>
       </div>
       <div class="final-price d-flex">

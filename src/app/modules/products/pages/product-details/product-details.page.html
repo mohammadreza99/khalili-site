@@ -116,7 +116,9 @@
                             <del class="first-price text-muted"
                               >{{ defaultPrice.price | number }}
                             </del>
-                            <div class="discount rounded-pill mr-2">18%</div>
+                            <div class="discount rounded-pill mr-2">
+                              {{discountPersent| number :'1.0-0'}}%
+                            </div>
                           </div>
                           <div class="final-price d-flex justify-content-end">
                             <span class="h2 mb-0">

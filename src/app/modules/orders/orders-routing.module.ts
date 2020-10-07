@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CartPage } from './pages/cart/cart.page';
 import { ShippingPage } from './pages/shipping/shipping.page';
 import { PaymentSuccessPage } from './pages/payment-success/payment-success.page';
+import { PaymentFailPage } from './pages/payment-fail/payment-fail.page';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'payment-success',
     component: PaymentSuccessPage,
+    data: { title: '' },
+  },
+  {
+    path: 'payment-fail',
+    component: PaymentFailPage,
     data: { title: '' },
   },
 ];

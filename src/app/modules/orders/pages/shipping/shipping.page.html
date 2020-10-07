@@ -89,6 +89,7 @@
               >
             </div>
             <button
+              [disabled]="!selectedShip.ShippingHourId"
               class="btn btn-primary btn-block mt-4 btn-lg"
               (click)="goNextStep()"
             >

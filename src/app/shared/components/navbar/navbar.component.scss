@@ -44,20 +44,34 @@
         width: 100%;
         left: 0;
         border-radius: 0 0 8px 8px;
-        .sub-category li {
-          @include text-style($subtitle-color, $font-size-sm, 3);
-          &:hover {
-            color: $primary;
+        .sub-category {
+          &,
+          & > ul {
+            overflow-x: auto;
+            max-height: 528px;
+          }
+          li {
+            @include text-style($subtitle-color, $font-size-sm, 2.44);
+            &:hover {
+              color: $primary;
+            }
           }
         }
-        .main-category li {
-          @include text-style($subtitle-color, $font-size-sm, 4);
-          border: 1px solid transparent;
-          &:hover {
-            border-top-color: $gray-002;
-            border-bottom-color: $gray-002;
-            background-color: $gray-001;
-            color: $primary;
+        .main-category {
+          &,
+          & > ul {
+            overflow-y: auto;
+            max-height: 528px;
+          }
+          li {
+            @include text-style($subtitle-color, $font-size-sm, 3);
+            border: 1px solid transparent;
+            &:hover {
+              border-top-color: $gray-002;
+              border-bottom-color: $gray-002;
+              background-color: $gray-001;
+              color: $primary;
+            }
           }
         }
       }
@@ -85,4 +99,9 @@
 
 .pointer {
   cursor: pointer;
+}
+
+
+ag-logo ::ng-deep .wrapper{
+  margin: auto;
 }

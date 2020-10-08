@@ -12,7 +12,7 @@ export class ProductCategoryPage implements OnInit {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private title:Title,
+    private title: Title
   ) {}
   originalCategories;
   convertedCategories: TreeNode[];
@@ -22,12 +22,18 @@ export class ProductCategoryPage implements OnInit {
   categoryProductsSlider$;
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.categoryDescription$ = this.productService.getCategoryDescription(id);
-    this.categorySlider$ = this.productService.getCategorySlider(id);
-    this.categoryImages$ = this.productService.getCategoryImages(id);
-    this.categoryProductsSlider$=this.productService.getCategoryMainPage(id);
-    this.loadList(+id);
+    this.route.params.subscribe((params) => {
+      const id = params['id'];
+      this.categoryDescription$ = this.productService.getCategoryDescription(
+        id
+      );
+      this.categorySlider$ = this.productService.getCategorySlider(id);
+      this.categoryImages$ = this.productService.getCategoryImages(id);
+      this.categoryProductsSlider$ = this.productService.getCategoryMainPage(
+        id
+      );
+      this.loadList(+id);
+    });
   }
 
   async loadList(id) {
@@ -35,8 +41,8 @@ export class ProductCategoryPage implements OnInit {
       .getCategoryAllList(id)
       .toPromise();
     this.convertedCategories = this.productService.convertToTreeNodeList(
-        this.originalCategories
-        );
+      this.originalCategories
+    );
   }
 
   headerSliderConfig = {

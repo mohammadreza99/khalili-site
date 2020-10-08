@@ -120,8 +120,8 @@
                               *ngFor="let child of item.children"
                               [routerLink]="[
                                 '/products/subcategory/',
-                                item.id,
-                                item.title
+                                child.id,
+                                child.title
                               ]"
                             >
                               {{ child.title }}

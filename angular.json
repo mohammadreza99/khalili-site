@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng9-en-primeng-fullcomponment",
+            "outputPath": "dist/ng9-en-primeng-fullcomponment/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -25,13 +25,13 @@
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "./node_modules/swiper/css/swiper.css",
+              "node_modules/swiper/css/swiper.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/nova-light/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/quill/dist/quill.core.css",
               "node_modules/quill/dist/quill.snow.css",
-              "./node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet/dist/leaflet.css",
               "src/styles.scss"
             ],
             "scripts": ["node_modules/quill/dist/quill.js"],
@@ -58,12 +58,12 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
+                  "maximumWarning": "5mb",
                   "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
+                  "maximumWarning": "5mb",
                   "maximumError": "10kb"
                 }
               ]
@@ -120,6 +120,54 @@
             "production": {
               "devServerTarget": "ng9-en-primeng-fullcomponment:serve:production"
             }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/ng9-en-primeng-fullcomponment/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/assets/styles", "src/assets"]
+            }
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "ng9-en-primeng-fullcomponment:build",
+            "serverTarget": "ng9-en-primeng-fullcomponment:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ng9-en-primeng-fullcomponment:build:production",
+              "serverTarget": "ng9-en-primeng-fullcomponment:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "ng9-en-primeng-fullcomponment:build:production",
+            "serverTarget": "ng9-en-primeng-fullcomponment:server:production",
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }

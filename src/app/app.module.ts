@@ -16,7 +16,7 @@ import { AuthGuard } from './modules/auth/business/auth.guard';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,

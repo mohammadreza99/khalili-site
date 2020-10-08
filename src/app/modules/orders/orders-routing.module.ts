@@ -9,22 +9,22 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartPage,
-    data: { title: '' },
+    data: { title: 'سبد خرید' },
   },
   {
     path: 'shipping',
     component: ShippingPage,
-    data: { title: '' },
+    data: { title: 'مشخصات تحویل' },
   },
   {
     path: 'payment-success',
     component: PaymentSuccessPage,
-    data: { title: '' },
+    data: { title: 'خرید موفق' },
   },
   {
     path: 'payment-fail',
     component: PaymentFailPage,
-    data: { title: '' },
+    data: { title: 'خربد ناموفق' },
   },
 ];
 

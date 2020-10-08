@@ -24,6 +24,8 @@ export class ProductCategoryPage implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = params['id'];
+      const name = params['name'];
+      this.title.setTitle(name);
       this.categoryDescription$ = this.productService.getCategoryDescription(
         id
       );

@@ -32,7 +32,7 @@
                 routerLink="/orders/cart"
                 class="far fa-shopping-cart pr-3 py-2 text-muted border-right"
               ></i>
-              <span class="badge badge-dark badge-pill">{{ cartCount }}</span>
+              <span *ngIf="cartCount!=0" class="badge badge-pill">{{ cartCount }}</span>
             </span>
           </div>
         </div>
@@ -136,22 +136,22 @@
             </div>
             <div>
               <a class="nav-item nav-link" [routerLink]="['/guide/about']"
-                ><i class="fal fa-badge-percent pl-1"></i>درباره ما
+                ><i class="fal fa-address-card pl-1"></i>درباره ما
               </a>
             </div>
             <div>
               <a class="nav-item nav-link" [routerLink]="['/guide/contact']"
-                ><i class="fal fa-badge-percent pl-1"></i>تماس با ما
+                ><i class="fal fa-phone-square-alt pl-1"></i>تماس با ما
               </a>
             </div>
             <div>
               <a class="nav-item nav-link" [routerLink]="['/guide/privacy']"
-                ><i class="fal fa-badge-percent pl-1"></i>حریم خصوصی
+                ><i class="fal fa-user-shield pl-1"></i>حریم خصوصی
               </a>
             </div>
             <div>
               <a class="nav-item nav-link" [routerLink]="['/guide/terms']"
-                ><i class="fal fa-badge-percent pl-1"></i>قوانین و مقررات
+                ><i class="fal fa-list pl-1"></i>قوانین و مقررات
               </a>
             </div>
             <div>

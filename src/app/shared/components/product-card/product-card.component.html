@@ -17,13 +17,19 @@
     >
       {{ product.name }}
     </a>
-    <div class="card-price">
-      <div *ngIf="product.disCountPrice" class="d-flex align-items-center">
+    <div class="card-price" *ngIf="product.disCountPrice" >
+      <div class="d-flex align-items-center">
         <div class="discount rounded-pill mr-2">
           {{ discountPersent | number: "1.0-0" }}%
         </div>
-        <del class="first-price">{{ product.disCountPrice | number }} </del>
+        <del class="first-price">{{ product.price | number }} </del>
       </div>
+      <div class="final-price d-flex">
+        <span class="symbol pr-2 font-regular">تومان</span
+        >{{ product.disCountPrice | number }}
+      </div>
+    </div>
+    <div class="card-price" *ngIf="!product.disCountPrice" >
       <div class="final-price d-flex">
         <span class="symbol pr-2 font-regular">تومان</span
         >{{ product.price | number }}

@@ -31,7 +31,7 @@ export class CartPage implements OnInit {
   finalPaySum = 0;
 
   ngOnInit(): void {
-    this.orderService.getSavedOrder().subscribe(console.log);
+    this.orderService.getSavedOrder().subscribe();
     this.loadCart();
   }
 

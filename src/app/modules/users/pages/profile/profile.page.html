@@ -10,6 +10,7 @@
               <img
                 (click)="onAvatarClick()"
                 [src]="'../../../../../assets/images/avatar/'+ (userProfile.avatar+'.png' || '1.png')"
+                alt="کاربر"
                 class="rounded-circle avatar"
               />
               <div class="user-info mr-3">
@@ -327,6 +328,7 @@
           class="col-4 d-flex justify-content-center"
         >
           <img
+            alt="کاربر"
             (click)="onEditAvatar(avatar)"
             [src]="'../../../../../assets/images/avatar/'+avatar+'.png'"
             class="rounded-circle avatar my-2"

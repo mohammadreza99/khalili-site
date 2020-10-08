@@ -25,3 +25,11 @@
   min-width: 43px;
   height: 23px;
 }
+
+p-galleria ::ng-deep .ui-galleria-thumbnail-container {
+  background-color: transparent;
+  border: 1px solid #dee2e6;
+  border-radius: 0.3rem;
+  margin-top: 1rem;
+  padding: .5rem 0;
+}

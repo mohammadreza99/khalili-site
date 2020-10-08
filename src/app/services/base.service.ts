@@ -28,7 +28,7 @@ export class BaseService {
     params?: any,
     cache?: boolean,
     timeout?: number
-  ): Observable<Blob>;
+  ): Observable<any>;
   public get<T>(
     path: string,
     type: 'text',
@@ -112,7 +112,7 @@ export class BaseService {
     body: T,
     type: 'blob',
     params?: any
-  ): Observable<Blob>;
+  ): Observable<any>;
   public post<T>(
     path: string,
     body: T,
@@ -151,7 +151,7 @@ export class BaseService {
     body: T,
     type: 'blob',
     params?: any
-  ): Observable<Blob>;
+  ): Observable<any>;
   public put<T>(
     path: string,
     body: T,
@@ -181,7 +181,7 @@ export class BaseService {
     type: 'arraybuffer',
     params?: any
   ): Observable<ArrayBuffer>;
-  public delete(path: string, type: 'blob', params?: any): Observable<Blob>;
+  public delete(path: string, type: 'blob', params?: any): Observable<any>;
   public delete(path: string, type: 'text', params?: any): Observable<string>;
   public delete<T>(path: string, type: 'json', params?: any): Observable<T>;
   public delete<T>(path: string, type: any, params?: any): Observable<T> {

@@ -33,6 +33,7 @@
     "domino": "^2.1.6",
     "express": "^4.15.2",
     "leaflet": "^1.7.1",
+    "localstorage-polyfill": "^1.0.1",
     "ng2-jalali-date-picker": "^2.2.7",
     "ngx-image-zoom": "^0.6.0",
     "ngx-useful-swiper": "^9.0.3",

@@ -16,7 +16,7 @@ export class ProductDetailsPage implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private router: Router,
-    private title:Title,
+    private title: Title,
     private orderService: OrderService
   ) {}
 
@@ -30,7 +30,7 @@ export class ProductDetailsPage implements OnInit {
   relatedProducts$: any;
   availableColors: any[] = [];
   prices: any[] = [];
-  discountPersent:number;
+  discountPersent: number;
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -60,16 +60,21 @@ export class ProductDetailsPage implements OnInit {
     },
   ];
   productCode: string;
+  productImages: any[];
   // zoomedImageSrc = '../../../../../assets/images/1.jpg';
   // zoomedImageSrc1 = '../../../../../assets/images/2.jpg';
 
   ngOnInit() {
     this.productCode = this.route.snapshot.paramMap.get('code');
-    this.productService.getProductInfo(this.productCode).subscribe(product=>{
-      this.productInfo=product;
-      this.title.setTitle('مشخصات و خرید '+product.name)
+    this.productService
+      .getProductInfo(this.productCode)
+      .subscribe((product) => {
+        this.productInfo = product;
+        this.title.setTitle('مشخصات و خرید ' + product.name);
+      });
+    this.productService.getProductMedia(this.productCode).subscribe((res) => {
+      this.productImages = res;
     });
-    this.productMedia$ = this.productService.getProductMedia(this.productCode);
     this.productFields$ = this.productService.getProductFields(
       this.productCode
     );
@@ -100,7 +105,8 @@ export class ProductDetailsPage implements OnInit {
           (item) =>
             item.isDefault && item.colorId == this.availableColors[0].value
         );
-          this.discountPersent=this.defaultPrice.disCountPrice*100/this.defaultPrice.price;
+        this.discountPersent =
+          (this.defaultPrice.disCountPrice * 100) / this.defaultPrice.price;
         this.productPrices = res.filter(
           (item) =>
             !item.isDefault && item.colorId == this.availableColors[0].value
@@ -115,7 +121,8 @@ export class ProductDetailsPage implements OnInit {
     this.defaultPrice = this.prices.find(
       (item) => item.isDefault && item.colorId == selectedColor.value
     );
-    this.discountPersent=this.defaultPrice.disCountPrice*100/this.defaultPrice.price;
+    this.discountPersent =
+      (this.defaultPrice.disCountPrice * 100) / this.defaultPrice.price;
     this.productPrices = this.prices.filter(
       (item) => !item.isDefault && item.colorId == selectedColor.value
     );

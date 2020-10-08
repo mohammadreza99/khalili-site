@@ -7,30 +7,44 @@
             <div
               class="container-fluid rounded-lg shadow-sm bg-white py-4 px-3"
             >
-              <div class="row">
-                <div class="col-lg-5 mb-4 mb-lg-0">
+              <div class="row justify-content-center">
+                <div class="col-sm-8 col-lg-4 col-xl-4 mb-4 mb-lg-0">
                   <!-- <div class="image-wrapper w-100"> -->
                   <!-- <lib-ngx-image-zoom
                       [thumbImage]="zoomedImageSrc1"
                       [fullImage]="zoomedImageSrc"
                     ></lib-ngx-image-zoom> -->
                   <p-galleria
-                    [(value)]="images"
+                    *ngIf="productImages"
+                    dir="ltr"
+                    [value]="productImages"
                     [responsiveOptions]="responsiveOptions"
                     [numVisible]="5"
                   >
                     <ng-template pTemplate="item" let-item>
-                      <img [alt]="productInfo.name" [src]="item.previewImageSrc" class="w-100" />
+                      <img
+                        *ngIf="item.keyMedia | safe | async as image;else loading"
+                        [alt]="productInfo.name"
+                        [src]="image"
+                        class="w-100"
+                      />
+                      <ng-template #loading>
+                        <img src="assets/images/loader.gif" />
+                      </ng-template>
                     </ng-template>
                     <ng-template pTemplate="thumbnail" let-item>
-                      <div class="p-grid p-nogutter p-justify-center">
-                        <img [alt]="productInfo.name" [src]="item.thumbnailImageSrc" />
+                      <div class="p-grid p-nogutter p-justify-center text-center">
+                        <img
+                          [alt]="productInfo.name"
+                          [src]="(item.keyMedia | safe | async) || 'assets/images/loader.gif'"
+                          class="w-75"
+                        />
                       </div>
                     </ng-template>
                   </p-galleria>
                   <!-- </div> -->
                 </div>
-                <div class="col-lg-4 col-md-7 mb-4 mb-lg-0">
+                <div class="col-lg-4 col-xl-5 col-md-7 mb-4 mb-lg-0">
                   <ng-container *ngIf="productInfo">
                     <h6>{{productInfo.name}}</h6>
                     <small class="text-muted"> {{productInfo.nameEn}} </small>
@@ -39,7 +53,9 @@
                       class="feedbacks d-flex align-items-center text-primary"
                     >
                       <div class="visions">
-                        <small>{{productInfo.commentCount}} دیدگاه کاربران</small>
+                        <small
+                          >{{productInfo.commentCount}} دیدگاه کاربران</small
+                        >
                       </div>
                     </div>
 
@@ -70,7 +86,7 @@
                     [items]="availableColors"
                   ></prm-input-dropdown>
                 </div>
-                <div class="col-lg-3 col-md-5">
+                <div class="col-lg-4 col-xl-3 col-md-5">
                   <div class="row" *ngIf="defaultPrice">
                     <div class="col-12">
                       <div class="wrapper bg-light border px-3 rounded-lg">
@@ -123,7 +139,9 @@
                                 {{discountPersent| number :'1.0-0'}}%
                               </div>
                             </div>
-                            <div class="final-price d-flex justify-content-end align-items-center">
+                            <div
+                              class="final-price d-flex justify-content-end align-items-center"
+                            >
                               <span class="h2 mb-0">
                                 {{ defaultPrice.disCountPrice | number }}
                               </span>
@@ -149,7 +167,7 @@
                         <button
                           (click)="onAddToCardByDefaultPrice()"
                           [ngClass]="{'disabled': defaultPrice.qty < 0}"
-                          class="btn btn-block btn-primary my-2"
+                          class="btn btn-block btn-lg btn-primary my-2"
                         >
                           {{defaultPrice.qty > 0 ? 'افزودن به سبد خرید' :
                           'ناموجود'}}

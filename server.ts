@@ -1,5 +1,5 @@
 import 'zone.js/dist/zone-node';
-
+import 'localstorage-polyfill';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { join } from 'path';
@@ -35,6 +35,7 @@ global['HTMLElement'] = win.HTMLElement;
 global['navigator'] = win.navigator;
 global['Event'] = win.Event;
 global['Event']['prototype'] = win.Event.prototype;
+global['localStorage'] = localStorage;
 import { AppServerModule } from './src/main.server';
 Object.defineProperty(win.document.body.style, 'transform', {
   value: () => {

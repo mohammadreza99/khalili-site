@@ -4,7 +4,9 @@
       <div class="row">
         <div class="col-lg-4 col-xl-3">
           <div class="nav flex-column nav-pills border rounded bg-white" #navs>
-            <div class="bg-light rounded-top d-flex align-items-center p-2 border-bottom">
+            <div
+              class="bg-light rounded-top d-flex align-items-center p-2 border-bottom"
+            >
               <img
                 (click)="onAvatarClick()"
                 [src]="'../../../../../assets/images/avatar/'+ (userProfile.avatar+'.png' || '1.png')"
@@ -219,7 +221,7 @@
               </div>
 
               <div class="bg-white p-3 border shadow-sm rounded-lg">
-                <div class="row">
+                <div class="row pb-3">
                   <div class="col-12">
                     <h5>اطلاعات حقوقی</h5>
                   </div>
@@ -278,15 +280,18 @@
                     class="col-md-6 mb-3"
                     label="شماره تلفن ثابت"
                     labelPosition="top"
+                    [numberOnly]="true"
+                    maxlength="11"
                     formControlName="telNumber"
                   ></prm-input-text>
-                  <div class="pt-4 border-top col-12 text-left">
-                    <prm-button
-                      label="تایید و ثبت"
-                      color="primary"
-                      [type]="'submit'"
+                  <div class="pt-3 border-top col-12 text-left">
+                    <button
+                      class="btn btn-primary"
+                      type="submit"
                       (click)="onSubmitOrganization()"
-                    ></prm-button>
+                    >
+                      تایید و ثبت
+                    </button>
                   </div>
                 </form>
               </div>

@@ -9,11 +9,6 @@
             >
               <div class="row justify-content-center">
                 <div class="col-sm-8 col-lg-4 col-xl-4 mb-4 mb-lg-0">
-                  <!-- <div class="image-wrapper w-100"> -->
-                  <!-- <lib-ngx-image-zoom
-                      [thumbImage]="zoomedImageSrc1"
-                      [fullImage]="zoomedImageSrc"
-                    ></lib-ngx-image-zoom> -->
                   <p-galleria
                     *ngIf="productImages"
                     dir="ltr"
@@ -24,7 +19,7 @@
                     <ng-template pTemplate="item" let-item>
                       <img
                         *ngIf="item.keyMedia | safe | async as image;else loading"
-                        [alt]="productInfo.name"
+                        [alt]="productInfo?.name"
                         [src]="image"
                         class="w-100"
                       />
@@ -35,14 +30,13 @@
                     <ng-template pTemplate="thumbnail" let-item>
                       <div class="p-grid p-nogutter p-justify-center text-center">
                         <img
-                          [alt]="productInfo.name"
+                          [alt]="productInfo?.name"
                           [src]="(item.keyMedia | safe | async) || 'assets/images/loader.gif'"
                           class="w-75"
                         />
                       </div>
                     </ng-template>
                   </p-galleria>
-                  <!-- </div> -->
                 </div>
                 <div class="col-lg-4 col-xl-5 col-md-7 mb-4 mb-lg-0">
                   <ng-container *ngIf="productInfo">

@@ -38,7 +38,9 @@ export class AppComponent implements OnInit {
         })
       )
       .subscribe((titleString) => {
-        title.setTitle(titleString.toString());
+        if (titleString) {
+          title.setTitle(titleString.toString());
+        }
       });
   }
 

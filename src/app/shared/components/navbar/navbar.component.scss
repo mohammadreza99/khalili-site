@@ -1,13 +1,16 @@
 @import "mixins";
 
 .navbar {
+
   transition: all 0.4s;
   user-select: none;
   height: 65px;
   &:first-child {
     z-index: 1000;
   }
-
+.badge{
+  background-color: $secondary;
+}
   i,
   a,
   .navbar-brand {

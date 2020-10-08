@@ -16,6 +16,9 @@
       @include text-style($body-color, $font-size-md);
       @include text-style($body-color, $font-size-md);
     }
+    .dropdown-item.active, .dropdown-item:active{
+      background-color: $primary;
+    }
     @include extraSmall() {
       left: 0 !important;
       right: auto !important;

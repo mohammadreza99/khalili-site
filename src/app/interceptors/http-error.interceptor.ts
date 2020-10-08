@@ -70,12 +70,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           message: 'متد استفاده شده برای درخواست مجاز نیست',
         };
       }
-      case 422: {
-        return {
-          title: `خطای ${code}`,
-          message: 'خطا در پردازش فیلدها',
-        };
-      }
       case 500: {
         return {
           title: `خطای ${code}`,

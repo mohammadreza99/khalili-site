@@ -31,30 +31,30 @@
                   <!-- </div> -->
                 </div>
                 <div class="col-lg-4 col-md-7 mb-4 mb-lg-0">
-                  <ng-container *ngIf="productInfo$ | async as info">
-                    <h6>{{info.name}}</h6>
-                    <small class="text-muted"> {{info.nameEn}} </small>
+                  <ng-container *ngIf="productInfo">
+                    <h6>{{productInfo.name}}</h6>
+                    <small class="text-muted"> {{productInfo.nameEn}} </small>
 
                     <div
                       class="feedbacks d-flex align-items-center text-primary"
                     >
                       <div class="visions">
-                        <small>{{info.commentCount}} دیدگاه کاربران</small>
+                        <small>{{productInfo.commentCount}} دیدگاه کاربران</small>
                       </div>
                     </div>
 
                     <div class="info d-flex align-items-center my-4">
                       <small class="brand">
                         <span>برند : </span>
-                        <span>{{info.brandTitle}}</span>
+                        <span>{{productInfo.brandTitle}}</span>
                       </small>
                       <small class="category mr-4">
                         <span>دسته بندی : </span>
                         <a
-                          [routerLink]="['/products/subcategory/', info.categoryId]"
+                          [routerLink]="['/products/subcategory/', productInfo.categoryId]"
                           class="border-dashed"
                         >
-                          <span>{{info.categoryTitle}}</span>
+                          <span>{{productInfo.categoryTitle}}</span>
                         </a>
                       </small>
                     </div>

@@ -13,12 +13,19 @@ body {
   text-align: right;
   direction: rtl;
   font-family: IRANyekan;
+
+  .nav-pills .nav-link.active,
+  .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: $primary
+  }
   .ui-widget {
     font-family: IRANyekan;
     [class|="ui"]:not([class*="pi"]):not([class*="fa"]):not([class*="ql"]) {
       font-family: inherit;
     }
   }
+
   .ui-button , .btn-primary{
     color: #ffffff;
     background-color: $primary;
@@ -29,18 +36,36 @@ body {
       border-color: darken($color: $primary, $amount: 10);
     }
     &:enabled:focus {
+      background-color: darken($color: $primary, $amount: 10);
+      color: #ffffff;
+      border-color: darken($color: $primary, $amount: 10);
       outline: 0 none;
       outline-offset: 0px;
+      box-shadow:none!important;
     }
     &:enabled:active {
       background-color: darken($color: $primary, $amount: 10);
       color: #ffffff;
       border-color: darken($color: $primary, $amount: 10);
     }
+    &:not(:disabled):not(.disabled):active, &:not(:disabled):not(.disabled).active, .show > &.dropdown-toggle {
+      background-color: darken($color: $primary, $amount: 10);
+      color: #ffffff;
+      border-color: darken($color: $primary, $amount: 10);
+    }
   }
-  .ui-dialog .ui-dialog-content {
-    overflow: visible;
+
+
+   .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item.ui-state-highlight, body .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item-group.ui-state-highlight {
+    background-color: $secondary!important;
+    color:$dark-900;
   }
+
+  .ui-dropdown:not(.ui-state-disabled).ui-state-focus{
+    box-shadow:none!important;
+    border-color:$secondary;
+  }
+
 
   @include medium() {
     font-size: $font-size-md;
@@ -48,6 +73,7 @@ body {
 
   *:focus {
     outline: none;
+    box-shadow: none;
   }
 
   a:hover {
@@ -115,5 +141,8 @@ body {
         }
       }
     }
+  }
+  .ui-inputtext:enabled:focus:not(.ui-state-error){
+    box-shadow: none;
   }
 }

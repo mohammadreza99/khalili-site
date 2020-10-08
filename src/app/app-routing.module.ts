@@ -17,13 +17,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        data: { title: '' },
         loadChildren: () =>
           import('@modules/home/home.module').then((m) => m.HomeModule),
       },
       {
         path: 'products',
-        data: { title: '' },
         loadChildren: () =>
           import('@modules/products/products.module').then(
             (m) => m.ProductsModule

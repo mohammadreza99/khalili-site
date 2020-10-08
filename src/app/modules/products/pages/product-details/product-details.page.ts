@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '@app/modules/orders/business/order.service';
 
@@ -15,10 +16,11 @@ export class ProductDetailsPage implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private router: Router,
+    private title:Title,
     private orderService: OrderService
   ) {}
 
-  productInfo$: any;
+  productInfo: any;
   productPrices: any = [];
   defaultPrice: ProductPrice;
   productMedia$: any;
@@ -63,7 +65,10 @@ export class ProductDetailsPage implements OnInit {
 
   ngOnInit() {
     this.productCode = this.route.snapshot.paramMap.get('code');
-    this.productInfo$ = this.productService.getProductInfo(this.productCode);
+    this.productService.getProductInfo(this.productCode).subscribe(product=>{
+      this.productInfo=product;
+      this.title.setTitle('مشخصات و خرید '+product.name)
+    });
     this.productMedia$ = this.productService.getProductMedia(this.productCode);
     this.productFields$ = this.productService.getProductFields(
       this.productCode

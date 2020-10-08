@@ -66,6 +66,13 @@
     padding-top: 30px;
     background-color: #e4edf0;
   }
+  .footerItems{
+    cursor: pointer;
+    &:hover{
+      color:$primary;
+    }
+  }
+
 }
 .go-up i {
   display: inline-block;

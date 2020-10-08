@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    data: { title: '' },
+    data: { title: 'فروشگاه اینترنتی دیجیکالا' },
   },
 ];
 

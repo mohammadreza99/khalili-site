@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../business/product.service';
 import { TreeNode } from 'primeng';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'product-category',
   templateUrl: './product-category.page.html',
@@ -10,7 +11,8 @@ import { TreeNode } from 'primeng';
 export class ProductCategoryPage implements OnInit {
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private title:Title,
   ) {}
   originalCategories;
   convertedCategories: TreeNode[];

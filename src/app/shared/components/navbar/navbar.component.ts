@@ -52,151 +52,27 @@ export class NavbarComponent implements OnInit {
           label: 'گارانتی ',
           routerLink: ['/base/warranties'],
           items: [
-            { label: 'رنگ ', routerLink: ['/base/colors'], icon: 'fa fa-minus' },
-            { label: 'رنگ ', routerLink: ['/base/colors'], icon: 'fa fa-minus' },
-            { label: 'رنگ ', routerLink: ['/base/colors'], icon: 'fa fa-minus' },
-            { label: 'رنگ ', routerLink: ['/base/colors'], icon: 'fa fa-minus' },
-          ]
-        },
-        {
-          label: 'بیمه',
-          routerLink: ['/base/insurances'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'اپلیکیشن',
-          routerLink: ['/base/apps'],
-          icon: 'fa fa-minus',
-        },
-        { label: 'استان ', routerLink: ['/base/states'], icon: 'fa fa-minus' },
-        { label: 'شهر', routerLink: ['/base/cities'], icon: 'fa fa-minus' },
-        {
-          label: 'ناحیه ',
-          routerLink: ['/base/districts'],
-          icon: 'fa fa-minus',
-        },
-        { label: 'شغل ', routerLink: ['/base/jobs'], icon: 'fa fa-minus' },
-        { label: 'برند', routerLink: ['/base/brands'], icon: 'fa fa-minus' },
-        {
-          label: 'دسته بندی الحاقیات فروشگاه ',
-          routerLink: ['/base/attachment-types'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'تعطیلات فروشگاه اصلی',
-          routerLink: ['/base/holidays'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'ساعت تحویل',
-          routerLink: ['/base/shipping-hours'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'نظرسنجی امتیازی ',
-          routerLink: ['/base/point-types'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'دسته بندی فیلد',
-          routerLink: ['/base/attribute-categories'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'فیلد',
-          routerLink: ['/base/attributes'],
-          icon: 'fa fa-minus',
-        },
-      ],
-    },
-    {
-      label: 'مدیریت سایت',
-      items: [
-        {
-          label: 'درباره ما',
-          routerLink: ['/base/about'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'شماره تلفن ',
-          routerLink: ['/base/phones'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'شبکه اجتماعی',
-          routerLink: ['/base/socials'],
-          icon: 'fa fa-minus',
-        },
-        { label: 'اسلایدر', routerLink: ['/base/slider'], icon: 'fa fa-minus' },
-        {
-          label: 'تنظیمات صفحه اصلی',
-          routerLink: ['/base/main-setting'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'دسته بندی سوالات متداول',
-          routerLink: ['/base/faq-categories'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'سوالات متداول',
-          routerLink: ['/base/faq'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'حریم شخصی',
-          routerLink: ['/base/privacy'],
-          icon: 'fa fa-minus',
-        },
-        { label: 'مقررات', routerLink: ['/base/terms'], icon: 'fa fa-minus' },
-      ],
-    },
-    {
-      label: 'مدیریت محصولات',
-      items: [
-        {
-          label: 'دسته بندی محصولات',
-          routerLink: ['/product/categories/list'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'محصولات',
-          routerLink: ['/product/list'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'کد تخفیف',
-          routerLink: ['/product/discount'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'بازدید محصولات',
-          routerLink: ['/product/views'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'علاقه مندی کاربران',
-          routerLink: ['/product/favorites'],
-          icon: 'fa fa-minus',
-        },
-        {
-          label: 'نظرات کاربران',
-          routerLink: ['/product/comments'],
-          icon: 'fa fa-minus',
-        },
-      ],
-    },
-    {
-      label: 'مدیریت سفارشات',
-      items: [],
-    },
-    {
-      label: 'مدیریت کاربران',
-      items: [
-        {
-          label: 'کاربران',
-          routerLink: ['/user/users'],
-          icon: 'fa fa-minus',
+            {
+              label: 'رنگ ',
+              routerLink: ['/base/colors'],
+              icon: 'fa fa-minus',
+            },
+            {
+              label: 'رنگ ',
+              routerLink: ['/base/colors'],
+              icon: 'fa fa-minus',
+            },
+            {
+              label: 'رنگ ',
+              routerLink: ['/base/colors'],
+              icon: 'fa fa-minus',
+            },
+            {
+              label: 'رنگ ',
+              routerLink: ['/base/colors'],
+              icon: 'fa fa-minus',
+            },
+          ],
         },
       ],
     },
@@ -209,6 +85,7 @@ export class NavbarComponent implements OnInit {
 
     this.userService.getMenu().subscribe((res) => {
       this.menuItems = this.generateMenu(res);
+      this.sideMenuItems = this.generateSideMenu(res);
       this.megaMenuList = this.menuItems[0].list;
     });
   }
@@ -242,6 +119,56 @@ export class NavbarComponent implements OnInit {
       });
     });
     return lvl1;
+  }
+
+  generateSideMenu(menu) {
+    let lvl1 = [];
+    menu.forEach((res) => {
+      if (res.lvl == 1) {
+        Object.assign(res, { label: res.title ,routerLink: ['/products/category/'+res.id]});
+        lvl1.push(res);
+        Object.assign(lvl1, { items: [] });
+      }
+    });
+    lvl1.forEach((res) => {
+      let list = [];
+      menu.forEach((m) => {
+        if (m.lvl == 2 && m.parentId === res.id) {
+          Object.assign(m, { label: m.title ,routerLink: ['/products/subcategory/'+m.id]});
+          list.push(m);
+        }
+      });
+      res.items = list;
+      list = [];
+      res.items.forEach((item) => {
+        Object.assign(item, { items: [] });
+        menu.forEach((m) => {
+          if (m.lvl == 3 && m.parentId === item.id) {
+            Object.assign(m, { label: m.title, routerLink: ['/products/subcategory/'+m.id]});
+            list.push(m);
+          }
+        });
+        item.items = list;
+        list = [];
+      });
+    });
+    let sideMenuItems: MenuItem[] = [];
+    lvl1.forEach((item) => {
+      let menuItem: MenuItem = { label: item.title ,routerLink:item.routerLink};
+      if (item.items.length != 0) {
+        let itemsList: MenuItem[] = [];
+        item.items.forEach((element) => {
+          let m = { label: element.title ,routerLink:element.routerLink};
+          if (element.items.length != 0) {
+            Object.assign(m, { items: element.items });
+          }
+          itemsList.push(m);
+        });
+        Object.assign(menuItem, { items: itemsList });
+      }
+      sideMenuItems.push(menuItem);
+    });
+    return sideMenuItems;
   }
 
   showSubMenuById(rootId) {

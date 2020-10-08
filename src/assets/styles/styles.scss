@@ -76,8 +76,8 @@ body {
   }
 
   *:focus {
-    outline: none;
-    box-shadow: none;
+    outline: none !important;
+    box-shadow: none !important;
   }
 
   a:hover {

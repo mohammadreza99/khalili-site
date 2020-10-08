@@ -83,8 +83,12 @@
                         <li
                           class="bg-hover-light pr-3 pointer"
                           *ngFor="let item of menuItems; let i = index"
-                          [routerLink]="['/products/category/', item.id]"
-                          (mouseenter)="showSubMenuById(i + 1)"
+                          [routerLink]="[
+                            '/products/category/',
+                            item.id,
+                            item.title
+                          ]"
+                          (mouseenter)="showSubMenuById(i + 1, $event)"
                         >
                           <span>
                             <i [class]="'fal fa-' + item.icon"></i>
@@ -100,7 +104,11 @@
                         <li
                           class="pointer col-3"
                           *ngFor="let item of megaMenuList"
-                          [routerLink]="['/products/subcategory/', item.id]"
+                          [routerLink]="[
+                            '/products/subcategory/',
+                            item.id,
+                            item.title
+                          ]"
                         >
                           <ul class="m-0 p-0 list-unstyled">
                             <li class="li font-medium parent-menu">
@@ -110,7 +118,11 @@
                             <li
                               class="li font-light"
                               *ngFor="let child of item.children"
-                              [routerLink]="['/products/subcategory/', item.id]"
+                              [routerLink]="[
+                                '/products/subcategory/',
+                                item.id,
+                                item.title
+                              ]"
                             >
                               {{ child.title }}
                             </li>

@@ -51,7 +51,7 @@
                       <small class="category mr-4">
                         <span>دسته بندی : </span>
                         <a
-                          [routerLink]="['/products/subcategory/', productInfo.categoryId]"
+                          [routerLink]="['/products/subcategory/', productInfo.categoryId, productInfo.categoryTitle]"
                           class="border-dashed"
                         >
                           <span>{{productInfo.categoryTitle}}</span>

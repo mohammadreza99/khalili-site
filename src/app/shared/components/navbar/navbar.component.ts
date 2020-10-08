@@ -100,7 +100,10 @@ export class NavbarComponent implements OnInit {
     let lvl1 = [];
     menu.forEach((res) => {
       if (res.lvl == 1) {
-        Object.assign(res, { label: res.title ,routerLink: ['/products/category/'+res.id]});
+        Object.assign(res, {
+          label: res.title,
+          routerLink: ['/products/category/' + res.id, res.title],
+        });
         lvl1.push(res);
         Object.assign(lvl1, { items: [] });
       }
@@ -109,7 +112,10 @@ export class NavbarComponent implements OnInit {
       let list = [];
       menu.forEach((m) => {
         if (m.lvl == 2 && m.parentId === res.id) {
-          Object.assign(m, { label: m.title ,routerLink: ['/products/subcategory/'+m.id]});
+          Object.assign(m, {
+            label: m.title,
+            routerLink: [`/products/subcategory/${m.id}/${m.title}`],
+          });
           list.push(m);
         }
       });
@@ -119,7 +125,10 @@ export class NavbarComponent implements OnInit {
         Object.assign(item, { items: [] });
         menu.forEach((m) => {
           if (m.lvl == 3 && m.parentId === item.id) {
-            Object.assign(m, { label: m.title, routerLink: ['/products/subcategory/'+m.id]});
+            Object.assign(m, {
+              label: m.title,
+              routerLink: [`/products/subcategory/${m.id}/${m.title}`],
+            });
             list.push(m);
           }
         });
@@ -129,11 +138,14 @@ export class NavbarComponent implements OnInit {
     });
     let sideMenuItems: MenuItem[] = [];
     lvl1.forEach((item) => {
-      let menuItem: MenuItem = { label: item.title ,routerLink:item.routerLink};
+      let menuItem: MenuItem = {
+        label: item.title,
+        routerLink: item.routerLink,
+      };
       if (item.items.length != 0) {
         let itemsList: MenuItem[] = [];
         item.items.forEach((element) => {
-          let m = { label: element.title ,routerLink:element.routerLink};
+          let m = { label: element.title, routerLink: element.routerLink };
           if (element.items.length != 0) {
             Object.assign(m, { items: element.items });
           }
@@ -146,8 +158,14 @@ export class NavbarComponent implements OnInit {
     return sideMenuItems;
   }
 
-  showSubMenuById(rootId) {
+  showSubMenuById(rootId, event: any) {
     this.megaMenuList = this.menuItems[rootId - 1].list;
+    const element = event.target;
+    const parent = event.target.parentElement;
+    parent.querySelectorAll('li').forEach((element) => {
+      element.classList.remove('bg-active');
+    });
+    element.classList.add('bg-active');
   }
 
   onMouseEnterMenuItem(id: string) {

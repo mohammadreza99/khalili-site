@@ -7,7 +7,10 @@
             <p-tree [value]="convertedCategories" dir="rtl" class="rtl ui-rtl">
               <ng-template let-node pTemplate="default">
                 <div class="d-flex align-items-center">
-                  <a class="text-dark" [routerLink]="['/products/subcategory/',node.data.id]">
+                  <a
+                    class="text-dark"
+                    [routerLink]="['/products/subcategory/',node.data.id,node.data.title]"
+                  >
                     {{node.label}}
                   </a>
                 </div>
@@ -41,7 +44,7 @@
               <div class="col mt-3">
                 <img
                   class="w-100"
-                  [routerLink]="['/products/subcategory/', categoryImages[0].id]"
+                  [routerLink]="['/products/subcategory/', categoryImages[0].id,categoryImages[0].title]"
                   [alt]="categoryImages[0].title"
                   [src]="categoryImages[0].icon | safe | async"
                 />
@@ -49,7 +52,7 @@
               <div class="col mt-3">
                 <img
                   class="w-100"
-                  [routerLink]="['/products/subcategory/', categoryImages[1].id]"
+                  [routerLink]="['/products/subcategory/', categoryImages[1].id,categoryImages[1].title]"
                   [alt]="categoryImages[1].title"
                   [src]="categoryImages[1].icon | safe | async"
                 />
@@ -57,7 +60,7 @@
               <div class="col mt-3">
                 <img
                   class="w-100"
-                  [routerLink]="['/products/subcategory/', categoryImages[2].id]"
+                  [routerLink]="['/products/subcategory/', categoryImages[2].id,categoryImages[2].title]"
                   [alt]="categoryImages[1].title"
                   [src]="categoryImages[2].icon | safe | async"
                 />
@@ -67,7 +70,7 @@
               <div class="col-md-6 mt-3">
                 <img
                   class="w-100"
-                  [routerLink]="['/products/subcategory/', categoryImages[3].id]"
+                  [routerLink]="['/products/subcategory/', categoryImages[3].id,categoryImages[3].title]"
                   [alt]="categoryImages[3].title"
                   [src]="categoryImages[3].icon | safe | async"
                 />
@@ -75,7 +78,7 @@
               <div class="col-md-6 mt-3">
                 <img
                   class="w-100"
-                  [routerLink]="['/products/subcategory/', categoryImages[4].id]"
+                  [routerLink]="['/products/subcategory/', categoryImages[4].id,categoryImages[4].title]"
                   [alt]="categoryImages[4].title"
                   [src]="categoryImages[4].icon | safe | async"
                 />
@@ -83,7 +86,7 @@
               <div class="col-md-6 mt-3">
                 <img
                   class="w-100"
-                  [routerLink]="['/products/subcategory/', categoryImages[5].id]"
+                  [routerLink]="['/products/subcategory/', categoryImages[5].id,categoryImages[5].title]"
                   [alt]="categoryImages[5].title"
                   [src]="categoryImages[5].icon | safe | async"
                 />
@@ -91,7 +94,7 @@
               <div class="col-md-6 mt-3">
                 <img
                   class="w-100"
-                  [routerLink]="['/products/subcategory/', categoryImages[6].id]"
+                  [routerLink]="['/products/subcategory/', categoryImages[6].id,categoryImages[6].title]"
                   [alt]="categoryImages[6].title"
                   [src]="categoryImages[6].icon | safe | async"
                 />

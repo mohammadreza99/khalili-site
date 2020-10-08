@@ -15,12 +15,12 @@ const routes: Routes = [
     component: ProductDetailsPage,
   },
   {
-    path: 'category/:id',
+    path: 'category/:id/:name',
     component: ProductCategoryPage,
     data: { title: '' },
   },
   {
-    path: 'subcategory/:id',
+    path: 'subcategory/:id/:name',
     component: ProductSubcategoryPage,
     data: { title: '' },
   },

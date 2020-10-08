@@ -11,32 +11,32 @@ const routes: Routes = [
   {
     path: 'faq-category',
     component: FaqCategoryPage,
-    data: { title: '' },
+    data: { title: 'پرسش های متداول' },
   },
   {
     path: 'faq/:id',
     component: FaqPage,
-    data: { title: '' },
+    data: { title: 'پرسش های متداول'  },
   },
   {
     path: 'privacy',
     component: PrivacyPage,
-    data: { title: '' },
+    data: { title: 'حریم خصوصی' },
   },
   {
     path: 'terms',
     component: TermsPage,
-    data: { title: '' },
+    data: { title: 'قوانین و مقررات' },
   },
   {
     path: 'about',
     component: AboutPage,
-    data: { title: '' },
+    data: { title: 'درباره ما' },
   },
   {
     path: 'contact',
     component: ContactPage,
-    data: { title: '' },
+    data: { title: 'تماس با ما' },
   },
 ];
 

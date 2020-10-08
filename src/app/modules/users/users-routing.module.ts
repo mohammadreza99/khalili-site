@@ -5,7 +5,7 @@ import { ProfilePage } from './pages/profile/profile.page';
 const routes: Routes = [
   {
     path: 'profile',
-    data: { title: '' },
+    data: { title: 'پرفایل کاربری' },
     component: ProfilePage,
   },
 ];

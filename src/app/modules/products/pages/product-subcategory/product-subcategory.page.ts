@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TreeNode } from 'primeng';
 import { ProductService } from '../../business/product.service';
@@ -12,7 +13,8 @@ import { Info } from '../../model/product.model';
 export class ProductSubcategoryPage implements OnInit {
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private title:Title,
   ) {}
   originalCategories;
   convertedCategories: TreeNode[];
@@ -27,6 +29,7 @@ export class ProductSubcategoryPage implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
+      this.title.setTitle(name);
       this.sortTypeItems$ = this.productService.getCategorySortType();
       this.filterList$=this.productService.getCategoryFilterList(this.id);
       this.loadList(this.id);

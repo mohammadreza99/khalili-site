@@ -34,11 +34,7 @@ export class ContactPage implements OnInit {
   };
   layers = [marker([35.6908164, 51.3802295])];
 
-  contactInfo$;
-
-  ngOnInit(): void {
-    // this.contactInfo$ = this.guideService.get
-  }
+  ngOnInit(): void {}
 
   onSubmitForm() {
     if (this.form.valid) {

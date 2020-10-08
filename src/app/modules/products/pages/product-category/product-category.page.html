@@ -2,14 +2,14 @@
   <div class="row">
     <div class="container">
       <div class="row">
-        <div class="col-lg-3">
+        <div class="mb-4 mb-lg-0 col-lg-3">
           <div class="bg-white rounded-lg shadow-sm">
             <p-tree [value]="convertedCategories" dir="rtl" class="rtl ui-rtl">
               <ng-template let-node pTemplate="default">
                 <div class="d-flex align-items-center">
-                  <p [routerLink]="['/products/subcategory/',node.data.id]">
+                  <a class="text-dark" [routerLink]="['/products/subcategory/',node.data.id]">
                     {{node.label}}
-                  </p>
+                  </a>
                 </div>
               </ng-template>
             </p-tree>
@@ -26,7 +26,7 @@
                 [showBullets]="true"
                 [config]="headerSliderConfig"
               >
-                <div *ngFor="let item of categorySlider " class="swiper-slide">
+                <div *ngFor="let item of categorySlider" class="swiper-slide">
                   <img
                     class="card-img-top"
                     [src]="item.keyMedia | safe | async"
@@ -96,7 +96,10 @@
             class="row"
             *ngIf="(categoryProductsSlider$|async) as categoryProductsSlider"
           >
-            <div class="col-12 mt-3" *ngFor="let item of categoryProductsSlider">
+            <div
+              class="col-12 mt-3"
+              *ngFor="let item of categoryProductsSlider"
+            >
               <products-slider
                 *ngIf="item.obj.length!=0"
                 [config]="productsSliderConfig"

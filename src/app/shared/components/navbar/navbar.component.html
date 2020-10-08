@@ -103,11 +103,12 @@
                           [routerLink]="['/products/subcategory/', item.id]"
                         >
                           <ul class="m-0 p-0 list-unstyled">
-                            <span class="li font-weight-bold parent-menu">
-                              {{item.title}}
-                            </span>
+                            <li class="li font-medium parent-menu">
+                              {{ item.title }}
+                              <i class="fa fa-chevron-left fa-sm"></i>
+                            </li>
                             <li
-                            class="li pr-2"
+                              class="li font-light"
                               *ngFor="let child of item.children"
                               [routerLink]="['/products/subcategory/', item.id]"
                             >

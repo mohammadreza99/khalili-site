@@ -102,7 +102,7 @@ export class NavbarComponent implements OnInit {
       if (res.lvl == 1) {
         Object.assign(res, {
           label: res.title,
-          routerLink: ['/products/category/' + res.id],
+          routerLink: ['/products/category/' + res.id, res.title],
         });
         lvl1.push(res);
         Object.assign(lvl1, { items: [] });
@@ -114,7 +114,7 @@ export class NavbarComponent implements OnInit {
         if (m.lvl == 2 && m.parentId === res.id) {
           Object.assign(m, {
             label: m.title,
-            routerLink: ['/products/subcategory/' + m.id],
+            routerLink: [`/products/subcategory/${m.id}/${m.title}`],
           });
           list.push(m);
         }
@@ -127,7 +127,7 @@ export class NavbarComponent implements OnInit {
           if (m.lvl == 3 && m.parentId === item.id) {
             Object.assign(m, {
               label: m.title,
-              routerLink: ['/products/subcategory/' + m.id],
+              routerLink: [`/products/subcategory/${m.id}/${m.title}`],
             });
             list.push(m);
           }

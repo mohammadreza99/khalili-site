@@ -84,7 +84,7 @@
                           class="bg-hover-light pr-3 pointer"
                           *ngFor="let item of menuItems; let i = index"
                           [routerLink]="['/products/category/', item.id]"
-                          (mouseenter)="showSubMenuById(i + 1)"
+                          (mouseenter)="showSubMenuById(i + 1, $event)"
                         >
                           <span>
                             <i [class]="'fal fa-' + item.icon"></i>

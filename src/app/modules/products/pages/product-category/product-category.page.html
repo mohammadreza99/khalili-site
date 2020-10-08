@@ -7,7 +7,10 @@
             <p-tree [value]="convertedCategories" dir="rtl" class="rtl ui-rtl">
               <ng-template let-node pTemplate="default">
                 <div class="d-flex align-items-center">
-                  <a class="text-dark" [routerLink]="['/products/subcategory/',node.data.id]">
+                  <a
+                    class="text-dark"
+                    [routerLink]="['/products/subcategory/',node.data.id]"
+                  >
                     {{node.label}}
                   </a>
                 </div>

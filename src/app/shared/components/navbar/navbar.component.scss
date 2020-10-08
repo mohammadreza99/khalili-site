@@ -83,6 +83,13 @@
   }
 }
 
+.bg-active {
+  border-top-color: $gray-002;
+  border-bottom-color: $gray-002;
+  background-color: $gray-001;
+  color: $primary;
+}
+
 .navbar.navbar-top {
   height: auto;
   @include large() {
@@ -108,4 +115,3 @@
 ag-logo ::ng-deep .wrapper {
   margin: auto;
 }
-

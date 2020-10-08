@@ -1,5 +1,6 @@
+@import "mixins";
 p-paginator {
-    background-color: white;
+  background-color: white;
   ::ng-deep .ui-paginator > .ui-paginator-element {
     transform: rotate(180deg);
   }
@@ -53,4 +54,8 @@ p-tree {
       }
     }
   }
+}
+
+.text-dark:hover {
+  color: $primary !important;
 }

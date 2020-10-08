@@ -109,18 +109,3 @@ ag-logo ::ng-deep .wrapper {
   margin: auto;
 }
 
-p-panelMenu::ng-deep {
-  .ui-panelmenu .ui-panelmenu-content .ui-menuitem .ui-menuitem-link:focus {
-    box-shadow: none;
-  }
-  .ui-panelmenu .ui-panelmenu-content .ui-menuitem .ui-menuitem-link.ui-menuitem-link-active .ui-menuitem-text{
-    color:$primary;
-  }
-  .ui-panelmenu-header.ui-state-active > a,
-  .ui-panelmenu-header.ui-state-active > a {
-    background-color: $primary !important;
-    &:hover {
-      background-color: darken($color: $primary, $amount: 10) !important;
-    }
-  }
-}

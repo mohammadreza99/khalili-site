@@ -1,16 +1,27 @@
+@import "mixins";
 .nav-link {
   cursor: pointer;
 }
 
 .border-dashed {
-  border-bottom: 1px dashed ;
+  border-bottom: 1px dashed;
 }
 
-.field{
-  .field-name{
-    background: #f9f9f9
+.field {
+  .field-name {
+    background: #f9f9f9;
   }
-  .field-value{
+  .field-value {
     background: #f3f3f3;
   }
+}
+.discount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $secondary;
+  font-weight: 400;
+  color: rgb(37, 37, 37);
+  min-width: 43px;
+  height: 23px;
 }

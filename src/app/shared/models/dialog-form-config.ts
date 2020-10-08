@@ -11,6 +11,8 @@ export type DialogFormConfig =
       placeholder?: string;
       formControlName: string;
       errors?: PrimeError[];
+      numberOnly?: boolean;
+      maxLength?: number;
       value?: any;
     }
   | {

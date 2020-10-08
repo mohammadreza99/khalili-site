@@ -8,7 +8,6 @@
           class="col-12 col-lg-4 btns d-flex align-items-center justify-content-between"
         >
           <a routerLink="/" class="d-block d-lg-none navbar-brand h-100 mr-0">
-            <!-- <img class="h-100" src="../../../../assets/images/logo.png" /> -->
             <ag-logo></ag-logo>
           </a>
           <div class="d-flex align-items-center w-100 justify-content-end">
@@ -28,19 +27,19 @@
             >
               <i class="far fa-user text-muted"></i> ورود به حساب کاربری
             </button>
-            <span
-              ><i
+            <span>
+              <i
                 routerLink="/orders/cart"
                 class="far fa-shopping-cart pr-3 py-2 text-muted border-right"
-              ></i
-            ></span>
+              ></i>
+              <span class="badge badge-dark badge-pill">{{ cartCount }}</span>
+            </span>
           </div>
         </div>
         <div
           class="col-12 col-lg-8 d-flex h-100 align-items-center justify-content-end"
         >
           <a routerLink="/" class="d-none d-lg-block navbar-brand h-100 mr-0">
-            <!-- <img class="h-100" src="../../../../assets/images/logo.png" /> -->
             <ag-logo></ag-logo>
           </a>
           <button

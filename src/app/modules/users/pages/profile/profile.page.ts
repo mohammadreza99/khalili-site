@@ -120,6 +120,8 @@ export class ProfilePage implements OnInit {
           value: this.userProfile.nationalCode,
           errors: [{ type: 'required', message: 'این فیلد الزامیست' }],
           label: 'کد ملی',
+          numberOnly: true,
+          maxLength: 10,
           labelWidth: 80,
         },
       ])
@@ -222,6 +224,8 @@ export class ProfilePage implements OnInit {
           formControlName: 'cardNumber',
           value: this.userProfile.cardNumber,
           errors: [{ type: 'required', message: 'این فیلد الزامیست' }],
+          numberOnly: true,
+          maxLength: 16,
           label: 'شماره کارت',
           labelWidth: 80,
         },

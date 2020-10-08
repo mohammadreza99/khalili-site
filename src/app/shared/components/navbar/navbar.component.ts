@@ -9,6 +9,7 @@ import {
 
 import { Router } from '@angular/router';
 import { AuthService } from '@app/modules/auth/business/auth.service';
+import { OrderService } from '@app/modules/orders/business/order.service';
 import { UserService } from '@app/modules/users/business/user.service';
 import { Profile } from '@app/modules/users/model/user.model';
 import { MenuItem } from 'primeng';
@@ -22,8 +23,11 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private orderService: OrderService
   ) {}
+
+  cartCount: number = 0;
 
   @Input() isHomePage: boolean;
   @HostListener('window:scroll', ['$event'])
@@ -43,40 +47,7 @@ export class NavbarComponent implements OnInit {
   menuItems = [];
   megaMenuList;
   profile: Profile;
-  sideMenuItems: MenuItem[] = [
-    {
-      label: 'مدیریت اطلاعات پایه',
-      items: [
-        { label: 'رنگ ', routerLink: ['/base/colors'], icon: 'fa fa-minus' },
-        {
-          label: 'گارانتی ',
-          routerLink: ['/base/warranties'],
-          items: [
-            {
-              label: 'رنگ ',
-              routerLink: ['/base/colors'],
-              icon: 'fa fa-minus',
-            },
-            {
-              label: 'رنگ ',
-              routerLink: ['/base/colors'],
-              icon: 'fa fa-minus',
-            },
-            {
-              label: 'رنگ ',
-              routerLink: ['/base/colors'],
-              icon: 'fa fa-minus',
-            },
-            {
-              label: 'رنگ ',
-              routerLink: ['/base/colors'],
-              icon: 'fa fa-minus',
-            },
-          ],
-        },
-      ],
-    },
-  ];
+  sideMenuItems: MenuItem[] = [];
   ngOnInit(): void {
     if (this.authService.isAuthenticated())
       this.userService.getProfileInfo().subscribe((res) => {
@@ -87,6 +58,10 @@ export class NavbarComponent implements OnInit {
       this.menuItems = this.generateMenu(res);
       this.sideMenuItems = this.generateSideMenu(res);
       this.megaMenuList = this.menuItems[0].list;
+    });
+
+    this.orderService.getCartCount().subscribe((res) => {
+      this.cartCount = res;
     });
   }
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { BaseService } from '@app/services/base.service';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CartProduct } from '../model/order.model';
 
@@ -8,7 +9,17 @@ import { CartProduct } from '../model/order.model';
   providedIn: 'root',
 })
 export class OrderService extends BaseService {
+  cartCountSubject = new BehaviorSubject<number>(
+    (JSON.parse(localStorage.getItem('paid-products')) as any[])?.length || 0
+  );
+
   cartProducts: any[] = [];
+
+  getSavedOrder() {
+    return this.get('/V1/OrderSaved/', 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
 
   storeCart(cart: { productCode: any; priceId: any }) {
     const localStorageData: any[] = this.getCart();
@@ -36,6 +47,14 @@ export class OrderService extends BaseService {
     localStorageData.splice(index, 1);
     const finalCart = [...localStorageData];
     localStorage.setItem('paid-products', JSON.stringify(finalCart));
+  }
+
+  getCartCount() {
+    return this.cartCountSubject.asObservable();
+  }
+
+  updateCartCount(count) {
+    this.cartCountSubject.next(count);
   }
 
   storeSubmittedCart(cart: CartProduct[]) {

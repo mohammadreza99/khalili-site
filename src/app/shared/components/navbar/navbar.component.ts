@@ -161,6 +161,10 @@ export class NavbarComponent implements OnInit {
   showSubMenuById(rootId, event: any) {
     this.megaMenuList = this.menuItems[rootId - 1].list;
     const element = event.target;
+    const parent = event.target.parentElement;
+    parent.querySelectorAll('li').forEach((element) => {
+      element.classList.remove('bg-active');
+    });
     element.classList.add('bg-active');
   }
 

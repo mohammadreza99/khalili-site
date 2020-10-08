@@ -70,12 +70,12 @@
           li {
             @include text-style($subtitle-color, $font-size-sm, 3);
             border: 1px solid transparent;
-            &:hover {
-              border-top-color: $gray-002;
-              border-bottom-color: $gray-002;
-              background-color: $gray-001;
-              color: $primary;
-            }
+            // &:hover {
+            //   border-top-color: $gray-002;
+            //   border-bottom-color: $gray-002;
+            //   background-color: $gray-001;
+            //   color: $primary;
+            // }
           }
         }
       }

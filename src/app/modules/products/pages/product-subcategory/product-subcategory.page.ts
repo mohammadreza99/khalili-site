@@ -19,19 +19,18 @@ export class ProductSubcategoryPage implements OnInit {
   sortTypeItems$: any;
   products$: any;
   filterList$: any;
-  pageIndex=0;
-  sortType=1;
+  pageIndex = 0;
+  sortType = 1;
   id;
-  attributes: Info[]=[];
+  attributes: Info[] = [];
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
       this.sortTypeItems$ = this.productService.getCategorySortType();
-      this.filterList$=this.productService.getCategoryFilterList(this.id);
+      this.filterList$ = this.productService.getCategoryFilterList(this.id);
       this.loadList(this.id);
       this.loadProduct(this.id);
-      
     });
   }
   async loadList(id) {
@@ -42,29 +41,28 @@ export class ProductSubcategoryPage implements OnInit {
       this.originalCategories
     );
   }
-  async loadProduct(id){
-    let obj={
+  async loadProduct(id) {
+    let obj = {
       categoryId: id,
       pageIndex: this.pageIndex,
-      sort:this.sortType
-    }
-    this.products$ = await this.productService.getProductCategory(obj)
+      sort: this.sortType,
+    };
+    this.products$ = await this.productService.getProductCategory(obj);
   }
-  
-  onPageChange(args){
-    this.pageIndex=+(args.page)+1;
+
+  onPageChange(args) {
+    this.pageIndex = +args.page + 1;
     this.loadProduct(this.id);
   }
-  onSortTypeChange(id){
-    this.sortType=id;
+  onSortTypeChange(id) {
+    this.sortType = id;
     this.loadProduct(this.id);
   }
   onChangeAttributes(event) {
     this.attributes = event;
   }
-  onFilterClick(){
-    console.log(    this.attributes);
-    
+  onFilterClick() {
+    console.log(this.attributes);
   }
 
   config = {
@@ -76,5 +74,4 @@ export class ProductSubcategoryPage implements OnInit {
       '992 ': { slidesPerView: 5, slidesPerGroup: 4 },
     },
   };
-
 }

@@ -60,7 +60,7 @@
                     </div>
                   </ng-container>
                   <prm-input-dropdown
-                    *ngIf="availableColors[0]"
+                    *ngIf="availableColors[0] && defaultPrice.qty > 0"
                     (onChange)="onColorChange($event)"
                     [placeholder]="null"
                     labelWidth="110"
@@ -75,6 +75,7 @@
                     <div class="col-12">
                       <div class="wrapper bg-light border px-3 rounded-lg">
                         <div
+                          *ngIf="defaultPrice.qty > 0"
                           class="seller d-flex align-items-center border-bottom py-2"
                         >
                           <i class="fas fa-home text-muted ml-3"></i>
@@ -89,6 +90,7 @@
                         </div>
 
                         <div
+                          *ngIf="defaultPrice.qty > 0"
                           class="warranty d-flex align-items-center border-bottom py-2"
                         >
                           <i class="fas fa-home text-muted ml-3"></i>
@@ -109,25 +111,39 @@
                           </div>
                         </div>
 
-                        <div class="price py-2">
-                          <div
-                            class="d-flex align-items-center justify-content-end"
-                          >
-                            <del class="first-price text-muted"
-                              >{{ defaultPrice.price | number }}
-                            </del>
-                            <div class="discount rounded-pill mr-2">
-                              {{discountPersent| number :'1.0-0'}}%
-                            </div>
-                          </div>
-                          <div class="final-price d-flex justify-content-end">
-                            <span class="h2 mb-0">
-                              {{ defaultPrice.disCountPrice | number }}
-                            </span>
-                            <span class="symbol pr-2 font-regular fa-sm"
-                              >تومان</span
+                        <div class="price py-4" *ngIf="defaultPrice.qty > 0">
+                          <ng-container *ngIf="defaultPrice.disCountPrice">
+                            <div
+                              class="d-flex align-items-center justify-content-end"
                             >
-                          </div>
+                              <del class="first-price text-muted"
+                                >{{ defaultPrice.price | number }}
+                              </del>
+                              <div class="discount rounded-pill mr-2">
+                                {{discountPersent| number :'1.0-0'}}%
+                              </div>
+                            </div>
+                            <div class="final-price d-flex justify-content-end">
+                              <span class="h2 mb-0">
+                                {{ defaultPrice.disCountPrice | number }}
+                              </span>
+                              <span class="symbol pr-2 font-regular fa-sm"
+                                >تومان</span
+                              >
+                            </div>
+                          </ng-container>
+                          <ng-container *ngIf="!defaultPrice.disCountPrice">
+                            <div
+                              class="final-price d-flex justify-content-end align-items-center"
+                            >
+                              <span class="h2 mb-0">
+                                {{ defaultPrice.price | number }}
+                              </span>
+                              <span class="symbol pr-2 font-regular fa-sm"
+                                >تومان</span
+                              >
+                            </div>
+                          </ng-container>
                         </div>
 
                         <button

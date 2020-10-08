@@ -1,8 +1,5 @@
 <div class="card">
-  <a
-    class="py-4"
-    [routerLink]="['/products/details', product.nameEn, product.productCode]"
-  >
+  <a [routerLink]="['/products/details', product.nameEn, product.productCode]">
     <img
       class="card-img-top"
       [src]="product.keyMedia | safe | async"
@@ -22,7 +19,9 @@
     </a>
     <div class="card-price">
       <div *ngIf="product.disCountPrice" class="d-flex align-items-center">
-        <div class="discount rounded-pill mr-2">{{discountPersent| number :'1.0-0'}}%</div>
+        <div class="discount rounded-pill mr-2">
+          {{ discountPersent | number: "1.0-0" }}%
+        </div>
         <del class="first-price">{{ product.disCountPrice | number }} </del>
       </div>
       <div class="final-price d-flex">

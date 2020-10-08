@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="wrapper-content">
-    <carousel [showArrows]="true" [config]="config">
+    <carousel class="p-3" [showArrows]="true" [config]="config">
       <div *ngFor="let product of products" class="swiper-slide" dir="ltr">
         <product-card [product]="product"></product-card>
       </div>

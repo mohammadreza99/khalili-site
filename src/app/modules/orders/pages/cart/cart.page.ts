@@ -31,11 +31,13 @@ export class CartPage implements OnInit {
   finalPaySum = 0;
 
   ngOnInit(): void {
+    this.orderService.getSavedOrder().subscribe(console.log);
     this.loadCart();
   }
 
   async loadCart() {
     const cart = this.orderService.getCart();
+    this.orderService.updateCartCount(cart.length);
     for (const cartItem of cart) {
       const info: ProductInfo = await this.productService
         .getProductInfo(cartItem.productCode)

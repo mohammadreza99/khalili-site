@@ -2,10 +2,20 @@
   <div class="d-flex align-items-center justify-content-between">
     <div class="full-address">{{ address.address }}</div>
     <div class="actions d-flex align-items-center">
-      <button class="btn btn-danger p-1 ml-2">
-        <small (click)="onRemoveClick(address.id)">حذف</small>
+      <button
+        class="btn btn-danger p-1 ml-2 text-nowrap"
+        (click)="onRemoveClick(address.id)"
+      >
+        <small>
+          <i class="fa fa-trash fa-sm ml-2"></i>
+          حذف
+        </small>
       </button>
-      <button (click)="onEditClick(address)" class="btn btn-primary p-1">
+      <button
+        (click)="onEditClick(address)"
+        class="btn btn-primary p-1 text-nowrap"
+      >
+        <i class="fa fa-pen fa-sm ml-2"></i>
         <small>ویرایش</small>
       </button>
     </div>
@@ -35,6 +45,9 @@
     </span>
   </div>
 </div>
-<button (click)="onAddClick()" class="btn btn-primary p-1">
-  <small>افزودن</small>
-</button>
+<div class="text-left mt-3">
+  <button (click)="onAddClick()" class="text-left btn btn-primary">
+    <i class="fa fa-plus ml-2"></i>
+    <small>افزودن</small>
+  </button>
+</div>

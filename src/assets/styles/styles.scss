@@ -28,33 +28,31 @@ body {
 
   .ui-button,
   .btn-primary {
-    color: #ffffff;
-    background-color: $primary;
-    border: 1px solid $primary;
+    color: #ffffff !important;
+    background-color: $primary !important;
+    border: 1px solid $primary !important;
     &:enabled:hover {
-      background-color: darken($color: $primary, $amount: 10);
-      color: #ffffff;
-      border-color: darken($color: $primary, $amount: 10);
+      background-color: darken($color: $primary, $amount: 10) !important;
+      color: #ffffff !important;
+      border-color: darken($color: $primary, $amount: 10) !important;
     }
     &:enabled:focus {
-      background-color: darken($color: $primary, $amount: 10);
-      color: #ffffff;
-      border-color: darken($color: $primary, $amount: 10);
-      outline: 0 none;
-      outline-offset: 0px;
+      background-color: darken($color: $primary, $amount: 10) !important;
+      color: #ffffff !important;
+      border-color: darken($color: $primary, $amount: 10) !important;
       box-shadow: none !important;
     }
     &:enabled:active {
-      background-color: darken($color: $primary, $amount: 10);
-      color: #ffffff;
-      border-color: darken($color: $primary, $amount: 10);
+      background-color: darken($color: $primary, $amount: 10) !important;
+      color: #ffffff !important;
+      border-color: darken($color: $primary, $amount: 10) !important;
     }
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active,
     .show > &.dropdown-toggle {
-      background-color: darken($color: $primary, $amount: 10);
-      color: #ffffff;
-      border-color: darken($color: $primary, $amount: 10);
+      background-color: darken($color: $primary, $amount: 10) !important;
+      color: #ffffff !important;
+      border-color: darken($color: $primary, $amount: 10) !important;
     }
   }
 
@@ -89,25 +87,11 @@ body {
     padding: 0 !important;
   }
 
-  // p-panelMenu::ng-deep {
-  //   .ui-panelmenu .ui-panelmenu-content .ui-menuitem .ui-menuitem-link:focus {
-  //     box-shadow: none;
-  //   }
-  //   .ui-panelmenu
-  //     .ui-panelmenu-content
-  //     .ui-menuitem
-  //     .ui-menuitem-link.ui-menuitem-link-active
-  //     .ui-menuitem-text {
-  //     color: $primary;
-  //   }
-  //   .ui-panelmenu-header.ui-state-active > a,
-  //   .ui-panelmenu-header.ui-state-active > a {
-  //     background-color: $primary !important;
-  //     &:hover {
-  //       background-color: darken($color: $primary, $amount: 10) !important;
-  //     }
-  //   }
-  // }
+  .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active{
+    background-color: $primary !important;
+    border: 1px solid $primary !important;
+  }
+
   p-panelMenu {
     .ui-panelmenu {
       &-panel {

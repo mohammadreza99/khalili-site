@@ -36,7 +36,7 @@
               </div>
               <div class="col-md-8 col-lg-9">
                 <h6>{{item.info?.name}}</h6>
-                <ul class="list-unstyled p-0 text-muted">
+                <ul class="features list-unstyled p-0 text-muted">
                   <li class="d-flex align-items-center">
                     <i class="fa fa-tint ml-2"></i>
                     <small>{{item.price.colorTitle}}</small>
@@ -67,7 +67,7 @@
                       class="btn btn-outline-danger p-1 mx-3"
                       (click)="onDeleteProduct(item.info.name,i,item.info.productCode)"
                     >
-                      <i class="fal ml-1 fa-trash"></i>
+                      <i class="fal ml-1 fa-trash fa-sm"></i>
                       <small>حذف</small>
                     </button>
                   </div>

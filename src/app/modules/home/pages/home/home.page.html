@@ -9,7 +9,7 @@
             [config]="mainSliderConfig"
           >
             <div *ngFor="let item of slider$ | async" class="swiper-slide">
-              <img class="card-img-top" [src]="item.keyMedia | safe | async" />
+              <img class="card-img-top" [alt]="item.alt" [src]="item.keyMedia | safe | async" />
             </div>
           </carousel>
         </div>
@@ -24,7 +24,7 @@
           <div class="container">
             <div class="row offer-box">
               <div class="offer-img col-5 col-md-3">
-                <img class="w-75" src="../../../assets/images/offer.png" />
+                <img class="w-75" alt="شگفت انگیز" src="../../../assets/images/offer.png" />
               </div>
               <div class="offer-products col-7 col-md-9">
                 <carousel [showArrows]="true" [config]="offerConfig">

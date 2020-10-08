@@ -10,6 +10,7 @@
                   <img
                     class="category-img"
                     [src]="category.keyMedia | safe | async"
+                    [alt]="category.title"
                   />
                   <h5 class="mr-3">{{category.title}}</h5>
                 </div>

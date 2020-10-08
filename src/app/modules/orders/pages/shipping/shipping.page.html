@@ -10,7 +10,7 @@
             </p>
             <div class="order-items d-flex align-items-center flex-wrap">
               <div class="box-item ml-4" *ngFor="let item of cartProducts">
-                <img class="w-100" [src]="item.keyMedia | safe | async" />
+                <img class="w-100" [alt]="item.price.colorTitle" [src]="item.keyMedia | safe | async" />
                 <small>
                   <i class="fa fa-home"></i>
                   {{item.price.colorTitle}}

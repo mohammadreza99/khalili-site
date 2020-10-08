@@ -100,7 +100,7 @@
         *ngFor="let col of cols; let i = index"
       >
         <span class="w-100" *ngSwitchCase="'image'">
-          <img class="w-100" [src]="rowData[col.field]" />
+          <img [alt]="'aa'" class="w-100" [src]="rowData[col.field]" />
         </span>
         <span *ngSwitchCase="'boolean'">
           <i

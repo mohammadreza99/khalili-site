@@ -8,7 +8,7 @@
       *ngFor="let item of promo.obj"
     >
       <!-- <i class="fas fa-home fa-2x"></i> -->
-      <img [src]="item.icon" />
+      <img [src]="item.icon" [alt]="item.title"/>
       <span class="text-muted mb-1 font-regular">{{ item.title }}</span>
       <small class="text-muted">{{ "+" + item.productCount + " کالا " }}</small>
     </div>

@@ -111,7 +111,7 @@
                   class="px-2"
                   *ngFor="let item of socials$ | async"
                 >
-                  <img [src]="item.icon | safe | async"
+                  <img [alt]="item.alt" [src]="item.icon | safe | async"
                 /></a>
               </div>
             </div>

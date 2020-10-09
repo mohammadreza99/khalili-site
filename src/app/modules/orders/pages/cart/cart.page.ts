@@ -97,7 +97,7 @@ export class CartPage implements OnInit {
       .then(() => {
         this.orderService.deleteCart(productCode);
         this.cartProducts.splice(index, 1);
-        this.loadCart();
+        this.orderService.updateCartCount(this.cartProducts.length);
       });
   }
 

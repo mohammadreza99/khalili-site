@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: rgba($color: #ffffff, $alpha: 0.7);
   transition: all 0.5s;
   visibility: hidden;
   z-index: 50000;

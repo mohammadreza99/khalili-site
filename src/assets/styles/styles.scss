@@ -26,7 +26,8 @@ body {
     }
   }
 
-  .ui-button,
+  .ui-button-primary,
+  .ui-button-undefined,
   .btn-primary {
     color: #ffffff !important;
     background-color: $primary !important;

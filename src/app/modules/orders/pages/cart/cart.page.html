@@ -55,11 +55,15 @@
                     <div
                       class="counter border rounded-lg d-flex align-items-center justify-content-between px-3"
                     >
-                      <i class="fal fa-plus" (click)="plusClick(item)"></i>
+                      <i
+                        [ngClass]="{'text-black-50 disabled': item.quantity == item.price.maxQty}"
+                        class="fal fa-plus"
+                        (click)="plusClick(item)"
+                      ></i>
                       <span class="mx-3">{{item.quantity}}</span>
                       <i
                         class="fal fa-minus"
-                        [ngClass]="{'text-black-50': item.quantity == 1}"
+                        [ngClass]="{'text-black-50 disabled': item.quantity == 1}"
                         (click)="minusClick(item)"
                       ></i>
                     </div>

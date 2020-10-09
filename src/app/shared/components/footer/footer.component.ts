@@ -32,7 +32,10 @@ export class FooterComponent implements OnInit {
 
   footerDescription$;
   socials$;
-  emailFormControl = new FormControl(null, [Validators.email]);
+  emailFormControl = new FormControl(null, [
+    Validators.required,
+    Validators.email,
+  ]);
 
   ngOnInit(): void {
     this.footerDescription$ = this.homeService.getFooterDescription();
@@ -48,11 +51,13 @@ export class FooterComponent implements OnInit {
   }
 
   submitEmail() {
-    this.homeService
-      .insertNews(this.emailFormControl.value)
-      .subscribe((res) => {
-        this.emailFormControl.reset();
-        this.dataService.successfullMessage(this.vcRef);
-      });
+    if (this.emailFormControl.valid) {
+      this.homeService
+        .insertNews(this.emailFormControl.value)
+        .subscribe((res) => {
+          this.emailFormControl.reset();
+          this.dataService.successfullMessage(this.vcRef);
+        });
+    }
   }
 }

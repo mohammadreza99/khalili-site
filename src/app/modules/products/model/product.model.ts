@@ -34,6 +34,7 @@ export class ProductPrice {
   operation: number;
   price: number;
   qty: number;
+  maxQty: number;
   storeTitle: string;
   warrantyId: number;
   warrantyTitle: string;

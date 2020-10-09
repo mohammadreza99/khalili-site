@@ -13,8 +13,6 @@ export class OrderService extends BaseService {
     (JSON.parse(localStorage.getItem('paid-products')) as any[])?.length || 0
   );
 
-  cartProducts: any[] = [];
-
   getSavedOrder() {
     return this.get('/V1/OrderSaved/', 'json').pipe(
       map((res: any) => res.data)
@@ -29,8 +27,8 @@ export class OrderService extends BaseService {
     ) {
       return;
     } else {
-      this.cartProducts.push(cart);
-      localStorage.setItem('paid-products', JSON.stringify(this.cartProducts));
+      localStorageData.push(cart);
+      localStorage.setItem('paid-products', JSON.stringify(localStorageData));
     }
   }
 

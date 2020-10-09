@@ -7,6 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class LogoComponent implements OnInit {
   @Input() logo = 'https://www.digikala.com/static/files/bc60cf05.svg';
-
+  @Input() center = true;
   ngOnInit(): void {}
 }

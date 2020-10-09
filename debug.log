@@ -1,3 +1,4 @@
 [0825/131029.173:ERROR:process_info.cc(329)] VirtualQueryEx: Access is denied. (0x5)
 [0825/131029.173:ERROR:process_info.cc(556)] ReadMemoryInfo failed
 [0825/131029.173:ERROR:process_memory_win.cc(39)] Failed to initialize ProcessInfo.
+[1009/140144.216:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

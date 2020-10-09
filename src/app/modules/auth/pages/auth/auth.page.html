@@ -1,9 +1,8 @@
 <div class="container-fluid h-100">
   <div class="row align-items-center justify-content-center h-100">
-    <div class="col-4">
-      <div class="border p-4 rounded-lg register" *ngIf="showRegister">
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-4">
+      <div class="border p-4 rounded-lg register bg-white" *ngIf="showRegister">
         <div class="text-center logo mb-5">
-          <!-- <img src="https://www.digikala.com/static/files/bc60cf05.svg" /> -->
           <ag-logo></ag-logo>
         </div>
 
@@ -22,14 +21,14 @@
 
         <small class="font-light text-muted">
           با ورود و یا ثبت نام در فروشگاه شما
-          <a routerLink=""> شرایط و قوانین </a>
+          <a routerLink="/guide/terms"> شرایط و قوانین </a>
           استفاده از سرویس های سایت فروشگاه و
-          <a routerLink=""> قوانین حریم خصوصی </a>
+          <a routerLink="/guide/privacy"> قوانین حریم خصوصی </a>
           آن را می‌پذیرید.
         </small>
       </div>
 
-      <div class="border p-4 rounded-lg login-confirm" *ngIf="showLoginConfirm">
+      <div class="border p-4 rounded-lg login-confirmr bg-white" *ngIf="showLoginConfirm">
         <div class="d-flex justify-content-between mb-5">
           <div class="back-icon">
             <i class="fa fa-chevron-right"></i>
@@ -53,7 +52,7 @@
       </div>
 
       <div
-        class="border p-4 rounded-lg register-confirm"
+        class="border p-4 rounded-lg register-confirmr bg-white"
         *ngIf="showRegisterConfirm"
       >
         <div class="d-flex justify-content-between mb-5">
@@ -84,7 +83,7 @@
         </form>
       </div>
 
-      <div class="border p-4 rounded-lg forget" *ngIf="showForget">
+      <div class="border p-4 rounded-lg forgetr bg-white" *ngIf="showForget">
         <div class="d-flex justify-content-between mb-5">
           <div class="back-icon">
             <i class="fa fa-chevron-right"></i>
@@ -110,7 +109,7 @@
         </button>
       </div>
 
-      <div class="border p-4 rounded-lg changePassword" *ngIf="showChangePassword">
+      <div class="border p-4 rounded-lg changePasswordr bg-white" *ngIf="showChangePassword">
         <div class="d-flex justify-content-between mb-5">
           <div class="back-icon">
             <i class="fa fa-chevron-right"></i>

@@ -49,6 +49,8 @@ export class AuthService extends BaseService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('paid-products');
+    localStorage.removeItem('submitted-products');
     this.router.navigate(['/']);
     window.location.reload();
   }

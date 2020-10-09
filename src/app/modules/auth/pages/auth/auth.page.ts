@@ -73,7 +73,7 @@ export class AuthPage implements OnInit {
   }
 
   onSubmitRegisterConfirm() {
-    if (this.registerForm.valid) {
+    if (this.registerConfirmForm.valid) {
       const checkOtp: CheckOtpModel = {
         mobileNo: this.registerForm.get('control').value,
         oTPcode: this.registerConfirmForm.get('control').value,
@@ -139,6 +139,14 @@ export class AuthPage implements OnInit {
           }
         });
     }
+  }
+
+  backToRegisterForm() {
+    this.showRegister = true;
+    this.showRegisterConfirm = false;
+    this.showChangePassword = false;
+    this.showForget = false;
+    this.showLoginConfirm = false;
   }
 
   ngOnInit(): void {}

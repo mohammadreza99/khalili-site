@@ -52,7 +52,6 @@ export class AppComponent implements OnInit {
             summary: error.title,
             detail: error.message,
             severity: 'error',
-            life: 10000,
           },
           this.vcRef
         );

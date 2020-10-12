@@ -14,8 +14,9 @@ export class ProductSubcategoryPage implements OnInit {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private title:Title,
+    private title: Title
   ) {}
+
   originalCategories;
   convertedCategories: TreeNode[];
   sortTypeItems$: any;
@@ -36,6 +37,7 @@ export class ProductSubcategoryPage implements OnInit {
       this.loadProduct(this.id);
     });
   }
+
   async loadList(id) {
     this.originalCategories = await this.productService
       .getCategoryAllSubList(id)
@@ -44,6 +46,7 @@ export class ProductSubcategoryPage implements OnInit {
       this.originalCategories
     );
   }
+
   async loadProduct(id) {
     let obj = {
       categoryId: id,
@@ -57,13 +60,16 @@ export class ProductSubcategoryPage implements OnInit {
     this.pageIndex = +args.page + 1;
     this.loadProduct(this.id);
   }
-  onSortTypeChange(id) {
-    this.sortType = id;
+
+  onSortTypeChange(event) {
+    this.sortType = event.id;
     this.loadProduct(this.id);
   }
+
   onChangeAttributes(event) {
     this.attributes = event;
   }
+
   onFilterClick() {
     console.log(this.attributes);
   }

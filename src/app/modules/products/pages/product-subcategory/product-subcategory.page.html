@@ -10,7 +10,10 @@
             <p-tree [value]="convertedCategories" dir="rtl" class="rtl ui-rtl">
               <ng-template let-node pTemplate="default">
                 <div class="d-flex align-items-center">
-                  <a class="text-dark" [routerLink]="['/products/subcategory/',node.data.id,node.label]">
+                  <a
+                    class="text-dark"
+                    [routerLink]="['/products/subcategory/',node.data.id,node.label]"
+                  >
                     {{node.label}}
                   </a>
                 </div>
@@ -30,9 +33,14 @@
           </ng-container>
         </div>
         <div class="col-lg-9">
-          <div class="row" *ngIf="(sortTypeItems$ | async) as sortTypeItems">
-            <div class="col" *ngFor="let item of sortTypeItems">
-              <small (click)="onSortTypeChange(item.id)">{{item.title}}</small>
+          <div class="row justify-content-end">
+            <div class="col-5 col-sm-4">
+              <prm-input-dropdown
+                placeholder="مرتب سازی بر اساس"
+                field="title"
+                (onChange)="onSortTypeChange($event)"
+                [items]="(sortTypeItems$ | async)"
+              ></prm-input-dropdown>
             </div>
           </div>
           <div class="row no-gutters" *ngIf="products$ | async as products">

@@ -17,3 +17,13 @@ p-table ::ng-deep tbody {
   width: 65px !important;
   height: 65px !important;
 }
+
+p-tabView ::ng-deep .ui-tabview-nav {
+  li {
+    float: right;
+    text-align: center;
+    a {
+      width: 100%;
+    }
+  }
+}

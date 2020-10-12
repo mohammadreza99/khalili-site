@@ -40,15 +40,6 @@ const routes: Routes = [
           import('@modules/orders/orders.module').then((m) => m.OrdersModule),
       },
       {
-        path: 'sellers',
-        data: { title: '' },
-        canActivate: [AuthGuard],
-        loadChildren: () =>
-          import('@modules/sellers/sellers.module').then(
-            (m) => m.SellersModule
-          ),
-      },
-      {
         path: 'users',
         data: { title: '' },
         loadChildren: () =>

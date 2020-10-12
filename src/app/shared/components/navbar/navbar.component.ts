@@ -1,11 +1,4 @@
-import {
-  Component,
-  HostListener,
-  Input,
-  OnInit,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { AuthService } from '@app/modules/auth/business/auth.service';
@@ -21,7 +14,6 @@ import { MenuItem } from 'primeng';
 })
 export class NavbarComponent implements OnInit {
   constructor(
-    private router: Router,
     private userService: UserService,
     private authService: AuthService,
     private orderService: OrderService
@@ -29,7 +21,6 @@ export class NavbarComponent implements OnInit {
 
   cartCount: number = 0;
 
-  @Input() isHomePage: boolean;
   @HostListener('window:scroll', ['$event'])
   onScroll(event) {
     const scrollTop = event.target.scrollingElement.scrollTop;

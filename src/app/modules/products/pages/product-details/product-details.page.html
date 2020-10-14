@@ -28,7 +28,9 @@
                       </ng-template>
                     </ng-template>
                     <ng-template pTemplate="thumbnail" let-item>
-                      <div class="p-grid p-nogutter p-justify-center text-center">
+                      <div
+                        class="p-grid p-nogutter p-justify-center text-center"
+                      >
                         <img
                           [alt]="productInfo?.name"
                           [src]="(item.keyMedia | safe | async) || 'assets/images/loader.gif'"
@@ -197,13 +199,6 @@
                         <span>فروشنده : </span>
                         <span class="font-bold">{{price.storeTitle}}</span>
                       </div>
-                      <!-- <div class="function"> 
-                        <small>
-                          <span>عملکرد : </span><span> 4.5 </span>از 5
-                        </small>
-                        <span class="text-muted mx-3">|</span> 
-                       <small> <span>83.6</span>% رضایت از کالا </small> 
-                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -220,7 +215,7 @@
                 <div class="col-4 col-lg-3">
                   <div class="final-price d-flex justify-content-center">
                     <span class="h3 mb-0">
-                      {{ price.disCountPrice | number }}</span
+                      {{ price.disCountPrice || price.price | number }}</span
                     >
                     <span class="symbol pr-2 font-regular">تومان</span>
                   </div>
@@ -325,37 +320,21 @@
             </div>
             <div class="tab-pane fade comments">
               <div class="container-fluid">
-                <div class="row py-5">
-                  <div class="col-lg-6 mb-3 mb-lg-0">
-                    <h4 class="h5 mb-3">امتیاز کاربران به :</h4>
-                    <p class="mb-5">
-                      دو پرفیوم زنانه امپر مدل Gorgeous In Red حجم 80 میلی لیتر
-                    </p>
-                    <!-- <div class="bar-row d-flex align-items-center font-light">
-                      <span>نسبت به قیمت</span>
-                      <div class="bar-container">
-                        <div [style.width.%]="50" class="bar"></div>
-                      </div>
-                      <span class="mr-4">خوب</span>
-                    </div>
-                    <div class="bar-row d-flex align-items-center font-light">
-                      <span>ارزش خرید نسبت به قیمت</span>
-                      <div class="bar-container">
-                        <div [style.width.%]="50" class="bar"></div>
-                      </div>
-                      <span class="mr-4">خوب</span>
-                    </div>
-                    <div class="bar-row d-flex align-items-center font-light">
-                      <span>ارزش خرید نسبت به قیمت</span>
-                      <div class="bar-container">
-                        <div [style.width.%]="50" class="bar"></div>
-                      </div>
-                      <span class="mr-4">خوب</span>
-                    </div> -->
+                <div
+                  class="row pt-5 pb-4 justify-content-between align-items-center"
+                >
+                  <div class="col-10 col-md-8">
+                    <h5 class="mb-0">
+                      شما هم می‌توانید در مورد این کالا نظر بدهید.
+                    </h5>
                   </div>
-                  <div class="col-lg-6">
-                    <h5>شما هم می‌توانید در مورد این کالا نظر بدهید.</h5>
-                    <button class="btn btn-primary btn-dark px-4 py-2">
+                  <div
+                    class="col-5 mt-3 mt-md-0 col-sm-4 col-md-3 col-lg-2 text-nowrap"
+                  >
+                    <button
+                      class="btn btn-primary btn-dark btn-lg"
+                      (click)="addCommentClick()"
+                    >
                       افزودن نظر
                     </button>
                   </div>
@@ -369,9 +348,6 @@
                       <div class="col-4">
                         <p class="mb-3">نام خریدار</p>
                         <p class="mb-3">در تاریخ 1399/05/08</p>
-                        <div class="alert alert-primary mb-3" role="alert">
-                          توصیه میکنم
-                        </div>
                         <div>
                           فروشنده : <span class="font-bold">دیجیکالا</span>
                         </div>
@@ -379,19 +355,6 @@
                       <div class="col-8">
                         <h5 class="border-bottom pb-3">عنوان نظر</h5>
                         <p>متن نظر</p>
-                        <!-- <div class="feedback d-flex align-items-center">
-                          <small class="font-light"
-                            >آیا این نظر برایتان مفید بود؟
-                          </small>
-                          <div class="buttons">
-                            <small class="border rounded-lg p-1 mx-2 font-light"
-                              >0 بله</small
-                            >
-                            <small class="border rounded-lg p-1 mx-2 font-light"
-                              >0 خیر</small
-                            >
-                          </div>
-                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -404,3 +367,76 @@
     </div>
   </div>
 </div>
+<ng-container *ngIf="showCommentDialog">
+  <p-dialog
+    [(visible)]="showCommentDialog"
+    [header]="'افزودن نظر برای ' + productInfo?.name"
+    [modal]="true"
+    [draggable]="false"
+    [blockScroll]="true"
+    [style]="{ width: '800px'}"
+  >
+    <div class="container-fluid">
+      <form
+        [formGroup]="commentForm"
+        class="form-row justify-content-around"
+        (ngSubmit)="onSubmitComment()"
+      >
+        <div
+          formArrayName="points"
+          class="col-md-5 mb-4"
+          *ngFor="let point of productPoints;let i = index"
+        >
+          <div [formGroupName]="i">
+            <label>{{point.title}}</label>
+            <div class="d-flex w-100 align-items-center">
+              <p class="p-0 ml-3">{{(point.control.value[i].pointValue)/20}}</p>
+              <p-slider
+                formControlName="pointValue"
+                class="d-block flex-grow-1"
+                [step]="20"
+              ></p-slider>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mb-4">
+          <prm-input-text
+            formControlName="title"
+            label="عنوان نظر"
+            labelPosition="top"
+            [errors]="[{type:'required',message:'این فیلد الزامیست'}]"
+          ></prm-input-text>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <prm-input-tags
+            formControlName="gainPoints"
+            hint="تایپ کنید و enter بزنید"
+            label="نقاط قوت"
+            labelPosition="top"
+          ></prm-input-tags>
+        </div>
+        <div class="col-md-6 mb-4">
+          <prm-input-tags
+            formControlName="weakPoints"
+            hint="تایپ کنید و enter بزنید"
+            label="نقاط ضعف"
+            labelPosition="top"
+          ></prm-input-tags>
+        </div>
+        <div class="col-12 mb-3">
+          <prm-input-textarea
+            formControlName="description"
+            [errors]="[{type:'required',message:'این فیلد الزامیست'}]"
+            label="توضیحات"
+            labelPosition="top"
+          ></prm-input-textarea>
+        </div>
+
+        <div class="col-12 border-top text-left py-3">
+          <button type="submit" class="btn btn-primary">ثبت نظر</button>
+        </div>
+      </form>
+    </div>
+  </p-dialog>
+</ng-container>

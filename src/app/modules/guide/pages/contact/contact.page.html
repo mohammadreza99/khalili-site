@@ -58,28 +58,24 @@
 
           <div class="bg-white rounded-lg shadow-sm p-4">
             <div class="row justify-content-center">
-              <div class="col-10">
+              <div class="col-10" *ngIf="contactInfo">
                 <h4 class="mb-3">اطلاعات فروشگاه</h4>
                 <div class="row align-items-center">
-                  <div class="col-md-7">
+                  <div class="col-lg-7">
                     <div class="d-flex align-items-center mb-3">
-                      <i class="fa fa-map-marker-alt ml-2 text-muted"></i>
-                      <span>آدرس آدرس آدرس</span>
+                      <i class="fa fa-phone ml-4 text-muted"></i>
+                      <span>{{contactInfo.telNo}}</span>
                     </div>
                     <div class="d-flex align-items-center mb-3">
-                      <i class="fa fa-phone ml-2 text-muted"></i>
-                      <span>+9812345678</span>
+                      <i class="fa fa-phone ml-4 text-muted"></i>
+                      <span>{{contactInfo.telShow}}</span>
                     </div>
-                    <div class="d-flex align-items-center mb-3">
-                      <i class="fa fa-phone ml-2 text-muted"></i>
-                      <span>+9812345678</span>
-                    </div>
-                    <div class="d-flex align-items-center mb-3">
-                      <i class="fa fa-envelope ml-2 text-muted"></i>
-                      <span>info@mysite.com</span>
+                    <div class="d-flex align-items-start mb-3">
+                      <i class="fa mt-1 fa-info ml-4 text-muted"></i>
+                      <span [innerHTML]="contactInfo.text"></span>
                     </div>
                   </div>
-                  <div class="col-md-5">
+                  <div class="col-lg-5">
                     <div
                       style="height: 250px"
                       leaflet

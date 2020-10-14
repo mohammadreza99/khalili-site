@@ -1,7 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@app/modules/auth/business/auth.service';
 import { OrderService } from '@app/modules/orders/business/order.service';
+import { DataService } from '@app/services/data.service';
 
 import { ProductService } from '../../business/product.service';
 import { ProductPrice } from '../../model/product.model';
@@ -16,13 +25,18 @@ export class ProductDetailsPage implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private router: Router,
+    private authService: AuthService,
     private title: Title,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private dataService: DataService,
+    private vcRef: ViewContainerRef,
+    private fb: FormBuilder
   ) {}
 
   productInfo: any;
   productPrices: any = [];
   defaultPrice: ProductPrice;
+  productPoints = [];
   productMedia$: any;
   productDescription$: any;
   productComments$: any;
@@ -31,6 +45,7 @@ export class ProductDetailsPage implements OnInit {
   availableColors: any[] = [];
   prices: any[] = [];
   discountPersent: number;
+  showCommentDialog = false;
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -45,24 +60,9 @@ export class ProductDetailsPage implements OnInit {
       numVisible: 1,
     },
   ];
-  images: any[] = [
-    {
-      previewImageSrc: 'https://via.placeholder.com/150x150',
-      thumbnailImageSrc: 'https://via.placeholder.com/150x150',
-      alt: 'Description for Image 1',
-      title: 'Title 1',
-    },
-    {
-      previewImageSrc: 'https://via.placeholder.com/100x100',
-      thumbnailImageSrc: 'https://via.placeholder.com/100x100',
-      alt: 'Description for Image 1',
-      title: 'Title 1',
-    },
-  ];
   productCode: string;
   productImages: any[];
-  // zoomedImageSrc = '../../../../../assets/images/1.jpg';
-  // zoomedImageSrc1 = '../../../../../assets/images/2.jpg';
+  commentForm: FormGroup;
 
   ngOnInit() {
     this.productCode = this.route.snapshot.paramMap.get('code');
@@ -84,6 +84,7 @@ export class ProductDetailsPage implements OnInit {
     this.productComments$ = this.productService.getProductComments(
       this.productCode
     );
+    this.productComments$.subscribe(console.log);
     this.relatedProducts$ = this.productService.getRelatedProducts(
       this.productCode
     );
@@ -155,5 +156,64 @@ export class ProductDetailsPage implements OnInit {
     event.target.classList.add('active');
     tabPane.querySelector(`.${active}`).classList.add('show');
     tabPane.querySelector(`.${active}`).classList.add('active');
+  }
+
+  addNewPoint(item) {
+    let control = <FormArray>this.commentForm.controls.points;
+    control.push(
+      this.fb.group({
+        pointTypeId: [item.id],
+        pointValue: [60],
+      })
+    );
+    this.productPoints.push({
+      control: control,
+      title: item.title,
+    });
+  }
+
+  addCommentClick() {
+    if (this.authService.isAuthenticated()) {
+      this.productService
+        .getProductPoints(this.productCode)
+        .subscribe((res) => {
+          this.commentForm = this.fb.group({
+            points: this.fb.array([]),
+            productId: new FormControl(this.productInfo.id),
+            title: new FormControl(null, [Validators.required]),
+            gainPoints: new FormControl(null),
+            weakPoints: new FormControl(null),
+            description: new FormControl(null, [Validators.required]),
+          });
+          for (const item of res) {
+            this.addNewPoint(item);
+          }
+          this.showCommentDialog = true;
+        });
+    } else {
+      this.router.navigate(['/auth'], {
+        queryParams: { return: this.router.url },
+      });
+    }
+  }
+
+  onSubmitComment() {
+    const formValue = this.commentForm.value;
+    console.log(this.commentForm.valid);
+
+    if (this.commentForm.valid)
+      this.productService
+        .insertComment({
+          ProductId: formValue.productId,
+          Title: formValue.title,
+          GainPoints: formValue.gainPoints?.toString(),
+          WeakPoints: formValue.weakPoints?.toString(),
+          Description: formValue.description,
+          UserProductPoint: formValue.points,
+        })
+        .subscribe((res) => {
+          this.dataService.successfullMessage(this.vcRef);
+          this.showCommentDialog = false;
+        });
   }
 }

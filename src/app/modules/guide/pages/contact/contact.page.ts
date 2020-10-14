@@ -23,18 +23,23 @@ export class ContactPage implements OnInit {
     telPhone: new FormControl(),
     description: new FormControl(null, Validators.required),
   });
-  options = {
-    layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 20,
-      }),
-    ],
-    zoom: 16,
-    center: latLng(35.6908164, 51.3802295),
-  };
-  layers = [marker([35.6908164, 51.3802295])];
+  options;
+  layers;
+  contactInfo;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.guideService.getContactUsInfo().subscribe((res) => {
+      this.contactInfo = res[0];
+      this.options = {
+        layers: [
+          tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
+        ],
+        zoom: 5,
+        center: latLng(this.contactInfo.lat, this.contactInfo.lng),
+      };
+      this.layers = [marker([this.contactInfo.lat, this.contactInfo.lng])];
+    });
+  }
 
   onSubmitForm() {
     if (this.form.valid) {

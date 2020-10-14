@@ -69,7 +69,7 @@ export class GuideService extends BaseService {
   }
 
   getContactUsInfo() {
-    return this.get('/V1/ContactFormInsert/', 'json').pipe(
+    return this.get('/V1/ContactUs/', 'json').pipe(
       map((res: any) => res.data)
     );
   }

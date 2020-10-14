@@ -23,7 +23,15 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "assets/"
+              }
+            ],
             "styles": [
               "node_modules/swiper/css/swiper.css",
               "node_modules/primeicons/primeicons.css",

@@ -33,4 +33,16 @@ export class HomeService extends BaseService {
       map((res: any) => res.data)
     );
   }
+
+  getFooterMenu() {
+    return this.get('/V1/FooterMenu/', 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
+
+  getAplications() {
+    return this.get('/V1/Application/', 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
 }

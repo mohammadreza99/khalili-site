@@ -54,64 +54,85 @@ export class ProductService extends BaseService {
   }
 
   getCategoryDescription(id: any) {
-    return this.get('/V1/CategoryDescription/?categoryId='+id, 'json').pipe(
+    return this.get('/V1/CategoryDescription/?categoryId=' + id, 'json').pipe(
       map((res: any) => res.data)
     );
   }
 
   getCategorySlider(id: any) {
-    return this.get('/V1/CategorySlider/?categoryId='+id,'json').pipe(
+    return this.get('/V1/CategorySlider/?categoryId=' + id, 'json').pipe(
       map((res: any) => res.data)
     );
   }
+
   getCategoryImages(id: any) {
-    return this.get('/V1/CategorySpecial/?categoryId='+id,'json').pipe(
+    return this.get('/V1/CategorySpecial/?categoryId=' + id, 'json').pipe(
       map((res: any) => res.data)
     );
   }
+
   getCategoryMainPage(id: any) {
-    return this.get('/V1/CategoryMainPage/?categoryId='+id,'json').pipe(
+    return this.get('/V1/CategoryMainPage/?categoryId=' + id, 'json').pipe(
       map((res: any) => res.data)
     );
   }
+
   getCategoryAllList(id: any) {
-    return this.get('/V1/CategoryAllList/?categoryId='+id,'json').pipe(
+    return this.get('/V1/CategoryAllList/?categoryId=' + id, 'json').pipe(
       map((res: any) => res.data)
     );
   }
+
   getCategoryAllSubList(id: any) {
-    return this.get('/V1/CategoryAllSubCategory/?categoryId='+id,'json').pipe(
-      map((res: any) => res.data)
-    );
-  }
-  getProductCategory(obj) { 
-   let url= "categoryId="+obj.categoryId+"&pageindex="+obj.pageIndex+"&sort="+obj.sort
-    return this.get('/V1/ProductCategory//?'+url,'json').pipe(
-      map((res: any) => res.data)
-    );
-  }
-  getCategorySortType() {
-    return this.get('/V1/SortType/','json').pipe(
-      map((res: any) => res.data)
-    );
-  }
-  getCategoryFilterList(id) {
-    return this.get('/V1/CategoryFilter/?categoryId='+id,'json').pipe(
-      map((res: any) => res.data)
-    );
-  }
-
-
-  getAttributesValue(attributeId: number){
     return this.get(
-      '/V1/AttributeValueSelectWithAttributeId/?attributeId=' +
-      attributeId,
+      '/V1/CategoryAllSubCategory/?categoryId=' + id,
       'json'
     ).pipe(map((res: any) => res.data));
   }
 
+  getProductCategory(obj) {
+    let url =
+      'categoryId=' +
+      obj.categoryId +
+      '&pageindex=' +
+      obj.pageIndex +
+      '&sort=' +
+      obj.sort;
+    return this.get('/V1/ProductCategory//?' + url, 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
 
-  convertToTreeNodeList(items=[]) {
+  getCategorySortType() {
+    return this.get('/V1/SortType/', 'json').pipe(map((res: any) => res.data));
+  }
+
+  getCategoryFilterList(id) {
+    return this.get('/V1/CategoryFilter/?categoryId=' + id, 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
+
+  getAttributesValue(attributeId: number) {
+    return this.get(
+      '/V1/AttributeValueSelectWithAttributeId/?attributeId=' + attributeId,
+      'json'
+    ).pipe(map((res: any) => res.data));
+  }
+
+  insertComment(comment) {
+    return this.post('/V1/CommentInsert/', comment, 'json').pipe(
+      map((res: any) => res.data)
+    );
+  }
+
+  getProductPoints(code) {
+    return this.get('/V1/ProductPoint/', 'json', {
+      ProductCode: code,
+    }).pipe(map((res: any) => res.data));
+  }
+
+  convertToTreeNodeList(items = []) {
     let result: TreeNode[] = [];
     items.forEach((item) => {
       const t: TreeNode = {
@@ -127,7 +148,7 @@ export class ProductService extends BaseService {
         selectable: true,
         key: item.id.toString(),
       };
-      
+
       if (t.children.length == 0) {
         t.icon = 'pi pi-minus';
       }
@@ -135,10 +156,7 @@ export class ProductService extends BaseService {
     });
     return result;
   }
-  getTreeNodeChildrenFromCategory(
-    category,
-    originalCategories
-  ) {
+  getTreeNodeChildrenFromCategory(category, originalCategories) {
     let children: TreeNode[] = [];
     originalCategories.forEach((item) => {
       if (item.parentId == category.id) {

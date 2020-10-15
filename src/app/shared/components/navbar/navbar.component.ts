@@ -130,11 +130,11 @@ export class NavbarComponent implements OnInit {
     let sideMenuItems: MenuItem[] = [];
     lvl1.forEach((item) => {
       let menuItem: MenuItem = {
-        label: item.title,
-        routerLink: item.routerLink,
+        label: item.title
       };
       if (item.items.length != 0) {
         let itemsList: MenuItem[] = [];
+        itemsList.push({ label: 'همه دسته بندی های این دسته', routerLink: item.routerLink })
         item.items.forEach((element) => {
           let m = { label: element.title, routerLink: element.routerLink };
           if (element.items.length != 0) {

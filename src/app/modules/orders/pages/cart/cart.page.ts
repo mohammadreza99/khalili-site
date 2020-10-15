@@ -35,6 +35,7 @@ export class CartPage implements OnInit {
   }
 
   async loadCart() {
+    this.cartProducts=[];
     const cart = this.orderService.getCart();
     this.orderService.updateCartCount(cart.length);
     for (const cartItem of cart) {

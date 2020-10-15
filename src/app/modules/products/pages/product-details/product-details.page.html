@@ -344,19 +344,43 @@
                     <h5 class="border-bottom h6 pb-3 font-light">
                       نظرات کاربران
                     </h5>
-                    <div class="row py-3">
-                      <div class="col-4">
-                        <p class="mb-3">نام خریدار</p>
-                        <p class="mb-3">در تاریخ 1399/05/08</p>
-                        <div>
-                          فروشنده : <span class="font-bold">دیجیکالا</span>
+                    <ng-container *ngIf="productComments.length != 0">
+                      <div
+                        class="row py-3"
+                        *ngFor="let comment of productComments"
+                      >
+                        <div class="col-4">
+                          <p class="mb-3">
+                            {{comment.firstName + ' ' + comment.lastName}}
+                          </p>
+                          <p class="mb-3">در تاریخ {{comment.insertDate}}</p>
+                        </div>
+                        <div class="col-8">
+                          <h6 class="border-bottom pb-3">{{comment.title}}</h6>
+                          <p>{{comment.description}}</p>
+                          <div
+                            class="w-100 d-flex align-items-center justify-content-around"
+                          >
+                            <div *ngIf="comment.gainPoints">
+                              <p class="text-success">نقاط قوت :</p>
+                              <ul>
+                                <li *ngFor="let gain of comment.gainPoints">
+                                  {{gain}}
+                                </li>
+                              </ul>
+                            </div>
+                            <div *ngIf="comment.weakPoints">
+                              <p class="text-danger">نقاط ضعف :</p>
+                              <ul>
+                                <li *ngFor="let weak of comment.weakPoints">
+                                  {{weak}}
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div class="col-8">
-                        <h5 class="border-bottom pb-3">عنوان نظر</h5>
-                        <p>متن نظر</p>
-                      </div>
-                    </div>
+                    </ng-container>
                   </div>
                 </div>
               </div>

@@ -28,15 +28,16 @@ export class ProfilePage implements OnInit {
   ) {}
 
   cols = [
-    { field: 'orderDate', header: 'تاریخ' },
+    { field: 'orderDate', header: 'تاریخ ثبت' },
     { field: 'invoiceNumber', header: 'کد مرسوله' },
-    { field: 'orderStateTitle', header: 'مرحله' },
+    { field: 'orderStateTitle', header: 'وضعیت سفارش' },
     { field: 'price', header: 'مبلغ' },
   ];
 
-  orders;
+  orders = [];
   activeIndex = 0;
   orderStates$;
+  orderProducts$;
   userProfile: Profile;
   pass: Password;
   jobs = [];
@@ -414,7 +415,6 @@ export class ProfilePage implements OnInit {
     this.userService.getOrderInfo(this.activeIndex + 1).subscribe((res) => {
       this.orders = res;
     });
-    // this.orders$ = this.userService.getOrderInfo(this.activeIndex + 1);
   }
 
   onClickTab(event, tabPane, navs, active) {
@@ -437,7 +437,10 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  onOrderDetailClick(rowData) {
-    this.userService.getOrderProducts(rowData.orderId);
+  onOrderDetailClick(rowData, expanded) {
+    console.log(expanded);
+    if (!expanded) {
+      this.orderProducts$ = this.userService.getOrderProducts(rowData.orderId);
+    }
   }
 }

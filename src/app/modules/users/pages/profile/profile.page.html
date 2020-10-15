@@ -79,18 +79,19 @@
                         <ng-template
                           pTemplate="body"
                           let-rowData
-                          let-expanded="expanded"
+                          let-expanded="expanded || false"
                           let-columns="columns"
                         >
                           <tr>
                             <td *ngFor="let col of columns">
-                              {{rowData[col.field]}}
+                              {{col.field == 'price' ?( (rowData[col.field] |
+                              number) + ' تومان') : rowData[col.field]}}
                             </td>
                             <td class="text-center">
                               <a
                                 href="#"
                                 [pRowToggler]="rowData"
-                                (click)="onOrderDetailClick(rowData)"
+                                (click)="onOrderDetailClick(rowData,expanded)"
                               >
                                 <i
                                   class="align-middle"
@@ -108,11 +109,16 @@
                           <tr>
                             <td [attr.colspan]="columns.length + 1">
                               <div class="container-fluid">
-                                <div class="row border-bottom py-2">
-                                  <div class="col-sm-4 col-xl-3">
+                                <div
+                                  class="row border-bottom py-2"
+                                  *ngFor="let p of orderProducts$ | async"
+                                >
+                                  <div
+                                    class="col-sm-4 col-xl-3 d-flex align-items-center justify-content-center mb-3 mb-sm-0"
+                                  >
                                     <img
                                       class="w-100"
-                                      src="https://via.placeholder.com/140x140"
+                                      [src]="p.keyMedia | safe | async"
                                     />
                                   </div>
                                   <div class="col-sm-8 col-xl-9">
@@ -122,66 +128,28 @@
                                       <li
                                         class="d-flex align-items-center mb-3"
                                       >
-                                        <small>{{rowData.vin}}</small>
+                                        <small>{{p.name}}</small>
                                       </li>
                                       <li
                                         class="d-flex align-items-center mb-3"
                                       >
                                         <i class="fa fa-tint ml-2"></i>
-                                        <small>{{rowData.vin}}</small>
+                                        <small>{{p.colorTitle}}</small>
                                       </li>
                                       <li
                                         class="d-flex align-items-center mb-3"
                                       >
                                         <i class="fa fa-shield-check ml-2"></i>
-                                        <small>{{rowData.year}}</small>
+                                        <small>{{p.warrantyTitle}}</small>
                                       </li>
                                       <li
                                         class="d-flex align-items-center mb-3"
                                       >
                                         <i class="fa fa-store ml-2"></i>
-                                        <small>{{rowData.brand}}</small>
+                                        <small>{{p.storeTitle}}</small>
                                       </li>
                                     </ul>
-                                    <b>قیمت واحد : </b> {{rowData.color}}
-                                  </div>
-                                </div>
-                                <div class="row border-bottom py-2">
-                                  <div class="col-sm-4 col-xl-3">
-                                    <img
-                                      class="w-100"
-                                      src="https://via.placeholder.com/140x140"
-                                    />
-                                  </div>
-                                  <div class="col-sm-8 col-xl-9">
-                                    <ul
-                                      class="features list-unstyled p-0 text-muted"
-                                    >
-                                      <li
-                                        class="d-flex align-items-center mb-3"
-                                      >
-                                        <small>{{rowData.vin}}</small>
-                                      </li>
-                                      <li
-                                        class="d-flex align-items-center mb-3"
-                                      >
-                                        <i class="fa fa-tint ml-2"></i>
-                                        <small>{{rowData.vin}}</small>
-                                      </li>
-                                      <li
-                                        class="d-flex align-items-center mb-3"
-                                      >
-                                        <i class="fa fa-shield-check ml-2"></i>
-                                        <small>{{rowData.year}}</small>
-                                      </li>
-                                      <li
-                                        class="d-flex align-items-center mb-3"
-                                      >
-                                        <i class="fa fa-store ml-2"></i>
-                                        <small>{{rowData.brand}}</small>
-                                      </li>
-                                    </ul>
-                                    <b>قیمت واحد : </b> {{rowData.color}}
+                                    <!-- <b>قیمت واحد : </b> {{rowData.color}} -->
                                   </div>
                                 </div>
                               </div>

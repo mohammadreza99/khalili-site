@@ -83,16 +83,18 @@ export class UserService extends BaseService {
   }
 
 
-  getOrderStateSelect() {
+  getOrderStates() {
     return this.get('/V1/OrderStateSelect/' , 'json').pipe(
       map((res: any) => res.data)
     );
   }
+
   getOrderInfo(id) {
     return this.get('/V1/OrderFinal/?orderSateId='+id , 'json').pipe(
       map((res: any) => res.data)
     );
   }
+
   getOrderProducts(id) {
     return this.get('/V1/OrderProduct/?orderId='+id , 'json').pipe(
       map((res: any) => res.data)

@@ -28,14 +28,16 @@ export class ProfilePage implements OnInit {
   ) {}
 
   cols = [
-    { field: 'orderDate', header: 'تاریخ' },
+    { field: 'orderDate', header: 'تاریخ ثبت' },
     { field: 'invoiceNumber', header: 'کد مرسوله' },
-    { field: 'orderStateTitle', header: 'مرحله' },
+    { field: 'orderStateTitle', header: 'وضعیت سفارش' },
     { field: 'price', header: 'مبلغ' },
   ];
-  orders;
-  activeIndex=0;
-  userOrders;
+
+  orders = [];
+  activeIndex = 0;
+  orderStates$;
+  orderProducts$;
   userProfile: Profile;
   pass: Password;
   jobs = [];
@@ -62,12 +64,12 @@ export class ProfilePage implements OnInit {
 
   ngOnInit(): void {
     this.loadProfile();
-    this.loadOrders()
+    this.loadOrders();
     this.loadStates();
     this.loadOrganization();
     this.loadAddresses();
   }
-  
+
   ///////////////////////////////////////////////////////////////////////
   //                              Profile                              //
   ///////////////////////////////////////////////////////////////////////
@@ -344,9 +346,6 @@ export class ProfilePage implements OnInit {
     this.loadAddresses();
   }
 
-
-
-
   ///////////////////////////////////////////////////////////////////////
   //                              Data Load                            //
   ///////////////////////////////////////////////////////////////////////
@@ -411,9 +410,11 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  async loadOrders(){
-    this.userOrders = await this.userService.getOrderStateSelect().toPromise();
-    this.orders= this.userService.getOrderInfo(this.activeIndex+1);
+  async loadOrders() {
+    this.orderStates$ = await this.userService.getOrderStates().toPromise();
+    this.userService.getOrderInfo(this.activeIndex + 1).subscribe((res) => {
+      this.orders = res;
+    });
   }
 
   onClickTab(event, tabPane, navs, active) {
@@ -429,11 +430,17 @@ export class ProfilePage implements OnInit {
     tabPane.querySelector(`.${active}`).classList.add('active');
   }
 
-  tabIndexChenge(args){
+  tabIndexChenge(args) {
     this.activeIndex = args.index;
-    this.orders= this.userService.getOrderInfo(this.activeIndex+1);
+    this.userService.getOrderInfo(this.activeIndex + 1).subscribe((res) => {
+      this.orders = res;
+    });
   }
-  onOrderDetailClick(rowData){
-    this.userService.getOrderProducts(rowData.orderId)
+
+  onOrderDetailClick(rowData, expanded) {
+    console.log(expanded);
+    if (!expanded) {
+      this.orderProducts$ = this.userService.getOrderProducts(rowData.orderId);
+    }
   }
 }

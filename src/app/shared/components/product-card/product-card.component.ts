@@ -15,6 +15,6 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
     if (this.product.disCountPrice)
       this.discountPersent =
-        (this.product.disCountPrice * 100) / this.product.price;
+        100 - (this.product.disCountPrice * 100) / this.product.price;
   }
 }

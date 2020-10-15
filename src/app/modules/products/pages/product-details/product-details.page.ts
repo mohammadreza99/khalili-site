@@ -117,6 +117,7 @@ export class ProductDetailsPage implements OnInit {
             item.isDefault && item.colorId == this.availableColors[0].value
         );
         this.discountPersent =
+          100 -
           (this.defaultPrice.disCountPrice * 100) / this.defaultPrice.price;
         this.productPrices = res.filter(
           (item) =>
@@ -133,7 +134,7 @@ export class ProductDetailsPage implements OnInit {
       (item) => item.isDefault && item.colorId == selectedColor.value
     );
     this.discountPersent =
-      (this.defaultPrice.disCountPrice * 100) / this.defaultPrice.price;
+      100 - (this.defaultPrice.disCountPrice * 100) / this.defaultPrice.price;
     this.productPrices = this.prices.filter(
       (item) => !item.isDefault && item.colorId == selectedColor.value
     );
@@ -150,7 +151,7 @@ export class ProductDetailsPage implements OnInit {
   onAddToCardByOtherPrice(priceId) {
     this.orderService.storeCart({
       productCode: this.productCode,
-      priceId: priceId.id,
+      priceId: priceId,
     });
     this.router.navigate(['/orders/cart']);
   }

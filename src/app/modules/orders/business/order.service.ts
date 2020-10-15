@@ -13,17 +13,11 @@ export class OrderService extends BaseService {
     (JSON.parse(localStorage.getItem('paid-products')) as any[])?.length || 0
   );
 
-  getSavedOrder() {
-    return this.get('/V1/OrderSaved/', 'json').pipe(
-      map((res: any) => res.data)
-    );
-  }
-
   storeCart(cart: { productCode: any; priceId: any }) {
     const localStorageData: any[] = this.getCart();
     if (
       localStorageData &&
-      localStorageData.find((item) => item.productCode == cart.productCode)
+      localStorageData.find((item) => item.priceId == cart.priceId)
     ) {
       return;
     } else {
@@ -68,7 +62,6 @@ export class OrderService extends BaseService {
       map((res: any) => res.data)
     );
   }
-
 
   submitOrder(orderObj) {
     return this.post('/V1/OrderInsert/', orderObj, 'json').pipe(

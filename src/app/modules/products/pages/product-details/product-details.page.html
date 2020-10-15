@@ -339,40 +339,48 @@
                     </button>
                   </div>
                 </div>
-                <div class="row py-5">
+                <div class="row py-5 comments">
                   <div class="col-12">
                     <h5 class="border-bottom h6 pb-3 font-light">
                       نظرات کاربران
                     </h5>
                     <ng-container *ngIf="productComments.length != 0">
                       <div
-                        class="row py-5"
+                        class="row py-5 border-bottom"
                         *ngFor="let comment of productComments"
                       >
                         <div class="col-4">
-                          <p class="mb-3">
+                          <p class="mb-3 font-medium">
                             {{comment.firstName + ' ' + comment.lastName}}
                           </p>
-                          <p class="mb-3">در تاریخ {{comment.insertDate}}</p>
+                          <p class="mb-3 small">
+                            در تاریخ {{comment.insertDate}}
+                          </p>
                         </div>
                         <div class="col-8">
                           <h6 class="border-bottom pb-3">{{comment.title}}</h6>
-                          <p>{{comment.description}}</p>
+                          <p class="small">{{comment.description}}</p>
                           <div
-                            class="w-100 d-flex align-items-center justify-content-around"
+                            class="w-100 mt-3 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-around"
                           >
                             <div *ngIf="comment.gainPoints">
-                              <p class="text-success">نقاط قوت :</p>
+                              <p class="text-success mb-0 small">نقاط قوت :</p>
                               <ul>
-                                <li *ngFor="let gain of comment.gainPoints">
+                                <li
+                                  class="font-light small"
+                                  *ngFor="let gain of comment.gainPoints"
+                                >
                                   {{gain}}
                                 </li>
                               </ul>
                             </div>
                             <div *ngIf="comment.weakPoints">
-                              <p class="text-danger">نقاط ضعف :</p>
+                              <p class="text-danger mb-0 small">نقاط ضعف :</p>
                               <ul>
-                                <li *ngFor="let weak of comment.weakPoints">
+                                <li
+                                  class="font-light small"
+                                  *ngFor="let weak of comment.weakPoints"
+                                >
                                   {{weak}}
                                 </li>
                               </ul>

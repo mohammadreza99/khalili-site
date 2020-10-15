@@ -31,5 +31,16 @@ p-galleria ::ng-deep .ui-galleria-thumbnail-container {
   border: 1px solid #dee2e6;
   border-radius: 0.3rem;
   margin-top: 1rem;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
+}
+
+.comments {
+  .border-bottom {
+    border-color: #eee !important;
+  }
+  .row.border-bottom {
+    &:last-child {
+      border-bottom: 0 !important;
+    }
+  }
 }

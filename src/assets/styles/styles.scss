@@ -88,7 +88,7 @@ body {
     padding: 0 !important;
   }
 
-  .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active{
+  .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active {
     background-color: $primary !important;
     border: 1px solid $primary !important;
   }
@@ -164,8 +164,5 @@ body {
         }
       }
     }
-  }
-  .ui-inputtext:enabled:focus:not(.ui-state-error) {
-    // box-shadow: none;
   }
 }

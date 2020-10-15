@@ -18,7 +18,6 @@ import { PrimeInputBaseComponent } from '../prime-input-base/prime-input-base.co
 export class PrimeInputSwitchComponent extends PrimeInputBaseComponent
   implements OnInit, AfterViewInit {
 
-  // constructor() { super() }
   ngOnInit() {
     super.ngOnInit();
   }

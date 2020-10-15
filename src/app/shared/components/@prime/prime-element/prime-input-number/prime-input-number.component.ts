@@ -18,7 +18,6 @@ import { PrimeInputBaseComponent } from '../prime-input-base/prime-input-base.co
 export class PrimeInputNumberComponent extends PrimeInputBaseComponent
   implements OnInit, AfterViewInit {
 
-  // constructor() { super() }
 
   @Input() min: number = 0;
   @Input() max: number;

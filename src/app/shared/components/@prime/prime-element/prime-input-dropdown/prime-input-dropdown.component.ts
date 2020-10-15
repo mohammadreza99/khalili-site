@@ -33,7 +33,6 @@ import { PrimeFilterMatchMode } from '../../prime-type/prime-filter-match-mode';
 export class PrimeInputDropdownComponent
   extends PrimeInputBaseComponent
   implements OnInit, AfterViewInit, OnChanges {
-  // constructor() { super() }
 
   @Input() items: PrimeDropdownItem[] | PrimeDropdownGroup[] | any[] = [];
   @Input() showClear: boolean = true;

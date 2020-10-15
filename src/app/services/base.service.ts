@@ -6,8 +6,6 @@ import { tap } from 'rxjs/operators';
 import { Global } from '../app.global';
 import { Config } from '../app.config';
 
-// import * as MD5 from 'js-md5';
-
 export class BaseService {
   private http: HttpClient;
 
@@ -58,7 +56,6 @@ export class BaseService {
         timeout = Config.CacheTimeout;
       }
       key = `${this.baseUrl + path}${type}${JSON.stringify(params)}`;
-      // key = MD5(key);
 
       const data = window.localStorage.getItem(key);
       if (data) {

@@ -69,7 +69,6 @@ export class BeforeAfterDirective implements OnInit {
               this.renderer.setAttribute(BTN_ICON_SPAN, 'aria-hidden', 'true');
               this.renderer.appendChild(BTN, BTN_ICON_SPAN);
               if (_btnLabel != null) {
-                // has icon & text
                 this.renderer.addClass(
                   BTN,
                   `ui-button-text-icon-${_btnIconPos}`
@@ -79,12 +78,10 @@ export class BeforeAfterDirective implements OnInit {
                   `ui-button-icon-${_btnIconPos}`
                 );
               } else {
-                // has icon only
                 this.renderer.addClass(BTN, 'ui-button-icon-only');
                 this.renderer.addClass(BTN_ICON_SPAN, 'ui-button-icon-left');
               }
             } else if (_btnIcon == null) {
-              //has text only
               this.renderer.addClass(BTN, 'ui-button-text-only');
             }
             this.addToDOM(BTN, side);

@@ -28,7 +28,6 @@ import { PrimeInputBaseComponent } from '../prime-input-base/prime-input-base.co
 export class PrimeInputTagsComponent
   extends PrimeInputBaseComponent
   implements OnInit, AfterViewInit {
-  // constructor() { super() }
 
   @Input() max: number;
   @Input() field: string;

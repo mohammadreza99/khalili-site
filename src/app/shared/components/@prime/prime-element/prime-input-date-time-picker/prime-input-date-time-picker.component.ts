@@ -28,7 +28,6 @@ import { PrimeDatePickerMode } from '../../prime-type/prime-date-picker';
 export class PrimeInputDateTimePickerComponent
   extends PrimeInputBaseComponent
   implements OnInit, AfterViewInit {
-  // constructor() { super() }
 
   @Input() datePickerMode: PrimeDatePickerMode = 'day';
   @Input() minDate: Moment | string;

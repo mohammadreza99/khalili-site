@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit, Input, forwardRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  Input,
+  forwardRef,
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { PrimeInputBaseComponent } from '../prime-input-base/prime-input-base.component';
@@ -11,15 +17,13 @@ import { PrimeInputBaseComponent } from '../prime-input-base/prime-input-base.co
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => PrimeInputRadioComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-export class PrimeInputRadioComponent extends PrimeInputBaseComponent
+export class PrimeInputRadioComponent
+  extends PrimeInputBaseComponent
   implements OnInit, AfterViewInit {
-
-  // constructor() { super() }
-
   @Input() items: (string | any)[] = [];
   @Input() inline: boolean = false;
   @Input() field: string;

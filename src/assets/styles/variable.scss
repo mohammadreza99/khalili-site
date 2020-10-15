@@ -1,32 +1,11 @@
-/////////////////////////////////////////////////////////////////////////////
-//                           GENERAL VARIABLES                             //
-/////////////////////////////////////////////////////////////////////////////
 $sidenav-width: 278px;
 $navbar-height: 62px;
 $navbar-responsive-height: 116px;
-
-/////////////////////////////////////////////////////////////////////////////
-//                           LIGHT THEME VARIABLES                         //
-/////////////////////////////////////////////////////////////////////////////
 $light-blue: #eef2f6;
 $light: #f4f4f4;
-// other color in light theme will use PrimeNg's original colors.just set the body's color to lightBlue.
-
-/////////////////////////////////////////////////////////////////////////////
-//                           DARK THEME VARIABLES                          //
-/////////////////////////////////////////////////////////////////////////////
-
-
 $primary: #61c0be;
 $secondary: #ff906b;
 $bg-secondary: #efe7bc;
-
-
-
-
-
-
-
 $primary-100: #1f7ed0;
 $primary-200: #1b71bb;
 $primary-300: #1864a6;
@@ -44,7 +23,6 @@ $dark-800: #323232;
 $dark-900: #252525;
 $dark-1000: #191919;
 $black: #000000;
-
 $gray-001: #f1f1f1;
 $gray-002: #d4d4d4;
 $gray-003: #a1a1a1;
@@ -55,7 +33,6 @@ $gray-007: #555555;
 $gray-008: #414141;
 $gray-009: #363636;
 $gray-010: #212121;
-
 $dark-green-001: #2c7b7d;
 $dark-green-002: #266a6b;
 $dark-green-003: #1f5859;
@@ -64,7 +41,6 @@ $dark-green-005: #174142;
 $dark-green-006: #133536;
 $dark-green-007: #0d2424;
 $dark-green-008: #071212;
-
 $polarous-blue-001: #eef9f9;
 $polarous-blue-002: #ddf3f4;
 $polarous-blue-003: #cceeee;
@@ -82,8 +58,6 @@ $polarous-blue-014: #3ba5a8;
 $polarous-blue-015: #328d8f;
 $polarous-blue-016: #297275;
 $polarous-blue-017: #205a5c;
-
-
 $jungle-green-001: #5dffaa;
 $jungle-green-002: #39ff97;
 $jungle-green-003: #36f591;
@@ -93,8 +67,6 @@ $jungle-green-006: #25a864;
 $jungle-green-007: #208f55;
 $jungle-green-008: #1a7546;
 $jungle-green-009: #145c36;
-
-
 $blue: #3069cc;
 $light-blue: #68ccff;
 $orange: #f25841;
@@ -103,7 +75,6 @@ $yellow: #ffc130;
 $light-yellow: #ffbf75;
 $purple: #505aff;
 $light-purple: #a059d6;
-
 $gradient-primary-left: $polarous-blue-013;
 $gradient-primary-right1: $polarous-blue-014;
 $gradient-primary-right2: $polarous-blue-011;
@@ -112,7 +83,6 @@ $gradient-secondary-left1: $jungle-green-005;
 $gradient-secondary-left2: $jungle-green-003;
 $gradient-secondary-right1: $jungle-green-007;
 $gradient-secondary-right2: $jungle-green-003;
-
 $title-color1: $dark-green-007;
 $title-color2: $dark-green-008;
 $title-color3: $gray-010;
@@ -121,15 +91,12 @@ $button-color: $gray-008;
 $subtitle-color: $gray-006;
 $caption-color: $gray-004;
 $field-color: $gray-003;
-
 $shadow-sm: 0 5px 10px 0;
 $shadow-md: 0 10px 20px 0;
 $shadow-lg: 0 20px 40px 0;
-
 $line-height-sm: 1.25;
 $line-height-md: 1.29;
 $line-height-lg: 2;
-
 $font-size-xs: 12px;
 $font-size-sm: 14px;
 $font-size-md: 16px;
@@ -138,17 +105,14 @@ $font-size-xl: 26px;
 $font-size-xxl: 32px;
 $font-size-xxxl: 42px;
 $font-size-xxxxl: 68px;
-
 $radius-xxl: 40px;
 $radius-xl: 22px;
 $radius-lg: 20px;
 $radius-md: 10px;
 $muli-font: "Muli";
 $yekan-font: "IRANyekan";
-
 $spaces: 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 104, 132, 156, 164, 196;
 $directions: "top", "right", "bottom", "left";
-
 $extraSmall-width: 575px;
 $small-min-width: 576px;
 $medium-min-width: 768px;

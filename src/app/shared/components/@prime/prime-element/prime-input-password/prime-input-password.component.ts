@@ -18,7 +18,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 export class PrimeInputPasswordComponent extends PrimeInputBaseComponent
   implements OnInit, AfterViewInit {
 
-  // constructor() { super() }
 
   @Input() promptLabel: string = "لطفا رمز خود را وارد کنید";
   @Input() weakLabel: string = "ضعیف";

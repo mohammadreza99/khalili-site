@@ -21,7 +21,6 @@ import { PrimeFilterMatchMode } from '../../prime-type/prime-filter-match-mode';
 export class PrimeInputMultiSelectComponent extends PrimeInputBaseComponent
   implements OnInit, AfterViewInit {
 
-  // constructor() { super() }
 
   @Input() items: SelectItem[]|any;
   @Input() hasFilter: boolean = true;

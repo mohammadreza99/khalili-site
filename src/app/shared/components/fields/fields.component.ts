@@ -52,13 +52,13 @@ export class FieldsComponent implements OnInit, OnChanges {
           else {
             values.push({
               attributeId: +key,
-              value:(res[key]).toString(),
+              value: res[key].toString(),
             });
           }
         } else {
           values.push({
             attributeId: +key,
-            value: ''+res[key]+'',
+            value: '' + res[key] + '',
           });
         }
       }
@@ -100,9 +100,5 @@ export class FieldsComponent implements OnInit, OnChanges {
     }
   }
   getItems() {}
-  onSubmit() {
-    // if (this.form.valid) {
-    //   this.dialogRef.close(this.form.value);
-    // }
-  }
+  onSubmit() {}
 }

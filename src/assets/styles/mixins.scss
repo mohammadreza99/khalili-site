@@ -16,10 +16,6 @@
   }
 }
 
-@mixin hover-style {
-  font-weight: 700;
-  color: #fff !important;
-}
 
 @mixin text-style(
   $color: $body-color /*#414141*/,

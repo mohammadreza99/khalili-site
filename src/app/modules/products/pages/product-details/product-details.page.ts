@@ -210,8 +210,6 @@ export class ProductDetailsPage implements OnInit {
 
   onSubmitComment() {
     const formValue = this.commentForm.value;
-    console.log(this.commentForm.valid);
-
     if (this.commentForm.valid)
       this.productService
         .insertComment({

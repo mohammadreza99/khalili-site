@@ -1,16 +1,15 @@
 @import "mixins";
 
 .navbar {
-
   transition: all 0.4s;
   user-select: none;
   height: 65px;
   &:first-child {
     z-index: 1000;
   }
-.badge{
-  background-color: $secondary;
-}
+  .badge {
+    background-color: $secondary;
+  }
   i,
   a,
   .navbar-brand {
@@ -73,12 +72,6 @@
           li {
             @include text-style($subtitle-color, $font-size-sm, 3);
             border: 1px solid transparent;
-            // &:hover {
-            //   border-top-color: $gray-002;
-            //   border-bottom-color: $gray-002;
-            //   background-color: $gray-001;
-            //   color: $primary;
-            // }
           }
         }
       }

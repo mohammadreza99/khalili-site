@@ -69,10 +69,7 @@ export class ProfilePage implements OnInit {
     this.loadOrganization();
     this.loadAddresses();
   }
-
-  ///////////////////////////////////////////////////////////////////////
-  //                              Profile                              //
-  ///////////////////////////////////////////////////////////////////////
+  
   onEditFullName() {
     this.dialogFormService
       .show('نام و نام خانوادگی', [
@@ -324,9 +321,6 @@ export class ProfilePage implements OnInit {
     this.authService.logout();
   }
 
-  ///////////////////////////////////////////////////////////////////////
-  //                              Address                              //
-  ///////////////////////////////////////////////////////////////////////
   onEditAddress(address) {
     this.userService.updateAddress(address).subscribe(() => {
       this.dataService.successfullMessage(this.vcRef);
@@ -346,9 +340,6 @@ export class ProfilePage implements OnInit {
     this.loadAddresses();
   }
 
-  ///////////////////////////////////////////////////////////////////////
-  //                              Data Load                            //
-  ///////////////////////////////////////////////////////////////////////
   async loadProfile() {
     this.userProfile = await this.userService.getProfileInfo().toPromise();
     this.userService.getJobs().subscribe((jobs) => {
@@ -438,7 +429,6 @@ export class ProfilePage implements OnInit {
   }
 
   onOrderDetailClick(rowData, expanded) {
-    console.log(expanded);
     if (!expanded) {
       this.orderProducts$ = this.userService.getOrderProducts(rowData.orderId);
     }

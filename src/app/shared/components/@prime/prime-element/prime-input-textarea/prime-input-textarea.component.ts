@@ -1,4 +1,12 @@
-import { Component, OnInit, forwardRef, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  forwardRef,
+  AfterViewInit,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { PrimeInputBaseComponent } from '../prime-input-base/prime-input-base.component';
@@ -11,14 +19,13 @@ import { PrimeInputBaseComponent } from '../prime-input-base/prime-input-base.co
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => PrimeInputTextareaComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-export class PrimeInputTextareaComponent extends PrimeInputBaseComponent
+export class PrimeInputTextareaComponent
+  extends PrimeInputBaseComponent
   implements OnInit, AfterViewInit {
-  // constructor() { super() }
-
   @Input() rows: number;
   @Input() cols: number;
   @Input() autoResize: boolean;
@@ -33,9 +40,7 @@ export class PrimeInputTextareaComponent extends PrimeInputBaseComponent
   }
 
   _onInput() {
-    if (this.controlContainer)
-      this.controlOnChange(this.value);
+    if (this.controlContainer) this.controlOnChange(this.value);
     this.onInput.emit(this.value);
   }
-
 }

@@ -53,7 +53,6 @@ export class PrimeInputSliderComponent extends PrimeInputBaseComponent
       width: this.orientation == 'horizontal' ? this.width + 'px' : '',
       height: this.orientation == 'vertical' ? this.height + 'px' : '',
     };
-    // Object.assign(this.style, style);
   }
 
   ngAfterViewInit(): void {

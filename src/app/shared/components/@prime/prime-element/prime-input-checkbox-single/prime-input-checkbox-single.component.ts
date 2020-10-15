@@ -1,4 +1,10 @@
-import { Component, OnInit, forwardRef, AfterViewInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  forwardRef,
+  AfterViewInit,
+  Input,
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
 
 import { PrimeInputBaseComponent } from '../prime-input-base/prime-input-base.component';
@@ -15,16 +21,14 @@ import { PrimeInputBaseComponent } from '../prime-input-base/prime-input-base.co
     },
   ],
 })
-export class PrimeInputCheckboxSingleComponent extends PrimeInputBaseComponent
+export class PrimeInputCheckboxSingleComponent
+  extends PrimeInputBaseComponent
   implements OnInit, AfterViewInit {
-
-  // constructor() { super() }
-
-  @Input() checkboxIcon: string = "pi pi-check";
+  @Input() checkboxIcon: string = 'pi pi-check';
 
   ngOnInit() {
     super.ngOnInit();
-    this.labelPosition = "top"
+    this.labelPosition = 'top';
   }
 
   ngAfterViewInit() {
@@ -42,6 +46,4 @@ export class PrimeInputCheckboxSingleComponent extends PrimeInputBaseComponent
       (formControl.invalid && formControl.dirty)
     );
   }
-
-
 }

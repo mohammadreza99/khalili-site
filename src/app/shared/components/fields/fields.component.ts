@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '@app/modules/products/business/product.service';
-import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'fields',
@@ -47,7 +46,7 @@ export class FieldsComponent implements OnInit, OnChanges {
       for (const key in res) {
         if (typeof res[key] == 'object' && res[key] != null) {
           if (res[key].length == undefined) {
-            values.push( {
+            values.push({
               attributeId: +key,
               value: res[key].year + '-' + res[key].month + '-' + res[key].day,
             });
@@ -58,7 +57,7 @@ export class FieldsComponent implements OnInit, OnChanges {
             });
           }
         } else {
-          values.push( {
+          values.push({
             attributeId: +key,
             value: '' + res[key] + '',
           });

@@ -39,7 +39,7 @@ export class ProductDetailsPage implements OnInit {
   productPoints = [];
   productMedia$: any;
   productDescription$: any;
-  productComments$: any;
+  productComments = [];
   productFields$: any;
   relatedProducts$: any;
   availableColors: any[] = [];
@@ -81,10 +81,20 @@ export class ProductDetailsPage implements OnInit {
     this.productDescription$ = this.productService.getProductDescription(
       this.productCode
     );
-    this.productComments$ = this.productService.getProductComments(
-      this.productCode
-    );
-    this.productComments$.subscribe(console.log);
+    this.productService
+      .getProductComments(this.productCode)
+      .subscribe((res) => {
+        for (const c of res) {
+          this.productComments.push({
+            firstName: c.firstName,
+            gainPoints: c.gainPoints?.split(','),
+            insertDate: c.insertDate,
+            lastName: c.lastName,
+            title: c.title,
+            weakPoints: c.weakPoints?.split(','),
+          });
+        }
+      });
     this.relatedProducts$ = this.productService.getRelatedProducts(
       this.productCode
     );

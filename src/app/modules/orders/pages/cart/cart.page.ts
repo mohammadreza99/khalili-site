@@ -31,7 +31,6 @@ export class CartPage implements OnInit {
   finalPaySum = 0;
 
   ngOnInit(): void {
-    this.orderService.getSavedOrder().subscribe();
     this.loadCart();
   }
 
@@ -94,10 +93,12 @@ export class CartPage implements OnInit {
         { message: 'آیا مایل به حذف این کالا هستید؟', header: name },
         this.vcRef
       )
-      .then(() => {
+      .then(async (res) => {
         this.orderService.deleteCart(productCode);
         this.cartProducts.splice(index, 1);
         this.orderService.updateCartCount(this.cartProducts.length);
+        await this.loadCart();
+        this.calclulateFinalSum();
       });
   }
 

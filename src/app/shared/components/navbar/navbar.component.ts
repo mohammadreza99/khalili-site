@@ -146,7 +146,6 @@ export class NavbarComponent implements OnInit {
       }
       sideMenuItems.push(menuItem);
     });
-
     return sideMenuItems;
   }
 

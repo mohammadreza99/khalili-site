@@ -33,6 +33,7 @@ export class ProductSubcategoryPage implements OnInit {
       this.title.setTitle(name);
       this.sortTypeItems$ = this.productService.getCategorySortType();
       this.filterList$ = this.productService.getCategoryFilterList(this.id);
+
       this.loadList(this.id);
       this.loadProduct(this.id);
     });
@@ -67,11 +68,29 @@ export class ProductSubcategoryPage implements OnInit {
   }
 
   onChangeAttributes(event) {
-    this.attributes = event;
-  }
+    let attribute = event.filter((e) => e.value != null && e.value != 'null');
+    let keys = [];
+    let values = [];
+    attribute.forEach((attr) => {
+      if( attr.value != '' && attr.value != 'false'){
+        keys.push(attr.attributeId);
+        values.push(attr.value);
+      }
+    });
+    if (attribute.length != 0) {
+      let value = {
+        categoryId: this.id,
+        key: keys.toString(),
+        value: values.toString(),
+        pageIndex: this.pageIndex,
+        sort: this.sortType,
+      };
+      this.products$ = this.productService.getProductSearch(value);
+      
+      
+    }
 
-  onFilterClick() {
-    console.log(this.attributes);
+    this.attributes = event;
   }
 
   config = {

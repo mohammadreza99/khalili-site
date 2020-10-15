@@ -132,6 +132,10 @@ export class ProductService extends BaseService {
     }).pipe(map((res: any) => res.data));
   }
 
+  getProductSearch(body) {
+    return this.get('/V1/ProductSearch/', 'json',body).pipe(map((res: any) => res.data));
+  }
+
   convertToTreeNodeList(items = []) {
     let result: TreeNode[] = [];
     items.forEach((item) => {

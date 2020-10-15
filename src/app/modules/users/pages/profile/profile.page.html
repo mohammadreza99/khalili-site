@@ -55,9 +55,10 @@
           <div class="tab-content" #tabPans>
             <div class="tab-pane fade orders show active">
               <div class="bg-white p-3 border shadow-sm rounded-lg">
-                <p-tabView>
-                  <p-tabPanel header="درحال پردازش">
-                    <p-table [columns]="cols" [value]="orders" dataKey="code">
+                <p-tabView   [activeIndex]="activeIndex" 
+                (onChange)="tabIndexChenge($event)">
+                  <p-tabPanel *ngFor="let order of userOrders;let i=index" [header]="order.title">
+                    <p-table *ngIf="activeIndex==i" [columns]="cols" [value]="orders |async" dataKey="code">
                       <ng-template pTemplate="header" let-columns>
                         <tr>
                           <th *ngFor="let col of columns">{{col.header}}</th>
@@ -75,7 +76,7 @@
                             {{rowData[col.field]}}
                           </td>
                           <td class="text-center">
-                            <a href="#" [pRowToggler]="rowData">
+                            <a href="#" [pRowToggler]="rowData" (click)="onOrderDetailClick(rowData)">
                               <i
                                 class="align-middle"
                                 [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
@@ -158,9 +159,6 @@
                       </ng-template>
                     </p-table>
                   </p-tabPanel>
-                  <p-tabPanel header="لغو شده"></p-tabPanel>
-                  <p-tabPanel header="تحویل شده"></p-tabPanel>
-                  <p-tabPanel header="مرجوعی"></p-tabPanel>
                 </p-tabView>
               </div>
             </div>

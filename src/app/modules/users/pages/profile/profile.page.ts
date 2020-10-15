@@ -28,38 +28,14 @@ export class ProfilePage implements OnInit {
   ) {}
 
   cols = [
-    { field: 'date', header: 'تاریخ' },
-    { field: 'code', header: 'کد مرسوله' },
-    { field: 'status', header: 'وضعیت' },
+    { field: 'orderDate', header: 'تاریخ' },
+    { field: 'invoiceNumber', header: 'کد مرسوله' },
+    { field: 'orderStateTitle', header: 'مرحله' },
     { field: 'price', header: 'مبلغ' },
   ];
-  orders = [
-    {
-      date: '1399/05/04',
-      code: 'DK-50211',
-      status: 'تحویل شده',
-      price: '1542000',
-    },
-    {
-      date: '1399/05/04',
-      code: 'DK-50212',
-      status: 'تحویل شده',
-      price: '1542000',
-    },
-    {
-      date: '1399/05/04',
-      code: 'DK-50213',
-      status: 'تحویل شده',
-      price: '1542000',
-    },
-    {
-      date: '1399/05/04',
-      code: 'DK-50214',
-      status: 'تحویل شده',
-      price: '1542000',
-    },
-  ];
-
+  orders;
+  activeIndex=0;
+  userOrders;
   userProfile: Profile;
   pass: Password;
   jobs = [];
@@ -86,11 +62,12 @@ export class ProfilePage implements OnInit {
 
   ngOnInit(): void {
     this.loadProfile();
+    this.loadOrders()
     this.loadStates();
     this.loadOrganization();
     this.loadAddresses();
   }
-
+  
   ///////////////////////////////////////////////////////////////////////
   //                              Profile                              //
   ///////////////////////////////////////////////////////////////////////
@@ -367,6 +344,9 @@ export class ProfilePage implements OnInit {
     this.loadAddresses();
   }
 
+
+
+
   ///////////////////////////////////////////////////////////////////////
   //                              Data Load                            //
   ///////////////////////////////////////////////////////////////////////
@@ -431,6 +411,11 @@ export class ProfilePage implements OnInit {
     });
   }
 
+  async loadOrders(){
+    this.userOrders = await this.userService.getOrderStateSelect().toPromise();
+    this.orders= this.userService.getOrderInfo(this.activeIndex+1);
+  }
+
   onClickTab(event, tabPane, navs, active) {
     navs.querySelectorAll('.nav-link').forEach((element) => {
       element.classList.remove('active');
@@ -442,5 +427,13 @@ export class ProfilePage implements OnInit {
     event.target.classList.add('active');
     tabPane.querySelector(`.${active}`).classList.add('show');
     tabPane.querySelector(`.${active}`).classList.add('active');
+  }
+
+  tabIndexChenge(args){
+    this.activeIndex = args.index;
+    this.orders= this.userService.getOrderInfo(this.activeIndex+1);
+  }
+  onOrderDetailClick(rowData){
+    this.userService.getOrderProducts(rowData.orderId)
   }
 }

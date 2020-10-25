@@ -65,65 +65,69 @@ export class ProductDetailsPage implements OnInit {
   commentForm: FormGroup;
 
   ngOnInit() {
-    this.productCode = this.route.snapshot.paramMap.get('code');
-    this.productService
-      .getProductInfo(this.productCode)
-      .subscribe((product) => {
-        this.productInfo = product;
-        this.title.setTitle('مشخصات و خرید ' + product.name);
-      });
-    this.productService.getProductMedia(this.productCode).subscribe((res) => {
-      this.productImages = res;
-    });
-    this.productFields$ = this.productService.getProductFields(
-      this.productCode
-    );
-    this.productDescription$ = this.productService.getProductDescription(
-      this.productCode
-    );
-    this.productService
-      .getProductComments(this.productCode)
-      .subscribe((res) => {
-        for (const c of res) {
-          this.productComments.push({
-            firstName: c.firstName,
-            gainPoints: c.gainPoints?.split(','),
-            insertDate: c.insertDate,
-            lastName: c.lastName,
-            title: c.title,
-            weakPoints: c.weakPoints?.split(','),
-          });
-        }
-      });
-    this.relatedProducts$ = this.productService.getRelatedProducts(
-      this.productCode
-    );
-    this.productService
-      .getProductPrice(this.productCode)
-      .subscribe((res: ProductPrice[]) => {
-        this.prices = res;
-        res.forEach((price) => {
-          if (
-            !this.availableColors.find((color) => color.value == price.colorId)
-          )
-            this.availableColors.push({
-              label: price.colorTitle,
-              value: price.colorId,
-            });
+    this.route.params.subscribe((params) => {
+      this.productCode = params['code'];
+      this.productService
+        .getProductInfo(this.productCode)
+        .subscribe((product) => {
+          this.productInfo = product;
+          this.title.setTitle('مشخصات و خرید ' + product.name);
         });
-
-        this.defaultPrice = res.find(
-          (item) =>
-            item.isDefault && item.colorId == this.availableColors[0].value
-        );
-        this.discountPersent =
-          100 -
-          (this.defaultPrice.disCountPrice * 100) / this.defaultPrice.price;
-        this.productPrices = res.filter(
-          (item) =>
-            !item.isDefault && item.colorId == this.availableColors[0].value
-        );
+      this.productService.getProductMedia(this.productCode).subscribe((res) => {
+        this.productImages = res;
       });
+      this.productFields$ = this.productService.getProductFields(
+        this.productCode
+      );
+      this.productDescription$ = this.productService.getProductDescription(
+        this.productCode
+      );
+      this.productService
+        .getProductComments(this.productCode)
+        .subscribe((res) => {
+          for (const c of res) {
+            this.productComments.push({
+              firstName: c.firstName,
+              gainPoints: c.gainPoints?.split(','),
+              insertDate: c.insertDate,
+              lastName: c.lastName,
+              title: c.title,
+              weakPoints: c.weakPoints?.split(','),
+            });
+          }
+        });
+      this.relatedProducts$ = this.productService.getRelatedProducts(
+        this.productCode
+      );
+      this.productService
+        .getProductPrice(this.productCode)
+        .subscribe((res: ProductPrice[]) => {
+          this.prices = res;
+          res.forEach((price) => {
+            if (
+              !this.availableColors.find(
+                (color) => color.value == price.colorId
+              )
+            )
+              this.availableColors.push({
+                label: price.colorTitle,
+                value: price.colorId,
+              });
+          });
+
+          this.defaultPrice = res.find(
+            (item) =>
+              item.isDefault && item.colorId == this.availableColors[0].value
+          );
+          this.discountPersent =
+            100 -
+            (this.defaultPrice.disCountPrice * 100) / this.defaultPrice.price;
+          this.productPrices = res.filter(
+            (item) =>
+              !item.isDefault && item.colorId == this.availableColors[0].value
+          );
+        });
+    });
   }
 
   onColorChange(colorId) {
